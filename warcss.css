@@ -1,0 +1,688 @@
+body{background-color: #dedede !important;
+    font-family: "Times New Roman", Times, serif;
+    background-color:black;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select:none;
+    user-select:none;
+    -o-user-select:none;
+}
+
+input:focus {
+    background-color: #f0f;
+}
+
+#battlebackground{
+    width:500px;
+    height:500px;
+    margin-left:50px;
+    margin-top:-570px;
+    background-color:red;
+    position:absolute;
+}
+#cinemabackground{
+    width:830px;
+    height:650px;
+    margin-left:50px;
+    margin-top:-640px;
+    background-color:blue;
+    position:absolute;
+    z-index: 10;
+    overflow-y: hidden;
+  overflow-x: hidden;
+}
+#cinema{
+    width:830px;
+    height:650px;
+    position:absolute;
+    overflow-y: hidden;
+  overflow-x: hidden;
+}
+#quickscene{
+      width:830px;
+    height:650px;
+    background-color:blue;
+    position:absolute;
+    z-index: 10;
+    overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.dialog{
+    word-wrap:break-word; 
+    position: absolute; 
+    border: black solid 5px; 
+    z-index:1;
+    margin-left:-100px;
+    bottom:0;
+    margin-bottom:60px;
+    width:280px; 
+    background-color:gray;
+        border-radius:5px;
+}
+.dialog-left{
+    word-wrap:break-word; 
+    position: absolute; 
+    border: black solid 5px; 
+    z-index:1;
+    margin-left:-150px;
+    margin-top:-75px;
+    width:250px; 
+    background-color:gray;
+        border-radius:5px;
+}
+
+#background{
+    width:500px;
+    height:500px;
+    margin-left:25px;
+
+}
+
+
+#top{
+    background-color: #a4f2ff;
+    height:70px;
+    border:black solid 1px;
+    width:825px;
+    margin-left:49px;
+    font-size:30px;
+}
+
+#top p{
+    font-size:32px;
+    margin-top:-50px;
+    margin-left:500px;
+}
+
+
+
+#TEXT{
+    background-color: #bb7510;
+    width:300px;
+    height:580px;
+    margin-left:575px;
+    margin-top: -500px;
+    font-size:20px;
+    border:black solid 1px;
+    overflow:scroll;
+    overflow-x: hidden;
+}
+
+#TEXT ul{
+    font-size:25px;
+}
+
+#TEXT li{
+    font-size:20px;
+    Margin-top:10px;
+}
+
+#passarea{
+    height:70px;
+    width:120px;
+    position:absolute;
+    margin-left:430px;
+    margin-top:-80px;
+}
+
+#passarea div{
+margin-top:3px;
+    float:right;
+}
+
+.heading {
+    font-size:32px;
+    Margin-left:70px;
+    display:inline-block;
+}
+
+
+.areas{
+    position:absolute;
+    width:15px;
+    height:15px;
+}
+.townareas{
+    margin-top:-10px;
+    width:25px;
+    height:25px;
+}
+
+.battleareas{
+    position:absolute;
+    width:75px;
+    height:75px;
+}
+
+
+.selected{
+    border: #d5d406 solid 5px;
+}
+
+.enlarge p{
+    font-size:20px;
+    color:red;
+}
+
+.selectedUnit{
+    background:yellow;
+}
+
+.actions{
+    width:503px;
+    height:70px;
+    background-color: #656565;
+    margin-top: -80px;
+    margin-left: 49px;
+    border:black solid 1px;
+}
+
+.button{
+    border:black solid 1px;
+    height:60px;
+    width:110px;
+    background-color: #adadad;
+    font-size:20px;
+    margin-left:30%;
+    display:inline-block;
+    text-align:center;
+}
+
+.gotobutton{
+    height:auto;
+    width:auto;
+    font-size:20px;
+    margin-left:10%;
+    margin-top:10px;
+    display:inline-block;
+}
+
+.gotobutton p{
+    font-size:34px;
+}
+
+.actionbutton{
+    border:black solid 1px;
+    height:30px;
+    width:110px;
+    background-color: #adadad;
+    font-size:20px;
+    display:inline-block;
+    text-align:center;
+    margin-top:10px;
+}
+
+
+.unit{
+    width:75px;
+    height:75px;
+    margin-left:-10px;
+    margin-top:-10px;
+}
+.unit img{
+    width:75px;
+    height:75px;
+}
+
+.Eunit{
+    width:75px;
+    height:75px;
+    margin-left:-10px;
+    margin-top:-10px;
+}
+.Eunit img{
+    width:75px;
+    height:75px;
+}
+
+
+#barracks{
+    width:280px;
+    height:250px;
+    margin-top:10px;
+    margin-left:-2px;
+}
+
+#stats{
+width:200px;
+height:570px;
+background-color:gray;
+    margin-left:375px;
+    margin-top:-570px;
+    position:absolute;
+}
+
+#stats p {
+    font-size:20px;
+    text-align: center;
+}
+
+.entrypoint{
+    width:80px;
+    height:80px;
+    background-color:gray;
+    display:inline-block;
+   margin-left:2.5%;
+}
+
+.barrackpic{
+    width:60px;
+    height:60px;
+    margin-left:8px;
+    margin-top:25px;
+    position:relative;
+    float:left;
+}
+
+.barrackpic img{
+    width:60px;
+    height:60px;
+    position:absolute;
+}
+
+.Ebarrackpic{
+    width:60px;
+    height:60px;
+    margin-left:8px;
+    margin-top:5px;
+    position:relative;
+    float:left;
+}
+
+.Ebarrackpic img{
+    width:60px;
+    height:60px;
+    position:absolute;
+}
+
+.Object{
+    width:60px;
+    height:60px;
+    margin-left:8px;
+    margin-top:5px;
+    position:absolute;
+    float:left;
+}
+
+.Object img{
+    width:60px;
+    height:60px;
+    position:absolute;
+}
+
+.icon{
+    position:absolute;
+    width:25px;
+    height:25px;
+}
+
+.Eicon{
+    position:absolute;
+    width:40px;
+    height:40px;
+    margin-top:-15px;
+    margin-left:-15px;
+}
+
+.grayicon{
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
+.lighticon{
+    -webkit-filter: grayscale(75%);
+    -moz-filter: grayscale(75%);
+    -o-filter: grayscale(75%);
+    -ms-filter: grayscale(75%);
+    filter: grayscale(75%);
+}
+
+.highlight{
+    border:yellow solid 2px;
+}
+.battlehighlight{
+    background-color:yellow !important;
+}
+
+.healthbar{
+    background-color: #00c600;
+    height:10px;
+    position:absolute;
+    margin-top:-10px;
+}
+.Ehealthbar{
+    background-color: #00c900;
+    height:10px;
+    position:absolute;
+    margin-top:40px;
+}
+
+.energybar{
+    background-color: #404e80;
+    height:10px;
+    position:absolute;
+    margin-top:-20px;
+}
+
+.manabar{
+    background-color: #404e80;
+    height:10px;
+    position:absolute;
+    margin-top:-20px;
+}
+.healerbar{
+    background-color: #404e80;
+    height:10px;
+    position:absolute;
+    margin-top:-20px;
+}
+
+
+#abilitycontainer{
+    position:absolute;
+    width:100px;
+    margin-top:10px;
+    margin-left:20px;
+}
+
+#abilitycontainer2{
+    position:absolute;
+    width:100px;
+    margin-top:10px;
+    margin-left:140px;
+}
+
+
+.ability{
+    width:100px;
+    height:60px;
+    background-color:grey;
+    margin-top:20px;
+}
+
+
+.ability img{
+    width:100%;
+    height:100%;
+    float:right;
+}
+
+.ability div{
+    float:right;
+    height:60px;
+    width:75px;
+}
+
+.abilityinfo p{
+    font-size:12px;
+    position:relative;
+    z-index: 2;
+    background-color:yellow;
+    width:150%
+}
+
+.research{
+    width:250px;
+    height:75px;
+    background-color:grey;
+    margin-left:5px;
+    margin-top:10px;
+    font-size:16px;
+    text-align:center;
+}
+.enchantment{
+    width:270px;
+
+    background-color:grey;
+    margin-left:10px;
+    margin-top:10px;
+    font-size:17px;
+}
+
+.research img{
+    width:50%;
+    height:100%;
+    float:right;
+}
+
+.levelup{
+    margin-top:30px;
+    background-color:gray;
+    height:100px;
+
+}
+
+.exchange{
+     margin-top:50px;
+     width:100%;
+     height:100px;
+     background-color:gray;
+ }
+
+#Shield{
+    position:absolute;
+    height:60px;
+    margin-top:-1px;
+}
+
+.Invisible{
+    opacity:.5;
+}
+
+.ailment{
+    position:absolute;
+    margin-top:-20px;
+    margin-left:-80px;
+}
+
+.plane{
+    margin-top:-50px;
+    margin-left:-5px;
+}
+
+.XED{
+    margin-top:-90px;
+    margin-left:-10px;
+}
+
+.level{
+    position:absolute;
+    margin-left:80%;
+    margin-top:-110%;
+}
+.level p{
+   color: #d58610;
+    font-weight:bold;
+    font-size:30px;
+    text-shadow: 2px 2px 2px #000000
+}
+
+.Effects{
+    position:absolute;
+}
+.Effects img{
+    width:80px;
+    height:80px;
+    margin-left:-20px;
+}
+.staticEffects{
+    position:absolute;
+
+}
+.staticEffects img{
+    width:300px;
+    height:300px;
+
+}
+.slashEffects{
+    position:absolute;
+
+}
+.slashEffects img{
+    width:60px;
+    height:60px;
+margin-top:-80px;
+}
+
+.Jake{
+    height:300px;
+    width:200px;
+}
+
+.totalbackground{
+    width:100%;
+    height:100%;
+    margin-left:-100%;
+    position:absolute
+}
+
+.Recover{
+    position:absolute;
+    width:100%;
+    height:20px;
+    background-color:gray;
+    margin-top:100%
+}
+
+.Recover p{
+    font-size:15px;
+}
+
+.Teleport{
+    position:absolute;
+    width:100%;
+    height:20px;
+    background-color:gray;
+    margin-top:100%
+}
+
+.Teleport p{
+    font-size:15px;
+}
+.Boost{
+    position:absolute;
+    width:100%;
+    height:20px;
+    background-color:gray;
+    margin-top:100%
+}
+
+.Boost p{
+    font-size:15px;
+}
+
+.Revive{
+    position:absolute;
+    width:100%;
+    height:20px;
+    background-color:gray;
+    margin-top:100%
+}
+
+.Revive p{
+    font-size:15px;
+}
+
+.Resto{
+    position:absolute;
+    width:100%;
+    height:20px;
+    background-color:gray;
+    margin-top:100%
+}
+
+.Resto p{
+    font-size:15px;
+}
+
+.options{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color:sandybrown;
+}
+
+.options option{
+    text-align: center;
+}
+
+.leveluppic{
+    width:120px;
+    height:30px;
+    position:absolute;
+    float:left;
+    margin-top:-10px;
+    margin-left:5px;
+}
+
+.Backbutton{
+
+margin-top:-10px;
+    margin-bottom:-20px;
+}
+
+.Backbutton img{
+    width:100px;
+    height:75px;
+}
+
+.nothing{
+    height:100px;
+    width:150px;
+    position:absolute;
+    margin-left:150px;
+    margin-top:-65px;
+}
+
+.potions{
+    background-color:gray;
+    border:black solid;
+    font-size:17px;
+    width:45%;
+    margin-left:3px;
+    text-align:center;
+}
+.map_bar{
+    height:20px;
+    width:50px;
+    position:absolute;
+    border:solid black 1px;
+    text-align: center;
+}
+.green_bar{
+      background-color:#00c600;
+      height:20px;
+    width:100%;
+}
+
+.nexus{
+      position:absolute;
+    width:40px;
+    height:40px;
+    margin-left:5px;
+}
+
+.fan img{
+    height:200px;
+    width:200px;
+    position:absolute;
+
+}
+.fan{
+       height:200px;
+    width:200px;
+     position:absolute;
+}
+
+.epictext{
+    font-size:50px;
+    color:#ff0000;
+    font-family: fantasy;
+    text-shadow: 2px 2px black;
+    z-index:15;
+}
+
