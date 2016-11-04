@@ -21,7 +21,7 @@ function queue(){
     switch(qnum){
         case 1:
             enterChar("Sandra-R",-200,280)
-            enterChar("Edgar-R",-230,220,"end")
+            enterChar("Edgar-R",-230,220)
             break
             case 2:
        movehor("Sandra-R",670,"no")
@@ -125,6 +125,7 @@ function queue(){
 }
 
 $(window).load(function(){
+    opening("Chapter One:","Enter the Nexus")
         changesong("Peaceful.mp3")
 
     addobject("nexus",540,230)

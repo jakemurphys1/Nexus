@@ -86,14 +86,10 @@ function queue(){
     qnum+=1;
     switch(qnum){
         case 1:
-                    propeller.src="../sounds/Helicopter.wav";
-            propeller.volume=.05;
-                    propeller.loop=true;
-                    propeller.play();
-            airship(0,false)
             break;
         case 2:
-             enterChar("Knight",655,300, "end");
+             enterChar("Knight",655,300);
+            airship(0,false)
             break
         case 3:
             movevert("Knight",30,"end")
@@ -132,7 +128,7 @@ function queue(){
              dialog("I'm not doubting that the Nexus is willing to answer. I doubting that there even is an answer.","Archer2")
         break
          case 15:
-             dialog("There is always doubt. But we must keep going.","Knight")
+             dialog("...","Knight")
         break
          case 16:
              enterChar("Sorcerer",655,300, "end");
@@ -152,6 +148,7 @@ function queue(){
         break
          case 21:
              dialog("Gather the others!","Knight")
+             changesong("01/Hurry.mp3")
         break
          case 22:
          $("#Sorcerer").remove();
@@ -168,11 +165,10 @@ function queue(){
              airship(0,true)
         break
           case 23:
-          changesong("music-Drummer.wav")
              dialog("Listen up! We have a flagship approaching!","Knight")
         break
         case 24:
-             dialog("They will begin dropping enemy combatants unto our decks.","Knight")
+             dialog("They will begin dropping enemy combatants onto our decks.","Knight")
         break
          case 25:
              dialog("They will go straight for our engines.","Knight")
@@ -200,22 +196,22 @@ function queue(){
         case 32:
              movevert("Knight",-1,"end")
         break
-              case 32:
+              case 33:
              dialog("The Ship can't gain altitude unless all 4 engines are running, but it can maintain it with 3.","Knight")
         break
-          case 33:
+          case 34:
              dialog("Any less, however, and we will be begin to descend.","Knight")
         break
-         case 34:
+         case 35:
              movevert("Knight",20,"end")
         break
-           case 35:
+           case 36:
              dialog("You all know what is at stake.","Knight")
         break
-         case 36:
+         case 37:
              dialog("We can not fail this day!","Knight")
         break
-          case 37:
+          case 38:
               window.location.href = '../06_airship/Airship.html'
         break
           
@@ -223,5 +219,9 @@ function queue(){
 }
 
 $(window).load(function(){
-
+                    propeller.src="../sounds/Helicopter.wav";
+                    propeller.volume=.05;
+                    propeller.loop=true;
+                    propeller.play();
+    opening("Chapter Two:","Incoming")
 });

@@ -16,15 +16,34 @@ function changesong(song){
                    
 }
 var effect = new Audio();
-function doeffect(sound){
+function doeffect(sound,startpoint){
          
               effect.src="../sounds/" + sound;
-              effect.volume=.5;
+              effect.volume=1;
               effect.play();
+     if(startpoint){
+        console.log("here")
+        effect.currentTime = startpoint;
+    }
+    
 }
+function text(words,left,top){
+        $(".epictext").remove();
+    $("#quickscene").append("<p class='epictext' style ='position: absolute; display:none; margin-left:" +left + "px; margin-top:" + top +"px'>" + words + "</p>")
+    setTimeout(function(){
+        $(".epictext").fadeIn(2000);
+    },2000)
+    
+}
+function opening(chapter,name){
+  $("body").append("<div style='background-color:black;margin-top:0px;margin-left:-0px' id = 'quickscene'><div id='opener' style = 'text-align:center;margin-top:30%;font-size:30px;display:none'><p style = 'color:white'>" + chapter + "</p><p style = 'color:white;font-size:40px'>" + name +"</p></div></div>")
 
-function addq(name){
-    queue.push(name)
+    $("#opener").fadeIn(3000);
+
+  setTimeout(function(){
+      $("#quickscene").remove();
+      queue();
+  },5000)
 }
 function enterChar(name,left,top,end,special){
     

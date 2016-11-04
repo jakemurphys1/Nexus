@@ -33,7 +33,6 @@ function queue(){
 
 $(window).load(function(){
     
-   changesong("Battle.mp3")
     addobject("nexus",300,500)
     addobject("goblin",300,100)
 });

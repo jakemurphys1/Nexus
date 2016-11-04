@@ -1,5 +1,5 @@
 
-var qnum=0;
+var qnum=-2;
 
 function castle(withairship){
     endthis=false;
@@ -67,20 +67,15 @@ function castle(withairship){
       endthis=true;
       queue();
   },3000)
-  
-  if(withairship=="with"){
-            $("#quickscene").append('<div id="airship" STYLE="position:absolute; TOP:120px; LEFT:300px; width:300px" ><img style="width:150px" src="../CinePics/airship.gif"/></div>')
-            $("#airship").animate({
-                top:"-=400px"
-            },2000,"linear")
-       text("...Who is the Only One that May Know the Answer to...",100,-350)
 
-  }
 }
 
 function queue(){
     qnum+=1;
     switch(qnum){
+        case 0:
+                castle("without");
+        break;
         case 1:
             enterChar("Soldier2",200,300);
             enterChar("Archer3",250,300);
@@ -90,13 +85,13 @@ function queue(){
             enterChar("Rouge2",450,300);
             enterChar("Mage2",500,300);
             enterChar("Wizard1",400,400);
-            movevert("Wizard1",-1)
+            movevert("Wizard1",-1,"end")
         break
         case 2:
             dialog("The horde is beyond the walls.","Wizard1")
         break
         case 3:
-            dialog("We cannot let them break the walls.","Wizard1")
+            dialog("We cannot let them break through.","Wizard1")
         break
          case 4:
             dialog("The first wave will attack soon.","Wizard1")
@@ -105,10 +100,10 @@ function queue(){
            dialog("They will attack the four weakpoints in our wall.","Wizard1")
         break
          case 6:
-            dialog("The weakpoints can only take so much, and if it falls, all is lost.","Wizard1")
+            dialog("The weakpoints can only take so much, and if even one falls, all is lost.","Wizard1")
         break
          case 7:
-            dialog("We must send a group to intercept them before it breaks.","Wizard1")
+            dialog("We must send a group to intercept them before it then.","Wizard1")
         break
          case 8:
             movevert("Wizard1",1)
@@ -123,8 +118,9 @@ function queue(){
 //window.location.href = './beforeairship.html'
 
 $(window).load(function(){
+    opening("Chapter 5:","Seige")
+
     
-    castle("without");
     changesong("Drummer.wav")
         
     

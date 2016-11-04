@@ -1,8 +1,8 @@
-    var day= 0, money= 100, mana= 0;
+     var difflevel=3;    
+var day= 0, money= 100, mana= 0;
     var spot1="", spot2="", spot3="";
     var battleon=false;
     var curgroupnum="";
-   var difflevel=3;
 var summoning;
 
 // window.location.href = '../08_Arena/Arena.html'
@@ -310,6 +310,10 @@ var barrackbutton;
             gotobarracks();
         });
         
+        if(!noheal){
+          $("#TEXT").append("<p class='potions' style='width:75%' id='Heal'>Heal a Unit (" + (1 + difflevel) + " turns)</p>");  
+        }
+        
         if(strengthpotion>0){
             $("#TEXT").append("<p class='potions' style='width:75%' id='Strength'>Strength boost:(" + strengthpotion +")</p>");
         }
@@ -365,6 +369,18 @@ var barrackbutton;
                levelup(this.id,true)
                 leveluppotion-=1;
                 gotobarracks();
+            }
+           
+           if(barrackbutton=="Heal"){
+               if(units[this.id].health==units[this.id].maxhealth){
+                   message("This unit is at max health.")
+                   return
+               }
+                units[this.id].health=units[this.id].maxhealth
+                units[this.id].healing=1+ difflevel;
+                  units[this.id].heatlh+=add;
+                healthpotion-=1;
+               gotobarracks()
             }
         })
         
@@ -681,13 +697,7 @@ indiv_newday(day);
     }
  
 
-function gameover(){
-            $(".areas").remove();
-                $('#Pass').remove();
-                $(".icon").remove();
-                $(".Eicon").remove();
-                $("#background").append("<div style='position: absolute; background-color:gray; width:150px; height:30px; margin-top:-200px; margin-left:200px'><p style='font-size:20px; margin-left:20px'>YOU LOSE</p></div>")
-}
+
 
 //wild
     function Wolf(e,Egroupindex,level){
@@ -4440,10 +4450,10 @@ isfortified=true;
                     $(".actions").append("<div class = 'actionbutton' id='Explore'><p>Explore</p></div>");
                 }
 
-                if ($('#space' + groups[curgroupnum].location).data("fortify") === true || $('#space' + groups[curgroupnum].location).data("castle") === true) {
-                    $(".actions").append("<div class = 'actionbutton'  id = 'Armory'>Equip</div>");
-                    $(".actions").append("<div class = 'actionbutton'  id = 'Hospital'>Heal</div>");
-                }
+//                if ($('#space' + groups[curgroupnum].location).data("fortify") === true || $('#space' + groups[curgroupnum].location).data("castle") === true) {
+//                    $(".actions").append("<div class = 'actionbutton'  id = 'Armory'>Equip</div>");
+//                    $(".actions").append("<div class = 'actionbutton'  id = 'Hospital'>Heal</div>");
+//                }
 
                 if ($('#space' + groups[curgroupnum].location).data("istown") === true && $('#space' + groups[curgroupnum].location).data("fortify") != true) {
                     $(".actions").append("<div class = 'actionbutton'  id = 'Fortify'>Fortify</div>");
@@ -5273,9 +5283,11 @@ var mult = 0;
                     showailments();
                     
                     if(units[selectedindex].type=="Wizard"){
+                        $("#ORB" + units[selectedindex].index).remove();
                         $('#' + selectedindex).append('<img style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORB' + selectedindex + '" style="color: yellow; position: absolute; font-size:20px; margin-top:-30px; margin-left:55px; width:10px; height:10px ">' + units[selectedindex].charge +'</div>');
                     }
                      if(units[selectedindex].type=="Enchantress"){
+                          $("#ORB" + units[selectedindex].index).remove();
                              $('#' + selectedindex).append('<img class="ORB" style="position: absolute; margin-top:40px; margin-left:-30px; width:48px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORB' + selectedindex + '" style="color: yellow; position: absolute; font-size:17px; margin-top:-27px; margin-left:50px; width:10px; height:10px ">' + units[selectedindex].mana +'</div>');
                      }
                    
@@ -5286,7 +5298,7 @@ var mult = 0;
                         return;
                     }
 
-if(units[selectedindex].type==="Knight"){
+                    if(units[selectedindex].type==="Knight"){
     if(units[selectedindex].abilityfreemove===false){
         if(units[selectedindex].energy<30){
             message("The Knight doesn't have enough stamina to move. Pass the turn without using him to refill his stamina.");
@@ -6220,7 +6232,7 @@ if(units[selectedindex].type==="Knight"){
                     }
                 }
             }
-            //liberate(Egroups[curenemy].location);
+            liberate(Egroups[curenemy].location);
             $("#battlebackground").empty();
             $(".actionbutton").remove();
             $(".actions").empty();
@@ -6350,7 +6362,9 @@ if(units[selectedindex].type==="Knight"){
                     }
                 }
                 function Damaging(index, damage) {
-                    if(Eunits[index].protectedby){
+                    console.log("Protect",Eunits[index].protectedby)
+                    if(Eunits[index].protectedby || Eunits[index].protectedby==0){
+                        console.log("here")
                             if(Eunits[index].protectedby!=-1 && Eunits[Eunits[index].protectedby].alive===true){
                                 index=Eunits[index].protectedby;
                             }
@@ -8772,6 +8786,44 @@ if(units[selectedindex].abilitydoublevigor===true){
         }
     }
 
+    function gameovercheck(){
+        console.log("got to check")
+        var alldead = true
+        for(var i = 0;i<index;i++){
+            if(units[i].alive ==true){
+                alldead=false
+            }
+        }
+        if(alldead){
+            console.log("got through alldead")
+            gameover()
+        }
+    }
+    function gameover(){
+        console.log("got hereee")
+            $(".areas").remove();
+                $('#Pass').remove();
+                $(".icon").remove();
+                $(".Eicon").remove();
+                $("#background").append("<div style='border-radius:5px;box-shadow: 10px 5px 5px black; position: absolute; background-color:red; width:150px; margin-top:-300px; margin-left:200px'><p style='font-size:20px; margin-left:20px'>YOU LOSE</p><p class='retry' style='font-size:20px; margin-left:20px; font-weight:bold; cursor:pointer'>RETRY?</p></div>")
+                 $("#cinemabackground").append("<div style='border-radius:5px;box-shadow: 10px 5px 5px black; position: absolute; background-color:red; width:150px; margin-top:200px; margin-left:400px'><p style='font-size:20px; margin-left:20px'>YOU LOSE</p><p class='retry' style='font-size:20px; margin-left:20px; font-weight:bold; cursor:pointer'>RETRY?</p></div>")
+                 setTimeout(function(){
+                     $(".retry").click(function(){
+                    console.log("reads this")
+                    location.reload();
+                })
+                 },1000)
+                
+    }
+    function winbattle(location){
+      $("#background").append("<p class='epictext' style ='position: absolute; margin-left:200px; margin-top:-300px'>You Win</p>")
+    changesong("01/win-theme.mp3")
+    setTimeout(function(){
+        window.location.href = location;
+    },5000)
+      
+}
+
 function clickactionbuttons(){
     $('.actionbutton').click(function () {
         $('*').removeClass('battlehighlight');
@@ -8788,8 +8840,9 @@ function clickactionbuttons(){
             $("#TEXT").append("<p>" + units[selectedindex].name + "'s charge increased to  " + units[selectedindex].charge + "\n</p>");
             units[selectedindex].usedaction = true;
             units[selectedindex].charge+=1;
-                $("#ORB" + + units[selectedindex].index).remove();
+                $("#ORB" + units[selectedindex].index).remove();
                 $('#' + selectedindex).append('<div id = "ORB' + units[selectedindex].index + '" style="color: yellow; position: absolute; font-size:20px; margin-top:-30px; margin-left:55px; width:10px; height:10px ">' + units[selectedindex].charge +'</div>');
+                
         }
         if (selectedaction === "Use") {
             var e = document.getElementById("alchemychoice");
@@ -8963,6 +9016,7 @@ function clickactionbuttons(){
                 $(".actions").empty();
                 battleon = false;
                 $('.actions').append("<div class = 'actionbutton' id='Pass'><p>Pass</p></div>");
+                  gameovercheck();
                 presspass();
             }
         }
@@ -10466,7 +10520,6 @@ function enemyturn(selectedactions){
                             Dies(enemyonbottom, index);
                             units[index].curleft = 10000;
                             units[index].curtop = 10000;
-
                         }
                     }
                     function Dies(type, index) {
@@ -10512,7 +10565,7 @@ function enemyturn(selectedactions){
                             getstatsbattle();
                             clickactionbuttons();
                         }
-if(units[index].type==="Golem"){
+                        if(units[index].type==="Golem"){
     units[index].type="Enchantress"
 }
                     }
@@ -12046,11 +12099,6 @@ if(units[index].type==="Golem"){
                                 }
                             }
                                 if (units[slots[1]].alive === false && units[slots[2]].alive === false && units[slots[3]].alive === false) {
-                                    curmapmusic.src="../sounds/music-tutorial.mp3";
-                                    curmapmusic.loop=true;
-                                    curmapmusic.play();
-                                    curbattlemusic.src="";
-                                    curbattlemusic.play();
 
                                     $("#TEXT").empty();
                                     liberate(groups[curally].location);
@@ -12402,11 +12450,6 @@ if(units[index].type==="Golem"){
                         units[slots[1]].alive=false;
                     }//not sure why i need this, but do
                     if (units[slots[1]].alive === false && units[slots[2]].alive === false && units[slots[3]].alive === false) {
-                        curmapmusic.src="../sounds/music-tutorial.mp3";
-                        curmapmusic.loop=true;
-                        curmapmusic.play();
-                        curbattlemusic.src="";
-                        curbattlemusic.play();
 
                         $("#TEXT").empty();
                         liberate(groups[curally].location);
@@ -12419,6 +12462,7 @@ if(units[index].type==="Golem"){
                         $(".actionbutton").remove();
                         battleon=false;
                         $('.actions').append("<div class = 'actionbutton' id='Pass'><p>Pass</p></div>");
+                        gameovercheck();
                         enemyconquer();
                         presspass();
                         startcombat();
@@ -12598,7 +12642,14 @@ function showailments(){
     }
 }
 $(".XED").remove();
-
+function text(words,left,top){
+        $(".epictext").remove();
+    $("#quickscene").append("<p class='epictext' style ='position: absolute; display:none; margin-left:" +left + "px; margin-top:" + top +"px'>" + words + "</p>")
+    setTimeout(function(){
+        $(".epictext").fadeIn(2000);
+    },2000)
+    
+}
 
   
 function TEMPstartcombat(){
@@ -12610,9 +12661,9 @@ function TEMPstartcombat(){
               //  Eunits[newEindex()]=new Beekeeper(curEindex, 1,2);
 
                 Egroups[Egroupindex]=new Enewgroup(1,70,1000,"Warrior");
-                units[index]=new Soldier(index);
-                units[index]=new Rouge(index);
-                units[index]=new Archer(index);
+                units[index]=new Wizard(index,"Wizard1");
+                units[index]=new Rouge(index,"Rouge1");
+                units[index]=new Archer(index,"Archer1");
 
                 units[0].slot=1;
                 units[1].slot=2;
@@ -12783,5 +12834,5 @@ assignlocations();
     });
     
 
-          // TEMPstartcombat();
+           //TEMPstartcombat();
 })//done

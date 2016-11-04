@@ -2,7 +2,7 @@
 
     var allynum=0;
 
-
+var noheal=false;
 
 
 var number_of_units=8;
@@ -637,7 +637,7 @@ function liberate(curloc){
 //towns and castles
 function set_area_background(i){
         var backgroundpic="";
-                        backgroundpic="../Pictures/backgroundpics/roadbackground.png";
+                        backgroundpic="../Pictures/backgroundpics/woodbackground.png";
     return backgroundpic;
 }
 var engines= 4;
@@ -652,6 +652,11 @@ function updateHeader(){
 
 function indiv_newday(){
              updateHeader(); 
+    for(var i = 0;i<Egroupindex;i++){
+        
+    }
+    
+    
     if(engines==4){
         airship(-1)
     }else if (engines==3){
@@ -663,6 +668,9 @@ function indiv_newday(){
     }else if(engines==0){
         airship(3)
     };
+    if(day>30){
+        winbattle('../07/afterairship.html');
+    }
 }
 function indiv_gotocapitol(){
       $("#TEXT").empty().append('<div class="gotobutton" id = "gotobarracks"><p>BARRACKS</p></div>');
@@ -674,14 +682,6 @@ function capturedAll(){
         winbattle();
     }
 }
-function winbattle(){
-    
-      $(".areas").remove();
-                $('#Pass').remove();
-                $(".icon").remove();
-                $(".Eicon").remove();
-                $("#background").append("<div style='position: absolute; background-color:gray; width:200px; height:400px; margin-top:-400px; margin-left:200px'><p style='font-size:20px; margin-left:20px'>YOU WIN</p><p>Created by Jake Murphy</p><p>Music by 'Light elves Music'. See more at</p><p>'butterflytea.bandcamp.com'</p><p>Special thanks to:</p><p>www.piskelapp.com</p><p>mapeditor.org</p><p>This game and all of it's images are licensed under a: <p>Creative Commons Attribution-ShareAlike 3.0 Unported License</p></p></div>")
-}
 
 function levelresearch(){
     
@@ -692,6 +692,9 @@ function enemyconquer(){
 
 var height = 2;
 function airship(upOrDown){
+    if(upOrDown==0 || (upOrDown==-1 && height==1)){
+        return;
+    }
   $("body").append("<div style='background-color:lightblue' id = 'cinemabackground'><div id='airship' STYLE='position:absolute; TOP:" + height*100 + "px; LEFT:405px;' class='unit' ><img src='../CinePics/airship.gif'/></div><div id='Eairship' STYLE='position:absolute; TOP:" + height*100 + "px; LEFT:505px;' class='unit' ><img src='../CinePics/enemyship.gif'/></div>"+
                  "<div class='trees' STYLE='position:absolute; TOP:570px; LEFT:-220px;' ><img style='height:80px' src='../CinePics/trees.png'/></div></div>")
           $('.trees').animate({
@@ -771,7 +774,7 @@ function airship(upOrDown){
                 $("#airship img").remove();
                 },500)
             Lightning.play();
-                
+                gameover();
         },2000)
     }
   
@@ -780,7 +783,7 @@ function airship(upOrDown){
 
 
 $(window).load(function(){
-changesong("Battle.mp3")
+changesong("01/Battle.wav")
     
     
     $('.fan').mouseenter(function(){

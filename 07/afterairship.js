@@ -118,12 +118,12 @@ function queue(){
            movevert("Knight",1)
         break
         case 9:
-        
+        window.location.href = './beforeArena.html'
         break
           
     }
 }
 
 $(window).load(function(){
-
+    changesong("01/Peaceful.mp3")
 });

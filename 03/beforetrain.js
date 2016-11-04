@@ -62,4 +62,5 @@ function queue(){
 
 $(window).load(function(){
 
+changesong("peaceful.mp3")
 });

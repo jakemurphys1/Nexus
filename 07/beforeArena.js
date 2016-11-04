@@ -1,5 +1,5 @@
 
-var qnum=0;
+var qnum=-1;
 
 function queue(){
     qnum+=1;
@@ -72,5 +72,9 @@ function queue(){
 }
 
 $(window).load(function(){
-    changesong("Drummer.wav")
+    doeffect("cheer.wav")
+     setInterval(function(){
+        doeffect("cheer.wav")
+    },30000)
+     opening("Chapter Three:","Dreams of Blood")
 });

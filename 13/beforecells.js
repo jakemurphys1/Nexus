@@ -1,5 +1,5 @@
 
-var qnum=0;
+var qnum=-1;
 function queue(){
     qnum+=1;
     switch(qnum){
@@ -10,7 +10,7 @@ function queue(){
             movevert("Soldier2",-1)
             movehor("Guard",1);
             movehor("Knight",-1);
-            delay(2000)
+            delay(3000)
             addobject("light-off",423,60,25)
         break
         case 2:
@@ -88,6 +88,7 @@ function queue(){
 //window.location.href = './beforeairship.html'
 
 $(window).load(function(){
+    opening("Chapter 6:","Where am I?")
     changesong("01/Threat.mp3")
         
     

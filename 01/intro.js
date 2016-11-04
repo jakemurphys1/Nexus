@@ -5,14 +5,6 @@ var qnum=0;
         Fire.volume=.3;
 
 
-function text(words,left,top){
-        $(".epictext").remove();
-    $("#quickscene").append("<p class='epictext' style ='position: absolute; display:none; margin-left:" +left + "px; margin-top:" + top +"px'>" + words + "</p>")
-    setTimeout(function(){
-        $(".epictext").fadeIn(2000);
-    },2000)
-    
-}
 
 function sun(){
       $("body").append("<div style='background-color:#0ecfd2;margin-top:0px;margin-left:-0px' id = 'quickscene'>" + "<img style= 'margin-left:35%;margin-top:20%; width:200px' src = 'pics/Sun1.gif' /></div>")

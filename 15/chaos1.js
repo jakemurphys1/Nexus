@@ -1,10 +1,20 @@
 
-var qnum=0;
-
+var qnum=-1;
+function sun(){
+      $("body").append("<div style='background-color:#0ecfd2;margin-top:0px;margin-left:-0px' id = 'quickscene'>" + "<img style= 'margin-left:35%;margin-top:20%; width:200px' src = 'pics/Sun2.gif' /></div>")
+      
+      setTimeout(function(){
+         $("#quickscene").remove();
+          queue();
+      },6000)
+}
 
 function queue(){
     qnum+=1;
     switch(qnum){
+        case 0:
+            sun();
+        break
         case 1:
            enterChar("Sandra-R", 400,500,"no","relax")
            $("#Sandra-R").css("transform","rotate(90deg)")
@@ -55,7 +65,7 @@ function queue(){
               dialog("Well, you've had a busy day. I would expect you to have some wierd dreams.","Edgar-R","left")
         break
          case 12:
-              addobject("boom",600,100, 400)
+              addobject("boom",450,50, 300)
               changesong("01/Hurry.mp3")
               doeffect("Lightning.wav")
             

@@ -1,4 +1,3 @@
-   difflevel=3;
 
     var allynum=0;
 
@@ -552,17 +551,12 @@ function set_area_background(i){
 function indiv_newday(){
            $('.heading').remove();
         $('#top').append("<h1 class = 'heading'>Turn: " + day + "/30</h1>");
+    if(day>30){
+        winbattle("../15/chaos1.html")
+    }
 }
 function indiv_gotocapitol(){
       $("#TEXT").empty().append('<div class="gotobutton" id = "gotobarracks"><p>BARRACKS</p></div><div class="gotobutton" id = "gotobrewery"><p>BREWERY</p></div>');
-}
-
-function winbattle(){
-      $(".areas").remove();
-                $('#Pass').remove();
-                $(".icon").remove();
-                $(".Eicon").remove();
-                $("#background").append("<div style='position: absolute; background-color:gray; width:200px; height:400px; margin-top:-400px; margin-left:200px'><p style='font-size:20px; margin-left:20px'>YOU WIN</p><p>Created by Jake Murphy</p><p>Music by 'Light elves Music'. See more at</p><p>'butterflytea.bandcamp.com'</p><p>Special thanks to:</p><p>www.piskelapp.com</p><p>mapeditor.org</p><p>This game and all of it's images are licensed under a: <p>Creative Commons Attribution-ShareAlike 3.0 Unported License</p></p></div>")
 }
 
 function levelresearch(){
@@ -592,6 +586,7 @@ function liberate(){
     
 }
 $(window).load(function(){
+    changesong("01/Battle.wav")
     setTimeout(function(){
         $("#extender img").attr("src","pics/bridge_up.gif")
     },3500)

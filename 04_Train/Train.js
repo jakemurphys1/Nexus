@@ -28,7 +28,7 @@
         var revivepotion=0;
         var teleportpotion=0;
         var boostpotion=0;
-
+noheal=true;
 var number_of_units=6;
 
 function containaccessories(){
@@ -401,12 +401,8 @@ function indiv_gotocapitol(){
 }
 function indiv_youwin(){
      if(Egroups[1].location<0){
-        winbattle();
+        winbattle('../05/aftertrain.html');
     }
-}
-
-function winbattle(){
-      window.location.href = '../05/aftertrain.html'
 }
 
 function levelresearch(){
@@ -417,6 +413,8 @@ function enemyconquer(){
 }
 
 $(window).load(function(){
+    changesong("01/battle.wav")
+    
      message("Each group can only have 3 units in it, so you will need to choose which units will fight the beasts. Click the enemies to learn more about them. Use the right units against the right enemies.")
 
     

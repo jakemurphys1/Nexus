@@ -1216,73 +1216,73 @@ function assignlocations() {
 
 
 function newunit(){
-    going=true;
-    var tempname;
-    while(going===true){
-        going=false;
-        var temp=Math.floor((Math.random() * 12) + 1);
-
-        switch(temp){
-            case 1:
-                tempclass="Guard";
-                 tempname="Guard";
-                break;
-            case 2:
-                tempclass="Enchantress";
-                 tempname="Enchantress";
-                break;
-            case 3:
-                tempclass="Healer";
-                 tempname="Healer1";
-                break;
-            case 4:
-                tempclass="Mage";
-                 tempname="Sandra";
-                break;
-            case 5:
-                tempclass="Wizard";
-                 tempname="Wizard1";
-                break;
-            case 6:
-                tempclass="Sorcerer";
-                 tempname="Sorcerer";
-                break;
-            case 7:
-                tempclass="Rouge";
-                 tempname="Rouge1";
-                break;
-            case 8:
-                tempclass="Archer";
-                 tempname="Archer1";
-                break;
-            case 9:
-                tempclass="Templar";
-                 tempname="Templar1";
-                break;
-            case 10:
-                tempclass="Soldier";
-                 tempname="Edgar";
-                break;
-            case 11:
-                tempclass="Thief";
-                 tempname="Thief1";
-                break;
-            case 12:
-                tempclass="Knight";
-                 tempname="Knight";
-                break;
-        }
-
-        for(var j =0;j<index;j++){
-            if(units[j].realtype==tempclass){
-                going=true;
-            }
-            if(units[j].type=="Invisible" && tempclass=="Thief"){
-                going=true;
-            }
-        }
-    }//end of while
-   createsoldier(tempclass,tempname);
+//    going=true;
+//    var tempname;
+//    while(going===true){
+//        going=false;
+//        var temp=Math.floor((Math.random() * 12) + 1);
+//
+//        switch(temp){
+//            case 1:
+//                tempclass="Guard";
+//                 tempname="Guard";
+//                break;
+//            case 2:
+//                tempclass="Enchantress";
+//                 tempname="Enchantress";
+//                break;
+//            case 3:
+//                tempclass="Healer";
+//                 tempname="Healer1";
+//                break;
+//            case 4:
+//                tempclass="Mage";
+//                 tempname="Sandra";
+//                break;
+//            case 5:
+//                tempclass="Wizard";
+//                 tempname="Wizard1";
+//                break;
+//            case 6:
+//                tempclass="Sorcerer";
+//                 tempname="Sorcerer";
+//                break;
+//            case 7:
+//                tempclass="Rouge";
+//                 tempname="Rouge1";
+//                break;
+//            case 8:
+//                tempclass="Archer";
+//                 tempname="Archer1";
+//                break;
+//            case 9:
+//                tempclass="Templar";
+//                 tempname="Templar1";
+//                break;
+//            case 10:
+//                tempclass="Soldier";
+//                 tempname="Edgar";
+//                break;
+//            case 11:
+//                tempclass="Thief";
+//                 tempname="Thief1";
+//                break;
+//            case 12:
+//                tempclass="Knight";
+//                 tempname="Knight";
+//                break;
+//        }
+//
+//        for(var j =0;j<index;j++){
+//            if(units[j].realtype==tempclass){
+//                going=true;
+//            }
+//            if(units[j].type=="Invisible" && tempclass=="Thief"){
+//                going=true;
+//            }
+//        }
+//    }//end of while
+//   createsoldier(tempclass,tempname);
 }
 
 //looting

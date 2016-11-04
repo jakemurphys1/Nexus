@@ -29,6 +29,7 @@
         var teleportpotion=0;
         var boostpotion=0;
 
+var noheal=false;
 var number_of_units=2;
 
 function containaccessories(){
@@ -90,173 +91,7 @@ function newunit(){
 createsoldier(tempclass,tempname);
 }
 
-//looting
-   function lootenemyfunction(index){
-        var rand =  Math.floor((Math.random() * 5) + 1);
-        if(index!=-1){
-            //enemy blood
-            if(Eunits[index].type==="Goblin"){
-                  if(rand>=3){
-                return 6;
-                   }
-            }
-            if(Eunits[index].type=="Vampire"){
-                if(rand>2){
-                    return 6;
-                }
-            }
-            if(Eunits[index].type=="Spider"){
-                if(rand>2){
-                    return 8;
-                }
-            }
-            if(Eunits[index].type=="Shaman"){
-                if(rand>2){
-                    return 8;
-                }
-            }
-            if(Eunits[index].type=="Necromancer"){
-                if(rand>2){
-                    return 8;
-                }
-            }
-            if(Eunits[index].type=="Beekeeper"){
-                if(rand>2){
-                    return 8;
-                }
-            }
 
-            //bone marrow
-            if(Eunits[index].type=="Warrior"){
-                if(rand>2){
-                    return 7;
-                }
-            }
-            if(Eunits[index].type=="Spitter"){
-                if(rand>2){
-                    return 7;
-                }
-            }
-            if(Eunits[index].type=="Assassin"){
-                if(rand>2){
-                    return 7;
-                }
-            }
-            if(Eunits[index].type=="Gremlin"){
-                if(rand>2){
-                    return 7;
-                }
-            }
-            if(Eunits[index].type=="Waterwraith"){
-                if(rand>2){
-                    return 7;
-                }
-            }
-            //essence
-            if(Eunits[index].type=="Ice Elemental"){
-                if(rand>2){
-                    return 10;
-                }
-            }
-            if(Eunits[index].type=="Fire Elemental"){
-                if(rand>2){
-                    return 10;
-                }
-            }
-            if(Eunits[index].type=="Lightning Elemental"){
-                if(rand>2){
-                    return 10;
-                }
-            }
-            if(Eunits[index].type=="Wisp"){
-                if(rand>2){
-                    return 10;
-                }
-            }
-            if(Eunits[index].type=="Flamewraith"){
-                if(rand>2){
-                    return 10;
-                }
-            }
-            //raw meat
-            if(Eunits[index].type=="Werewolf"){
-                if(rand>2){
-                    return 8;
-                }
-            }
-            if(Eunits[index].type=="Wolf"){
-                if(rand>2){
-                    return 8;
-                }
-            }
-            if(Eunits[index].type=="Bear"){
-                if(rand>2){
-                    return 8;
-                }
-            }
-            if(Eunits[index].type=="Sparrow"){
-                if(rand>2){
-                    return 8;
-                }
-            }
-            if(Eunits[index].type=="Frostwraith"){
-                if(rand>2){
-                    return 8;
-                }
-            }
-            //Slime
-            if(Eunits[index].type=="Clunker"){
-                if(rand>2){
-                    return 9;
-                }
-            }
-            if(Eunits[index].type=="Cannon"){
-                if(rand>2){
-                    return 9;
-                }
-            }
-            if(Eunits[index].type=="Magnet"){
-                if(rand>2){
-                    return 9;
-                }
-            }
-            if(Eunits[index].type=="Sounddepressor"){
-                if(rand>2){
-                    return 9;
-                }
-            }
-            if(Eunits[index].type=="Hellhound"){
-                if(rand>2){
-                    return 9;
-                }
-            }
-
-
-            if(Eunits[index].type=="Angel"){
-return "Angel"
-            }
-            if(Eunits[index].type=="Demon"){
-                return "Demon"
-            }
-            if(Eunits[index].type=="Frostlord"){
-                return "Frostlord"
-            }
-            if(Eunits[index].type=="Djinn"){
-                return "Djinn"
-            }
-        }
-        return -1;
-        // accessory[1]=new Accessory("Flower");
-        //  accessory[2]=new Accessory("Mushroom");
-        //  accessory[3]=new Accessory("Flint");
-        //  accessory[4]=new Accessory("Pine_Needles");
-        //  accessory[5]=new Accessory("Wheat");
-        //  accessory[6]=new Accessory("Enemy_Blood");
-        //  accessory[7]=new Accessory("Bone_Marrow");
-        //  accessory[8]=new Accessory("Raw_Meat");
-        //  accessory[9]=new Accessory("Slime");
-        //  accessory[10]=new Accessory("Essence");
-    }
 
 //special abilities
     function traincommands(e){
@@ -405,12 +240,8 @@ function indiv_gotocapitol(){
 function indiv_youwin(){
     console.log("check")
      if(Egroups[1].location<0){
-        winbattle();
+        winbattle('../03/beforetrain.html');
     }
-}
-
-function winbattle(){
-      window.location.href = '../03/beforetrain.html'
 }
 
 function levelresearch(){
@@ -438,7 +269,8 @@ function enemyconquer(){
     }
 
 $(window).load(function(){
-    changesong("Battle.mp3")
+     
+    changesong("01/Battle.wav")
     tipmessage("starting","We need to group ourselves. Click on the Nexus to see the available soldiers.")
     
           Eunits[newEindex()]=new Goblin(curEindex, 1,difflevel);

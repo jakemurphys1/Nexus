@@ -18,5 +18,5 @@ function queue(){
 }
 
 $(window).load(function(){
-
+    doeffect("train-start.wav",20)
 });
