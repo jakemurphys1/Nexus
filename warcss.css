@@ -256,6 +256,7 @@ background-color:gray;
 #stats p {
     font-size:20px;
     text-align: center;
+    margin-top:40px;
 }
 
 .entrypoint{
@@ -312,6 +313,11 @@ background-color:gray;
 }
 
 .icon{
+    position:absolute;
+    width:25px;
+    height:25px;
+}
+.Bicon{
     position:absolute;
     width:25px;
     height:25px;

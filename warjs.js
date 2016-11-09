@@ -215,7 +215,7 @@ function changesong(song){
 
     function Ingredient(name){
         this.name=name;
-        this.quantity=10;
+        this.quantity=0;
     }
 
 var barrackbutton;
@@ -242,7 +242,7 @@ var barrackbutton;
         $("#TEXT").append('<div id="barracks"></div>');
 
         for(var i =0;i<index;i++){
-            if((units[i].group===0 || units[i].group===-1) && units[i].type!="Djinn"){
+            if((units[i].group===0 || units[i].group===-1) && units[i].type!="Djinn" && units[i].type!="Sparrow" && units[i].type!="Turtle" && units[i].type!="Spider" && units[i].type!="Bear" && units[i].type!="Wolf"){
                 $("#barracks").append(units[i].picture);
                 if((units[i].healing>0 || units[i].health<units[i].maxhealth) && recoverpotion>0){
                     $('#' + i).append("<div class='Recover' id='Recover" + i + "'><p>Heal</p></div>")
@@ -279,6 +279,7 @@ var barrackbutton;
            var thisindex= $(this).attr("id");
             thisindex=thisindex.replace("Recover","")
          units[thisindex].healing=0;
+            units[thisindex].health=units[thisindex].maxhealth;
             $("#TEXT").empty();
             gotobarracks();
         });
@@ -332,6 +333,7 @@ var barrackbutton;
         $(".potions").click(function(){
      
             if(barrackbutton!=$(this).attr("id")){
+                $(".potions").removeClass("battlehighlight")
                 $(this).addClass("battlehighlight");
                   barrackbutton=$(this).attr("id");
             }else{
@@ -359,12 +361,14 @@ var barrackbutton;
                 resistancepotion-=1;
                 gotobarracks();
             }
-              if(barrackbutton=="Health"){
+           if(barrackbutton=="Health"){
+              
                 var add = Math.round(units[this.id].maxhealth*.05)
-                units[this.id].maxheatlh+=add;
-                  units[this.id].heatlh+=add;
+                units[this.id].maxhealth+=add;
+                units[this.id].health+=add;
                 healthpotion-=1;
-              }
+               gotobarracks();
+            }
            if(barrackbutton=="Levelup"){
                levelup(this.id,true)
                 leveluppotion-=1;
@@ -412,36 +416,36 @@ var barrackbutton;
         
         //populate recipes
          if(replicaterecipe===true){
-            $("#TEXT").append("<p class='potions' id='Replicate'>Replicate:<br> 5 Essence</p>");
+            $("#TEXT").append("<p class='potions' id='Replicate'>Replicate<br> 5 Essence</p>");
         }
         if(reviverecipe===true){
-            $("#TEXT").append("<p class='potions' id='Revive'>Revive:(" + revivepotion +")<br> 5 flowers <br> 5 extract</p>");
+            $("#TEXT").append("<p class='potions' id='Revive'>Revive(" + revivepotion +")<br> 5 flowers <br> 5 extract</p>");
         }  
         if(recoverrecipe===true){
-            $("#TEXT").append("<p class='potions' id='Recover'>Recover:(" + recoverpotion +") <br> 3 flower <BR> 3 berries.</p>");
+            $("#TEXT").append("<p class='potions' id='Recover'>Recover(" + recoverpotion +") <br> 3 flower <BR> 3 berries.</p>");
         }
    
         if(teleportrecipe===true){
-            $("#TEXT").append("<p class='potions' id='Teleport'>teleport:(" + teleportpotion +")<br> 3 powder <br> 3 sap.</p>");
+            $("#TEXT").append("<p class='potions' id='Teleport'>teleport(" + teleportpotion +")<br> 3 powder <br> 3 sap.</p>");
         }
        
          if(strengthrecipe===true){
-            $("#TEXT").append("<p class='potions' id='Strength'>Str. Boost:(" + strengthpotion +") <br> 2 mushrooms <BR> 2 berries.</p>");
+            $("#TEXT").append("<p class='potions' id='Strength'>Str. Boost(" + strengthpotion +") <br> 2 mushrooms <BR> 2 berries.</p>");
         }
         if(defenserecipe===true){
-            $("#TEXT").append("<p class='potions' id='Defense'>Def. Boost:(" + defensepotion +")<br> 2 root <br> 2 honey</p>");
+            $("#TEXT").append("<p class='potions' id='Defense'>Def. Boost(" + defensepotion +")<br> 2 root <br> 2 honey</p>");
         }
         if(resistancerecipe===true){
-            $("#TEXT").append("<p class='potions' id='Resistance'>Resist. boost:(" + resistancepotion +")<br> 2 herb <br> 2 honey</p>");
+            $("#TEXT").append("<p class='potions' id='Resistance'>Resist.boost(" + resistancepotion +")<br> 2 herb <br> 2 honey</p>");
         }
           if(standin1recipe===true){
-            $("#TEXT").append("<p class='potions' id='standin1'>Standin1:(" + standin1potion +") <br> 1 mushroom <BR> 6 bone marrow</p>");
+            //$("#TEXT").append("<p class='potions' id='standin1'>Standin1:(" + standin1potion +") <br> 1 mushroom <BR> 6 bone marrow</p>");
         }
         if(healthrecipe===true){
-            $("#TEXT").append("<p class='potions' id='Health'>Health:(" + healthpotion +")<br> 2 Mushroom <br> 2 Sap</p>");
+            $("#TEXT").append("<p class='potions' id='Health'>Health(" + healthpotion +")<br> 2 Mushroom <br> 2 Sap</p>");
         }
         if(leveluprecipe===true){
-            $("#TEXT").append("<p class='potions' id='Levelup'>Levelup:(" + leveluppotion +")<br> 5 root <br> 5 herb</p>");
+            $("#TEXT").append("<p class='potions' id='Levelup'>Levelup(" + leveluppotion +")<br> 5 root <br> 5 herb</p>");
         }
         
 
@@ -526,14 +530,14 @@ var barrackbutton;
             }
         });
           $("#Health").click(function(){
-            if(ingredient["Mushrooms"].quantity>=2 && ingredient["Berries"].quantity>=2){
+            if(ingredient["Mushrooms"].quantity>=2 && ingredient["Sap"].quantity>=2){
                 healthpotion+=1;
                 ingredient["Mushrooms"].quantity-=2;
-                ingredient["Berries"].quantity-=2;
+                ingredient["Sap"].quantity-=2;
                 message("You brewed a Health potion. Use it in the barracks to give a unit a permanent boost to it's health.");
                 gotobrewery();
             }else{
-                message("You require 2 Herbs and 2 honey for that. You only have " + ingredient["Mushrooms"].quantity + " Mushrooms and " + ingredient["Berries"].quantity + " Berries.")
+                message("You require 2 Mushrooms and 2 Sap for that. You only have " + ingredient["Mushrooms"].quantity + " Mushrooms and " + ingredient["Sap"].quantity + " Sap.")
             }
         });
              $("#Levelup").click(function(){
@@ -679,11 +683,11 @@ indiv_newday(day);
                 gameover();
             }
         }
-        for(var p = 1;p<69;p++){
-            if($('#space' + p).data('loot')>0){
-                $('#space' + p).data('loot',$('#space' + p).data('loot')-1)
-            }
-        }
+//        for(var p = 1;p<69;p++){
+//            if($('#space' + p).data('loot')>0){
+//                $('#space' + p).data('loot',$('#space' + p).data('loot')-1)
+//            }
+//        }
         for (var i=0;i<index;i++){
             if(units[i].enroute>0){
                 units[i].enroute-=1;
@@ -2774,24 +2778,24 @@ indiv_newday(day);
         this.level=level;
 
         if(level===1){
-            this.attack= 40;
-            this.health= 60;
-            this.maxhealth=80;
+            this.attack= 50;
+            this.health= 100;
+            this.maxhealth=100;
         }
         if(level===2){
-            this.attack= 60;
-            this.health= 90;
-            this.maxhealth=110;
+            this.attack= 70;
+            this.health= 130;
+            this.maxhealth=130;
         }
         if(level===3){
-            this.attack= 80;
-            this.health= 120;
-            this.maxhealth=140;
+            this.attack= 90;
+            this.health= 160;
+            this.maxhealth=160;
         }
         if(level===4){
-            this.attack= 100;
-            this.health= 150;
-            this.maxhealth=170;
+            this.attack= 110;
+            this.health= 190;
+            this.maxhealth=190;
         }
         this.defense= 25;
         this.resistance= 5;
@@ -2853,8 +2857,8 @@ indiv_newday(day);
             this.health= 120;
             this.maxhealth=120;
         }
-        this.defense= 5;
-        this.resistance= 5;
+        this.defense= 10;
+        this.resistance= 10;
 
         this.sleep=0;
         this.immobilized=0;
@@ -2889,26 +2893,26 @@ indiv_newday(day);
 
       if(level===1){
             this.attack= 40;
-            this.health= 60;
-            this.maxhealth=60;
-        }
-        if(level===2){
-            this.attack= 60;
             this.health= 80;
             this.maxhealth=80;
         }
-        if(level===3){
-            this.attack= 80;
+        if(level===2){
+            this.attack= 60;
             this.health= 100;
             this.maxhealth=100;
         }
-        if(level===4){
-            this.attack= 100;
+        if(level===3){
+            this.attack= 80;
             this.health= 120;
             this.maxhealth=120;
         }
-        this.defense= 5;
-        this.resistance= 15;
+        if(level===4){
+            this.attack= 100;
+            this.health= 140;
+            this.maxhealth=140;
+        }
+        this.defense= 10;
+        this.resistance= 20;
 
         this.sleep=0;
         this.immobilized=0;
@@ -2961,8 +2965,8 @@ indiv_newday(day);
             this.health= 110;
             this.maxhealth=110;
         }
-        this.defense= 0;
-        this.resistance= 0;
+        this.defense= 5;
+        this.resistance= 5;
 
         this.sleep=0;
         this.immobilized=0;
@@ -2996,22 +3000,22 @@ indiv_newday(day);
         this.level=level;
 
       if(level===1){
-            this.attack= 60;
+            this.attack= 70;
             this.health= 40;
             this.maxhealth=40;
         }
         if(level===2){
-            this.attack= 80;
+            this.attack= 90;
             this.health= 60;
             this.maxhealth=60;
         }
         if(level===3){
-            this.attack= 100;
+            this.attack= 110;
             this.health= 80;
             this.maxhealth=80;
         }
         if(level===4){
-            this.attack= 120;
+            this.attack= 130;
             this.health= 100;
             this.maxhealth=100;
         }
@@ -3051,23 +3055,23 @@ indiv_newday(day);
 
         if(level===1){
             this.attack= 20;
-            this.health= 90;
-            this.maxhealth=90;
+            this.health= 110;
+            this.maxhealth=110;
         }
         if(level===2){
             this.attack= 30;
-            this.health= 120;
-            this.maxhealth=120;
+            this.health= 140;
+            this.maxhealth=140;
         }
         if(level===3){
             this.attack= 40;
-            this.health= 150;
-            this.maxhealth=150;
+            this.health= 170;
+            this.maxhealth=170;
         }
         if(level===4){
             this.attack= 50;
-            this.health= 180;
-            this.maxhealth=180;
+            this.health= 200;
+            this.maxhealth=200;
         }
         this.defense= 25;
         this.resistance= 25;
@@ -3145,6 +3149,24 @@ function createsoldier(choice,name){
         case "Thief":
             units[index]= new Thief(index, name);
             break;
+         case "Mimic":
+            units[index]= new Mimic(index, name);
+            break;
+        case "Wolf":
+            units[index]= new AWolf(index, name);
+        break;
+        case "Spider":
+            units[index]= new ASpider(index, name);
+        break;
+        case "Bear":
+            units[index]= new ABear(index, name);
+        break;
+        case "Turtle":
+            units[index]= new Aturtle(index, name);
+        break;
+        case "Sparrow":
+            units[index]= new ASparrow(index, name);
+        break;
     }
 }
 
@@ -3914,7 +3936,6 @@ function createsoldier(choice,name){
         index+=1;
     }
     function Enchantress(e,type){
-        console.log("here",type)
         if(!type){
             var type = "Enchantress";
         }
@@ -3985,7 +4006,6 @@ function createsoldier(choice,name){
         this.abilitytransform=false;
         this.abilitytorment=false;
         this.abilitybestow=false;
-        console.log(type)
 
         this.picture="<div class='barrackpic' id='"+ e + "'><img src='../CinePics/characters/"  + type + "/" + type +  "_front.gif' /></div>";
         this.image='../CinePics/characters/' + type + '/' + type + '_front.gif';
@@ -4067,6 +4087,447 @@ function createsoldier(choice,name){
         this.rightpic ='../CinePics/characters/' + type + '/' + type + '_right.gif';
         this.leftpic ='../CinePics/characters/' + type + '/' + type + '_left.gif'; 
         this.backpic ='../CinePics/characters/' + type + '/' + type + '_back.gif'; 
+        index+=1;
+    }
+
+    function Mimic(e,type){
+        this.type= "Mimic";
+        this.realtype="Mimic";
+        this.name="Burt";
+
+        this.attack= 40;
+        this.defense= 15;
+        this.resistance= 15;
+        this.health= 100;
+        this.maxhealth=100;
+
+        this.index=e;
+        this.usedaction=false;
+        this.alive=true;
+        this.moved=false;
+        this.curleft=0;
+        this.curtop=425;
+        this.group=0;
+        this.slot=0;
+
+        this.sleep=0;
+        this.immobilized=0;
+        this.blind=0;
+        this.silenced=0;
+        this.poison=0;
+        this.enfeeble=0;
+     
+        this.usedsleep=1;
+        this.usedblindness=1;
+        this.usedenfeeble=1;
+        this.usedpoison=1;
+        this.arrowcapacity=1;
+        this.duration=0;
+        this.usedpierce=1;
+        this.usedexploding=1;
+        this.usedtitan=1;
+        this.usedimmobolize=1;
+        this.useddisrupt=1;
+        this.usedgrappling=1;
+        this.usedsilence=1;
+        this.usedburst=1;
+         this.medkit=true;
+
+        this.captured="";
+
+        this.immune=false;
+        this.frosttouch=false;
+        this.storm=false;
+        this.aetherban=false;
+
+        this.level=1;
+        this.experience=0;
+        this.abilitypoints=0;
+        this.levelhealth=5;
+        this.leveldefense=1;
+        this.levelresistance=1;
+        this.levelattack=3;
+
+        this.weapon="Glass Wand";
+        this.armor="Bronze Armor";
+        this.accessory="None";
+
+        this.healthboost=0;
+        this.weaponboost=0;
+        this.armorboost=0;
+        this.resistboost=0;
+
+        this.attacktempboost=0;
+        this.defensetempboost=0;
+        this.protectedby=-1;
+
+        this.enroute=0;
+        this.healing=0;
+
+
+        this.picture="<div class='barrackpic' id='"+ e + "'><img src='../CinePics/characters/"  + type + "/" + type +  "_front.gif' /></div>";
+        this.image='../CinePics/characters/' + type + '/' + type + '_front.gif';
+        
+        this.rightpic ='../CinePics/characters/' + type + '/' + type + '_right.gif';
+        this.leftpic ='../CinePics/characters/' + type + '/' + type + '_left.gif'; 
+        this.backpic ='../CinePics/characters/' + type + '/' + type + '_back.gif'; 
+        index+=1;
+    }
+
+    function AWolf(e,type){
+        this.type= "Wolf";
+        this.realtype="Wolf";
+        this.name="Wolf";
+
+        this.attack= 60;
+        this.health= 80;
+        this.maxhealth=80;
+        this.defense= 20;
+        this.resistance= 10;
+
+        this.index=e;
+        this.usedaction=false;
+        this.alive=true;
+        this.moved=false;
+        this.curleft=0;
+        this.curtop=425;
+        this.group=0;
+        this.slot=0;
+
+        this.sleep=0;
+        this.immobilized=0;
+        this.blind=0;
+        this.silenced=0;
+        this.poison=0;
+        this.enfeeble=0;
+
+        this.captured="";
+
+        this.immune=false;
+        this.frosttouch=false;
+        this.storm=false;
+        this.aetherban=false;
+
+        this.level=1;
+        this.experience=0;
+        this.abilitypoints=0;
+        this.levelhealth=5;
+        this.leveldefense=1;
+        this.levelresistance=1;
+        this.levelattack=3;
+
+        this.weapon="Glass Wand";
+        this.armor="Bronze Armor";
+        this.accessory="None";
+
+        this.healthboost=0;
+        this.weaponboost=0;
+        this.armorboost=0;
+        this.resistboost=0;
+
+        this.attacktempboost=0;
+        this.defensetempboost=0;
+        this.protectedby=-1;
+
+        this.enroute=0;
+        this.healing=0;
+
+        this.abilityelementalailments=false;
+        this.abilityzap=false;
+        this.abilityfreeze=false;
+        this.abilitydoubletap=false;
+        this.abilitypain=false;
+
+        this.picture="<div class='barrackpic' id='"+ e + "'><img src='../Pictures/Enemies/Wolf.gif' /></div>";
+        this.image='../Pictures/Enemies/Wolf.gif';
+        
+        this.rightpic ='../Pictures/Enemies/Wolf.gif';
+        this.leftpic ='../Pictures/Enemies/Wolf.gif'; 
+        this.backpic ='../Pictures/Enemies/Wolf.gif'; 
+        index+=1;
+    }
+     function ATurtle(e,type){
+        this.type= "Turtle";
+        this.realtype="Turtle";
+        this.name="Turtle";
+
+            this.attack= 60;
+            this.health= 140;
+            this.maxhealth=140;
+        this.defense= 35;
+        this.resistance= 5;
+
+        this.index=e;
+        this.usedaction=false;
+        this.alive=true;
+        this.moved=false;
+        this.curleft=0;
+        this.curtop=425;
+        this.group=0;
+        this.slot=0;
+
+        this.sleep=0;
+        this.immobilized=0;
+        this.blind=0;
+        this.silenced=0;
+        this.poison=0;
+        this.enfeeble=0;
+
+        this.captured="";
+
+        this.immune=false;
+        this.frosttouch=false;
+        this.storm=false;
+        this.aetherban=false;
+
+        this.level=1;
+        this.experience=0;
+        this.abilitypoints=0;
+        this.levelhealth=5;
+        this.leveldefense=1;
+        this.levelresistance=1;
+        this.levelattack=3;
+
+        this.weapon="Glass Wand";
+        this.armor="Bronze Armor";
+        this.accessory="None";
+
+        this.healthboost=0;
+        this.weaponboost=0;
+        this.armorboost=0;
+        this.resistboost=0;
+
+        this.attacktempboost=0;
+        this.defensetempboost=0;
+        this.protectedby=-1;
+
+        this.enroute=0;
+        this.healing=0;
+
+        this.abilityelementalailments=false;
+        this.abilityzap=false;
+        this.abilityfreeze=false;
+        this.abilitydoubletap=false;
+        this.abilitypain=false;
+
+        this.picture="<div class='barrackpic' id='"+ e + "'><img src='../Pictures/Enemies/Turtle.gif' /></div>";
+        this.image='../Pictures/Enemies/Turtle.gif';
+        
+        this.rightpic ='../Pictures/Enemies/Turtle.gif';
+        this.leftpic ='../Pictures/Enemies/Turtle.gif'; 
+        this.backpic ='../Pictures/Enemies/Turtle.gif'; 
+        index+=1;
+    }
+  function ASparrow(e,type){
+        this.type= "Sparrow";
+        this.realtype="Sparrow";
+        this.name="Sparrow";
+
+            this.attack= 35;
+            this.health= 40;
+            this.maxhealth=40;
+        this.defense= 10;
+        this.resistance= 10;
+
+        this.index=e;
+        this.usedaction=false;
+        this.alive=true;
+        this.moved=false;
+        this.curleft=0;
+        this.curtop=425;
+        this.group=0;
+        this.slot=0;
+
+        this.sleep=0;
+        this.immobilized=0;
+        this.blind=0;
+        this.silenced=0;
+        this.poison=0;
+        this.enfeeble=0;
+
+        this.captured="";
+
+        this.immune=false;
+        this.frosttouch=false;
+        this.storm=false;
+        this.aetherban=false;
+
+        this.level=1;
+        this.experience=0;
+        this.abilitypoints=0;
+        this.levelhealth=5;
+        this.leveldefense=1;
+        this.levelresistance=1;
+        this.levelattack=3;
+
+        this.weapon="Glass Wand";
+        this.armor="Bronze Armor";
+        this.accessory="Winged_Talisman";
+
+        this.healthboost=0;
+        this.weaponboost=0;
+        this.armorboost=0;
+        this.resistboost=0;
+
+        this.attacktempboost=0;
+        this.defensetempboost=0;
+        this.protectedby=-1;
+
+        this.enroute=0;
+        this.healing=0;
+
+        this.abilityflight=true;
+
+        this.picture="<div class='barrackpic' id='"+ e + "'><img src='../Pictures/Enemies/Sparrow.gif' /></div>";
+        this.image='../Pictures/Enemies/Sparrow.gif';
+        
+        this.rightpic ='../Pictures/Enemies/Sparrow.gif';
+        this.leftpic ='../Pictures/Enemies/Sparrow.gif'; 
+        this.backpic ='../Pictures/Enemies/Sparrow.gif'; 
+        index+=1;
+    }
+    function ASpider(e,type){
+        this.type= "Spider";
+        this.realtype="Spider";
+        this.name="Spider";
+
+            this.attack= 0;
+            this.health= 140;
+            this.maxhealth=140;
+        this.defense= 25;
+        this.resistance= 25;
+
+        this.index=e;
+        this.usedaction=false;
+        this.alive=true;
+        this.moved=false;
+        this.curleft=0;
+        this.curtop=425;
+        this.group=0;
+        this.slot=0;
+
+        this.sleep=0;
+        this.immobilized=0;
+        this.blind=0;
+        this.silenced=0;
+        this.poison=0;
+        this.enfeeble=0;
+
+        this.captured="";
+
+        this.immune=false;
+        this.frosttouch=false;
+        this.storm=false;
+        this.aetherban=false;
+
+        this.level=1;
+        this.experience=0;
+        this.abilitypoints=0;
+        this.levelhealth=5;
+        this.leveldefense=1;
+        this.levelresistance=1;
+        this.levelattack=3;
+
+        this.weapon="Glass Wand";
+        this.armor="Bronze Armor";
+        this.accessory="None";
+
+        this.healthboost=0;
+        this.weaponboost=0;
+        this.armorboost=0;
+        this.resistboost=0;
+
+        this.attacktempboost=0;
+        this.defensetempboost=0;
+        this.protectedby=-1;
+
+        this.enroute=0;
+        this.healing=0;
+
+        this.abilityelementalailments=false;
+        this.abilityzap=false;
+        this.abilityfreeze=false;
+        this.abilitydoubletap=false;
+        this.abilitypain=false;
+
+        this.picture="<div class='barrackpic' id='"+ e + "'><img src='../Pictures/Enemies/Spider.gif' /></div>";
+        this.image='../Pictures/Enemies/Spider.gif';
+        
+        this.rightpic ='../Pictures/Enemies/Spider.gif';
+        this.leftpic ='../Pictures/Enemies/Spider.gif'; 
+        this.backpic ='../Pictures/Enemies/Spider.gif'; 
+        index+=1;
+    }
+  function ABear(e,type){
+        this.type= "Bear";
+        this.realtype="Bear";
+        this.name="Bear";
+
+            this.attack= 100;
+            this.health= 140;
+            this.maxhealth=140;
+        this.defense= 25;
+        this.resistance= 25;
+
+        this.index=e;
+        this.usedaction=false;
+        this.alive=true;
+        this.moved=false;
+        this.curleft=0;
+        this.curtop=425;
+        this.group=0;
+        this.slot=0;
+
+        this.sleep=0;
+        this.immobilized=0;
+        this.blind=0;
+        this.silenced=0;
+        this.poison=0;
+        this.enfeeble=0;
+
+        this.captured="";
+
+        this.immune=false;
+        this.frosttouch=false;
+        this.storm=false;
+        this.aetherban=false;
+
+        this.level=1;
+        this.experience=0;
+        this.abilitypoints=0;
+        this.levelhealth=5;
+        this.leveldefense=1;
+        this.levelresistance=1;
+        this.levelattack=3;
+
+        this.weapon="Glass Wand";
+        this.armor="Bronze Armor";
+        this.accessory="None";
+
+        this.healthboost=0;
+        this.weaponboost=0;
+        this.armorboost=0;
+        this.resistboost=0;
+
+        this.attacktempboost=0;
+        this.defensetempboost=0;
+        this.protectedby=-1;
+
+        this.enroute=0;
+        this.healing=0;
+
+        this.abilityelementalailments=false;
+        this.abilityzap=false;
+        this.abilityfreeze=false;
+        this.abilitydoubletap=false;
+        this.abilitypain=false;
+
+        this.picture="<div class='barrackpic' id='"+ e + "'><img src='../Pictures/Enemies/Bear.gif' /></div>";
+        this.image='../Pictures/Enemies/Bear.gif';
+        
+        this.rightpic ='../Pictures/Enemies/Bear.gif';
+        this.leftpic ='../Pictures/Enemies/Bear.gif'; 
+        this.backpic ='../Pictures/Enemies/Bear.gif'; 
         index+=1;
     }
 
@@ -4222,7 +4683,6 @@ function newEindex(){
             $(".icon").mousedown(function(e) {
                 if(e.button === 2 ) {
                     var temp = $(this).attr('id').replace("M","");
-                    console.log(temp)
                     exchangeunits(temp);
                 }
             });
@@ -4367,9 +4827,8 @@ isfortified=true;
                 var curunit = $(this).attr('id');
             $("#stats").remove();
                 $("body").append('<div id="stats"></div>');
-                $("#stats").append("<p>" + units[curunit].name + "</p><p>Level: " + units[curunit].level +
-                "</p><p>Type: " + units[curunit].type +
-                "</p><p>Health: " + units[curunit].health + "/" + units[curunit].maxhealth + "</p><p>Attack: " + units[curunit].attack + "</p><p>Defense: " + units[curunit].defense + "</p><p>Resistance: " + units[curunit].resistance + "</p><p>" + units[curunit].weapon + "</p><p>" + units[curunit].armor + "</p><p>" + units[curunit].accessory + "</p> ")
+                $("#stats").append("<p>Level: " + units[curunit].level + "</p><p>Type: " + units[curunit].type +
+                "</p><p>Health: " + units[curunit].health + "/" + units[curunit].maxhealth + "</p><p>Attack: " + units[curunit].attack + "</p><p>Defense: " + units[curunit].defense + "</p><p>Resistance: " + units[curunit].resistance + "</p>")
         });
         $('.Ebarrackpic').click(function(){
             var curunit = $(this).attr('id');
@@ -4387,6 +4846,7 @@ isfortified=true;
         $('.icon').click(function(){
 
             $(".icon").removeClass("highlight");
+            $(".Bicon").removeClass("highlight");
             $(this).addClass("highlight");
             curgroupnum = $(this).attr("id").replace("M", "");
             curgroupnum = parseInt(curgroupnum, 10);
@@ -4447,7 +4907,10 @@ isfortified=true;
                 if (groups[curgroupnum].location === 70) {
                     $(".actions").append("<div class = 'actionbutton' id='Return'><p>Return</p></div>")
                 } else {
-                    $(".actions").append("<div class = 'actionbutton' id='Explore'><p>Explore</p></div>");
+                    if(typeof(noexplore) == 'undefined'){
+                         $(".actions").append("<div class = 'actionbutton' id='Explore'><p>Explore</p></div>");
+                    }
+                   
                 }
 
 //                if ($('#space' + groups[curgroupnum].location).data("fortify") === true || $('#space' + groups[curgroupnum].location).data("castle") === true) {
@@ -4518,15 +4981,42 @@ function clickEicon(){
                 }
                   
                 $('#TEXT').empty();
-                var activenum = $('.highlight').attr('id').replace("M", "");
                 var enemynum=$(this).attr('id').replace("EM","");
                 var enemylocation=Egroups[enemynum].location;
-                var curloc = groups[activenum].location;
-                if (groups[activenum].hasmoved === true) {
+                var activenum = $('.highlight').attr('id').replace("M", "");
+                var curloc;
+                if(activenum.indexOf("B")>-1){
+                    activenum = activenum.replace("B", "");
+                    activenum=parseInt(activenum,10)
+                    curloc = Bgroups[activenum].location;
+                    if (Bgroups[activenum].hasmoved === true) {
                     return;
+                    }
+                    if ((($("#space" + enemylocation).data("fortify")===true || $("#space" + enemylocation).data("castle")===true) && ($("#space" + Bgroups[activenum].location).data("fortify")===true || $("#space" + Bgroups[activenum].location).data("castle")===true || Bgroups[activenum].location===70)) ||
+                Bgroups[activenum].location == $("#space" + enemylocation).data("move1") || Bgroups[activenum].location == $("#space" + enemylocation).data("move2") || Bgroups[activenum].location == $("#space" + enemylocation).data("move3") || Bgroups[activenum].location == $("#space" + enemylocation).data("move4")) {
+                    Bgroups[activenum].curleft=$("#space" + enemylocation).data("left");
+                        Bgroups[activenum].curtop=$("#space" + enemylocation).data("top");
+                    $('.highlight').animate({
+                        left: $("#space" + enemylocation).data("left") + 'px',
+                        top: $("#space" + enemylocation).data("top") + 'px'
+                    });
+
+                    Bgroups[activenum].location = enemylocation;
+                    Bgroups[activenum].hasmoved = true;
+                    $(".highlight").addClass("grayicon");
+
+                    clearspaces(curloc);
+
+                    $("#space" + enemylocation).data('filled',Bgroups[activenum].index);
+                        Bstartcombat();
                 }
-                if ((($("#space" + enemylocation).data("fortify")===true || $("#space" + enemylocation).data("castle")===true) && ($("#space" + groups[activenum].location).data("fortify")===true || $("#space" + groups[activenum].location).data("castle")===true || groups[activenum].location===70)) ||
-                groups[activenum].location == $("#space" + enemylocation).data("move1") || groups[activenum].location == $("#space" + enemylocation).data("move2") || groups[activenum].location == $("#space" + enemylocation).data("move3") || groups[activenum].location == $("#space" + enemylocation).data("move4")) {
+                } else{
+                    curloc = groups[activenum].location;
+                    if (groups[activenum].hasmoved === true) {
+                        return;
+                    }
+                    if ((($("#space" + enemylocation).data("fortify")===true || $("#space" + enemylocation).data("castle")===true) && ($("#space" + groups[activenum].location).data("fortify")===true || $("#space" + groups[activenum].location).data("castle")===true || groups[activenum].location===70)) ||
+                groups[activenum].location == $("#space" + enemylocation).data("move1") || groups[activenum].location == $("#space" + enemylocation).data("move2") || groups[activenum].location == $("#space" +    enemylocation).data("move3") || groups[activenum].location == $("#space" + enemylocation).data("move4")) {
                     groups[activenum].curleft=$("#space" + enemylocation).data("left");
                         groups[activenum].curtop=$("#space" + enemylocation).data("top");
                     $('.highlight').animate({
@@ -4541,6 +5031,7 @@ function clickEicon(){
                     clearspaces(curloc);
 
                     $("#space" + enemylocation).data('filled',groups[activenum].index);
+                    }
                 }
                
                 startcombat();
@@ -4742,35 +5233,43 @@ function clearspaces(e){
                             units[w].frosttouch=groups[i].frosttouch;
                             units[w].storm=groups[i].storm;
                             units[w].aetherban=groups[i].aetherban;
-
+                            function checktypes(type){
+                                var typepresent = false;
+                                for(var l =0;l<index;l++){
+                                    if(units[l].type == type){
+                                        typepresent=true;
+                                    }
+                                }
+                                return typepresent
+                            }
 
                         if(units[w].group===i){
                             testnum+=1;
                         }
-                        if(units[w].type==="Templar" || units[w].type==="Soldier" || units[w].type==="Mage" || units[w].type==="Enchantress" || units[w].type==="Wizard" || units[w].type==="Rouge" || units[w].type==="Archer" || units[w].type==="Thief" || units[w].type==="Sorcerer" || units[w].type==="Healer"){
+                        if(units[w].type==="Templar" || units[w].type==="Soldier" || units[w].type==="Mage" || units[w].type==="Enchantress" || units[w].type==="Wizard" || units[w].type==="Rouge" || units[w].type==="Archer" || units[w].type==="Thief" || units[w].type==="Sorcerer" || units[w].type==="Healer" || units[w].type==="Mimic"){
                             units[w].energy=0;
                         }
-                        if(units[w].type==="Wizard"){
+                        if(units[w].type==="Wizard" || (checktypes("Wizard") && units[w].type==="Mimic")){
                             if(units[w].abilitystartcharge===true){
                                 units[w].charge=2;
                             } else{
                                 units[w].charge=0;
                             }
                         }
-                        if(units[w].type==="Rouge"){
+                        if(units[w].type==="Rouge" || units[w].type==="Mimic"){
                             units[w].usedblindness=units[w].arrowcapacity;
                             units[w].usedsleep=units[w].arrowcapacity;
                             units[w].usedenfeeble=units[w].arrowcapacity;
                             units[w].usedpoison=units[w].arrowcapacity;
                         }
-                        if(units[w].type==="Templar"){
+                        if(units[w].type==="Templar" || units[w].type==="Mimic"){
                             units[w].usedsilence=units[w].arrowcapacity;
                             units[w].usedimmobilize=units[w].arrowcapacity;
                             units[w].useddisrupt=units[w].arrowcapacity;
                             units[w].usedgrappling=units[w].arrowcapacity;
                             units[w].usedburst=units[w].arrowcapacity;
                         }
-                        if(units[w].type==="Archer"){
+                        if(units[w].type==="Archer" || units[w].type==="Mimic"){
                             units[w].usedtitan=units[w].arrowcapacity;
                             units[w].usedimmobolize=units[w].arrowcapacity;
                             units[w].usedexploding=units[w].arrowcapacity;
@@ -4783,7 +5282,7 @@ function clearspaces(e){
                                 units[w].energy=25;
                             }
                         }
-                        if(units[w].type==="Knight"){
+                        if(units[w].type==="Knight" || (checktypes("Knight") && units[w].type==="Mimic")){
                                 units[w].energy=100;
                         }
                         if(units[w].type=="Thief" && units[w].abilityinvisible==true){
@@ -4795,9 +5294,9 @@ function clearspaces(e){
                         continue;
                     }
                     for(var q =0;q<Eindex;q++){
-if(Eunits[q].group!=j){
-    continue;
-}
+                        if(Eunits[q].group!=j){
+                            continue;
+                        }
                         Eunits[q].moved=false;
                         if(Eunits[q].charge != "None"){
                             Eunits[q].charge=0;
@@ -4862,9 +5361,6 @@ if(Eunits[q].group!=j){
                     slots[3]=-1;
 
                     var currenttop = 425;
-                    //if(groups[i].haste===true){
-                    //    currenttop = 125;
-                    //}
                     for(k=0;k<index;k++){
                         if(units[k].group===i){
                             if (slots[1]===-1 && units[k].slot===1){
@@ -4881,7 +5377,8 @@ if(Eunits[q].group!=j){
                         units[slots[1]].curtop=currenttop;
                         $('#battlebackground').append('<div STYLE="position:absolute; TOP:' + currenttop + 'px; LEFT:125px;" class="unit"  id="' + slots[1] + '" ><img src="' + units[slots[1]].backpic + '"/></div>');
                         $('#' + slots[1]).append('<div class="healthbar" id = "HB' + slots[1] + '" style="width: ' + (units[slots[1]].health/units[slots[1]].maxhealth)*100 + '%"></div><div class="level"><p>' + units[slots[1]].level + '</p></div><div class="energybar" id ="EB' + units[slots[1]].index + '"style="width: ' + (units[slots[1]].energy) + '%"></div>');
-                        if(units[slots[1]].type==="Wizard"){
+                        
+                        if(units[slots[1]].type==="Wizard" || (checktypes("Wizard") && units[slots[1]].type==="Mimic")){
                             $('#' + slots[1]).append('<img  style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORB' + slots[1] + '" style="color: yellow; position: absolute; font-size:20px; margin-top:-30px; margin-left:55px; width:10px; height:10px ">' + units[slots[1]].charge +'</div>');
                         }
                         if(units[slots[1]].type==="Enchantress"){
@@ -4903,7 +5400,7 @@ if(Eunits[q].group!=j){
                         units[slots[2]].curtop=currenttop;
                         $('#battlebackground').append('<div STYLE="position:absolute; TOP:' + currenttop + 'px; LEFT:225px;" class="unit"  id="' + slots[2] + '" ><img src="' + units[slots[2]].backpic + '"/></div>');
                         $('#' + slots[2]).append('<div class="healthbar" id = "HB' + slots[2] + '" style="width: ' + (units[slots[2]].health/units[slots[2]].maxhealth)*100 + '%"></div><div class="level"><p>' + units[slots[2]].level + '</p></div><div class="energybar" id ="EB' + units[slots[2]].index + '"style="width: ' + (units[slots[2]].energy) + '%"></div>');
-                        if(units[slots[2]].type==="Wizard"){
+                        if(units[slots[2]].type==="Wizard" || (checktypes("Wizard") && units[slots[2]].type==="Mimic")){
                             $('#' + slots[2]).append('<img style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORB' + slots[2] + '" style="color: yellow; position: absolute; font-size:20px; margin-top:-30px; margin-left:55px; width:10px; height:10px ">' + units[slots[2]].charge +'</div>');
                         }
                         if(units[slots[2]].type==="Enchantress"){
@@ -4924,7 +5421,7 @@ if(Eunits[q].group!=j){
                         units[slots[3]].curtop=currenttop;
                         $('#battlebackground').append('<div STYLE="position:absolute; TOP:' + currenttop + 'px; LEFT:325px;" class="unit"  id="' + slots[3] + '" ><img src="' + units[slots[3]].backpic + '"/></div>');
                         $('#' + slots[3]).append('<div class="healthbar" id = "HB' + slots[3] + '" style="width: ' + (units[slots[3]].health/units[slots[3]].maxhealth)*100 + '%"></div><div class="level"><p>' + units[slots[3]].level + '</p></div><div class="energybar" id ="EB' + units[slots[3]].index + '"style="width: ' + (units[slots[3]].energy) + '%"></div>');
-                        if(units[slots[3]].type==="Wizard"){
+                        if(units[slots[3]].type==="Wizard" || (checktypes("Wizard") && units[slots[3]].type==="Mimic")){
                             $('#' + slots[3]).append('<img style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORB' + slots[3] + '" style="color: yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:55px; width:10px; height:10px ">' + units[slots[3]].charge +'</div>');
                         }
                         if(units[slots[3]].type==="Sorcerer"){
@@ -5274,7 +5771,6 @@ var mult = 0;
                         $("#" + selectedindex + " img").attr("src", units[selectedindex].leftpic)
                     }
                        if(units[selectedindex].curtop + 100 === futuretop){
-                           console.log("hi")
                         $("#" + selectedindex + " img").attr("src", units[selectedindex].image) 
                     }
                     if(units[selectedindex].curtop - 100 === futuretop){
@@ -5404,7 +5900,6 @@ var mult = 0;
                         if (slots[1] === index) {
                             var templeft = units[slots[1]].curleft;
                             var temptop = units[slots[1]].curtop;
-                            console.log(temptop)
                             slots[1] = units[slots[1]].owner;
                             units[slots[1]].captured="";
                             units[slots[1]].curleft = templeft;
@@ -5966,8 +6461,131 @@ var mult = 0;
                 }
                 //shows buttons//////////////////////////////////
                 $('*').removeClass('battlehighlight');
-
+                function checktypes(type){
+                    if(units[slots[1]].type == type || units[slots[2]].type == type || units[slots[3]].type == type){
+                        return true;
+                    } else{
+                        return false;
+                    }
+                }
                 switch (curtype) {
+                    case "Mimic":
+                        $('.actions').empty();
+                        $('.actions').append("<select class = 'options' id='mimicchoice' style='position:absolute; margin-left:5px; margin-right:40px; margin-top: 2px; width:110px;'></select><div class = 'actionbutton' style='position:absolute; margin-top:30px; margin-left:5px' id = 'mimicAttack'>Use</div>");
+                        
+                        if(checktypes("Wizard")){
+                            $('.actions').append("<div class = 'actionbutton' style='position:absolute; margin-left:130px;' id = 'wizardCharge'>Charge</div>")
+                        }
+                        
+                        if(units[selectedindex].level>=1 || units[selectedindex].level=="-"){
+                            if(checktypes("Rouge")){
+                                $('#mimicchoice').append(new Option('Poison(' + units[selectedindex].usedpoison + ')','Poison'));
+                            }
+                            if(checktypes("Templar")){
+                                $('#mimicchoice').append(new Option('Silence(' + units[selectedindex].usedsilence + ')','Silence'));
+                            }
+                            if(checktypes("Archer")){
+                                $('#mimicchoice').append(new Option('Arrow','Arrow'));
+                            }
+                            if(checktypes("Mage")){
+                                $('#mimicchoice').append(new Option('Fire','Fire'));
+                            }
+                            if(checktypes("Wizard")){
+                                $('#mimicchoice').append(new Option('Gust(1)','Gust(1)'));
+                            }
+                            if(checktypes("Healer")){
+                                $('#mimicchoice').append(new Option('Vigor','Vigor'));
+                            }
+                            if(checktypes("Soldier")){
+                                $('#mimicchoice').append(new Option('Sword','Sword'));
+                            }
+                            if(checktypes("Knight")){
+                                if(checktypes("Soldier")==false){
+                                    $('#mimicchoice').append(new Option('Sword','Sword'));
+                                }
+                            }
+                        }
+                        if(units[selectedindex].level>=2 || units[selectedindex].level=="-"){
+                            if(checktypes("Rouge")){
+                                $('#mimicchoice').append(new Option('Blindness(' + units[selectedindex].usedblindness + ')','Blindness'));
+                            }
+                            if(checktypes("Templar")){
+                                $('#mimicchoice').append(new Option('Grappling_Hook(' + units[selectedindex].usedgrappling + ')','Grappling_Hook'));
+                            }
+                            if(checktypes("Archer")){
+                                $('#mimicchoice').append(new Option('Exploding(' + units[selectedindex].usedexploding + ')','Exploding'));
+                            }
+                            if(checktypes("Guard")){
+                                $('#mimicchoice').append(new Option('Protect','Protect'));
+                            }
+                            if(checktypes("Knight")){
+                                $('#mimicchoice').append(new Option('Swirl','Swirl'));
+                            }
+                            if(checktypes("Mage")){
+                                $('#mimicchoice').append(new Option('Zap','Zap'));
+                            }
+                            if(checktypes("Wizard")){
+                                $('#mimicchoice').append(new Option('Bolt(2)','Bolt(2)'));
+                            }
+                        }
+                        if(units[selectedindex].level>=3 || units[selectedindex].level=="-"){
+                            if(checktypes("Rouge")){
+                                $('#mimicchoice').append(new Option('Enfeeble(' + units[selectedindex].usedenfeeble + ')','Enfeeble'));
+                            }
+                            if(checktypes("Archer")){
+                                $('#mimicchoice').append(new Option('Piercing(' + units[selectedindex].usedpierce + ')','Piercing'));
+                            }
+                            if(checktypes("Knight")){
+                                $('#mimicchoice').append(new Option('Sweep','Sweep'));
+                            }
+                            if(checktypes("Mage")){
+                                $('#mimicchoice').append(new Option('Freeze','Freeze'));
+                            }
+                            if(checktypes("Wizard")){
+                                $('#mimicchoice').append(new Option('Missile(X)','Missile(X)'));
+                            }
+                        }
+                        if(units[selectedindex].level>=4 || units[selectedindex].level=="-"){
+                            if(checktypes("Rouge")){
+                                $('#mimicchoice').append(new Option('Sleep(' + units[selectedindex].usedsleep + ')','Sleep'));
+                            }
+                            if(checktypes("Templar")){
+                                $('#mimicchoice').append(new Option('Disrupt(' + units[selectedindex].useddisrupt + ')','Disrupt'));
+                            }
+                            if(checktypes("Archer")){
+                                //bACKhere
+                                $('#mimicchoice').append(new Option('Immobolize(' + units[selectedindex].usedimmobolize + ')','Immobolize'));
+                            }
+                        }
+                        if(units[selectedindex].level>=5 || units[selectedindex].level=="-"){
+                            if(checktypes("Templar")){
+                                $('#mimicchoice').append(new Option('Burst(' + units[selectedindex].usedburst + ')','Burst'));
+                            }
+                            if(checktypes("Archer")){
+                                $('#mimicchoice').append(new Option('Titan(' + units[selectedindex].usedtitan + ')','Titan'));
+                            }
+                            if(checktypes("Knight")){
+                                $('#mimicchoice').append(new Option('Piercer','Piercer'));
+                            }
+                            if(checktypes("Mage")){
+                                $('#mimicchoice').append(new Option('Pain','Pain'));
+                            }
+                            if(checktypes("Wizard")){
+                                $('#mimicchoice').append(new Option('Drain','Drain'));
+                            }
+                        }
+                        if(units[selectedindex].level=="-"){
+                        }
+                        
+                        
+                        if(units[selectedindex].medkit===true){
+                            $('#soldierchoice').append(new Option('Medkit'));
+                        }
+                        $('#mimicAttack').addClass('battlehighlight');
+                        selectedaction = 'mimicAttack';
+                        traincommands(selectedindex);
+                        clickactionbuttons();
+                        break;
                     case "Soldier":
                         tipmessage("Soldier","This is a soldier. He is a well balanced close ranged fighter. It has a decent defense against physical damage, but it has a low resistance against magic.");
                         $('.actions').empty();
@@ -5977,7 +6595,7 @@ var mult = 0;
                         }
                         $('#soldierAttack').addClass('battlehighlight');
                         selectedaction = 'soldierAttack';
-                     traincommands(selectedindex);
+                        traincommands(selectedindex);
                         clickactionbuttons();
                         break;
                     case "Knight":
@@ -6054,8 +6672,20 @@ var mult = 0;
                         traincommands(selectedindex);
                         clickactionbuttons();
                         break;
+                    case "Spider":
+                        $('.actions').empty();
+                        $('.actions').append("<div class = 'actionbutton' style='position:absolute; margin-top:30px; margin-left:5px' id = 'web'>Web</div>");
+                        $('#web').addClass('battlehighlight');
+                          selectedaction = 'web';
+                        traincommands(selectedindex);
+                        clickactionbuttons();
+                    break
                     case "Djinn":
                     case "Golem":
+                    case "Bear":
+                    case "Turtle":
+                    case "Wolf":
+                    case "Sparrow":
                         $('.actions').empty();
                         $('.actions').append("<div class = 'actionbutton' id = 'DjinnAttack'>Attack</div>");
                         $('#DjinnAttack').addClass('battlehighlight');
@@ -6298,8 +6928,8 @@ var mult = 0;
         $('.Eunit').mousedown(function(e){
             $("#TEXT").empty();
             if (battleon===false){
-    return;
-}
+                return;
+            }
             if(e.button === 2) {
                 //determine enemy's number
                 for (var i = 0; i < Eindex; i++) {
@@ -6317,8 +6947,8 @@ var mult = 0;
                     return;
                 }
                 if(units[selectedindex].usedaction===true){
-    units[selectedindex].moved===true;
-}
+                        units[selectedindex].moved===true;
+                    }
                 if(units[selectedindex].type==="Invisible"){
                     units[selectedindex].type=units[selectedindex].realtype;
                     $("#" + selectedindex).removeClass("Invisible");
@@ -6362,9 +6992,7 @@ var mult = 0;
                     }
                 }
                 function Damaging(index, damage) {
-                    console.log("Protect",Eunits[index].protectedby)
                     if(Eunits[index].protectedby || Eunits[index].protectedby==0){
-                        console.log("here")
                             if(Eunits[index].protectedby!=-1 && Eunits[Eunits[index].protectedby].alive===true){
                                 index=Eunits[index].protectedby;
                             }
@@ -6425,7 +7053,7 @@ var mult = 0;
 }
 
                 //rouge
-                if (selectedaction === "rougeAttack") {
+                if (selectedaction === "rougeAttack" || selectedaction === "mimicAttack" ) {
                     if (units[selectedindex].curleft === Eunits[enemyindex].curleft || units[selectedindex].curtop === Eunits[enemyindex].curtop) {
                         if (units[selectedindex].blind === 0) {
                             for(var i = 1;i<6;i++){
@@ -6436,8 +7064,12 @@ var mult = 0;
                             }
 
                             var e = document.getElementById("rougechoice");
+                            if(selectedaction === "mimicAttack"){
+                                e = document.getElementById("mimicchoice");
+                            }
                             var defense=0;
                             if(Eunits[enemyindex].enfeeble===0){defense=Eunits[enemyindex].defense}
+                            
                             var damage = units[selectedindex].attack + units[selectedindex].attacktempboost - defense;
                             if (damage < 0) {
                                 damage = 0
@@ -6455,8 +7087,8 @@ var mult = 0;
                                 damage = 0;
                             }
 
-                            if ($('#rougechoice option:selected').text() === "Normal") {
-               
+                            if ($('#rougechoice option:selected').text() === "Normal" && units[selectedindex].type!="Mimic") {
+                            
                                 shootarrow(enemyindex,selectedindex);
                                 setTimeout(function(){Damaging(enemyindex, damage);},500);
                                 units[selectedindex].usedaction = true;
@@ -6535,16 +7167,22 @@ var mult = 0;
                                 units[selectedindex].usedaction = true;
                                 showailments();
                             }
+                            if(units[selectedindex].usedaction === true){
+                                return;
+                            }
                         } else {
                             $("#TEXT").append("This unit is blind for " + units[selectedindex].blind + " more turns.")
                         }
                     }
                 }
                 //templar
-                if (selectedaction === "templarAttack") {
+                if (selectedaction === "templarAttack" || selectedaction === "mimicAttack") {
                     if (units[selectedindex].curleft === Eunits[enemyindex].curleft || units[selectedindex].curtop === Eunits[enemyindex].curtop) {
                         if (units[selectedindex].blind === 0) {
                             var e = document.getElementById("templarchoice");
+                            if(selectedaction === "mimicAttack"){
+                                e = document.getElementById("mimicchoice");
+                            }
                             var defense=0;
                             if(Eunits[enemyindex].enfeeble===0){defense=Eunits[enemyindex].defense}
                             var damage = units[selectedindex].attack + units[selectedindex].attacktempboost - defense;
@@ -6748,15 +7386,21 @@ var mult = 0;
                                 showailments();
                                 Arrow.play();
                             }
+                             if(units[selectedindex].usedaction === true){
+                                return;
+                            }
                         } else {
                             $("#TEXT").append("This unit is blind for " + units[selectedindex].blind + " more turns.")
                         }
                     }
                 }
                 //Archer
-                if (selectedaction === "archerAttack") {
+                if (selectedaction === "archerAttack" || selectedaction === "mimicAttack") {
                         if (units[selectedindex].blind === 0) {
                             var e = document.getElementById("archerchoice");
+                            if(selectedaction === "mimicAttack"){
+                                e = document.getElementById("mimicchoice");
+                            }
                             var defense=0;
 
                             //magnet
@@ -6767,6 +7411,7 @@ var mult = 0;
                                     magnetthere=true;
                                 }
                             }
+                            
                             if(Eunits[enemyindex].enfeeble===0){defense=Eunits[enemyindex].defense}
                             var damage = units[selectedindex].attack + units[selectedindex].attacktempboost - defense;
                             if (damage < 0) {
@@ -6801,8 +7446,6 @@ var mult = 0;
 
                                 showailments();
                             }
-
-
                             if(magnetthere===true){
                                 damage=0;
                             }
@@ -6812,9 +7455,9 @@ var mult = 0;
                             }
 
 
-                            if ($('#archerchoice option:selected').text() === "Normal" || e.options[e.selectedIndex].value==="Piercing" || e.options[e.selectedIndex].value==="Titan" || e.options[e.selectedIndex].value==="Immobolize") {
+                            if ($('#archerchoice option:selected').text() === "Normal" || e.options[e.selectedIndex].value==="Piercing" || e.options[e.selectedIndex].value==="Titan" || e.options[e.selectedIndex].value==="Immobolize" || e.options[e.selectedIndex].value==="Arrow") {
                            shootarrow(enemyindex,selectedindex);
-
+                                    
                                 setTimeout(function(){Damaging(enemyindex, damage);},500);
                                 units[selectedindex].usedaction = true;
                             }
@@ -6875,10 +7518,17 @@ var mult = 0;
                         } else {
                             $("#TEXT").append("This unit is blind for " + units[selectedindex].blind + " more turns.")
                         }
+                     if(units[selectedindex].usedaction === true){
+                                return;
+                            }
                 }
                 //soldier
-                if (selectedaction === "soldierAttack") {
+                if (selectedaction === "soldierAttack" || selectedaction === "mimicAttack") {
                     if (units[selectedindex].blind === 0) {
+                         var e = document.getElementById("soldierchoice");
+                            if(selectedaction === "mimicAttack"){
+                                e = document.getElementById("mimicchoice");
+                            }
                         var defense=0;
                         if(Eunits[enemyindex].enfeeble===0){defense=Eunits[enemyindex].defense}
                         var damage = (units[selectedindex].attack + units[selectedindex].attacktempboost - defense);
@@ -6935,9 +7585,13 @@ var mult = 0;
                     }
                 }
                 //knight
-                if (selectedaction === "knightAttack") {
+                if (selectedaction === "knightAttack" || selectedaction === "mimicAttack") {
                     if (units[selectedindex].blind === 0) {
-                        if ($('#knightchoice option:selected').text() === "Normal") {
+                            var e = document.getElementById("knightchoice");
+                            if(selectedaction === "mimicAttack"){
+                                e = document.getElementById("mimicchoice");
+                            }
+                        if ($('#knightchoice option:selected').text() === "Normal" || e.options[e.selectedIndex].value==="Sword" ) {
                             var defense=0;
                             if(Eunits[enemyindex].enfeeble===0){defense=Eunits[enemyindex].defense}
                             var damage = (units[selectedindex].attack - defense + units[selectedindex].attacktempboost);
@@ -6964,7 +7618,7 @@ var mult = 0;
                                 turngray();
                             }
                         }
-                        if ($('#knightchoice option:selected').text() === "Piercer") {
+                        if ($('#knightchoice option:selected').text() === "Piercer" || e.options[e.selectedIndex].value==="Piercer") {
                             var damage = (units[selectedindex].attack + units[selectedindex].attacktempboost);
                             if (damage < 0) {
                                 damage = 0
@@ -6987,7 +7641,7 @@ var mult = 0;
                                 return;
                             }
                         }
-                        if ($('#knightchoice option:selected').text() === "Swirl") {
+                        if ($('#knightchoice option:selected').text() === "Swirl"  || e.options[e.selectedIndex].value==="Swirl") {
                             if(units[selectedindex].energy<30){
                                 message("The Knight doesn't have enough stamina to use swirl. Pass the turn without using him to refill his stamina.");
                                 return;
@@ -7036,7 +7690,7 @@ var mult = 0;
                                 }
                             }
                         }
-                        if ($('#knightchoice option:selected').text() === "Sweep") {
+                        if ($('#knightchoice option:selected').text() === "Sweep"  || e.options[e.selectedIndex].value==="Sweep") {
                             if(units[selectedindex].energy<30){
 
                                 message("The Knight doesn't have enough stamina to use swirl. Pass the turn without using him to refill his stamina.");
@@ -7114,9 +7768,13 @@ var mult = 0;
                     }
                 }
                 //Thief
-                if (selectedaction === "thiefAttack") {
+                if (selectedaction === "thiefAttack" || selectedaction === "mimicAttack") {
                     if (units[selectedindex].blind === 0) {
-                        if ($('#thiefchoice option:selected').text() === "Normal" || $('#thiefchoice option:selected').text() === "Mug") {
+                        var e = document.getElementById("knightchoice");
+                            if(selectedaction === "mimicAttack"){
+                                e = document.getElementById("mimicchoice");
+                            }
+                        if ($('#thiefchoice option:selected').text() === "Normal" || $('#thiefchoice option:selected').text() === "Mug"  || e.options[e.selectedIndex].value==="Mug") {
                             var defense=0;
                             if(Eunits[enemyindex].enfeeble===0){defense=Eunits[enemyindex].defense}
                             var damage = (units[selectedindex].attack - defense + units[selectedindex].attacktempboost);
@@ -7143,7 +7801,7 @@ var mult = 0;
                                 turngray();
                             }
                         }
-                        if ($('#thiefchoice option:selected').text() === "Steal"  || $('#thiefchoice option:selected').text() === "Mug") {
+                        if ($('#thiefchoice option:selected').text() === "Steal"  || $('#thiefchoice option:selected').text() === "Mug" || e.options[e.selectedIndex].value==="Steal") {
                             if ((units[selectedindex].curtop - 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curtop + 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curleft - 100 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop) || (units[selectedindex].curleft + 100 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop)) {
 
                                 if(Eunits[enemyindex].item===""){
@@ -7334,14 +7992,18 @@ var mult = 0;
                     }
                 }
                 //mage
-                if (selectedaction === "mageCast") {
+                if (selectedaction === "mageCast" || selectedaction === "mimicAttack") {
                     if (units[selectedindex].silenced === 0) {
                         if((Eunits[Eslots[1]].type==="Sounddepressor" && Eunits[Eslots[1]].alive===true) || (Eunits[Eslots[2]].type==="Sounddepressor" && Eunits[Eslots[2]].alive===true) || (Eunits[Eslots[3]].type==="Sounddepressor" && Eunits[Eslots[3]].alive===true) || (Eunits[Eslots[4]].type==="Sounddepressor" && Eunits[Eslots[4]].alive===true) || (Eunits[Eslots[5]].type==="Sounddepressor" && Eunits[Eslots[5]].alive===true)){
                             message("The Sound Depressor nullifies all magic.")
                             return;
                         }
+                          var e = document.getElementById("magechoice");
+                            if(selectedaction === "mimicAttack"){
+                                e = document.getElementById("mimicchoice");
+                            }
                         //fire
-                        if ($('#magechoice option:selected').text() === "Fire") {
+                        if ($('#magechoice option:selected').text() === "Fire" || e.options[e.selectedIndex].value==="Fire") {
                             var defense=0;
                             if(Eunits[enemyindex].enfeeble===0){defense=Eunits[enemyindex].resistance}
                             var damage = (units[selectedindex].attack - defense + units[selectedindex].attacktempboost) * Eunits[enemyindex].fire;
@@ -7359,7 +8021,7 @@ var mult = 0;
                                         $("#E" + Eunits[enemyindex].index).removeClass("Invisible");
                                         $("#TEXT").append("The wraith phased back in.")
                                 }
-                               var tempran= Math.floor((Math.random() * 2) + 1);
+                                var tempran= Math.floor((Math.random() * 2) + 1);
                                 if(units[selectedindex].abilityelementalailments===true && tempran===2){
                                     Eunits[enemyindex].blind=2;
                                     showailments();
@@ -7373,7 +8035,6 @@ var mult = 0;
                             },500).fadeOut(500);
                                 setTimeout(function(){Damaging(enemyindex, damage);},500);
                                 Fire.play();
-                                Eunits[enemyindex].health -= damage;
                                 if(units[selectedindex].usedaction === true && units[selectedindex].abilitydoubletap===true){
                                     units[selectedindex].moved=true;
                                 }
@@ -7382,7 +8043,7 @@ var mult = 0;
                             }
                         }
                         //zap
-                        if ($('#magechoice option:selected').text() === "Zap") {
+                        if ($('#magechoice option:selected').text() === "Zap" || e.options[e.selectedIndex].value==="Zap") {
 
 
                             if ((units[selectedindex].curtop - 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curtop + 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curleft - 100 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop) || (units[selectedindex].curleft + 100 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop) || (units[selectedindex].curtop - 200 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curtop + 200 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curleft - 200 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop) || (units[selectedindex].curleft + 200 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop)) {
@@ -7521,7 +8182,7 @@ var mult = 0;
                             }
                         }
                         //Freeze
-                        if ($('#magechoice option:selected').text() === "Freeze") {
+                        if ($('#magechoice option:selected').text() === "Freeze" || e.options[e.selectedIndex].value==="Freeze") {
                             var defense = 0;
                             if (Eunits[enemyindex].enfeeble === 0) {
                                 defense = Eunits[enemyindex].resistance
@@ -7568,7 +8229,7 @@ var mult = 0;
                         }
                         }
                         //Pain
-                        if ($('#magechoice option:selected').text() === "Pain") {
+                        if ($('#magechoice option:selected').text() === "Pain" || e.options[e.selectedIndex].value==="Pain") {
                             var defense = 0;
                             if (Eunits[enemyindex].enfeeble === 0) {
                                 defense = Eunits[enemyindex].resistance
@@ -7598,16 +8259,23 @@ var mult = 0;
                     } else {
                         $("#TEXT").append("This unit is silenced for " + units[selectedindex].silenced + " more turns.")
                     }
+                    if(units[selectedindex].usedaction === true){
+                                return;
+                            }
                 }
                 //wizard
-                if (selectedaction === "wizardCast") {
+                if (selectedaction === "wizardCast" || selectedaction === "mimicAttack") {
                     if (units[selectedindex].silenced === 0) {
                         if((Eunits[Eslots[1]].type==="Sounddepressor" && Eunits[Eslots[1]].alive===true) || (Eunits[Eslots[2]].type==="Sounddepressor" && Eunits[Eslots[2]].alive===true) || (Eunits[Eslots[3]].type==="Sounddepressor" && Eunits[Eslots[3]].alive===true) || (Eunits[Eslots[4]].type==="Sounddepressor" && Eunits[Eslots[4]].alive===true) || (Eunits[Eslots[5]].type==="Sounddepressor" && Eunits[Eslots[5]].alive===true)){
                             message("The Sound Depressor nullifies all magic.")
                             return;
                         }
+                        var e = document.getElementById("wizardchoice");
+                            if(selectedaction === "mimicAttack"){
+                                e = document.getElementById("mimicchoice");
+                            }
                         //bolt
-                        if ($('#wizardchoice option:selected').text() === "Bolt(2)") {
+                        if ($('#wizardchoice option:selected').text() === "Bolt(2)" || e.options[e.selectedIndex].value==="Bolt(2)") {
                             var defense=0;
                             if(Eunits[enemyindex].enfeeble===0){defense=Eunits[enemyindex].resistance}
                             var damage = ((units[selectedindex].attack + units[selectedindex].attacktempboost) * 2 - defense) * Eunits[enemyindex].lightning;
@@ -7644,7 +8312,7 @@ var mult = 0;
                             units[selectedindex].usedaction = true;
                         }
                         //Missile
-                        if ($('#wizardchoice option:selected').text() === "Missile(X)") {
+                        if ($('#wizardchoice option:selected').text() === "Missile(X)"  || e.options[e.selectedIndex].value==="Missile(X)") {
                             var defense=0;
                             if(Eunits[enemyindex].enfeeble===0){defense=Eunits[enemyindex].resistance}
                             var damage = (units[selectedindex].attack + units[selectedindex].attacktempboost - defense) * Eunits[enemyindex].fire * units[selectedindex].charge;
@@ -7690,7 +8358,7 @@ var mult = 0;
 
                         }
                         //gust
-                        if ($('#wizardchoice option:selected').text() === "Gust(1)") {
+                        if ($('#wizardchoice option:selected').text() === "Gust(1)"  || e.options[e.selectedIndex].value==="Gust(1)") {
                             var defense=0;
                             if(Eunits[enemyindex].enfeeble===0){defense=Eunits[enemyindex].resistance}
                             var damage = (units[selectedindex].attack - defense + units[selectedindex].attacktempboost) * Eunits[enemyindex].ice;
@@ -7730,7 +8398,7 @@ var mult = 0;
                             setTimeout(function(){ $(".slashEffects").remove()},500);
                         }
                         //drain
-                        if ($('#wizardchoice option:selected').text() === "Drain") {
+                        if ($('#wizardchoice option:selected').text() === "Drain"  || e.options[e.selectedIndex].value==="Drain") {
                             if ((units[selectedindex].curtop - 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curtop + 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curleft - 100 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop) || (units[selectedindex].curleft + 100 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop)) {
                                 $("#TEXT").append("<p>" + units[selectedindex].name + " drained all charge from " + Eunits[enemyindex].name + "\n</p>");
 
@@ -7759,21 +8427,30 @@ var mult = 0;
                                 return;
                             }
                         }
-                        $("#ORB" + +units[selectedindex].index).remove();
+                        
+                        if(e.options[e.selectedIndex].value==="Drain" || e.options[e.selectedIndex].value==="Gust(1)" || e.options[e.selectedIndex].value==="Missile(X)" || e.options[e.selectedIndex].value==="Bolt(2)" || units[selectedindex].type=="Wizard"){
+                            $("#ORB" + +units[selectedindex].index).remove();
                         $('#' + units[selectedindex].index).append('<div id = "ORB' + units[selectedindex].index + '" style="color: yellow; position: absolute; font-size:20px; margin-top:-30px; margin-left:55px; width:10px; height:10px ">' + units[selectedindex].charge + '</div>');
+                        }
+                        
+                        
                     } else {
                         $("#TEXT").append("This unit is silenced for " + units[selectedindex].silenced + " more turns.")
                     }
                 }
                 //Sorcerer
-                if (selectedaction === "sorcererCast") {
+                if (selectedaction === "sorcererCast" || selectedaction === "mimicAttack") {
                     if (units[selectedindex].silenced === 0) {
                         if((Eunits[Eslots[1]].type==="Sounddepressor" && Eunits[Eslots[1]].alive===true) || (Eunits[Eslots[2]].type==="Sounddepressor" && Eunits[Eslots[2]].alive===true) || (Eunits[Eslots[3]].type==="Sounddepressor" && Eunits[Eslots[3]].alive===true) || (Eunits[Eslots[4]].type==="Sounddepressor" && Eunits[Eslots[4]].alive===true) || (Eunits[Eslots[5]].type==="Sounddepressor" && Eunits[Eslots[5]].alive===true)){
                             message("The Sound Depressor nullifies all magic.")
                             return;
                         }
+                        var e = document.getElementById("sorcererchoice");
+                            if(selectedaction === "mimicAttack"){
+                                e = document.getElementById("mimicchoice");
+                            }
                         //lightning
-                        if ($('#sorcererchoice option:selected').text() === "Lightning(20)") {
+                        if ($('#sorcererchoice option:selected').text() === "Lightning(20)"  || e.options[e.selectedIndex].value==="Lightning(20)") {
                             if (sorcerermana < 20) {
                                 $("#TEXT").append("<p>" + units[selectedindex].name + " only has " + sorcerermana + " power. He needs a 20 power to use Lightning.\n</p>");
                                 return;
@@ -7808,7 +8485,7 @@ var mult = 0;
                             $("#" + selectedindex).append('<div class="manabar" id ="EB' + units[selectedindex].index + '"style="width: ' + (sorcerermana) + '%"></div>');
                         }
                         //Blizzard
-                        if ($('#sorcererchoice option:selected').text() === "Blizzard(20)") {
+                        if ($('#sorcererchoice option:selected').text() === "Blizzard(20)"  || e.options[e.selectedIndex].value==="Blizzard(20)") {
                             if (sorcerermana < 20) {
                                 $("#TEXT").append("<p>" + units[selectedindex].name + " only has " + sorcerermana + " power. He needs a 20 power to use Blizzard.\n</p>");
                                 return;
@@ -7849,7 +8526,7 @@ var mult = 0;
                             $("#" + selectedindex).append('<div class="manabar" id ="EB' + units[selectedindex].index + '"style="width: ' + (sorcerermana) + '%"></div>');
                         }
                         //Fireblast
-                        if ($('#sorcererchoice option:selected').text() === "Fireblast(30)") {
+                        if ($('#sorcererchoice option:selected').text() === "Fireblast(30)"  || e.options[e.selectedIndex].value==="Fireblast(30)") {
                             var defense=0;
                             if(Eunits[enemyindex].enfeeble===0){defense=Eunits[enemyindex].resistance}
                             var damage = ((units[selectedindex].attack + units[selectedindex].attacktempboost) - defense) *2 * Eunits[enemyindex].fire;
@@ -7910,7 +8587,7 @@ var mult = 0;
                             $("#" + selectedindex).append('<div class="manabar" id ="EB' + units[selectedindex].index + '"style="width: ' + (sorcerermana) + '%"></div>');
                         }
                         //Slumber
-                        if ($('#sorcererchoice option:selected').text() === "Slumber(20)") {
+                        if ($('#sorcererchoice option:selected').text() === "Slumber(20)"  || e.options[e.selectedIndex].value==="Slumber(20)") {
                             if (sorcerermana < 10) {
                                 $("#TEXT").append("<p>" + units[selectedindex].name + " only has " + sorcerermana + " power. He needs a 10 power to use Blizzard.\n</p>");
                                 return;
@@ -7929,7 +8606,7 @@ showailments();
                             $("#" + selectedindex).append('<div class="manabar" id ="EB' + units[selectedindex].index + '"style="width: ' + (sorcerermana) + '%"></div>');
                         }
                         //Death
-                        if ($('#sorcererchoice option:selected').text() === "Death(50)") {
+                        if ($('#sorcererchoice option:selected').text() === "Death(50)"  || e.options[e.selectedIndex].value==="Death(50)") {
                             if (sorcerermana < 50) {
                                 $("#TEXT").append("<p>" + units[selectedindex].name + " only has " + sorcerermana + " power. He needs a 50 power to use Death.\n</p>");
                                 return;
@@ -7955,9 +8632,13 @@ if( Eunits[enemyindex].type==="Dragon" ||  Eunits[enemyindex].type==="Hands"|| E
                     }
                 }
                 //Guards
-                if (selectedaction === "enchantressUse") {
+                if (selectedaction === "enchantressUse" || selectedaction === "mimicAttack") {
                     if (units[selectedindex].silenced === 0) {
-                        if ($('#enchantresschoice option:selected').text() === "Absorb") {
+                        var e = document.getElementById("enchantresschoice");
+                            if(selectedaction === "mimicAttack"){
+                                e = document.getElementById("mimicchoice");
+                            }
+                        if ($('#enchantresschoice option:selected').text() === "Absorb"  || e.options[e.selectedIndex].value==="Absorb)") {
                             var multiplier = 0;
                             var toleft = units[selectedindex].curleft-Eunits[enemyindex].curleft;
                             var totop = units[selectedindex].curtop-Eunits[enemyindex].curtop;
@@ -8022,8 +8703,7 @@ if( Eunits[enemyindex].type==="Dragon" ||  Eunits[enemyindex].type==="Hands"|| E
 
                         units[selectedindex].usedaction = true;
                     }
-                        if($('#enchantresschoice option:selected').text()==="Storm(30)") {
-                            console.log("check")
+                        if($('#enchantresschoice option:selected').text()==="Storm(30)"  || e.options[e.selectedIndex].value==="Absorb)") {
                             if(units[selectedindex].mana<30){
                                 message("She requires at least 30 power to use Attack Boost");
                                 return;
@@ -8039,7 +8719,7 @@ if( Eunits[enemyindex].type==="Dragon" ||  Eunits[enemyindex].type==="Hands"|| E
                     $("#TEXT").append("This unit is silenced for " + units[selectedindex].silenced + " more turns.")
                 }
                     if (units[selectedindex].silenced === 0) {
-                        if ($('#enchantresschoice option:selected').text() === "Torment(50)") {
+                        if ($('#enchantresschoice option:selected').text() === "Torment(50)"  || e.options[e.selectedIndex].value==="Absorb)") {
                             var damage = units[selectedindex].power;
 if(units[selectedindex].mana<50){
     message("You don't have enough mana for that.");
@@ -8093,6 +8773,73 @@ showailments();
                         $("#TEXT").append("This unit is blind for " + units[selectedindex].blind + " more turns.")
                     }
                 }
+                //spider
+                if(selectedaction ==="web"){
+                                    if (Eunits[enemyindex].curleft === units[selectedindex].curleft && Eunits[enemyindex].curtop < units[selectedindex].curtop) {
+                                        if ((Eunits[Eslots[1]].curleft === units[selectedindex].curleft && Eunits[Eslots[1]].curtop === units[selectedindex].curtop - 100) || (Eunits[Eslots[2]].curleft === units[selectedindex].curleft && Eunits[Eslots[2]].curtop === units[selectedindex].curtop - 100) || (Eunits[Eslots[3]].curleft === units[selectedindex].curleft && Eunits[Eslots[3]].curtop === units[selectedindex].curtop - 100) || (Eunits[Eslots[4]].curleft === units[selectedindex].curleft && Eunits[Eslots[4]].curtop === units[selectedindex].curtop - 100) || (Eunits[Eslots[5]].curleft === units[selectedindex].curleft && Eunits[Eslots[5]].curtop === units[selectedindex].curtop - 100) || (units[slots[1]].curleft === units[selectedindex].curleft && units[slots[1]].curtop === units[selectedindex].curtop - 100) || (units[slots[2]].curleft === units[selectedindex].curleft && units[slots[2]].curtop === units[selectedindex].curtop - 100) || (units[slots[3]].curleft === units[selectedindex].curleft && units[slots[3]].curtop === units[selectedindex].curtop - 100)) {
+                                            message("There is someone blocking the spider's line of sight.");
+                                            return;
+                                        }
+                                        Eunits[enemyindex].curtop = units[selectedindex].curtop - 100;
+                                        Hook.play();
+                                        $("#E" + enemyindex).append("<div class='slashEffects'><img src='../Pictures/Effects/Web.gif' /></div>");
+                                        setTimeout(function () {
+                                            $(".slashEffects").remove();
+                                        }, 1000);
+
+                                        $('#E' + enemyindex).animate({
+                                            top: (units[selectedindex].curtop - 100) + 'px'
+                                        }, 1000);
+                                    }
+                                    if (Eunits[enemyindex].curleft === units[selectedindex].curleft && Eunits[enemyindex].curtop > units[selectedindex].curtop) {
+                                        if ((Eunits[Eslots[1]].curleft === units[selectedindex].curleft && Eunits[Eslots[1]].curtop === units[selectedindex].curtop + 100) || (Eunits[Eslots[2]].curleft === units[selectedindex].curleft && Eunits[Eslots[2]].curtop === units[selectedindex].curtop + 100) || (Eunits[Eslots[3]].curleft === units[selectedindex].curleft && Eunits[Eslots[3]].curtop === units[selectedindex].curtop + 100) || (Eunits[Eslots[4]].curleft === units[selectedindex].curleft && Eunits[Eslots[4]].curtop === units[selectedindex].curtop + 100) || (Eunits[Eslots[5]].curleft === units[selectedindex].curleft && Eunits[Eslots[5]].curtop === units[selectedindex].curtop + 100) || (units[slots[1]].curleft === units[selectedindex].curleft && units[slots[1]].curtop === units[selectedindex].curtop + 100) || (units[slots[2]].curleft === units[selectedindex].curleft && units[slots[2]].curtop === units[selectedindex].curtop + 100) || (units[slots[3]].curleft === units[selectedindex].curleft && units[slots[3]].curtop === units[selectedindex].curtop + 100)) {
+                                            message("There is someone blocking the soldier's line of sight.");
+                                            return;
+                                        }
+                                        Eunits[enemyindex].curtop = units[selectedindex].curtop + 100;
+
+                                        $("#E" + enemyindex).append("<div class='slashEffects'><img style='transform: rotate(180deg) translate(-100%,-100%); margin-left:-40px; margin-top:-200px' src='../Pictures/Effects/Web.gif' /></div>");
+                                        setTimeout(function () {
+                                            $(".slashEffects").remove();
+                                        }, 1000);
+                                        $('#E' + enemyindex).animate({
+                                            top: (units[selectedindex].curtop + 100) + 'px'
+                                        }, 500);
+                                    }
+                                    if (Eunits[enemyindex].curtop === units[selectedindex].curtop && Eunits[enemyindex].curleft > units[selectedindex].curleft) {
+                                        if ((Eunits[Eslots[1]].curtop === units[selectedindex].curtop && Eunits[Eslots[1]].curleft === units[selectedindex].curleft + 100) || (Eunits[Eslots[2]].curtop === units[selectedindex].curtop && Eunits[Eslots[2]].curleft === units[selectedindex].curleft + 100) || (Eunits[Eslots[3]].curtop === units[selectedindex].curtop && Eunits[Eslots[3]].curleft === units[selectedindex].curleft + 100) || (Eunits[Eslots[4]].curtop === units[selectedindex].curtop && Eunits[Eslots[4]].curleft === units[selectedindex].curleft + 100) || (Eunits[Eslots[5]].curtop === units[selectedindex].curtop && Eunits[Eslots[5]].curleft === units[selectedindex].curleft + 100) || (units[slots[1]].curtop === units[selectedindex].curtop && units[slots[1]].curleft === units[selectedindex].curleft + 100) || (units[slots[2]].curtop === units[selectedindex].curtop && units[slots[2]].curleft === units[selectedindex].curleft + 100) || (units[slots[3]].curtop === units[selectedindex].curtop && units[slots[3]].curleft === units[selectedindex].curleft + 100)) {
+                                            message("There is someone blocking the soldier's line of sight.");
+                                            return;
+                                        }
+                                        Eunits[enemyindex].curleft = units[selectedindex].curleft + 100;
+                                        $("#E" + enemyindex).append("<div class='slashEffects'><img style='transform: rotate(90deg) translate(-100%,-100%); margin-left:-40px; margin-top:-10px' src='../Pictures/Effects/Web.gif' /></div>");
+                                        setTimeout(function () {
+                                            $(".slashEffects").remove();
+                                        }, 1000);
+                                        $('#E' + enemyindex).animate({
+                                            left: (units[selectedindex].curleft + 100) + 'px'
+                                        }, 500);
+                                    }
+                                    if (Eunits[enemyindex].curtop === units[selectedindex].curtop && Eunits[enemyindex].curleft < units[selectedindex].curleft) {
+                                        if ((Eunits[Eslots[1]].curtop === units[selectedindex].curtop && Eunits[Eslots[1]].curleft === units[selectedindex].curleft - 100) || (Eunits[Eslots[2]].curtop === units[selectedindex].curtop && Eunits[Eslots[2]].curleft === units[selectedindex].curleft - 100) || (Eunits[Eslots[3]].curtop === units[selectedindex].curtop && Eunits[Eslots[3]].curleft === units[selectedindex].curleft - 100) || (Eunits[Eslots[4]].curtop === units[selectedindex].curtop && Eunits[Eslots[4]].curleft === units[selectedindex].curleft - 100) || (Eunits[Eslots[5]].curtop === units[selectedindex].curtop && Eunits[Eslots[5]].curleft === units[selectedindex].curleft - 100) || (units[slots[1]].curtop === units[selectedindex].curtop && units[slots[1]].curleft === units[selectedindex].curleft - 100) || (units[slots[2]].curtop === units[selectedindex].curtop && units[slots[2]].curleft === units[selectedindex].curleft - 100) || (units[slots[3]].curtop === units[selectedindex].curtop && units[slots[3]].curleft === units[selectedindex].curleft - 100)) {
+                                            message("There is someone blocking the soldier's line of sight.");
+                                            return;
+                                        }
+                                        Eunits[enemyindex].curleft = units[selectedindex].curleft - 100;
+                                        $("#E" + enemyindex).append("<div class='slashEffects'><img style='transform: rotate(270deg) translate(-100%,-100%); margin-left:50px; margin-top:-200px' src='../Pictures/Effects/Web.gif' /></div>");
+                                        setTimeout(function () {
+                                            $(".slashEffects").remove();
+                                        }, 1000);
+                                        $('#E' + enemyindex).animate({
+                                            left: (units[selectedindex].curleft - 100) + 'px'
+                                        }, 500);
+                                    }
+                                units[selectedindex].usedaction = true;
+                                Eunits[enemyindex].poison+=3;
+                                showailments();
+                            
+                }
+                
                 if (selectedaction === "Use"){
                     var e = document.getElementById("alchemychoice");
                     if(e.options[e.selectedIndex].value==="Frostlord") {
@@ -8197,7 +8944,7 @@ showailments();
                                 break;
                         }
                        updateHeader(); 
-                        capturedAll();
+                        capturedAll(Eunits[enemyindex].name);
                     } else{
                         $("#TEXT").append(units[selectedindex].name + " has failed to capture the " + Eunits[enemyindex].name)
                     }
@@ -8250,28 +8997,34 @@ showailments();
                     }
                 }
 
-if(selectedaction==="guardUse"){
-    var e = document.getElementById("guardchoice");
-    if(e.options[e.selectedIndex].text==="Protect") {
-        var temp3=this.id;
-        temp3=temp3.replace("E","");
-        for (var j = 0; j < index; j++) {
-            if (units[j].index === parseInt(temp3,10)) {
-                allyindex = j;
-            }};
+                if(selectedaction==="guardUse"  || selectedaction === "mimicAttack"){
+                    var e = document.getElementById("guardchoice");
+                    if(selectedaction === "mimicAttack"){
+                                e = document.getElementById("mimicchoice");
+                            }
+                    if(e.options[e.selectedIndex].text==="Protect") {
+                        var temp3=this.id;
+                        temp3=temp3.replace("E","");
+                        for (var j = 0; j < index; j++) {
+                            if (units[j].index === parseInt(temp3,10)) {
+                                allyindex = j;
+                            }};
 
-     //   if ((units[selectedindex].curtop - 100 === units[allyindex].curtop && units[selectedindex].curleft === units[allyindex].curleft) || (units[selectedindex].curtop + 100 === units[allyindex].curtop && units[selectedindex].curleft === units[allyindex].curleft) || (units[selectedindex].curleft - 100 === units[allyindex].curleft && units[selectedindex].curtop === units[allyindex].curtop) || (units[selectedindex].curleft + 100 === units[allyindex].curleft && units[selectedindex].curtop === units[allyindex].curtop) || (units[selectedindex].curleft === units[allyindex].curleft && units[selectedindex].curtop === units[allyindex].curtop)) {
-$("#TEXT").empty();
-            Protect.play();
-            $("#TEXT").append("Your guard is now protecting that unit.");
-            units[allyindex].protectedby=selectedindex;
-units[selectedindex].usedaction=true;
-     //   }
-        showailments();
-    }
-}
-                if(selectedaction==="healerUse"){
+                     //   if ((units[selectedindex].curtop - 100 === units[allyindex].curtop && units[selectedindex].curleft === units[allyindex].curleft) || (units[selectedindex].curtop + 100 === units[allyindex].curtop && units[selectedindex].curleft === units[allyindex].curleft) || (units[selectedindex].curleft - 100 === units[allyindex].curleft && units[selectedindex].curtop === units[allyindex].curtop) || (units[selectedindex].curleft + 100 === units[allyindex].curleft && units[selectedindex].curtop === units[allyindex].curtop) || (units[selectedindex].curleft === units[allyindex].curleft && units[selectedindex].curtop === units[allyindex].curtop)) {
+                $("#TEXT").empty();
+                            Protect.play();
+                            $("#TEXT").append("Your guard is now protecting that unit.");
+                            units[allyindex].protectedby=selectedindex;
+                units[selectedindex].usedaction=true;
+                     //   }
+                        showailments();
+                    }
+                }
+                if(selectedaction==="healerUse" || selectedaction === "mimicAttack" ){
                     var e = document.getElementById("healerchoice");
+                    if(selectedaction === "mimicAttack"){
+                                e = document.getElementById("mimicchoice");
+                            }
                     if(e.options[e.selectedIndex].value==="Heal(10)") {
                         if(units[selectedindex].power<10){
                             message("She requires at least 10 power to use Heal");
@@ -8363,9 +9116,11 @@ if(units[selectedindex].abilitydoublevigor===true){
                     }
 
                 }
-
-                if(selectedaction==="enchantressUse"){
+                if(selectedaction==="enchantressUse"  || selectedaction === "mimicAttack"){
                     var e = document.getElementById("enchantresschoice");
+                     if(selectedaction === "mimicAttack"){
+                                e = document.getElementById("mimicchoice");
+                            }
                     if(e.options[e.selectedIndex].value==="Bestow(50)") {
                         if(units[selectedindex].mana<50){
                             message("She requires at least 50 power to use Bestow");
@@ -8462,7 +9217,6 @@ if(units[selectedindex].abilitydoublevigor===true){
                     }
 
                 }
-
             }
         });
     }
@@ -8474,12 +9228,15 @@ if(units[selectedindex].abilitydoublevigor===true){
         units[slots[index]].experience += curexperience;
         if (units[slots[index]].experience >= 1000) {
             units[slots[index]].experience -= 1000;
+            if(units[slots[index]].level=="-"){
+                    return;
+                }
             units[slots[index]].level += 1;
             units[slots[index]].health+=units[slots[index]].levelhealth;
             units[slots[index]].maxhealth+=units[slots[index]].levelhealth;
-            units[slots[index]].resistance+=units[slots[index]].levelresistance;
-            units[slots[index]].defense+=units[slots[index]].leveldefense;
-            units[slots[index]].attack+=units[slots[index]].levelattack;
+//            units[slots[index]].resistance+=units[slots[index]].levelresistance;
+//            units[slots[index]].defense+=units[slots[index]].leveldefense;
+//            units[slots[index]].attack+=units[slots[index]].levelattack;
 
             if(units[slots[index]].type==="Soldier"){
                 switch(units[slots[index]].level){
@@ -8787,7 +9544,6 @@ if(units[selectedindex].abilitydoublevigor===true){
     }
 
     function gameovercheck(){
-        console.log("got to check")
         var alldead = true
         for(var i = 0;i<index;i++){
             if(units[i].alive ==true){
@@ -8795,12 +9551,10 @@ if(units[selectedindex].abilitydoublevigor===true){
             }
         }
         if(alldead){
-            console.log("got through alldead")
             gameover()
         }
     }
     function gameover(){
-        console.log("got hereee")
             $(".areas").remove();
                 $('#Pass').remove();
                 $(".icon").remove();
@@ -8809,7 +9563,6 @@ if(units[selectedindex].abilitydoublevigor===true){
                  $("#cinemabackground").append("<div style='border-radius:5px;box-shadow: 10px 5px 5px black; position: absolute; background-color:red; width:150px; margin-top:200px; margin-left:400px'><p style='font-size:20px; margin-left:20px'>YOU LOSE</p><p class='retry' style='font-size:20px; margin-left:20px; font-weight:bold; cursor:pointer'>RETRY?</p></div>")
                  setTimeout(function(){
                      $(".retry").click(function(){
-                    console.log("reads this")
                     location.reload();
                 })
                  },1000)
@@ -8981,8 +9734,11 @@ function clickactionbuttons(){
                 units[selectedindex].defensetempboost=30;
             }
         }
-        if(selectedaction==="soldierAttack") {
+        if(selectedaction==="soldierAttack" || selectedaction==="mimicAttack") {
             var e = document.getElementById("soldierchoice");
+            if(selectedaction==="mimicAttack"){
+                var e = document.getElementById("mimicchoice");
+            }
             if (e.options[e.selectedIndex].text === "Medkit" && units[selectedindex].usedaction === false && units[selectedindex].medkit===true) {
                 var gain = units[selectedindex].maxhealth-units[selectedindex].health;
                 units[selectedindex].health=units[selectedindex].maxhealth;
@@ -10033,7 +10789,6 @@ function enemyturn(selectedactions){
                         }
                         for(var i =1 ;i<4;i++){
                             if(Eunits[Eslots[i]].type == type && Eunits[Eslots[i]].protectedby==-1 && Eslots[i]!=Eunits[Eslots[y]].index){
-                                console.log("hi")
                                 Eunits[Eslots[i]].protectedby=Eunits[Eslots[y]].index;
                                 showailments();
                                 Protect.play()
@@ -10938,7 +11693,6 @@ function enemyturn(selectedactions){
                                         $('.selected').remove();
                                         $("#TEXT").append(Eunits[Eslots[y]].name + " has escaped.")
                                         Egroups[Eunits[Eslots[y]].group].experience-=200;
-                                        console.log("experience",Egroups[Eunits[Eslots[y]].group].experience)
                                         Eunits[Eslots[y]].health=-1000000;
                                     }
 
@@ -10965,6 +11719,7 @@ function enemyturn(selectedactions){
                             warriorwhotoattack("Templar");
                             warriorwhotoattack("Archer");
                             warriorwhotoattack("Rouge");
+                            warriorwhotoattack("Mimic");
                             warriorwhotoattack("Mage");
                             warriorwhotoattack("Thief");
                             warriorwhotoattack("Soldier");
@@ -11014,6 +11769,12 @@ function enemyturn(selectedactions){
 
                         if(Eunits[Eslots[y]].blind>0){
                         } else{
+                            goblinwhotoattack("Sparrow");
+                            goblinwhotoattack("Wolf");
+                            goblinwhotoattack("Bear");
+                            goblinwhotoattack("Spider");
+                            goblinwhotoattack("Turtle");
+                            
                             goblinwhotoattack("Wizard");
                             goblinwhotoattack("Sorcerer");
                             goblinwhotoattack("Enchantress");
@@ -11021,6 +11782,7 @@ function enemyturn(selectedactions){
                             goblinwhotoattack("Templar");
                             goblinwhotoattack("Archer");
                             goblinwhotoattack("Rouge");
+                            goblinwhotoattack("Mimic");
                             goblinwhotoattack("Mage");
                             goblinwhotoattack("Thief");
                             goblinwhotoattack("Soldier");
@@ -11041,6 +11803,12 @@ function enemyturn(selectedactions){
 
                         if(Eunits[Eslots[y]].blind>0){
                         } else{
+                            goblinwhotoattack("Sparrow");
+                            goblinwhotoattack("Wolf");
+                            goblinwhotoattack("Bear");
+                            goblinwhotoattack("Spider");
+                            goblinwhotoattack("Turtle");
+                            
                             goblinwhotoattack("Wizard");
                             goblinwhotoattack("Sorcerer");
                             goblinwhotoattack("Enchantress");
@@ -11048,6 +11816,7 @@ function enemyturn(selectedactions){
                             goblinwhotoattack("Templar");
                             goblinwhotoattack("Archer");
                             goblinwhotoattack("Rouge");
+                            goblinwhotoattack("Mimic");
                             goblinwhotoattack("Mage");
                             goblinwhotoattack("Thief");
                             goblinwhotoattack("Soldier");
@@ -11070,6 +11839,7 @@ function enemyturn(selectedactions){
                             bearwhotoattack("Templar");
                             bearwhotoattack("Archer");
                             bearwhotoattack("Rouge");
+                            bearwhotoattack("Mimic");
                             bearwhotoattack("Mage");
                             bearwhotoattack("Thief");
                             bearwhotoattack("Soldier");
@@ -11097,6 +11867,7 @@ function enemyturn(selectedactions){
                             bearwhotoattack("Templar");
                             bearwhotoattack("Archer");
                             bearwhotoattack("Rouge");
+                            bearwhotoattack("Mimic");
                             bearwhotoattack("Mage");
                             bearwhotoattack("Thief");
                             bearwhotoattack("Soldier");
@@ -11119,6 +11890,7 @@ function enemyturn(selectedactions){
                             goblinwhotoattack("Templar");
                             goblinwhotoattack("Archer");
                             goblinwhotoattack("Rouge");
+                            bearwhotoattack("Mimic");
                             goblinwhotoattack("Mage");
                             goblinwhotoattack("Thief");
                             goblinwhotoattack("Soldier");
@@ -11146,6 +11918,7 @@ function enemyturn(selectedactions){
                             goblinwhotoattack("Templar");
                             goblinwhotoattack("Archer");
                             goblinwhotoattack("Rouge");
+                            bearwhotoattack("Mimic");
                             goblinwhotoattack("Mage");
                             goblinwhotoattack("Thief");
                             goblinwhotoattack("Soldier");
@@ -11196,6 +11969,7 @@ function enemyturn(selectedactions){
                             spiderwhotoattack("Templar");
                             spiderwhotoattack("Archer");
                             spiderwhotoattack("Rouge");
+                            spiderwhotoattack("Mimic");
                             spiderwhotoattack("Mage");
                             spiderwhotoattack("Thief");
                             spiderwhotoattack("Soldier");
@@ -11221,6 +11995,7 @@ function enemyturn(selectedactions){
                             spiderwhotoattack("Templar");
                             spiderwhotoattack("Archer");
                             spiderwhotoattack("Rouge");
+                             spiderwhotoattack("Mimic");
                             spiderwhotoattack("Mage");
                             spiderwhotoattack("Thief");
                             spiderwhotoattack("Soldier");
@@ -11249,6 +12024,7 @@ function enemyturn(selectedactions){
                             goblinwhotoattack("Templar");
                             goblinwhotoattack("Archer");
                             goblinwhotoattack("Rouge");
+                            goblinwhotoattack("Mimic");
                             goblinwhotoattack("Mage");
                             goblinwhotoattack("Thief");
                             goblinwhotoattack("Soldier");
@@ -11276,6 +12052,7 @@ function enemyturn(selectedactions){
                             goblinwhotoattack("Templar");
                             goblinwhotoattack("Archer");
                             goblinwhotoattack("Rouge");
+                            goblinwhotoattack("Mimic");
                             goblinwhotoattack("Mage");
                             goblinwhotoattack("Thief");
                             goblinwhotoattack("Soldier");
@@ -11298,6 +12075,7 @@ function enemyturn(selectedactions){
                             vampirewhotoattack("Templar");
                             vampirewhotoattack("Archer");
                             vampirewhotoattack("Rouge");
+                            vampirewhotoattack("Mimic");
                             vampirewhotoattack("Mage");
                             vampirewhotoattack("Thief");
                             vampirewhotoattack("Soldier");
@@ -11323,6 +12101,7 @@ function enemyturn(selectedactions){
                             vampirewhotoattack("Templar");
                             vampirewhotoattack("Archer");
                             vampirewhotoattack("Rouge");
+                            vampirewhotoattack("Mimic");
                             vampirewhotoattack("Mage");
                             vampirewhotoattack("Thief");
                             vampirewhotoattack("Soldier");
@@ -11344,6 +12123,7 @@ function enemyturn(selectedactions){
                             goblinwhotoattack("Templar");
                             goblinwhotoattack("Archer");
                             goblinwhotoattack("Rouge");
+                            goblinwhotoattack("Mimic");
                             goblinwhotoattack("Mage");
                             goblinwhotoattack("Thief");
                             goblinwhotoattack("Soldier");
@@ -11366,6 +12146,7 @@ function enemyturn(selectedactions){
                                 flymove("Templar");
                                 flymove("Archer");
                                 flymove("Rouge");
+                                flymove("Mimic");
                                 flymove("Mage");
                                 flymove("Thief");
                                 flymove("Soldier");
@@ -11391,6 +12172,7 @@ function enemyturn(selectedactions){
                             goblinwhotoattack("Templar");
                             goblinwhotoattack("Archer");
                             goblinwhotoattack("Rouge");
+                            goblinwhotoattack("Mimic");
                             goblinwhotoattack("Mage");
                             goblinwhotoattack("Thief");
                             goblinwhotoattack("Soldier");
@@ -11657,6 +12439,7 @@ function enemyturn(selectedactions){
                             goblinwhotoattack("Templar");
                             goblinwhotoattack("Archer");
                             goblinwhotoattack("Rouge");
+                            goblinwhotoattack("Mimic");
                             goblinwhotoattack("Mage");
                             goblinwhotoattack("Thief");
                             goblinwhotoattack("Soldier");
@@ -11684,6 +12467,7 @@ function enemyturn(selectedactions){
                             goblinwhotoattack("Templar");
                             goblinwhotoattack("Archer");
                             goblinwhotoattack("Rouge");
+                            goblinwhotoattack("Mimic");
                             goblinwhotoattack("Mage");
                             goblinwhotoattack("Thief");
                             goblinwhotoattack("Soldier");
@@ -11765,6 +12549,12 @@ function enemyturn(selectedactions){
                         //attack enemies
                         if(Eunits[Eslots[y]].blind>0){
                         } else {
+                            rangedwhotoattack("Sparrow");
+                            rangedwhotoattack("Wolf");
+                            rangedwhotoattack("Bear");
+                            rangedwhotoattack("Spider");
+                            rangedwhotoattack("Turtle");
+                            
                             rangedwhotoattack("Nothing");
                             rangedwhotoattack("Wizard");
                             rangedwhotoattack("Sorcerer");
@@ -11773,6 +12563,7 @@ function enemyturn(selectedactions){
                             rangedwhotoattack("Templar");
                             rangedwhotoattack("Archer");
                             rangedwhotoattack("Rouge");
+                            rangedwhotoattack("Mimic");
                             rangedwhotoattack("Mage");
                             rangedwhotoattack("Thief");
                             rangedwhotoattack("Soldier");
@@ -11795,6 +12586,7 @@ function enemyturn(selectedactions){
                             spitterwhotoattack("Templar");
                             spitterwhotoattack("Archer");
                             spitterwhotoattack("Rouge");
+                            spitterwhotoattack("Mimic");
                             spitterwhotoattack("Mage");
                             spitterwhotoattack("Thief");
                             spitterwhotoattack("Soldier");
@@ -11820,6 +12612,7 @@ function enemyturn(selectedactions){
                             spitterwhotoattack("Templar");
                             spitterwhotoattack("Archer");
                             spitterwhotoattack("Rouge");
+                             spitterwhotoattack("Mimic");
                             spitterwhotoattack("Mage");
                             spitterwhotoattack("Thief");
                             spitterwhotoattack("Soldier");
@@ -11835,6 +12628,12 @@ function enemyturn(selectedactions){
                         Eunits[Eslots[y]].usedimmobolized+=1;
                         if(Eunits[Eslots[y]].blind>0 || Eunits[Eslots[y]].terrify>0){
                         } else {
+                            rougewhotoattack("Sparrow");
+                            rougewhotoattack("Wolf");
+                            rougewhotoattack("Bear");
+                            rougewhotoattack("Spider");
+                            rougewhotoattack("Turtle");
+                            
                             rougewhotoattack("Wizard");
                             rougewhotoattack("Sorcerer");
                             rougewhotoattack("Enchantress");
@@ -11842,6 +12641,7 @@ function enemyturn(selectedactions){
                             rougewhotoattack("Templar");
                             rougewhotoattack("Archer");
                             rougewhotoattack("Rouge");
+                            rougewhotoattack("Mimic");
                             rougewhotoattack("Mage");
                             rougewhotoattack("Thief");
                             rougewhotoattack("Soldier");
@@ -11860,6 +12660,12 @@ function enemyturn(selectedactions){
                         //attack enemies
                         if(Eunits[Eslots[y]].blind>0 && Eunits[Eslots[y]].usedaction===false){
                         } else {
+                            rougewhotoattack("Sparrow");
+                            rougewhotoattack("Wolf");
+                            rougewhotoattack("Bear");
+                            rougewhotoattack("Spider");
+                            rougewhotoattack("Turtle");
+                            
                             rougewhotoattack("Wizard");
                             rougewhotoattack("Sorcerer");
                             rougewhotoattack("Enchantress");
@@ -11867,6 +12673,7 @@ function enemyturn(selectedactions){
                             rougewhotoattack("Templar");
                             rougewhotoattack("Archer");
                             rougewhotoattack("Rouge");
+                            rougewhotoattack("Mimic");
                             rougewhotoattack("Mage");
                             rougewhotoattack("Thief");
                             rougewhotoattack("Soldier");
@@ -11879,10 +12686,17 @@ function enemyturn(selectedactions){
                           if ((Eunits[Eslots[y]].type === "Mage")) {
                             if(Eunits[Eslots[y]].silenced>0 || Eunits[Eslots[y]].terrify>0){
                             } else {
+                                magewhotoattack("Turtle");
+                                magewhotoattack("Sparrow");
+                                magewhotoattack("Wolf");
+                                magewhotoattack("Bear");
+                                magewhotoattack("Spider");
+                                
                                 magewhotoattack("Knight");
                                 magewhotoattack("Soldier");
                                 magewhotoattack("Archer");
                                 magewhotoattack("Rouge");
+                                magewhotoattack("Mimic");
                                 magewhotoattack("Mage");
                                 magewhotoattack("Thief");
                                 magewhotoattack("Enchantress");
@@ -11906,10 +12720,17 @@ function enemyturn(selectedactions){
 
                             if(Eunits[Eslots[y]].silenced>0){
                             } else {
+                                magewhotoattack("Turtle");
+                                magewhotoattack("Sparrow");
+                                magewhotoattack("Wolf");
+                                magewhotoattack("Bear");
+                                magewhotoattack("Spider");
+                                
                                 magewhotoattack("Knight");
                                 magewhotoattack("Soldier");
                                 magewhotoattack("Archer");
                                 magewhotoattack("Rouge");
+                                magewhotoattack("Mimic");
                                 magewhotoattack("Mage");
                                 magewhotoattack("Thief");
                                 magewhotoattack("Enchantress");
@@ -11933,11 +12754,18 @@ function enemyturn(selectedactions){
                         if (Eunits[Eslots[y]].charge >= 2) {
                             if(Eunits[Eslots[y]].silenced>0){
                             } else {
+                                 firewhotoattack("Turtle");
+                                firewhotoattack("Sparrow");
+                                firewhotoattack("Wolf");
+                                firewhotoattack("Bear");
+                                firewhotoattack("Spider");
+                                
                                 firewhotoattack("Nothing",name);
                                 firewhotoattack("Knight",name);
                                 firewhotoattack("Soldier",name);
                                 firewhotoattack("Archer",name);
                                 firewhotoattack("Rouge",name);
+                                firewhotoattack("Mimic",name);
                                 firewhotoattack("Mage",name);
                                 firewhotoattack("Thief",name);
                                 firewhotoattack("Enchantress",name);
@@ -11964,6 +12792,7 @@ function enemyturn(selectedactions){
                                 icewhotoattack("Archer");
                                 icewhotoattack("Rouge");
                                 icewhotoattack("Mage");
+                                icewhotoattack("Mimic");
                                 icewhotoattack("Thief");
                                 icewhotoattack("Enchantress");
                                 icewhotoattack("Healer");
@@ -11991,6 +12820,7 @@ function enemyturn(selectedactions){
                                 icewhotoattack("Soldier");
                                 icewhotoattack("Archer");
                                 icewhotoattack("Rouge");
+                                icewhotoattack("Mimic");
                                 icewhotoattack("Mage");
                                 icewhotoattack("Thief");
                                 icewhotoattack("Enchantress");
@@ -12022,6 +12852,7 @@ function enemyturn(selectedactions){
                                 lightningwhotoattack("Soldier");
                                 lightningwhotoattack("Archer");
                                 lightningwhotoattack("Rouge");
+                                lightningwhotoattack("Mimic");
                                 lightningwhotoattack("Mage");
                                 lightningwhotoattack("Thief");
                                 lightningwhotoattack("Enchantress");
@@ -12057,6 +12888,7 @@ function enemyturn(selectedactions){
                                 wispwhotoattack("Soldier");
                                 wispwhotoattack("Archer");
                                 wispwhotoattack("Rouge");
+                                wispwhotoattack("Mimic");
                                 wispwhotoattack("Mage");
                                 wispwhotoattack("Thief");
                                 wispwhotoattack("Enchantress");
@@ -12140,6 +12972,7 @@ function enemyturn(selectedactions){
                             goblinwhotoattack("Templar");
                             goblinwhotoattack("Archer");
                             goblinwhotoattack("Rouge");
+                             goblinwhotoattack("Mimic");
                             goblinwhotoattack("Mage");
                             goblinwhotoattack("Thief");
                             goblinwhotoattack("Soldier");
@@ -12169,6 +13002,7 @@ function enemyturn(selectedactions){
                             goblinwhotoattack("Templar");
                             goblinwhotoattack("Archer");
                             goblinwhotoattack("Rouge");
+                            goblinwhotoattack("Mimic");
                             goblinwhotoattack("Mage");
                             goblinwhotoattack("Thief");
                             goblinwhotoattack("Soldier");
@@ -12186,6 +13020,7 @@ function enemyturn(selectedactions){
                                     frostwraithwhotoattack("Soldier");
                                     frostwraithwhotoattack("Archer");
                                     frostwraithwhotoattack("Rouge");
+                                    frostwraithwhotoattack("Mimic");
                                     frostwraithwhotoattack("Mage");
                                     frostwraithwhotoattack("Thief");
                                     frostwraithwhotoattack("Enchantress");
@@ -12267,6 +13102,7 @@ function enemyturn(selectedactions){
                             goblinwhotoattack("Templar");
                             goblinwhotoattack("Archer");
                             goblinwhotoattack("Rouge");
+                            goblinwhotoattack("Mimic");
                             goblinwhotoattack("Mage");
                             goblinwhotoattack("Thief");
                             goblinwhotoattack("Soldier");
@@ -12297,6 +13133,7 @@ function enemyturn(selectedactions){
                             goblinwhotoattack("Templar");
                             goblinwhotoattack("Archer");
                             goblinwhotoattack("Rouge");
+                            goblinwhotoattack("Mimic");
                             goblinwhotoattack("Mage");
                             goblinwhotoattack("Thief");
                             goblinwhotoattack("Soldier");
@@ -12374,6 +13211,7 @@ function enemyturn(selectedactions){
                                 firewhotoattack("Soldier");
                                 firewhotoattack("Archer");
                                 firewhotoattack("Rouge");
+                                firewhotoattack("Mimic");
                                 firewhotoattack("Mage");
                                 firewhotoattack("Thief");
                                 firewhotoattack("Enchantress");
@@ -12424,6 +13262,7 @@ function enemyturn(selectedactions){
                             goblinwhotoattack("Templar");
                             goblinwhotoattack("Archer");
                             goblinwhotoattack("Rouge");
+                            goblinwhotoattack("Mimic")
                             goblinwhotoattack("Mage");
                             goblinwhotoattack("Thief");
                             goblinwhotoattack("Soldier");
@@ -12549,7 +13388,7 @@ function enemyturn(selectedactions){
 
 }
 
-    function stormcheck(){
+function stormcheck(){
         ///Storm stuff
         if(units[slots[1]].stormactive===true || units[slots[2]].stormactive===true || units[slots[3]].stormactive===true){
             var randnum = Math.floor((Math.random() * 4)+1);
@@ -12654,16 +13493,16 @@ function text(words,left,top){
   
 function TEMPstartcombat(){
 
-                 Eunits[newEindex()]=new EGuard(curEindex, 1,2);
-                Eunits[newEindex()]=new EMage(curEindex, 1,2);
-                Eunits[newEindex()]=new EWizard(curEindex, 1,2);
+                 Eunits[newEindex()]=new Goblin(curEindex, 1,2);
+              //  Eunits[newEindex()]=new EMage(curEindex, 1,2);
+             //   Eunits[newEindex()]=new EWizard(curEindex, 1,2);
              //   Eunits[newEindex()]=new Necromancer(curEindex, 1,2);
               //  Eunits[newEindex()]=new Beekeeper(curEindex, 1,2);
 
                 Egroups[Egroupindex]=new Enewgroup(1,70,1000,"Warrior");
-                units[index]=new Wizard(index,"Wizard1");
-                units[index]=new Rouge(index,"Rouge1");
-                units[index]=new Archer(index,"Archer1");
+                units[index]=new ASpider(index,"Mimic");
+                units[index]=new ASparrow(index,"Knight1");
+                units[index]=new AWolf(index,"Guard");
 
                 units[0].slot=1;
                 units[1].slot=2;
@@ -12672,10 +13511,18 @@ function TEMPstartcombat(){
                 units[1].group=1;
                 units[2].group=1;
 
+    units[0].level="-";
+    units[0].health=80;
+    units[1].abilitygrapplinghook=true;
+    units[2].level="-";
+     units[2].abilitymedkit=true;
+    units[2].health=80;
+    
            //     units[8].accessory="Winged_Talisman";
         mana=100
-
-
+units[0].abilityreshield=true;
+    units[0].abilityprotect=true;
+units[0].abilityincreaseenergy=true
 
                 groups[groupindex]= new newgroup(1);
 
@@ -12770,16 +13617,59 @@ assignlocations();
                     return;
                 }
             }
-            var activenum = $('.highlight').attr('id').replace("M", "");
-            var curloc = groups[activenum].location;
-            if ($(this).data('filled') != 0) {
+            
+              if ($(this).data('filled') != 0) {
                 message("There is already a group there!");
                 return;
+              }
+            
+            var activenum=$('.highlight').attr('id');
+            var curloc;
+            if(activenum.indexOf("B")>-1){
+                activenum = activenum.replace("BM", "");
+                activenum = parseInt(activenum,10)
+                curloc = Bgroups[activenum].location;
+                if (Bgroups[activenum].hasmoved === true) {
+                    return;
+                }
+                 if (Bgroups[activenum].flight===true || ((($(this).data("fortify")==true) || ($(this).data("castle")==true)) && ($("#space" + Bgroups[activenum].location).data("fortify")==true || $("#space" + Bgroups[activenum].location).data("castle")==true)) || (Bgroups[activenum].location == $(this).data("move1") || Bgroups[activenum].location == $(this).data("move2") || Bgroups[activenum].location == $(this).data("move3") || Bgroups[activenum].location == $(this).data("move4"))) {
+                $('.highlight').animate({
+                    left: $(this).data("left") + 'px',
+                    top: $(this).data("top") + 'px'
+                });
+
+                Bgroups[activenum].location = $(this).data('location');
+                Bgroups[activenum].curleft = $(this).data("left");
+                Bgroups[activenum].curtop = $(this).data("top");
+                Bgroups[activenum].hasmoved = true;
+                $(".highlight").addClass("grayicon");
+
+                clearspaces(curloc);
+                $(this).data('filled', Bgroups[activenum].index);
+                if(Bgroups[activenum].location==72){
+
+                    for(var i =0;i<index;i++){
+                        if(Beasts[i].group==activenum){
+                            $("#TEXT").empty();
+                            Beasts[i].group=0;
+                            $("#space70").data('filled',0);
+                        }
+                        setTimeout(function(){
+                            $("#BM" + activenum).remove();
+                        },500);
+                        Bgroups[activenum].location=-1;
+                    }
+                }
             }
-            if (groups[activenum].hasmoved === true) {
-                return;
-            }
-            if (groups[activenum].flight===true || ((($(this).data("fortify")==true) || ($(this).data("castle")==true)) && ($("#space" + groups[activenum].location).data("fortify")==true || $("#space" + groups[activenum].location).data("castle")==true)) || (groups[activenum].location == $(this).data("move1") || groups[activenum].location == $(this).data("move2") || groups[activenum].location == $(this).data("move3") || groups[activenum].location == $(this).data("move4"))) {
+            curloc = Bgroups[activenum].location;
+            } else{
+                activenum = activenum.replace("M", "");
+                activenum = parseInt(activenum,10)
+                curloc = groups[activenum].location;
+                if (groups[activenum].hasmoved === true) {
+                    return;
+                }
+                 if (groups[activenum].flight===true || ((($(this).data("fortify")==true) || ($(this).data("castle")==true)) && ($("#space" + groups[activenum].location).data("fortify")==true || $("#space" + groups[activenum].location).data("castle")==true)) || (groups[activenum].location == $(this).data("move1") || groups[activenum].location == $(this).data("move2") || groups[activenum].location == $(this).data("move3") || groups[activenum].location == $(this).data("move4"))) {
                 $('.highlight').animate({
                     left: $(this).data("left") + 'px',
                     top: $(this).data("top") + 'px'
@@ -12789,7 +13679,6 @@ assignlocations();
                 groups[activenum].curleft = $(this).data("left");
                 groups[activenum].curtop = $(this).data("top");
                 groups[activenum].hasmoved = true;
-                groups[activenum].flight=false;
                 $(".highlight").addClass("grayicon");
 
                 clearspaces(curloc);
@@ -12810,6 +13699,11 @@ assignlocations();
                 }
             }
             curloc = groups[activenum].location;
+            }
+          
+            
+           
+            
             startcombat();
 
            liberate(curloc);

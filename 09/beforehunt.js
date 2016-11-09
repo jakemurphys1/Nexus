@@ -1,5 +1,5 @@
 
-var qnum=-1;
+var qnum=0;
 
 
 function queue(){
@@ -118,5 +118,5 @@ function queue(){
 
 $(window).load(function(){
     changesong("01/Peaceful.mp3")
-    opening("Chapter 4:","The Hunt")
+   
 });

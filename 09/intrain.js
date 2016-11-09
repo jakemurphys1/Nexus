@@ -9,7 +9,6 @@ function queue(){
             enterChar("Sandra-R",570,310,"no","relax")
             enterChar("Edgar-R",300,310)
             movevert("Edgar-R",-1)
-            delay(1000)
         break
         case 2:
             dialog("Dad?","Sandra-R")
@@ -54,13 +53,16 @@ function queue(){
          case 15:
             dialog("I think we're here.","Edgar-R")
         break
+         case 16:
+            window.location.href = './beforehunt.html'
+        break
     }
 }
 
 //window.location.href = './beforeairship.html'
 
 $(window).load(function(){
-    
+     opening("Chapter 4:","The Hunt")
     loopeffect = new Audio();
     loopeffect.src="../sounds/insidetrain.mp3";
     loopeffect.volume=.3;

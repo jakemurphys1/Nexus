@@ -117,7 +117,7 @@ function queue(){
                top:"+=500px"
            },2000, "linear")
              setTimeout(function(){
-                     window.location.href = ''
+                     window.location.href = 'beforeArena.html'
              },1500)
         break
     }

@@ -118,8 +118,8 @@ function newunit(){
                   tempname="Edgar";
                 break;
             case 6:
-                tempclass="Knight";
-                  tempname="Knight";
+                tempclass="Thief";
+                  tempname="Thief1";
                 break;
                   case 7:
                 tempclass="Archer";
@@ -381,11 +381,6 @@ function liberate(curloc){
  
     }
 
-var wall1 = 100;
-var wall2 = 100;
-var wall3 = 100;
-var wall4 = 100;
-
   function movebadguys(){
 
     }
@@ -421,8 +416,6 @@ function set_area_background(i){
 
 
 function indiv_newday(){
-           $('.heading').remove();
-        $('#top').append("<h1 class = 'heading'>Turn: " + day + "/30</h1>");
 }
 function indiv_gotocapitol(){
       $("#TEXT").empty().append('<div class="gotobutton" id = "gotobarracks"><p>BARRACKS</p></div><div class="gotobutton" id = "gotobrewery"><p>BREWERY</p></div>');
