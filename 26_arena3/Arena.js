@@ -1,5 +1,3 @@
-   var difflevel=3;
-
     var allynum=0;
 
         var angel=false;
@@ -919,6 +917,15 @@ function set_area_background(i){
 
 
 function indiv_newday(){
+    if(day==3){
+        LightningScene(1)
+    }
+    if(day==6){
+        LightningScene(1)
+    }
+    if(day==9){
+        LightningScene(2)
+    }
 }
 function indiv_gotocapitol(){
       $("#TEXT").empty().append('<div class="gotobutton" id = "gotobarracks"><p>BARRACKS</p></div><div class="gotobutton" id = "gotobrewery"><p>BREWERY</p></div>');
@@ -942,7 +949,69 @@ function enemyconquer(){
     
 }
 
+function LightningScene(mode){
+    
+  $("body").append("<div style='background-color:lightblue' id = 'cinemabackground'><img id='backgroundpic' style='width:100%;height:100%' src='pics/arena-wall1.png' /><div id='sorcerer' STYLE='position:absolute; TOP:350px; LEFT:700px;' class='unit' ><img style='width:30px;height:30px' src='../Pictures/Allies/Sorcerer.gif'/></div></div>")
+  
+  
+  setTimeout(function(){
+      powerup.play()
+      $("#cinemabackground").append("<div id='powerup' STYLE='position:absolute; TOP:300px; LEFT:700px;' class='unit' ><img style = 'height:100px;width:100px;margin-top:-0px;margin-left:-35px' src='../Pictures/powerup.gif'/></div>")
+  },1000)
+
+  if(mode==1){
+              setTimeout(function(){
+            $("#cinemabackground").remove()
+            killunit()
+        },7000)
+  }else{
+      setTimeout(function(){
+          crash.currentTime=8;
+          crash.play()
+          $("#cinemabackground").append("<div id='airship' STYLE='position:absolute; TOP:300px; LEFT:-500px;' class='unit' ><img style = 'height:400px;width:400px;margin-top:-65px;margin-left:-35px' src='pics/airship-bare.png'/><img style='margin-top:-885px;margin-left:-78px;height:200px;width:200px' src='pics/fan.gif'/><img style='margin-top:-700px;margin-left:-78px;height:200px;width:200px' src='pics/fan.gif'/></div>")
+          $("#airship").animate({
+              left:"+=2000px"
+          },2000)
+          setTimeout(function(){
+              $("#cinemabackground #backgroundpic").attr("Src","pics/arena-wall2.png")
+              $("#powerup").remove()
+              $("#sorcerer").remove();
+          },700)
+      },5000)
+      setTimeout(function(){
+          window.location.href = '../27/escape1.html'
+      },10000)
+  }
+
+  
+}
+function killunit(){
+    var unitselected;
+    for(var i =0;i<index;i++){
+        if(units[i].alive==true){
+            unitselected=i
+        }
+    }
+    units[unitselected].health=0;
+    units[unitselected].alive=false;
+    units[unitselected].group=0;
+      $("body").append("<div style='background-color:lightblue' id = 'cinemabackground'><img id='backgroundpic' style='width:100%;height:100%' src='../Pictures/backgroundpics/desertbackground.png'/><div id='thisunit' STYLE='position:absolute; TOP:300px; LEFT:400px;' class='unit' ><img src='"+ units[unitselected].image + "'/></div></div>")
+      setTimeout(function(){
+          Lightning.play()
+          $("#cinemabackground").append("<div id='lightning' STYLE='position:absolute; TOP:300px; LEFT:700px;' class='unit' ><img style = 'height:300px;width:100px;margin-top:-270px;margin-left:-310px' src='../Pictures/Effects/EffectLightning.gif'/></div>")
+          setTimeout(function(){
+              $("#lightning").remove();
+              $("#thisunit").effect("explode");
+          },500)
+      },500)
+      setTimeout(function(){
+          $("#cinemabackground").remove()
+      },3000)
+}
+
 $(window).load(function(){
+    
+    
     changesong("Battle.mp3")
         containaccessories();
     
@@ -1009,7 +1078,6 @@ $(window).load(function(){
     Eunits[newEindex()]=new EGuard(curEindex, Egroupindex,difflevel);
       Eunits[newEindex()]=new EArcher(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(15,1,1000,'Archer');
-
 
 
 });

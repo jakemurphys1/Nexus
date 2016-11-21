@@ -1,5 +1,5 @@
-     var difflevel=3;    
-var day= 0, money= 100, mana= 0;
+     var difflevel=2;    
+var day= 0, mana= 0;
     var spot1="", spot2="", spot3="";
     var battleon=false;
     var curgroupnum="";
@@ -134,6 +134,18 @@ var summoning;
         var propeller = new Audio();
         propeller.src = "../sounds/Helicopter.wav";
         propeller.volume=.3;
+        var powerup = new Audio();
+        powerup.src = "../sounds/powerup.wav";
+        powerup.volume=.3;
+        var crash = new Audio();
+        crash.src = "../sounds/crash.mp3";
+        crash.volume=.3;
+    var eating = new Audio();
+        eating.src = "../sounds/eating.mp3";
+        eating.volume=.6;
+       var break_window = new Audio();
+        break_window.src = "../sounds/break_window.wav";
+        break_window.volume=.6;
     
     var curmusic = new Audio();
 }
@@ -239,10 +251,10 @@ var barrackbutton;
         $("#TEXT").append('<div class="entrypoint" id = "entry2"></div>');
         $("#TEXT").append('<div class="entrypoint" id = "entry3"></div>');
         $("#TEXT").append('<div class="button" id = "createbutton">Create Group</div>');
-        $("#TEXT").append('<div id="barracks"></div>');
+        $("#TEXT").append('<div class="row" id="barracks"></div>');
 
         for(var i =0;i<index;i++){
-            if((units[i].group===0 || units[i].group===-1) && units[i].type!="Djinn" && units[i].type!="Sparrow" && units[i].type!="Turtle" && units[i].type!="Spider" && units[i].type!="Bear" && units[i].type!="Wolf"){
+            if((units[i].group===0 || units[i].group===-1) && units[i].type!="Djinn" && units[i].type!="Sparrow" && units[i].type!="Turtle" && units[i].type!="Spider" && units[i].type!="Bear" && units[i].type!="Wolf" && units[i].type!="Dead"){
                 $("#barracks").append(units[i].picture);
                 if((units[i].healing>0 || units[i].health<units[i].maxhealth) && recoverpotion>0){
                     $('#' + i).append("<div class='Recover' id='Recover" + i + "'><p>Heal</p></div>")
@@ -262,10 +274,10 @@ var barrackbutton;
                     $('#' + i).addClass("grayicon")
                 }
 
-                if(units[i].type==="Sorcerer"){
+                if(units[i].type==="Sorcerer" && units[i].alive===true){
                     $("#" +i).append('<div class="manabar" id ="EB' + i + '"style="width: ' + (sorcerermana) + '%"></div>');
                 }
-                if(units[i].type==="Healer"){
+                if(units[i].type==="Healer" && units[i].alive===true){
                     $("#" +i).append('<div class="healerbar" id ="EB' + i + '"style="width: ' + (units[i].power) + '%"></div>');
                 }
             }
@@ -311,28 +323,28 @@ var barrackbutton;
             gotobarracks();
         });
         
-        if(!noheal){
-          $("#TEXT").append("<p class='potions' style='width:75%' id='Heal'>Heal a Unit (" + (1 + difflevel) + " turns)</p>");  
+          if(typeof(noheal) == 'undefined'){
+            $("#TEXT").append("<div id='Heal' class='potions col-xs-10'><p class='potion' id='Heal'>Heal a Unit (" + (1 + difflevel) + " turns)</p></div>");  
         }
         
         if(strengthpotion>0){
-            $("#TEXT").append("<p class='potions' style='width:75%' id='Strength'>Strength boost:(" + strengthpotion +")</p>");
+            $("#TEXT").append("<div id='Strength class='potions col-xs-10'><p class='potion' id='Strength'>Strength boost:(" + strengthpotion +")</p></div>");
         }
         if(defensepotion>0){
-            $("#TEXT").append("<p class='potions' style='width:75%' id='Defense'>Defense boost:(" + defensepotion +")</p>");
+            $("#TEXT").append("<div id='Defense' class='potions col-xs-10'<p class='potion' id='Defense'>Defense boost:(" + defensepotion +")</p></div>");
         }
         if(resistancepotion>0){
             $("#TEXT").append("<p class='potions' style='width:75%' id='Resistance'>Resistance boost:(" + resistancepotion +")</p>");
         }
         if(healthpotion>0){
-            $("#TEXT").append("<p class='potions' style='width:75%' id='Health'>Health boost:(" + healthpotion +")</p>");
+            $("#TEXT").append("<div  id='Health' class='potions col-xs-10'<p class='potion' id='Health'>Health boost:(" + healthpotion +")</p></div>");
         }
          if(leveluppotion>0){
-            $("#TEXT").append("<p class='potions' style='width:75%' id='Levelup'>Level up:(" + leveluppotion +")</p>");
+            $("#TEXT").append("<div id='Levelup' class='potions col-xs-10'<p class='potion' id='Levelup'>Level up:(" + leveluppotion +")</p></div>");
         }
         $(".potions").click(function(){
-     
             if(barrackbutton!=$(this).attr("id")){
+                console.log("jake")
                 $(".potions").removeClass("battlehighlight")
                 $(this).addClass("battlehighlight");
                   barrackbutton=$(this).attr("id");
@@ -416,36 +428,36 @@ var barrackbutton;
         
         //populate recipes
          if(replicaterecipe===true){
-            $("#TEXT").append("<p class='potions' id='Replicate'>Replicate<br> 5 Essence</p>");
+            $("#TEXT").append("<p class='brewpotions' id='Replicate'>Replicate<br> 5 Essence</p>");
         }
         if(reviverecipe===true){
-            $("#TEXT").append("<p class='potions' id='Revive'>Revive(" + revivepotion +")<br> 5 flowers <br> 5 extract</p>");
+            $("#TEXT").append("<p class='brewpotions' id='Revive'>Revive(" + revivepotion +")<br> 5 flowers <br> 5 extract</p>");
         }  
         if(recoverrecipe===true){
-            $("#TEXT").append("<p class='potions' id='Recover'>Recover(" + recoverpotion +") <br> 3 flower <BR> 3 berries.</p>");
+            $("#TEXT").append("<p class='brewpotions' id='Recover'>Recover(" + recoverpotion +") <br> 3 flower <BR> 3 berries.</p>");
         }
    
         if(teleportrecipe===true){
-            $("#TEXT").append("<p class='potions' id='Teleport'>teleport(" + teleportpotion +")<br> 3 powder <br> 3 sap.</p>");
+            $("#TEXT").append("<p class='brewpotions' id='Teleport'>teleport(" + teleportpotion +")<br> 3 powder <br> 3 sap.</p>");
         }
        
          if(strengthrecipe===true){
-            $("#TEXT").append("<p class='potions' id='Strength'>Str. Boost(" + strengthpotion +") <br> 2 mushrooms <BR> 2 berries.</p>");
+            $("#TEXT").append("<p class='brewpotions' id='Strength'>Str. Boost(" + strengthpotion +") <br> 2 mushrooms <BR> 2 berries.</p>");
         }
         if(defenserecipe===true){
-            $("#TEXT").append("<p class='potions' id='Defense'>Def. Boost(" + defensepotion +")<br> 2 root <br> 2 honey</p>");
+            $("#TEXT").append("<p class='brewpotions' id='Defense'>Def. Boost(" + defensepotion +")<br> 2 root <br> 2 honey</p>");
         }
         if(resistancerecipe===true){
-            $("#TEXT").append("<p class='potions' id='Resistance'>Resist.boost(" + resistancepotion +")<br> 2 herb <br> 2 honey</p>");
+            $("#TEXT").append("<p class='brewpotions' id='Resistance'>Resist.boost(" + resistancepotion +")<br> 2 herb <br> 2 honey</p>");
         }
           if(standin1recipe===true){
-            //$("#TEXT").append("<p class='potions' id='standin1'>Standin1:(" + standin1potion +") <br> 1 mushroom <BR> 6 bone marrow</p>");
+            //$("#TEXT").append("<p class='brewpotions' id='standin1'>Standin1:(" + standin1potion +") <br> 1 mushroom <BR> 6 bone marrow</p>");
         }
         if(healthrecipe===true){
-            $("#TEXT").append("<p class='potions' id='Health'>Health(" + healthpotion +")<br> 2 Mushroom <br> 2 Sap</p>");
+            $("#TEXT").append("<p class='brewpotions' id='Health'>Health(" + healthpotion +")<br> 2 Mushroom <br> 2 Sap</p>");
         }
         if(leveluprecipe===true){
-            $("#TEXT").append("<p class='potions' id='Levelup'>Levelup(" + leveluppotion +")<br> 5 root <br> 5 herb</p>");
+            $("#TEXT").append("<p class='brewpotions' id='Levelup'>Levelup(" + leveluppotion +")<br> 5 root <br> 5 herb</p>");
         }
         
 
@@ -669,7 +681,6 @@ var diffinverse=0;
                 diffinverse=1;
                 break;
         }
-
 indiv_newday(day);
 
 
@@ -683,11 +694,6 @@ indiv_newday(day);
                 gameover();
             }
         }
-//        for(var p = 1;p<69;p++){
-//            if($('#space' + p).data('loot')>0){
-//                $('#space' + p).data('loot',$('#space' + p).data('loot')-1)
-//            }
-//        }
         for (var i=0;i<index;i++){
             if(units[i].enroute>0){
                 units[i].enroute-=1;
@@ -764,23 +770,23 @@ indiv_newday(day);
 
         if(level===1){
             this.attack= 15;
-            this.health= 20;//40
-            this.maxhealth=20;//40
+            this.health= 25;//40
+            this.maxhealth=25;//40
         }
         if(level===2){
             this.attack= 25;
-            this.health= 30;
-            this.maxhealth=30;
+            this.health= 35;
+            this.maxhealth=35;
         }
         if(level===3){
             this.attack= 35;
-            this.health= 40;
-            this.maxhealth=40;
+            this.health= 45;
+            this.maxhealth=45;
         }
         if(level===4){
             this.attack= 43;
-            this.health= 50;
-            this.maxhealth=50;
+            this.health= 55;
+            this.maxhealth=55;
         }
         this.defense= 10;
         this.resistance= 10;
@@ -1132,7 +1138,7 @@ indiv_newday(day);
         if(level===1){
             this.attack= 25;
             this.health= 40;//40
-            this.maxhealth=20;//40
+            this.maxhealth=40;//40
         }
         if(level===2){
             this.attack= 35;
@@ -2771,6 +2777,61 @@ indiv_newday(day);
         this.dying='../Pictures/Enemies/Demon_dying.gif'
     }
 
+function Eye(e,Egroupindex,level){
+        this.type= "Eye";
+        this.name="Eye";
+        this.level=level;
+
+        if(level===1){
+            this.attack= 20;
+            this.health= 50;
+            this.maxhealth=50;
+        }
+        if(level===2){
+            this.attack= 40;
+            this.health= 80;
+            this.maxhealth=80;
+        }
+        if(level===3){
+            this.attack= 60;
+            this.health= 110;
+            this.maxhealth=110;
+        }
+        if(level===4){
+            this.attack= 80;
+            this.health= 140;
+            this.maxhealth=140;
+        }
+        this.defense= 0;
+        this.resistance= 0;
+
+        this.sleep=0;
+        this.immobilized=0;
+        this.blind=0;
+        this.silenced=0;
+        this.poison=0;
+        this.enfeeble=0;
+        this.terrify=0;
+        this.lightning=1;
+        this.fire=1;
+        this.ice=1;
+    
+    this.resting=false;
+
+        this.usedspecial=false;
+        this.index=e;
+        this.usedaction=false;
+        this.alive=true;
+        this.charge= 0;
+        this.curleft=0;
+        this.curtop=25;
+        this.group=Egroupindex;
+        this.description="Every injured eye will delay the kraken by one turn.";
+        this.picture="<div class='Ebarrackpic' id='E"+ e + "'><img src='../Pictures/Enemies/Eye.gif'/></div>";
+        this.image='../Pictures/Enemies/Eye.gif';
+        this.dying='../Pictures/Enemies/Demon_dying.gif'
+    }
+
 //humans
         function ESoldier(e,Egroupindex,level){
         this.type= "Soldier";
@@ -3162,7 +3223,7 @@ function createsoldier(choice,name){
             units[index]= new ABear(index, name);
         break;
         case "Turtle":
-            units[index]= new Aturtle(index, name);
+            units[index]= new ATurtle(index, name);
         break;
         case "Sparrow":
             units[index]= new ASparrow(index, name);
@@ -3945,7 +4006,7 @@ function createsoldier(choice,name){
         this.name="Ivy";
         this.index=e;
 
-        this.attack= 3;
+        this.attack= 6;
         this.defense= 0;
         this.resistance= 0;
         this.health= 80;
@@ -4173,17 +4234,105 @@ function createsoldier(choice,name){
         this.backpic ='../CinePics/characters/' + type + '/' + type + '_back.gif'; 
         index+=1;
     }
+  function Civilian(e,type){
+        
+        
+        this.type= "Civilian";
+        this.realtype="Civilian";
+        this.name="Civilian";
+        this.index=e;
+
+        this.attack= 10;
+        this.defense= 0;
+        this.resistance= 0;
+        this.health= 60;
+        this.maxhealth=60;
+
+        this.usedaction=false;
+        this.alive=true;
+        this.moved=false;
+        this.curleft=0;
+        this.curtop=425;
+        this.group=0;
+        this.slot=0;
+
+        this.sleep=0;
+        this.immobilized=0;
+        this.blind=0;
+        this.silenced=0;
+        this.poison=0;
+        this.enfeeble=0;
+
+        this.captured="";
+
+        this.immune=false;
+        this.frosttouch=false;
+        this.storm=false;
+        this.aetherban=true;
+
+        this.level=1;
+        this.experience=0;
+        this.abilitypoints=0;
+        this.levelhealth=15;
+        this.leveldefense=3;
+        this.levelresistance=1;
+        this.levelattack=3;
+        
+
+        this.weapon="Bronze Sword";
+        this.armor="Bronze Armor";
+        this.accessory="None";
+
+        this.healthboost=0;
+        this.weaponboost=0;
+        this.armorboost=0;
+        this.resistboost=0;
+
+        this.attacktempboost=0;
+        this.defensetempboost=0;
+        this.protectedby=-1;
+
+        this.enroute=0;
+        this.healing=0;
+
+        this.medkit=false;
+        this.abilitymedkit=false;
+        this.abilitydash=false;
+        this.abilityimmunity=false;
+        this.abilitycounter=false;
+        this.abilitysteadfast=false;
+
+        this.picture="<div class='barrackpic' id='"+ e + "'><img src='../CinePics/characters/fisherman/fisherman_front.gif' /></div>";
+        this.image='../CinePics/characters/fisherman/fisherman_front.gif';
+        
+        this.rightpic ='../CinePics/characters/fisherman/fisherman_right.gif';
+        this.leftpic ='../CinePics/characters/fisherman/fisherman_left.gif'; 
+        this.backpic ='../CinePics/characters/fisherman/fisherman_back.gif'; 
+        index+=1;
+        if (e===-1){
+            this.curleft=1;
+            this.curtop=424;
+            index-=1;
+            this.picture="";
+            this.image='';
+            this.alive=false;
+            this.abilityimmunity=false;
+
+        }
+    }
 
     function AWolf(e,type){
         this.type= "Wolf";
         this.realtype="Wolf";
         this.name="Wolf";
 
-        this.attack= 60;
+        this.attack= 40;
         this.health= 80;
         this.maxhealth=80;
-        this.defense= 20;
-        this.resistance= 10;
+        this.defense= 5;
+        this.resistance= 5;
+        
+        this.isanimal=true;
 
         this.index=e;
         this.usedaction=false;
@@ -4251,11 +4400,13 @@ function createsoldier(choice,name){
         this.realtype="Turtle";
         this.name="Turtle";
 
-            this.attack= 60;
+            this.attack= 40;
             this.health= 140;
             this.maxhealth=140;
-        this.defense= 35;
-        this.resistance= 5;
+        this.defense= 15;
+        this.resistance= 0;
+         
+         this.isanimal=true;
 
         this.index=e;
         this.usedaction=false;
@@ -4323,11 +4474,13 @@ function createsoldier(choice,name){
         this.realtype="Sparrow";
         this.name="Sparrow";
 
-            this.attack= 35;
+            this.attack= 20;
             this.health= 40;
             this.maxhealth=40;
-        this.defense= 10;
-        this.resistance= 10;
+        this.defense= 0;
+        this.resistance= 0;
+      
+      this.isanimal=true;
 
         this.index=e;
         this.usedaction=false;
@@ -4394,9 +4547,11 @@ function createsoldier(choice,name){
             this.attack= 0;
             this.health= 140;
             this.maxhealth=140;
-        this.defense= 25;
-        this.resistance= 25;
+        this.defense= 10;
+        this.resistance= 10;
 
+        this.isanimal=true;
+        
         this.index=e;
         this.usedaction=false;
         this.alive=true;
@@ -4463,12 +4618,13 @@ function createsoldier(choice,name){
         this.realtype="Bear";
         this.name="Bear";
 
-            this.attack= 100;
-            this.health= 140;
-            this.maxhealth=140;
-        this.defense= 25;
-        this.resistance= 25;
-
+            this.attack= 50;
+            this.health= 110;
+            this.maxhealth=110;
+        this.defense= 5;
+        this.resistance= 5;
+this.isanimal=true;
+      
         this.index=e;
         this.usedaction=false;
         this.alive=true;
@@ -4843,8 +4999,9 @@ isfortified=true;
     }
     //check who is in a group
     function groupinfo(){
+        console.log("insdie")
         $('.icon').click(function(){
-
+console.log("got here")
             $(".icon").removeClass("highlight");
             $(".Bicon").removeClass("highlight");
             $(this).addClass("highlight");
@@ -4922,25 +5079,6 @@ isfortified=true;
                     $(".actions").append("<div class = 'actionbutton'  id = 'Fortify'>Fortify</div>");
                 }
 
-                $('#Fortify').click(function () {
-                    if (groups[curgroupnum].hasmoved === true) {
-                        message("Groups can only do one action a turn.");
-                        return;
-                    }
-                    if (money < 10) {
-                      message("You need at least 10 gold to fortify.");
-                      return
-                    }
-                    $('#space' + groups[curgroupnum].location).data("fortify", true);
-                    money -= 10;
-                    showwall();
-                    groups[curgroupnum].hasmoved = true;
-                    $("#M" + curgroupnum).addClass("grayicon");
-                    $('#top').empty();
-                    $('#top').append("<h1 class = 'heading'>Day: " + day + "</h1>");
-                    $('#top').append("<h1 class = 'heading'>Money: " + money + "</h1>");
-                    $('#top').append("<h1 class = 'heading'>Research: " + currentresearch() + "</h1>");
-                })
 
                 presspass();
                 getstats();
@@ -5190,7 +5328,19 @@ function clearspaces(e){
 
 ///////combat
     function startcombat(){
+        if(gameoverset==true){
+            return;
+        }
         //check if there's a fight
+        function checkslots(type){
+                var typepresent = false;
+                for(var p =0;p<index;p++){
+                        if(units[slots[1]].type == type || units[slots[2]].type == type || units[slots[3]].type == type){
+                            typepresent=true;
+                        }
+                    }
+                return typepresent
+            }
         for (var i =1;i<groupindex;i++){
 
             if(groups[i].location<0 || groups[i].location===undefined){
@@ -5233,10 +5383,14 @@ function clearspaces(e){
                             units[w].frosttouch=groups[i].frosttouch;
                             units[w].storm=groups[i].storm;
                             units[w].aetherban=groups[i].aetherban;
+                        
                             function checktypes(type){
                                 var typepresent = false;
-                                for(var l =0;l<index;l++){
-                                    if(units[l].type == type){
+                                for(var p =0;p<index;p++){
+                                    if(w>=index){
+                                        return;
+                                    }
+                                    if(units[p].type == type && units[p].group == units[w].group){
                                         typepresent=true;
                                     }
                                 }
@@ -5378,7 +5532,8 @@ function clearspaces(e){
                         $('#battlebackground').append('<div STYLE="position:absolute; TOP:' + currenttop + 'px; LEFT:125px;" class="unit"  id="' + slots[1] + '" ><img src="' + units[slots[1]].backpic + '"/></div>');
                         $('#' + slots[1]).append('<div class="healthbar" id = "HB' + slots[1] + '" style="width: ' + (units[slots[1]].health/units[slots[1]].maxhealth)*100 + '%"></div><div class="level"><p>' + units[slots[1]].level + '</p></div><div class="energybar" id ="EB' + units[slots[1]].index + '"style="width: ' + (units[slots[1]].energy) + '%"></div>');
                         
-                        if(units[slots[1]].type==="Wizard" || (checktypes("Wizard") && units[slots[1]].type==="Mimic")){
+                        if(units[slots[1]].type==="Wizard" || (checkslots("Wizard") && units[slots[1]].type==="Mimic")){
+                            console.log("got here")
                             $('#' + slots[1]).append('<img  style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORB' + slots[1] + '" style="color: yellow; position: absolute; font-size:20px; margin-top:-30px; margin-left:55px; width:10px; height:10px ">' + units[slots[1]].charge +'</div>');
                         }
                         if(units[slots[1]].type==="Enchantress"){
@@ -5400,7 +5555,7 @@ function clearspaces(e){
                         units[slots[2]].curtop=currenttop;
                         $('#battlebackground').append('<div STYLE="position:absolute; TOP:' + currenttop + 'px; LEFT:225px;" class="unit"  id="' + slots[2] + '" ><img src="' + units[slots[2]].backpic + '"/></div>');
                         $('#' + slots[2]).append('<div class="healthbar" id = "HB' + slots[2] + '" style="width: ' + (units[slots[2]].health/units[slots[2]].maxhealth)*100 + '%"></div><div class="level"><p>' + units[slots[2]].level + '</p></div><div class="energybar" id ="EB' + units[slots[2]].index + '"style="width: ' + (units[slots[2]].energy) + '%"></div>');
-                        if(units[slots[2]].type==="Wizard" || (checktypes("Wizard") && units[slots[2]].type==="Mimic")){
+                        if(units[slots[2]].type==="Wizard" || (checkslots("Wizard") && units[slots[2]].type==="Mimic")){
                             $('#' + slots[2]).append('<img style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORB' + slots[2] + '" style="color: yellow; position: absolute; font-size:20px; margin-top:-30px; margin-left:55px; width:10px; height:10px ">' + units[slots[2]].charge +'</div>');
                         }
                         if(units[slots[2]].type==="Enchantress"){
@@ -5421,7 +5576,7 @@ function clearspaces(e){
                         units[slots[3]].curtop=currenttop;
                         $('#battlebackground').append('<div STYLE="position:absolute; TOP:' + currenttop + 'px; LEFT:325px;" class="unit"  id="' + slots[3] + '" ><img src="' + units[slots[3]].backpic + '"/></div>');
                         $('#' + slots[3]).append('<div class="healthbar" id = "HB' + slots[3] + '" style="width: ' + (units[slots[3]].health/units[slots[3]].maxhealth)*100 + '%"></div><div class="level"><p>' + units[slots[3]].level + '</p></div><div class="energybar" id ="EB' + units[slots[3]].index + '"style="width: ' + (units[slots[3]].energy) + '%"></div>');
-                        if(units[slots[3]].type==="Wizard" || (checktypes("Wizard") && units[slots[3]].type==="Mimic")){
+                        if(units[slots[3]].type==="Wizard" || (checkslots("Wizard") && units[slots[3]].type==="Mimic")){
                             $('#' + slots[3]).append('<img style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORB' + slots[3] + '" style="color: yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:55px; width:10px; height:10px ">' + units[slots[3]].charge +'</div>');
                         }
                         if(units[slots[3]].type==="Sorcerer"){
@@ -6553,7 +6708,6 @@ var mult = 0;
                                 $('#mimicchoice').append(new Option('Disrupt(' + units[selectedindex].useddisrupt + ')','Disrupt'));
                             }
                             if(checktypes("Archer")){
-                                //bACKhere
                                 $('#mimicchoice').append(new Option('Immobolize(' + units[selectedindex].usedimmobolize + ')','Immobolize'));
                             }
                         }
@@ -6862,6 +7016,7 @@ var mult = 0;
                     }
                 }
             }
+            var curlocation= Egroups[curenemy].location;
             liberate(Egroups[curenemy].location);
             $("#battlebackground").empty();
             $(".actionbutton").remove();
@@ -6909,7 +7064,7 @@ var mult = 0;
             
             $('#battlebackground').click(function () {
                 if (typeof indiv_youwin == 'function'){
-                     indiv_youwin();
+                     indiv_youwin(curlocation);
                 }
                 $('#battlebackground').remove();
                 startcombat();
@@ -6924,6 +7079,7 @@ var mult = 0;
     function isNumeric(n) {
         return !isNaN(parseFloat(n)) && isFinite(n);
     }
+   
     function attackbadguy(){
         $('.Eunit').mousedown(function(e){
             $("#TEXT").empty();
@@ -6957,15 +7113,41 @@ var mult = 0;
 
                 function dies(enemyindex) {
                     if (Eunits[enemyindex].health <= 0 || isNumeric(Eunits[enemyindex].health)===false) {
-                        if (Eunits[enemyindex].type === "Bee" || Eunits[enemyindex].type === "Zombie" || Eunits[enemyindex].type === "Golem") {
-
-                            $("#E" + enemyindex).fadeOut();
+                        if (Eunits[enemyindex].type === "Bee" || Eunits[enemyindex].type === "Zombie" || Eunits[enemyindex].type === "Golem" || Eunits[enemyindex].type === "Eye") {
+                            if(Eunits[enemyindex].type === "Eye"){
+                                $("#E" + enemyindex).animate({
+                                top: -225 + "px"
+                            });
+                                Eunits[enemyindex].resting=true;
+                                Eunits[enemyindex].health=Eunits[enemyindex].maxhealth
+                                delayKraken+=1;
+                                updateHeader()
+                                setTimeout(function(){
+                                    for(var i =0;i<2;i++){
+                                    if(Eunits[i].resting==true){
+                                        Eunits[i].resting=false
+                                        $("#E" + i).animate({
+                                            top: "+=250px"
+                                        });
+                                         var temp = "#E" + i;
+                                        var tempbar = "#EHB" + i;
+                                         $(tempbar).remove();
+                                        $(temp).append('<div class="healthbar" id ="EHB' + Eunits[i].index + '"style="width: ' + (Eunits[i].health / Eunits[i].maxhealth) * 100 + '%"></div>');
+                                    }
+                                }
+                                },300)
+                                return;
+                            }else{
+                                $("#E" + enemyindex).fadeOut();
                             $("#E" + enemyindex).animate({
                                 left: 225 + "px",
                                 top: 25 + "px"
                             });
                             Eunits[enemyindex].curleft = 225;
                             Eunits[enemyindex].curtop = 25;
+                            }
+
+                            
                         } else {
                             $("#ORBE" + enemyindex).remove();
                             $("#E" + enemyindex + " .ORBIMG").remove();
@@ -6976,6 +7158,7 @@ var mult = 0;
                             },1500)
                             //$("#E" + enemyindex).effect('explode');
                         }
+                        
                         if(units[selectedindex].type==="Enchantress" && Eunits[enemyindex].alive === false){
                             units[selectedindex].mana+=30;
                             $("#TEXT").append("You recieved 30 mana for killing that enemy.")
@@ -7000,7 +7183,6 @@ var mult = 0;
                     var temp = "#E" + index;
                     var tempbar = "#EHB" + index;
                     
-                    $("#TEXT").empty();
                     $("#TEXT").append("<p>" + units[selectedindex].name + " did " + damage + " damage to " + Eunits[index].name + "\n</p>");
                     Eunits[index].health -= damage;
                     setTimeout(function(){dies(index);},500);
@@ -7324,59 +7506,68 @@ var mult = 0;
                                             message("There is someone blocking the soldier's line of sight.");
                                             return;
                                         }
-                                        Eunits[enemyindex].curtop = units[selectedindex].curtop - 100;
-                                        Hook.play();
-                                        $("#E" + enemyindex).append("<div class='slashEffects'><img src='../Pictures/Effects/Hook.gif' /></div>");
-                                        setTimeout(function () {
-                                            $(".slashEffects").remove();
-                                        }, 1000);
+                                        if(Eunits[enemyindex].type!="Eye"){
+                                            Eunits[enemyindex].curtop = units[selectedindex].curtop - 100;
+                                            Hook.play();
+                                            $("#E" + enemyindex).append("<div class='slashEffects'><img src='../Pictures/Effects/Hook.gif' /></div>");
+                                            setTimeout(function () {
+                                                $(".slashEffects").remove();
+                                            }, 1000);
 
-                                        $('#E' + enemyindex).animate({
-                                            top: (units[selectedindex].curtop - 100) + 'px'
-                                        }, 1000);
+                                            $('#E' + enemyindex).animate({
+                                                top: (units[selectedindex].curtop - 100) + 'px'
+                                            }, 1000);
+                                        }
+                                        
                                     }
                                     if (Eunits[enemyindex].curleft === units[selectedindex].curleft && Eunits[enemyindex].curtop > units[selectedindex].curtop) {
                                         if ((Eunits[Eslots[1]].curleft === units[selectedindex].curleft && Eunits[Eslots[1]].curtop === units[selectedindex].curtop + 100) || (Eunits[Eslots[2]].curleft === units[selectedindex].curleft && Eunits[Eslots[2]].curtop === units[selectedindex].curtop + 100) || (Eunits[Eslots[3]].curleft === units[selectedindex].curleft && Eunits[Eslots[3]].curtop === units[selectedindex].curtop + 100) || (Eunits[Eslots[4]].curleft === units[selectedindex].curleft && Eunits[Eslots[4]].curtop === units[selectedindex].curtop + 100) || (Eunits[Eslots[5]].curleft === units[selectedindex].curleft && Eunits[Eslots[5]].curtop === units[selectedindex].curtop + 100) || (units[slots[1]].curleft === units[selectedindex].curleft && units[slots[1]].curtop === units[selectedindex].curtop + 100) || (units[slots[2]].curleft === units[selectedindex].curleft && units[slots[2]].curtop === units[selectedindex].curtop + 100) || (units[slots[3]].curleft === units[selectedindex].curleft && units[slots[3]].curtop === units[selectedindex].curtop + 100)) {
                                             message("There is someone blocking the soldier's line of sight.");
                                             return;
                                         }
-                                        Eunits[enemyindex].curtop = units[selectedindex].curtop + 100;
-
-                                        $("#E" + enemyindex).append("<div class='slashEffects'><img style='transform: rotate(180deg) translate(-100%,-100%); margin-left:-40px; margin-top:-200px' src='../Pictures/Effects/Hook.gif' /></div>");
-                                        setTimeout(function () {
-                                            $(".slashEffects").remove();
-                                        }, 1000);
-                                        $('#E' + enemyindex).animate({
-                                            top: (units[selectedindex].curtop + 100) + 'px'
-                                        }, 500);
+                                       
+                                           if(Eunits[enemyindex].type!="Eye"){
+                                                 Eunits[enemyindex].curtop = units[selectedindex].curtop + 100;
+                                                $("#E" + enemyindex).append("<div class='slashEffects'><img style='transform: rotate(180deg) translate(-100%,-100%); margin-left:-40px; margin-top:-200px' src='../Pictures/Effects/Hook.gif' /></div>");
+                                                setTimeout(function () {
+                                                    $(".slashEffects").remove();
+                                                }, 1000);
+                                                $('#E' + enemyindex).animate({
+                                                    top: (units[selectedindex].curtop + 100) + 'px'
+                                                }, 500);
+                                            }
                                     }
                                     if (Eunits[enemyindex].curtop === units[selectedindex].curtop && Eunits[enemyindex].curleft > units[selectedindex].curleft) {
                                         if ((Eunits[Eslots[1]].curtop === units[selectedindex].curtop && Eunits[Eslots[1]].curleft === units[selectedindex].curleft + 100) || (Eunits[Eslots[2]].curtop === units[selectedindex].curtop && Eunits[Eslots[2]].curleft === units[selectedindex].curleft + 100) || (Eunits[Eslots[3]].curtop === units[selectedindex].curtop && Eunits[Eslots[3]].curleft === units[selectedindex].curleft + 100) || (Eunits[Eslots[4]].curtop === units[selectedindex].curtop && Eunits[Eslots[4]].curleft === units[selectedindex].curleft + 100) || (Eunits[Eslots[5]].curtop === units[selectedindex].curtop && Eunits[Eslots[5]].curleft === units[selectedindex].curleft + 100) || (units[slots[1]].curtop === units[selectedindex].curtop && units[slots[1]].curleft === units[selectedindex].curleft + 100) || (units[slots[2]].curtop === units[selectedindex].curtop && units[slots[2]].curleft === units[selectedindex].curleft + 100) || (units[slots[3]].curtop === units[selectedindex].curtop && units[slots[3]].curleft === units[selectedindex].curleft + 100)) {
                                             message("There is someone blocking the soldier's line of sight.");
                                             return;
                                         }
-                                        Eunits[enemyindex].curleft = units[selectedindex].curleft + 100;
-                                        $("#E" + enemyindex).append("<div class='slashEffects'><img style='transform: rotate(90deg) translate(-100%,-100%); margin-left:-40px; margin-top:-10px' src='../Pictures/Effects/Hook.gif' /></div>");
-                                        setTimeout(function () {
-                                            $(".slashEffects").remove();
-                                        }, 1000);
-                                        $('#E' + enemyindex).animate({
-                                            left: (units[selectedindex].curleft + 100) + 'px'
-                                        }, 500);
+                                         if(Eunits[enemyindex].type!="Eye"){
+                                                Eunits[enemyindex].curleft = units[selectedindex].curleft + 100;
+                                                $("#E" + enemyindex).append("<div class='slashEffects'><img style='transform: rotate(90deg) translate(-100%,-100%); margin-left:-40px; margin-top:-10px' src='../Pictures/Effects/Hook.gif' /></div>");
+                                                setTimeout(function () {
+                                                    $(".slashEffects").remove();
+                                                }, 1000);
+                                                $('#E' + enemyindex).animate({
+                                                    left: (units[selectedindex].curleft + 100) + 'px'
+                                                }, 500);
+                                         }
                                     }
                                     if (Eunits[enemyindex].curtop === units[selectedindex].curtop && Eunits[enemyindex].curleft < units[selectedindex].curleft) {
                                         if ((Eunits[Eslots[1]].curtop === units[selectedindex].curtop && Eunits[Eslots[1]].curleft === units[selectedindex].curleft - 100) || (Eunits[Eslots[2]].curtop === units[selectedindex].curtop && Eunits[Eslots[2]].curleft === units[selectedindex].curleft - 100) || (Eunits[Eslots[3]].curtop === units[selectedindex].curtop && Eunits[Eslots[3]].curleft === units[selectedindex].curleft - 100) || (Eunits[Eslots[4]].curtop === units[selectedindex].curtop && Eunits[Eslots[4]].curleft === units[selectedindex].curleft - 100) || (Eunits[Eslots[5]].curtop === units[selectedindex].curtop && Eunits[Eslots[5]].curleft === units[selectedindex].curleft - 100) || (units[slots[1]].curtop === units[selectedindex].curtop && units[slots[1]].curleft === units[selectedindex].curleft - 100) || (units[slots[2]].curtop === units[selectedindex].curtop && units[slots[2]].curleft === units[selectedindex].curleft - 100) || (units[slots[3]].curtop === units[selectedindex].curtop && units[slots[3]].curleft === units[selectedindex].curleft - 100)) {
                                             message("There is someone blocking the soldier's line of sight.");
                                             return;
                                         }
-                                        Eunits[enemyindex].curleft = units[selectedindex].curleft - 100;
-                                        $("#E" + enemyindex).append("<div class='slashEffects'><img style='transform: rotate(270deg) translate(-100%,-100%); margin-left:50px; margin-top:-200px' src='../Pictures/Effects/Hook.gif' /></div>");
-                                        setTimeout(function () {
-                                            $(".slashEffects").remove();
-                                        }, 1000);
-                                        $('#E' + enemyindex).animate({
-                                            left: (units[selectedindex].curleft - 100) + 'px'
-                                        }, 500);
+                                        if(Eunits[enemyindex].type!="Eye"){
+                                            Eunits[enemyindex].curleft = units[selectedindex].curleft - 100;
+                                            $("#E" + enemyindex).append("<div class='slashEffects'><img style='transform: rotate(270deg) translate(-100%,-100%); margin-left:50px; margin-top:-200px' src='../Pictures/Effects/Hook.gif' /></div>");
+                                            setTimeout(function () {
+                                                $(".slashEffects").remove();
+                                            }, 1000);
+                                            $('#E' + enemyindex).animate({
+                                                left: (units[selectedindex].curleft - 100) + 'px'
+                                            }, 500);
+                                        }
                                     }
                                 }
                                 if(magnetthere===true){
@@ -8478,7 +8669,6 @@ var mult = 0;
                             $(".staticEffects").fadeOut(2000);
                             Lightning.play();
 
-                            Eunits[enemyindex].health -= damage;
                             sorcerermana -= 20;
                             units[selectedindex].usedaction = true;
                             $(".manabar").remove();
@@ -8549,7 +8739,6 @@ var mult = 0;
                             }
                             $("#TEXT").append("<p>" + units[selectedindex].name + " did " + damage + " damage to " + Eunits[enemyindex].name + "\n</p>");
                             Lightning.play();
-                            Eunits[enemyindex].health -= damage;
                             sorcerermana-=30;
                             units[selectedindex].usedaction = true;
 
@@ -9221,340 +9410,354 @@ if(units[selectedindex].abilitydoublevigor===true){
         });
     }
     function levelup(index,mode) {
+        var curindex = slots[index]
         if(mode){
-            slots[index]=index;
-            units[slots[index]].experience+=1000;
+            curindex=index;
+            units[curindex].experience+=1000;
+        }else{
+            units[curindex].experience += curexperience;
         }
-        units[slots[index]].experience += curexperience;
-        if (units[slots[index]].experience >= 1000) {
-            units[slots[index]].experience -= 1000;
-            if(units[slots[index]].level=="-"){
+        if(units[curindex].isanimal){
+            return;
+        }
+        
+        if (units[curindex].experience >= 1000) {
+            units[curindex].experience -= 1000;
+            if(units[curindex].level=="-"){
                     return;
                 }
-            units[slots[index]].level += 1;
-            units[slots[index]].health+=units[slots[index]].levelhealth;
-            units[slots[index]].maxhealth+=units[slots[index]].levelhealth;
+            units[curindex].level += 1;
+            units[curindex].health+=units[curindex].levelhealth;
+            units[curindex].maxhealth+=units[curindex].levelhealth;
 //            units[slots[index]].resistance+=units[slots[index]].levelresistance;
 //            units[slots[index]].defense+=units[slots[index]].leveldefense;
 //            units[slots[index]].attack+=units[slots[index]].levelattack;
 
-            if(units[slots[index]].type==="Soldier"){
-                switch(units[slots[index]].level){
+            if(units[curindex].type==="Soldier"){
+                switch(units[curindex].level){
                     case 2:
-                        units[slots[index]].abilitydash=true;
+                        units[curindex].abilitydash=true;
                         $("#TEXT").append("<p>The Soldier learned 'DASH'. He can now move an extra space as his action for the turn.</p>");
                         break;
                     case 3:
-                        units[slots[index]].abilityimmunity=true;
+                        units[curindex].abilityimmunity=true;
                         $("#TEXT").append("<p>The Soldier learned 'IMMUNITY'. He's now immune to all ailments.</p>");
                         break;
                     case 4:
-                        units[slots[index]].abilitysteadfast=true;
+                        units[curindex].abilitysteadfast=true;
                         $("#TEXT").append("<p>The Soldier learned 'STEADFAST'. If damage would kill him, it reduces it to one instead.</p>");
                         break;
                     case 5:
-                        units[slots[index]].abilitymedkit=true;
-                        units[slots[index]].medkit=true;
+                        units[curindex].abilitymedkit=true;
+                        units[curindex].medkit=true;
                         $("#TEXT").append("<p>The Soldier learned 'MEDKIT'. Use this to fully restore soldier's health. Soldier will refill medkit when he visits the hospital.</p>");
                         break;
                     case 6:
-                        units[slots[index]].abilitycounter=true;
+                        units[curindex].abilitycounter=true;
                         $("#TEXT").append("<p>The Soldier learned 'COUNTER'. If an adjacent enemy damages the soldier, he will hit a portion of that damage back.</p>");
                         break;
                 }
             }
-            if(units[slots[index]].type==="Knight"){
-                switch(units[slots[index]].level){
+            if(units[curindex].type==="Knight"){
+                switch(units[curindex].level){
                     case 2:
-                        units[slots[index]].abilityswirl=true;
+                        units[curindex].abilityswirl=true;
                         $("#TEXT").append("<p>The Knight learned 'SWIRL'. Use this special to attack all adjacent enemies around him.</p>");
                         break;
                     case 3:
-                        units[slots[index]].abilitysweep=true;
+                        units[curindex].abilitysweep=true;
                         $("#TEXT").append("<p>The Knight learned 'SWEEP'. Use it to attack an enemy and the enemies beside it.</p>");
                         break;
                     case 4:
-                        units[slots[index]].abilityfreemove=true;
+                        units[curindex].abilityfreemove=true;
                         $("#TEXT").append("<p>The Knight learned 'FREE MOVE'. Moving no longer takes energy.</p>");
                         break;
                     case 5:
-                        units[slots[index]].abilitypiercer=true;
+                        units[curindex].abilitypiercer=true;
                         $("#TEXT").append("<p>The Knight learned 'PIERCER'. Use this special to do damage that ignores defenses.</p>");
                         break;
                     case 6:
-                        units[slots[index]].abilityreact=true;
+                        units[curindex].abilityreact=true;
                         $("#TEXT").append("<p>The Knight learned 'REACT'. Any enemy that moves next to the Knight will be attacked.</p>");
                         break;
                 }
             }
-            if(units[slots[index]].type==="Thief"){
-                switch(units[slots[index]].level){
+            if(units[curindex].type==="Thief"){
+                switch(units[curindex].level){
                     case 2:
-                        units[slots[index]].abilityinvisible=true;
+                        units[curindex].abilityinvisible=true;
                         $("#TEXT").append("<p>The Thief learned 'INVISIBLE'. Enemies will ignore him while invisible, but he will lose invisibility for a turn if he attacks..</p>");
                         break;
                     case 3:
-                        units[slots[index]].abilitydodge=true;
+                        units[curindex].abilitydodge=true;
                         $("#TEXT").append("<p>The Thief learned 'DODGE'. Thief has a chance to dodge an attack. Higher the damage, the more likely he will be able to dodge.</p>");
                         break;
                     case 4:
-                        units[slots[index]].abilitybackstab=true;
+                        units[curindex].abilitybackstab=true;
                         $("#TEXT").append("<p>The Thief learned 'BACKSTAB'. Attacks from behind the enemy are double damage.</p>");
                         break;
                     case 5:
-                        units[slots[index]].abilityfirstblow=true;
+                        units[curindex].abilityfirstblow=true;
                         $("#TEXT").append("<p>The Thief learned 'FIRSTBLOW'. Attacks on an undamaged enemy will inflict blindness for two turns.</p>");
                         break;
                     case 6:
-                        units[slots[index]].abilitybettersteal=true;
+                        units[curindex].abilitybettersteal=true;
                         $("#TEXT").append("<p>The Thief learned 'BETTERSTEAL'. He will have 100% success at stealing.</p>");
                         break;
                 }
             }
 
-            if(units[slots[index]].type==="Guard"){
-                switch(units[slots[index]].level){
+            if(units[curindex].type==="Guard"){
+                switch(units[curindex].level){
                     case 2:
-                        units[slots[index]].abilityprotect=true;
+                        units[curindex].abilityprotect=true;
                         $("#TEXT").append("<p>The Guard learned 'PROTECT'. Use it on an ally, and for the rest of the battle, all damage will be redirected to the guard.</p>");
                         break;
                     case 3:
-                        units[slots[index]].abilityimmunity=true;
+                        units[curindex].abilityimmunity=true;
                         $("#TEXT").append("<p>The Guard learned 'IMMUNITY'. Guard, and whomever the guard is protecting, are immune to all ailments.</p>");
                         break;
                     case 4:
-                        units[slots[index]].abilityscout=true;
+                        units[curindex].abilityscout=true;
                         $("#TEXT").append("<p>The Guard learned 'SCOUT'. Groups with the guard will always go first.</p>");
                         break;
                     case 5:
-                        units[slots[index]].abilityreshield=true;
+                        units[curindex].abilityreshield=true;
                         $("#TEXT").append("<p>The Guard learned 'RESHIELD'. Use to gain 10 to the shield.</p>");
                         break;
                     case 6:
-                        units[slots[index]].abilityincreaseenergy=true;
+                        units[curindex].abilityincreaseenergy=true;
                         $("#TEXT").append("<p>The Guard learned 'INCREASE SHIELD'. Starting shield is doubled.</p>");
                         break;
                 }
             }
-            if(units[slots[index]].type==="Enchantress"){
-                switch(units[slots[index]].level){
+            if(units[curindex].type==="Enchantress"){
+                switch(units[curindex].level){
                     case 2:
-                        units[slots[index]].abilitystorm=true;
+                        units[curindex].abilitystorm=true;
                         $("#TEXT").append("<p>The Enchantress learned 'STORM'. It summons a storm cloud that helps for the rest of the battle. Costs 30 mana</p>");
                         break;
                     case 3:
-                        units[slots[index]].abilitytorment=true;
+                        units[curindex].abilitytorment=true;
                         $("#TEXT").append("<p>The Enchantress learned 'TORMENT'. Use to give an enemy sleep, poison, and enfeeble for 2 turns. Costs 50 mana.</p>");
                         break;
                     case 4:
-                        units[slots[index]].abilitytransform=true;
+                        units[curindex].abilitytransform=true;
                         $("#TEXT").append("<p>The Enchantress learned 'TRANSFORM'. Enchantress transforms into a golem for the rest of the battle. Costs 100 mana.</p>");
                         break;
                     case 5:
-                        units[slots[index]].abilitybestow=true;
+                        units[curindex].abilitybestow=true;
                         $("#TEXT").append("<p>The Enchantress learned 'Bestow'. Uses to double the attack, and make invincible an ally for a turn. Costs 50 mana</p>");
                         break;
                     case 6:
-                        units[slots[index]].abilityreplenish=true;
+                        units[curindex].abilityreplenish=true;
                         $("#TEXT").append("<p>The Enchantress learned 'Replenish'. Use it on an ally to restore arrows, charge, energy, or power. Costs 100 mana</p>");
                         break;
                 }
             }
-            if(units[slots[index]].type==="Healer"){
-                switch(units[slots[index]].level){
+            if(units[curindex].type==="Healer"){
+                switch(units[curindex].level){
                     case 2:
-                        units[slots[index]].abilitymove=true;
+                        units[curindex].abilitymove=true;
                         $("#TEXT").append("<p>The Healer learned 'RESTORE MOVE'. Vigor now also allows ally to move again.</p>");
                         break;
                     case 3:
-                        units[slots[index]].abilityheal=true;
+                        units[curindex].abilityheal=true;
                         $("#TEXT").append("<p>The Healer learned 'HEAL'. Use it on an ally to restore 60 health.</p>");
                         break;
                     case 4:
-                        units[slots[index]].abilityreach=true;
+                        units[curindex].abilityreach=true;
                         $("#TEXT").append("<p>The Healer learned 'REACH'. She can use vigor and heal on any unit regardless of location.</p>");
                         break;
                     case 5:
-                        units[slots[index]].abilitycleanse=true;
+                        units[curindex].abilitycleanse=true;
                         $("#TEXT").append("<p>The Healer learned 'CLEANSE'. Vigor and Heal also remove all ailments.</p>");
                         break;
                     case 6:
-                        units[slots[index]].abilitydoublevigor=true;
+                        units[curindex].abilitydoublevigor=true;
                         $("#TEXT").append("<p>The Healer learned 'DOUBLE VIGOR'. Vigor now affects both other allies.</p>");
                         break;
                 }
             }
 
-            if(units[slots[index]].type==="Mage"){
-                switch(units[slots[index]].level){
+            if(units[curindex].type==="Mage"){
+                switch(units[curindex].level){
                     case 2:
-                        units[slots[index]].abilityzap=true;
+                        units[curindex].abilityzap=true;
                         $("#TEXT").append("<p>The Mage learned 'ZAP'. Deals lightning, magic damage to one or two enemy up to two linear spaces away.</p>");
                         break;
                     case 3:
-                        units[slots[index]].abilityfreeze=true;
+                        units[curindex].abilityfreeze=true;
                         $("#TEXT").append("<p>The Mage learned 'FREEZE'.  Deals ice, magic damage to one enemy up to three linear spaces away.</p>");
                         break;
                     case 4:
-                        units[slots[index]].abilityelementalailments=true;
+                        units[curindex].abilityelementalailments=true;
                         $("#TEXT").append("<p>The Mage learned 'ADDED AILMENTS'. Ice may cause sleep, fire blindness, and lightning immobolize.</p>");
                         break;
                     case 5:
-                        units[slots[index]].abilitypain=true;
+                        units[curindex].abilitypain=true;
                         $("#TEXT").append("<p>The Mage learned 'PAIN'. Deals magic damage equal to her attack plus the enemy's defense to an adjacent enemy.</p>");
                         break;
                     case 6:
-                        units[slots[index]].abilitydoubletap=true;
+                        units[curindex].abilitydoubletap=true;
                         $("#TEXT").append("<p>The Mage learned 'DOUBLETAP'. Mage may do another action instead of moving.</p>");
                         break;
                 }
             }
-            if(units[slots[index]].type==="Wizard"){
-                switch(units[slots[index]].level){
+            if(units[curindex].type==="Wizard"){
+                switch(units[curindex].level){
                     case 2:
-                        units[slots[index]].abilitybolt =true;
+                        units[curindex].abilitybolt =true;
                         $("#TEXT").append("<p>The Wizard learned 'BOLT'. Deals 2X lightning, magic damage to any enemy for 3 charge.</p>");
                         break;
                     case 3:
-                        units[slots[index]].abilitymissile=true;
+                        units[curindex].abilitymissile=true;
                         $("#TEXT").append("<p>The Wizard learned 'MISSILE'. Deals fire, magic damage times the current charge to any enemy.</p>");
                         break;
                     case 4:
-                        units[slots[index]].abilityelementalailments=true;
+                        units[curindex].abilityelementalailments=true;
                         $("#TEXT").append("<p>The Wizard learned 'ELEMENTAL AILMENTS'. Ice may cause sleep, fire blindness, and lightning immobolize.</p>");
                         break;
                     case 5:
-                        units[slots[index]].abilitydrain=true;
+                        units[curindex].abilitydrain=true;
                         $("#TEXT").append("<p>The Wizard learned 'DRAIN'. Use it on an adjacent enemy to completely drain it's charge and give it to the wizard.</p>");
                         break;
                     case 6:
-                        units[slots[index]].abilitystartcharge=true;
+                        units[curindex].abilitystartcharge=true;
                         $("#TEXT").append("<p>The Wizard learned 'START CHARGE'. Starts with 2 charge.</p>");
                         break;
                 }
             }
-            if(units[slots[index]].type==="Sorcerer"){
-                switch(units[slots[index]].level){
+            if(units[curindex].type==="Sorcerer"){
+                switch(units[curindex].level){
                     case 2:
-                        units[slots[index]].abilitylightning=true;
+                        units[curindex].abilitylightning=true;
                         $("#TEXT").append("<p>The Sorcerer learned 'LIGHTNING'. Deals 2X lightning, magic damage.</p>");
                         break;
                     case 3:
-                        units[slots[index]].abilityfireblast=true;
+                        units[curindex].abilityfireblast=true;
                         $("#TEXT").append("<p>The Sorcerer learned 'FIREBLAST'. Deals 2X fire, magic damage to any enemy and 1X fire, magic damage to all adjacent enemies.</p>");
                         break;
                     case 4:
-                        units[slots[index]].abilitymanaincrease=true;
+                        units[curindex].abilitymanaincrease=true;
                         sorcererincrease=2;
                         $("#TEXT").append("<p>The Sorcerer learned 'POWER INCREASE'. Daily increase of Power is doubled.</p>");
                         break;
                     case 5:
-                        units[slots[index]].abilityslumber=true;
+                        units[curindex].abilityslumber=true;
                         $("#TEXT").append("<p>The Sorcerer learned 'SLUMBER'. Puts all enemies to sleep.</p>");
                         break;
                     case 6:
-                        units[slots[index]].abilitydeath=true;
+                        units[curindex].abilitydeath=true;
                         $("#TEXT").append("<p>The Sorcerer learned 'DEATH'. Instantly kills an enemy.</p>");
                         break
                 }
             }
 
-            if(units[slots[index]].type==="Archer"){
-                switch(units[slots[index]].level){
+            if(units[curindex].type==="Archer"){
+                switch(units[curindex].level){
                     case 2:
-                        units[slots[index]].abilityexplosion=true;
+                        units[curindex].abilityexplosion=true;
                         $("#TEXT").append("<p>The Archer learned 'EXPLODING ARROW'. Deals physical, fire damage to any enemy and all enemies adjacent to it.</p>");
                         break;
                     case 3:
-                        units[slots[index]].abilitypierce=true;
+                        units[curindex].abilitypierce=true;
                         $("#TEXT").append("<p>The Archer learned 'PIERCING ARROW'. Deals damage to enemy ignoring defenses.</p>");
                         break;
                     case 4:
-                        units[slots[index]].abilityimmobolize=true;
+                        units[curindex].abilityimmobolize=true;
                         $("#TEXT").append("<p>The Archer learned 'IMMOBOLIZED ARROW'. Inflicts immobolized onto enemy. It can't move for two turns.</p>");
                         break;
                     case 5:
-                        units[slots[index]].abilitytitan=true;
+                        units[curindex].abilitytitan=true;
                         $("#TEXT").append("<p>The Archer learned 'TITAN ARROW'. Deals 2X damage.</p>");
                         break;
                     case 6:
-                        units[slots[index]].abilitydoublearrows=true;
-                        units[slots[index]].arrowcapacity=2;
+                        units[curindex].abilitydoublearrows=true;
+                        units[curindex].arrowcapacity=2;
                         $("#TEXT").append("<p>The Archer learned 'DOUBLE ARROWS'. Starts with 2 arrows instead of 1.</p>");
                         break;
                 }
             }
-            if(units[slots[index]].type==="Rouge"){
-                switch(units[slots[index]].level){
+            if(units[curindex].type==="Rouge"){
+                switch(units[curindex].level){
                     case 2:
-                        units[slots[index]].abilityblindness =true;
+                        units[curindex].abilityblindness =true;
                         $("#TEXT").append("<p>The Rouge learned 'BLINDNESS'. Inflicts blindness onto enemy for two turns, making it so it can't attack.</p>");
                         break;
                     case 3:
-                        units[slots[index]].abilityenfeeble=true;
+                        units[curindex].abilityenfeeble=true;
                         $("#TEXT").append("<p>The Rouge learned 'ENFEEBLE'. Inflicts enfeeble onto enemy for 2 turns. While enfeebled, all damage to it will ignore defenses and resistance.</p>");
                         break;
                     case 4:
-                        units[slots[index]].abilitysleep=true;
+                        units[curindex].abilitysleep=true;
                         $("#TEXT").append("<p>The Rouge learned 'SLEEP'. Inflicts sleep onto enemy for one turn. It skips it's turn while asleep.</p>");
                         break;
                     case 5:
-                        units[slots[index]].abilityailmentduration=true;
-                        units[slots[index]].duration=1;
+                        units[curindex].abilityailmentduration=true;
+                        units[curindex].duration=1;
                         $("#TEXT").append("<p>The Rouge learned 'AILMENT DURATION'. All ailments from the rouge with last an extra turn.</p>");
                         break;
                     case 6:
-                        units[slots[index]].abilitydoublearrows=true;
-                        units[slots[index]].arrowcapacity=2;
+                        units[curindex].abilitydoublearrows=true;
+                        units[curindex].arrowcapacity=2;
                         $("#TEXT").append("<p>The Rouge learned 'DOUBLE ARROWS'. Starts with 2 arrows instead of 1.</p>");
                         break;
                 }
             }
-            if(units[slots[index]].type==="Templar"){
-                switch(units[slots[index]].level){
+            if(units[curindex].type==="Templar"){
+                switch(units[curindex].level){
                     case 2:
-                        units[slots[index]].abilitygrapplinghook=true;
+                        units[curindex].abilitygrapplinghook=true;
                         $("#TEXT").append("<p>The Templar learned 'GRAPPLING HOOK ARROW'. Pulls an enemy to the templar.</p>");
                         break;
                     case 3:
-                        units[slots[index]].abilityelemental=true;
+                        units[curindex].abilityelemental=true;
                         $("#TEXT").append("<p>The Templar learned 'ELEMENTAL'. You can choose an element to apply to the templar's attacks.</p>");
                         break;
                     case 4:
-                        units[slots[index]].abilitydisrupt=true;
+                        units[curindex].abilitydisrupt=true;
                         $("#TEXT").append("<p>The Templar learned 'DISRUPTING ARROW'. Removes all charge from all enemies.</p>");
                         break;
                     case 5:
-                        units[slots[index]].abilityburst=true;
+                        units[curindex].abilityburst=true;
                         $("#TEXT").append("<p>The Templar learned 'BURST ARROW'. Deals damage equal to it's attack plus the enemy's resistance.</p>");
                         break;
                     case 6:
-                        units[slots[index]].abilitydoublearrows=true;
-                        units[slots[index]].arrowcapacity=2;
+                        units[curindex].abilitydoublearrows=true;
+                        units[curindex].arrowcapacity=2;
                         $("#TEXT").append("<p>The Templar learned 'DOUBLE ARROWS'. Starts with 2 arrows instead of 1.</p>");
                         break;
                 }
             }
         }
-        if(units[slots[index]].level===6 || units[slots[index]].level==="-"){
-            units[slots[index]].experience = 0;
-            units[slots[index]].level="-";
+        if(units[curindex].level===6 || units[curindex].level==="-"){
+            units[curindex].experience = 0;
+            units[curindex].level="-";
             return;
         }
     }
 
+    var gameoverset=false;
     function gameovercheck(){
         var alldead = true
+         
         for(var i = 0;i<index;i++){
             if(units[i].alive ==true){
                 alldead=false
             }
         }
         if(alldead){
-            gameover()
+            if (typeof indiv_alldead == 'function'){
+                     indiv_alldead();
+            }else{
+                gameover()
+            }
+            
         }
     }
     function gameover(){
+        gameoverset=true;
             $(".areas").remove();
                 $('#Pass').remove();
                 $(".icon").remove();
@@ -9569,6 +9772,9 @@ if(units[selectedindex].abilitydoublevigor===true){
                 
     }
     function winbattle(location){
+        if(gameoverset){
+            return;
+        }
       $("#background").append("<p class='epictext' style ='position: absolute; margin-left:200px; margin-top:-300px'>You Win</p>")
     changesong("01/win-theme.mp3")
     setTimeout(function(){
@@ -9688,8 +9894,8 @@ function clickactionbuttons(){
                 $("#TEXT").append("<p>" + units[selectedindex].name + " has already used an action this turn</p>");
                 return;
             }
-            $("#TEXT").append("<p>" + units[selectedindex].name + " escaped and will return to the capitol in 5 days.\n</p>");
-            units[selectedindex].enroute=5;
+            $("#TEXT").append("<p>" + units[selectedindex].name + " escaped and will return to the capitol in " + (1+difflevel) + " days.\n</p>");
+            units[selectedindex].enroute=1+difflevel;
             $("#" + selectedindex).remove();
             units[selectedindex].group=0;
             if(units[selectedindex].abilityprotect===true){
@@ -12573,6 +12779,93 @@ function enemyturn(selectedactions){
                             rangedwhotoattack("Golem");
                         }
                     }
+                      if ((Eunits[Eslots[y]].type === "Eye")) {
+                        //Move left
+                        var moved = false;
+                        //attack enemies
+                        if(Eunits[Eslots[y]].index==0){
+                            
+                            var randnum;
+                            var keepgoing=true;
+                            while(keepgoing==true){
+                                randnum = Math.floor((Math.random() * 3)+1);
+                                if(units[slots[randnum]].health>0 && slots[randnum]!=-1){
+                                    keepgoing=false
+                                }
+                                if(units[slots[1]].health<=0 && units[slots[2]].health<=0 && units[slots[3]].health<=0){
+                                    keepgoing=false
+                                }
+                            }
+                            console.log("got here")
+                            var mode = Math.floor((Math.random() * 7) + 1);
+                            if(mode==1){
+                                $("#battlebackground").append("<div id='claw' style = 'width:700px;height:700px; position:absolute;z-index:10;margin-top:-1300px'><img style = 'width:700px;height:700px' src='../Pictures/Effects/claw-left.gif' /></div>");
+                                    $("#claw").animate({
+                                        left: (units[slots[randnum]].curleft-250) + "px",
+                                        top: (units[slots[randnum]].curtop+920) + "px",
+                                    },500);
+                                
+                                setTimeout(function(){
+                                    $("#claw").animate({
+                                        top: "-=850px"
+                                    },700);
+                                    $("#" + slots[randnum]).animate({
+                                        top: "-=850px"
+                                    },700);
+                                    
+                                    $("#TEXT").append("<p>The Kraken ate " + units[slots[randnum]].name + "</p>")
+                                    units[slots[randnum]].health=0;
+                                    Dies("type",slots[randnum])
+                                    units[slots[randnum]].curleft = 10000;
+                                    units[slots[randnum]].curtop = 10000;
+                                    eating.play()
+                                    setTimeout(function(){                             
+                                        $("#claw").remove()
+                                        if (units[slots[1]].alive === false && units[slots[2]].alive === false && units[slots[3]].alive === false) {
+                                        $("#TEXT").empty();
+                                        $("#battlebackground").remove();
+                                        $("#M"+curally).remove();
+                                        $("#space" + groups[curally].location).data("filled",0);
+                                        groups[curally].location=-1;
+                                        groups[curally].active=false;
+
+                                        $(".actionbutton").remove();
+                                        battleon=false;
+                                        $('.actions').append("<div class = 'actionbutton' id='Pass'><p>Pass</p></div>");
+                                        gameovercheck();
+                                        enemyconquer();
+                                        presspass();
+                                        startcombat();
+                                    }//end of loses battle
+                                    },1000)
+                                },700)
+                                
+                            }else if (mode>1 && mode<=7){
+                                $("#battlebackground").append("<div id='claw' style = 'width:700px;height:700px; position:absolute;z-index:10;margin-top:" + (units[slots[randnum]].curtop - 1000) + "px; margin-left:-1000px'><img style = 'width:700px;height:700px' src='../Pictures/Effects/claw-left.gif' /></div>");
+                                Sword.play();
+                                    $("#claw").animate({
+                                        left: "+=2000px",
+                                    },1000);
+                                setTimeout(function(){
+                                    $("#claw").remove()
+                                },1000)
+                                
+                                for (var x = 1; x < 4; x++) {
+                                    if (units[slots[x]].curtop ==units[slots[randnum]].curtop) {
+                                        var damage = Eunits[Eslots[y]].attack - units[slots[x]].defense- units[attackthisone].defensetempboost;
+                                        if (damage < 0) {
+                                            damage = 0
+                                        }
+                                        Damaging(damage, slots[x])
+                                    }
+                                }
+                            }
+                            
+                                
+                            
+                            }
+                          
+                        }
                     if ((Eunits[Eslots[y]].type === "Spitter")) {
                         //Move left
                         var moved = false;
@@ -13494,15 +13787,15 @@ function text(words,left,top){
 function TEMPstartcombat(){
 
                  Eunits[newEindex()]=new Goblin(curEindex, 1,2);
-              //  Eunits[newEindex()]=new EMage(curEindex, 1,2);
-             //   Eunits[newEindex()]=new EWizard(curEindex, 1,2);
-             //   Eunits[newEindex()]=new Necromancer(curEindex, 1,2);
+//                Eunits[newEindex()]=new Eye(curEindex, 1,2);
+//                Eunits[newEindex()]=new Eye(curEindex, 1,2);
+//                Eunits[newEindex()]=new Eye(curEindex, 1,2);
               //  Eunits[newEindex()]=new Beekeeper(curEindex, 1,2);
 
                 Egroups[Egroupindex]=new Enewgroup(1,70,1000,"Warrior");
-                units[index]=new ASpider(index,"Mimic");
-                units[index]=new ASparrow(index,"Knight1");
-                units[index]=new AWolf(index,"Guard");
+                units[index]=new Mimic(index,"Mimic");
+                units[index]=new Archer(index,"Wizard1");
+                units[index]=new Rouge(index,"Knight");
 
                 units[0].slot=1;
                 units[1].slot=2;
@@ -13696,6 +13989,9 @@ assignlocations();
                         },500);
                         groups[activenum].location=-1;
                     }
+                    if (typeof indiv_return == 'function'){
+                     indiv_return();
+                }
                 }
             }
             curloc = groups[activenum].location;
@@ -13728,5 +14024,5 @@ assignlocations();
     });
     
 
-           //TEMPstartcombat();
+           TEMPstartcombat();
 })//done

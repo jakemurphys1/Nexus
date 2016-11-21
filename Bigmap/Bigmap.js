@@ -47,6 +47,7 @@ var number_of_units=6;
 
 
         var Hire=0;
+var money=0;
 
 
         var Hirelevelup=0;

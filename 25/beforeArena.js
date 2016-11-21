@@ -17,40 +17,42 @@ function queue(){
                  changesong("Drummer.wav")
             break
         case 2:
-             dialog("Welcome to day 2.","Thief1")
+             dialog("Welcome to day 3.","Thief1")
             break
         case 3:
-            dialog("But today will be tougher.","Thief1")
+            dialog("We're done well so far, but we're in for a tough fight today.","Thief1")
             break
         case 4:
-            dialog("This group will be stronger and smarter.","Thief1")
+            dialog("They want us to lose this one.","Thief1")
         break
          case 5:
-            dialog("They will be moving this time, so plan ahead.","Thief1")
+            dialog("They plan for us to lose this one.","Thief1")
         break
         case 6:
-            dialog("However, this time, we have a new ally.","Thief1")
+            dialog("On top of fighting those soldiers, there will be a sorcerer hitting us with lightning.","Thief1")
         break
         case 7:
-            movehor("Thief1",145,"end")
+            dialog("We cannot touch him or stop him in anyway.","Thief1")
         break
         case 8:
-            movevert("Thief1",-1,"end")
+            dialog("Our only option is to destroy all the enemies before he destroys us.","Thief1")
         break
         case 9:
-            dialog("This is an enchantress.","Thief1")
+        movevert("Thief1",1)
+            dialog("I know I said failure wasn't an option, but if we fail today.","Thief1")
         break
          case 10:
-            dialog("She can absorb energy from enemies to be used later for powerful enchantments.","Thief1")
+            dialog("Know that you have all fought well and bravely.","Thief1")
         break
          case 11:
-            dialog("Try to stock up on energy early; we're going to need it.","Thief1")
+            dialog("It is the life of the slave to be fleeting.","Thief1")
         break
         case 12:
-            dialog("Move out!.","Thief1")
+        movevert("Thief1",-1)
+            dialog("Now Move out!.","Thief1")
         break
          case 13:
-            window.location.href = '../16_Arena2/Arena.html'
+            window.location.href = '../26_Arena3/Arena.html'
         break
     }
 }
@@ -58,5 +60,5 @@ function queue(){
 $(window).load(function(){
     doeffect("Dramatic.wav")
 
-     opening("Chapter Seven:","Back to the Arena")
+     opening("Chapter Eleven:","Breaking the Wall")
 });

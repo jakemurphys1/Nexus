@@ -27,7 +27,7 @@
         var teleportpotion=0;
         var boostpotion=0;
 
-var number_of_units=6;
+var number_of_units=8;
 
 noheal=false;
 var wolves=0;
@@ -56,7 +56,10 @@ var sparrows=0;
         $("#TEXT").append('<div id="barracks"></div>');
 
         for(var i =0;i<index;i++){
-            if(units[i].type !="Sparrow" && units[i].type !="Bear" && units[i].type !="Wolf" && units[i].type !="turtle" && units[i].type !="Spider"){
+            if(units[i].type !="Sparrow" && units[i].type !="Bear" && units[i].type !="Wolf" && units[i].type !="Turtle" && units[i].type !="Spider"){
+                continue;
+            }
+            if(units[i].alive==false){
                 continue;
             }
             if((units[i].group===0 || units[i].group===-1)){
@@ -199,14 +202,14 @@ function containaccessories(){
         $("#space3").data("move1",'2').data("move2",'4').data("move3",'').data("move4",'').data("left",275).data("top",230).data("location",3).data("fortify",false);
         $("#space4").data("move1",'3').data("move2",'5').data("move3",'').data("move4",'').data("left",350).data("top",230).data("location",4).data("fortify",false);
         $("#space5").data("move1",'6').data("move2",'4').data("move3",'').data("move4",'').data("left",425).data("top",230).data("location",5).data("fortify",false);
-        $("#space6").data("move1",'5').data("move2",'12').data("move3",'4').data("move4",'').data("left",500).data("top",230).data("location",6).data("fortify",false);
+        $("#space6").data("move1",'5').data("move2",'7').data("move3",'').data("move4",'').data("left",500).data("top",230).data("location",6).data("fortify",false);
         $("#space7").data("move1",'6').data("move2",'8').data("move3",'').data("move4",'').data("left",515).data("top",160).data("location",7).data("fortify",false);
         $("#space8").data("move1",'9').data("move2",'7').data("move3",'').data("move4",'').data("left",500).data("top",100).data("location",8).data("fortify",false);
         $("#space9").data("move1",'10').data("move2",'8').data("move3",'').data("move4",'').data("left",425).data("top",100).data("location",9).data("fortify",false);
         $("#space10").data("move1",'9').data("move2",'11').data("move3",'').data("move4",'').data("left",350).data("top",100).data("location",10).data("fortify",false);
         $("#space11").data("move1",'12').data("move2",'10').data("move3",'').data("move4",'').data("left",275).data("top",100).data("location",11).data("fortify",false);
-        $("#space12").data("move1",'13').data("move2",'12').data("move3",'').data("move4",'').data("left",200).data("top",100).data("location",12).data("fortify",false);
-        $("#space13").data("move1",'12').data("move2",'29').data("move3",'14').data("move4",'19').data("left",125).data("top",100).data("location",13).data("fortify",false);
+        $("#space12").data("move1",'13').data("move2",'11').data("move3",'').data("move4",'').data("left",200).data("top",100).data("location",12).data("fortify",false);
+        $("#space13").data("move1",'12').data("move2",'').data("move3",'').data("move4",'').data("left",125).data("top",100).data("location",13).data("fortify",false);
         
         $("#space14").data("move1",'15').data("move2",'').data("move3",'').data("move4",'').data("left",70).data("top",370).data("location",14).data("fortify",false).data("castle",true).data("color",'red');
         $("#space15").data("move1",'16').data("move2",'14').data("move3",'').data("move4",'').data("left",145).data("top",370).data("location",15).data("fortify",false);
@@ -240,7 +243,7 @@ function newunit(){
         switch(temp){
             case 1:
                 tempclass="Mage";
-                   tempname="Sandra"
+                   tempname="Mage2"
                 break;
             case 2:
                 tempclass="Guard";
@@ -252,7 +255,7 @@ function newunit(){
                 break;
             case 4:
                 tempclass="Soldier";
-                   tempname="Edgar"
+                   tempname="Soldier2"
                 break;
             case 5:
                 tempclass="Enchantress";
@@ -261,6 +264,14 @@ function newunit(){
             case 6:
                 tempclass="Rouge";
                    tempname="Rouge1"
+                break;
+            case 7:
+                tempclass="Thief";
+                   tempname="Thief2"
+                break;
+            case 8:
+                tempclass="Knight";
+                   tempname="Knight"
                 break;
         }
 
@@ -272,6 +283,7 @@ function newunit(){
                 going=true;
             }
         }
+        
     }//end of while
  createsoldier(tempclass,tempname);
 }
@@ -909,14 +921,25 @@ function set_area_background(i){
     return backgroundpic;
 }
 function updateHeader(){
-           $('#top').html("<div style='margin-top:15px; margin-left:10px'><span>Turn:" + day + "/50</span><span style=''>");
+           $('#top').html("<div style='margin-top:15px; margin-left:10px'><span>Turn:" + day + "/30</span><span style=''>");
 }
 
 function indiv_newday(){
              updateHeader(); 
-    
-    if(day>50){
+
+    if(day>30){
         gameover();
+    }
+}
+function indiv_youwin(){
+    var alldefeated=true
+    for(var i = 1;i<14;i++){
+        if(Egroups[i].location>=0){
+            alldefeated=false
+        }
+    }
+    if(alldefeated){
+        winbattle("../33/escape1.html")
     }
 }
 function indiv_gotocapitol(){
@@ -951,8 +974,6 @@ function enemyconquer(){
 }
 
 $(window).load(function(){
-    
-    createsoldier("Wolf","Wolf")
     changesong("01/Battle.wav")
         containaccessories();
     
@@ -961,28 +982,47 @@ $(window).load(function(){
         Eunits[newEindex()]=new ESoldier(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(1,1,500,'Soldier');
     
+            Eunits[newEindex()]=new EArcher(curEindex, Egroupindex,difflevel);
+    Egroups[Egroupindex]=new Enewgroup(2,2,500,'Archer');
     
         Eunits[newEindex()]=new EWizard(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(3,3,500,'Wizard');
     
+    Eunits[newEindex()]=new ERouge(curEindex, Egroupindex,difflevel);
+    Egroups[Egroupindex]=new Enewgroup(4,4,800,'Rouge');
     
-    Eunits[newEindex()]=new EMage(curEindex, Egroupindex,difflevel);
+      Eunits[newEindex()]=new EMage(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(5,5,800,'Mage');
     
+            Eunits[newEindex()]=new ESoldier(curEindex, Egroupindex,difflevel);
+     Eunits[newEindex()]=new ESoldier(curEindex, Egroupindex,difflevel);
+    Egroups[Egroupindex]=new Enewgroup(6,6,500,'Soldier');
     
                 Eunits[newEindex()]=new ERouge(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new ERouge(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(7,7,800,'Rouge');
     
+                    Eunits[newEindex()]=new EMage(curEindex, Egroupindex,difflevel);
+    Eunits[newEindex()]=new EArcher(curEindex, Egroupindex,difflevel);
+    Egroups[Egroupindex]=new Enewgroup(8,8,800,'Mage');
     
                 Eunits[newEindex()]=new EWizard(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new EArcher(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(9,9,800,'Wizard');
     
+                   Eunits[newEindex()]=new ERouge(curEindex, Egroupindex,difflevel);
+    Eunits[newEindex()]=new EGuard(curEindex, Egroupindex,difflevel);
+    Egroups[Egroupindex]=new Enewgroup(10,10,1000,'Rouge');
+    
     
                Eunits[newEindex()]=new EArcher(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new EGuard(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(11,11,1000,'Archer');
+    
+                   Eunits[newEindex()]=new EWizard(curEindex, Egroupindex,difflevel);
+      Eunits[newEindex()]=new EMage(curEindex, Egroupindex,difflevel);
+    Eunits[newEindex()]=new EWizard(curEindex, Egroupindex,difflevel);
+    Egroups[Egroupindex]=new Enewgroup(12,12,1000,'Wizard');
     
     
                Eunits[newEindex()]=new EArcher(curEindex, Egroupindex,difflevel);

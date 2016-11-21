@@ -1,4 +1,4 @@
-body{background-color: #dedede !important;
+body{background-color: black;
     font-family: "Times New Roman", Times, serif;
     background-color:black;
     -moz-user-select: none;
@@ -321,6 +321,11 @@ background-color:gray;
     position:absolute;
     width:25px;
     height:25px;
+}
+.Qicon{
+    position:absolute;
+    width:25px;
+    height:20px;
 }
 
 .Eicon{
@@ -648,9 +653,23 @@ margin-top:-10px;
     background-color:gray;
     border:black solid;
     font-size:17px;
-    width:45%;
-    margin-left:3px;
+    width:50%;
+    margin-left:13px;
     text-align:center;
+    height:30px;
+    margin-top:10px;
+}
+.potions p{
+    height:30px;
+}
+.brewpotions{
+    background-color:gray;
+    border:black solid;
+    font-size:17px;
+    width:45%;
+    margin-left:13px;
+    text-align:center;
+    margin-top:10px;
 }
 .map_bar{
     height:20px;
@@ -690,5 +709,11 @@ margin-top:-10px;
     font-family: fantasy;
     text-shadow: 2px 2px black;
     z-index:15;
+}
+.crystal{
+    position:absolute;
+    width:25px;
+    height:25px;
+    margin-top:-10px;
 }
 

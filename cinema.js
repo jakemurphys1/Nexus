@@ -65,7 +65,7 @@ function enterChar(name,left,top,end,special){
 function addobject(name,left,top, width){
     
     
-     $("#cinema").append("<div style='margin-top:" + top + "px; margin-left:" + left + "px' class='Object " + name +"' id='"+name+"'><img src='../CinePics/objects/" + name +".gif' /></div>");
+     $("#cinema").append("<div style='margin-top:" + top + "px; margin-left:" + left + "px' class='Object " + name +"' id='"+name+"'><img src='../CinePics/Objects/" + name +".gif' /></div>");
     $("#" +name).data("top",0);
      $("#" +name).data("left",0);
     
@@ -108,11 +108,12 @@ function movehor(name, distance,end,speed){
 function movevert(name, distance,end,speed){
     var curtop=$('#' + name).data("top");
     var time = distance/150;
-    if(time<0){
-        time*=-1;
-    }
+    
     if(speed=="fast"){
         time = distance/500;
+    }
+    if(time<0){
+        time*=-1;
     }
     var pic = "../CinePics/characters/" + name +"/"+ name +"_moving_front.gif";
     var still= "../CinePics/characters/" + name +"/"+ name +"_front.gif";
@@ -120,6 +121,7 @@ function movevert(name, distance,end,speed){
         pic = "../CinePics/characters/" + name +"/"+ name +"_moving_back.gif";
         still = "../CinePics/characters/" + name +"/"+ name +"_back.gif";
     }
+    
     $('#' + name + " img").attr("src",pic)
     
     

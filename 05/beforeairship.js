@@ -14,27 +14,27 @@ function airship(upOrDown,enemyexists){
           $('.trees').animate({
                         left: "+1080px"
                     }, 3000,"linear"); 
-    $("#cinemabackground").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:-140px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
+    $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:-140px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
       $('.trees').animate({
                         left: "+1160px"
                     }, 3000,"linear"); 
-        $("#cinemabackground").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:-60px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
+        $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:-60px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
       $('.trees').animate({
                         left: "+1220px"
                     }, 3000,"linear"); 
-            $("#cinemabackground").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:20px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
+            $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:20px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
       $('.trees').animate({
                         left: "+1300px"
                     }, 3000,"linear"); 
-                $("#cinemabackground").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:100px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
+                $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:100px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
       $('.trees').animate({
                         left: "+1380px"
                     }, 3000,"linear"); 
-        $("#cinemabackground").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:180px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
+        $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:180px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
       $('.trees').animate({
                         left: "+1460px"
                     }, 3000,"linear"); 
-        $("#cinemabackground").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:260px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
+        $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:260px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
       $('.trees').animate({
                         left: "+1520px"
                     }, 3000,"linear"); 
@@ -46,11 +46,11 @@ function airship(upOrDown,enemyexists){
       $('.trees').animate({
                         left: "+1680px"
                     }, 3000,"linear"); 
-           $("#cinemabackground").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:460px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
+           $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:460px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
       $('.trees').animate({
                         left: "+1760px"
                     }, 3000,"linear"); 
-               $("#cinemabackground").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:540px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
+               $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:540px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
       $('.trees').animate({
                         left: "+1840px"
                     }, 3000,"linear"); 
@@ -71,7 +71,7 @@ function airship(upOrDown,enemyexists){
                     }, 1500);
 
     setInterval(function(){
-         $("#cinemabackground").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:-300px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
+         $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:-300px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
             $('.trees').animate({
                         left: "+1000px"
                     }, 3000,"linear"); 

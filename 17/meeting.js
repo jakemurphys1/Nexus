@@ -1,11 +1,77 @@
+var height = 2
+function airship(upOrDown,enemyexists){
+    console.log("airship")
+    var enemy="";
+    if(enemyexists){
+        enemy="<div id='Eairship' STYLE='position:absolute; TOP:100px; LEFT:1005px;' class='unit' ><img src='../CinePics/enemyship.gif'/></div>"
+    }
+    
+  $("body").append("<div style='background-color:lightblue;margin-top:0px;margin-left:-0px' id = 'quickscene'><div id='airship' STYLE='position:absolute; TOP:" + height*100 + "px; LEFT:405px;' class='unit' ><img src='../CinePics/airship.gif'/></div>" + enemy +
+                 "<div class='trees' STYLE='position:absolute; TOP:570px; LEFT:-220px;' ><img style='height:80px' src='../CinePics/trees.png'/></div></div>")
+    $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:-140px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
+        $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:-60px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
+            $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:20px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
+                $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:100px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
+        $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:180px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
+        $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:260px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
+        $("#cinemabackground").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:340px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
+           $("#cinemabackground").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:400px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>'); 
+           $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:460px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
+               $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:540px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
+        height+=upOrDown;
+    if(height<1){
+        height=1
+    };
+    if(height>6){
+        height=6;
+    }
+    
+    
+    $('#airship').animate({
+                        top: (height*100)+'px'
+                    }, 1500);
 
-var qnum=-2;
+//    setInterval(function(){
+//         $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:-300px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
+//            $('.trees').animate({
+//                        left: "+1000px"
+//                    }, 3000,"linear"); 
+//    },500)
+    if(enemyexists){
+        setTimeout(function(){
+            $('#airship').animate({
+                        left: '-=1500px'
+                    }, 1500);
+        },1500)
+         setTimeout(function(){
+            $('#Eairship').animate({
+                        left: '-=1500px'
+                    }, 1500);
+        },3000)
+        setTimeout(function(){
+              $("#quickscene").remove();
+              queue();
+        },5000)
+    }else {
+         setTimeout(function(){
+            $("#quickscene").remove();
+             queue();
+        },3000)
+    }
+ 
+}
+
+
+var qnum=-3;
 
 function queue(){
     qnum+=1;
     switch(qnum){
-        case -1:
+        case -2:
             opening("Chapter Eight:","Strange Meetings")
+        break;
+        case -1:
+            airship(5);
         break;
         case 0:
             enterChar("Fisherman", 650,80,"no","fishing")
@@ -146,8 +212,17 @@ function queue(){
         case 34:
             dialog("For now, we need to get to our airship.","Knight")
         break
-         case 35:
-           window.location.href = '../16_airship2/Airship.html'
+        case 35:
+            movevert("Knight",50);
+            movevert("Archer2",50);
+            movevert("Sorcerer",50);
+            movevert("Sandra-R",50,"end");
+        break
+        case 36:
+            airship(-3,"With")
+        break
+         case 37:
+           window.location.href = '../18_airship2/Airship.html'
         break
     }
 }

@@ -596,7 +596,7 @@ function set_area_background(i){
 function indiv_newday(){
            $('.heading').remove();
         $('#top').append("<h1 class = 'heading'>Turn: " + day + "/25</h1>");
-    if(day>30){
+    if(day>25){
         winbattle("../15/chaos1.html")
     }
 }
