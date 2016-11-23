@@ -302,7 +302,7 @@ function liberate(curloc){}
                         top: $("#space" + thistemp).data("top") + 'px'
                     });
                 }
-                if (Egroups[i].location === 12 && nomove(12) === false && Egroups[i].hasmoved === false) {
+                if (Egroups[i].location === 11 && nomove(12) === false && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
 
                             thistemp = 12;
@@ -556,9 +556,6 @@ function liberate(curloc){}
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Necromancer');
                     break;
             }
-        }
-        if(day ==30){
-            winbattle();
         }
         }
         if(day==8){

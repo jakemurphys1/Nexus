@@ -353,7 +353,7 @@ background-color:gray;
 }
 
 .highlight{
-    border:yellow solid 2px;
+    border:yellow solid 2px !important;
 }
 .battlehighlight{
     background-color:yellow !important;

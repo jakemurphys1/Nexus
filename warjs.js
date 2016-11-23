@@ -29,7 +29,7 @@ var summoning;
         var healthrecipe=true;
         var leveluprecipe=true;
 
-        var recoverpotion=0;
+        var recoverpotion=0
         var revivepotion=0;
         var teleportpotion=0;
         var strengthpotion=0;
@@ -151,9 +151,8 @@ var summoning;
 }
 function changesong(song){
      curmusic.src="";
-                    curmusic.play();
-                            curmusic.src="../sounds/music/"+ song;
-     curmusic.volume=.2;
+                    curmusic.src="../sounds/music/"+ song;
+                    curmusic.volume=.2;
                     curmusic.loop=true;
                     curmusic.play();
    
@@ -328,13 +327,14 @@ var barrackbutton;
         }
         
         if(strengthpotion>0){
-            $("#TEXT").append("<div id='Strength class='potions col-xs-10'><p class='potion' id='Strength'>Strength boost:(" + strengthpotion +")</p></div>");
+            $("#TEXT").append("<div id='Strength' class='potions col-xs-10'><p class='potion' id='Strength'>Strength boost:(" + strengthpotion +")</p></div>");
+            
         }
         if(defensepotion>0){
             $("#TEXT").append("<div id='Defense' class='potions col-xs-10'<p class='potion' id='Defense'>Defense boost:(" + defensepotion +")</p></div>");
         }
         if(resistancepotion>0){
-            $("#TEXT").append("<p class='potions' style='width:75%' id='Resistance'>Resistance boost:(" + resistancepotion +")</p>");
+            $("#TEXT").append("<p class='potions col-xs-10' id='Resistance'>Resistance boost:(" + resistancepotion +")</p>");
         }
         if(healthpotion>0){
             $("#TEXT").append("<div  id='Health' class='potions col-xs-10'<p class='potion' id='Health'>Health boost:(" + healthpotion +")</p></div>");
@@ -344,7 +344,6 @@ var barrackbutton;
         }
         $(".potions").click(function(){
             if(barrackbutton!=$(this).attr("id")){
-                console.log("jake")
                 $(".potions").removeClass("battlehighlight")
                 $(this).addClass("battlehighlight");
                   barrackbutton=$(this).attr("id");
@@ -395,7 +394,6 @@ var barrackbutton;
                 units[this.id].health=units[this.id].maxhealth
                 units[this.id].healing=1+ difflevel;
                   units[this.id].heatlh+=add;
-                healthpotion-=1;
                gotobarracks()
             }
         })
@@ -428,36 +426,63 @@ var barrackbutton;
         
         //populate recipes
          if(replicaterecipe===true){
-            $("#TEXT").append("<p class='brewpotions' id='Replicate'>Replicate<br> 5 Essence</p>");
+             $("#TEXT").append("<p class='brewpotions' id='Replicate'>Replicate<br> 5 Essence</p>");
+             if(ingredient["Essence"].quantity>=5){
+                 $("#Replicate").addClass("highlight")
+             }
         }
         if(reviverecipe===true){
-            $("#TEXT").append("<p class='brewpotions' id='Revive'>Revive(" + revivepotion +")<br> 5 flowers <br> 5 extract</p>");
+            $("#TEXT").append("<p class='brewpotions' id='Revive'>Revive(" + revivepotion +")<br> 4 flowers <br> 4 extract</p>");
+            if(ingredient["Flowers"].quantity>=4 && ingredient["Extract"].quantity>=4){
+                 $("#Revive").addClass("highlight")
+             }
         }  
         if(recoverrecipe===true){
-            $("#TEXT").append("<p class='brewpotions' id='Recover'>Recover(" + recoverpotion +") <br> 3 flower <BR> 3 berries.</p>");
+            $("#TEXT").append("<p class='brewpotions' id='Recover'>Recover(" + recoverpotion +") <br> 2 flower <BR> 2 berries.</p>");
+            if(ingredient["Flowers"].quantity>=2 && ingredient["Berries"].quantity>=2){
+                 $("#Recover").addClass("highlight")
+             }
         }
    
         if(teleportrecipe===true){
-            $("#TEXT").append("<p class='brewpotions' id='Teleport'>teleport(" + teleportpotion +")<br> 3 powder <br> 3 sap.</p>");
+            $("#TEXT").append("<p class='brewpotions' id='Teleport'>teleport(" + teleportpotion +")<br> 2 powder <br> 2 sap.</p>");
+            if(ingredient["Powder"].quantity>=2 && ingredient["Sap"].quantity>=2){
+                 $("#Teleport").addClass("highlight")
+             }
         }
        
          if(strengthrecipe===true){
-            $("#TEXT").append("<p class='brewpotions' id='Strength'>Str. Boost(" + strengthpotion +") <br> 2 mushrooms <BR> 2 berries.</p>");
+            $("#TEXT").append("<p class='brewpotions' id='Strength'>Str. Boost(" + strengthpotion +") <br> 1 mushrooms <BR> 1 berries.</p>");
+                if(ingredient["Mushrooms"].quantity>=1 && ingredient["Berries"].quantity>=1){
+                 $("#Strength").addClass("highlight")
+             }
         }
         if(defenserecipe===true){
-            $("#TEXT").append("<p class='brewpotions' id='Defense'>Def. Boost(" + defensepotion +")<br> 2 root <br> 2 honey</p>");
+            $("#TEXT").append("<p class='brewpotions' id='Defense'>Def. Boost(" + defensepotion +")<br> 1 root <br> 1 honey</p>");
+            if(ingredient["Roots"].quantity>=1 && ingredient["Honey"].quantity>=1){
+                 $("#Defense").addClass("highlight")
+             }
         }
         if(resistancerecipe===true){
-            $("#TEXT").append("<p class='brewpotions' id='Resistance'>Resist.boost(" + resistancepotion +")<br> 2 herb <br> 2 honey</p>");
+            $("#TEXT").append("<p class='brewpotions' id='Resistance'>Resist.boost(" + resistancepotion +")<br> 1 herb <br> 1 honey</p>");
+            if(ingredient["Herbs"].quantity>=1 && ingredient["Honey"].quantity>=1){
+                 $("#Resistance").addClass("highlight")
+             }
         }
           if(standin1recipe===true){
             //$("#TEXT").append("<p class='brewpotions' id='standin1'>Standin1:(" + standin1potion +") <br> 1 mushroom <BR> 6 bone marrow</p>");
         }
         if(healthrecipe===true){
-            $("#TEXT").append("<p class='brewpotions' id='Health'>Health(" + healthpotion +")<br> 2 Mushroom <br> 2 Sap</p>");
+            $("#TEXT").append("<p class='brewpotions' id='Health'>Health(" + healthpotion +")<br> 1 Mushroom <br> 1 Sap</p>");
+                if(ingredient["Mushrooms"].quantity>=1 && ingredient["Sap"].quantity>=1){
+                 $("#Health").addClass("highlight")
+             }
         }
         if(leveluprecipe===true){
-            $("#TEXT").append("<p class='brewpotions' id='Levelup'>Levelup(" + leveluppotion +")<br> 5 root <br> 5 herb</p>");
+            $("#TEXT").append("<p class='brewpotions' id='Levelup'>Levelup(" + leveluppotion +")<br> 3 root <br> 3 herb</p>");
+                if(ingredient["Roots"].quantity>=3 && ingredient["Herbs"].quantity>=3){
+                 $("#Levelup").addClass("highlight")
+             }
         }
         
 
@@ -474,93 +499,93 @@ var barrackbutton;
             }
         });
         $("#Revive").click(function(){
-            if(ingredient["Flowers"].quantity>=5 && ingredient["Extract"].quantity>=5){
+            if(ingredient["Flowers"].quantity>=4 && ingredient["Extract"].quantity>=4){
                 revivepotion+=1;
-                ingredient["Flowers"].quantity-=5;
-                ingredient["Extract"].quantity-=5;
+                ingredient["Flowers"].quantity-=4;
+                ingredient["Extract"].quantity-=4;
                 message("You brewed a Revive potion. Use it in the barracks to bring a dead unit back to life.")
                 gotobrewery();
             }else{
-                message("You require 5 flowers and 5 extract for that. You only have " + ingredient["Flowers"].quantity + " Flowers and " + ingredient["Extract"].quantity + " extract.")
+                message("You require 4 flowers and 4 extract for that. You only have " + ingredient["Flowers"].quantity + " Flowers and " + ingredient["Extract"].quantity + " extract.")
             }
         });
         
         $("#Recover").click(function(){
-            if(ingredient["Flowers"].quantity>=3 && ingredient["Berries"].quantity>=3){
+            if(ingredient["Flowers"].quantity>=2 && ingredient["Berries"].quantity>=2){
                 recoverpotion+=1;
-                ingredient["Flowers"].quantity-=3;
-                ingredient["Berries"].quantity-=3;
+                ingredient["Flowers"].quantity-=2;
+                ingredient["Berries"].quantity-=2;
                 message("You brewed a Recover potion. Use it to fully heal a unit that was sent to the hospital.")
                 gotobrewery();
             }else{
-                message("You require 3 flowers and 3 berries for that. You only have " + ingredient["Flowers"].quantity + " flowers and " + ingredient["Berries"].quantity + " berries.")
+                message("You require 2 flowers and 2 berries for that. You only have " + ingredient["Flowers"].quantity + " flowers and " + ingredient["Berries"].quantity + " berries.")
             }
         });
         
         $("#Teleport").click(function(){
-            if(ingredient["Powder"].quantity>=3 && ingredient["Sap"].quantity>=3){
+            if(ingredient["Powder"].quantity>=2 && ingredient["Sap"].quantity>=2){
                 teleportpotion+=1;
-                ingredient["Powder"].quantity-=3;
-                ingredient["Sap"].quantity-=3;
+                ingredient["Powder"].quantity-=2;
+                ingredient["Sap"].quantity-=2;
                 message("You brewed a Teleport potion. Use it in the barracks to bring a unit that escaped immediately back to the capitol.")
                 gotobrewery();
             }else{
-                message("You require 3 powder and 3 sap for that. You only have " + ingredient["Powder"].quantity + " powder and " + ingredient["Sap"].quantity + " sap.")
+                message("You require 2 powder and 2 sap for that. You only have " + ingredient["Powder"].quantity + " powder and " + ingredient["Sap"].quantity + " sap.")
             }
         });
         $("#Strength").click(function(){
-            if(ingredient["Mushrooms"].quantity>=2 && ingredient["Berries"].quantity>=2){
+            if(ingredient["Mushrooms"].quantity>=1 && ingredient["Berries"].quantity>=1){
                 strengthpotion+=1;
-                ingredient["Mushrooms"].quantity-=2;
-                ingredient["Berries"].quantity-=2;
+                ingredient["Mushrooms"].quantity-=1;
+                ingredient["Berries"].quantity-=1;
                 message("You brewed a Boost potion. Use it in the barracks to give a unit a permanent boost to strength.");
                 gotobrewery();
             }else{
-                message("You require 2 mushrooms and 2 Berries for that. You only have " + ingredient["Mushrooms"].quantity + " mushrooms and " + ingredient["Berries"].quantity + " berries.")
+                message("You require 1 mushrooms and 1 Berries for that. You only have " + ingredient["Mushrooms"].quantity + " mushrooms and " + ingredient["Berries"].quantity + " berries.")
             }
         });
           $("#Defense").click(function(){
-            if(ingredient["Roots"].quantity>=2 && ingredient["Honey"].quantity>=2){
+            if(ingredient["Roots"].quantity>=1 && ingredient["Honey"].quantity>=1){
                 defensepotion+=1;
-                ingredient["Roots"].quantity-=2;
-                ingredient["Honey"].quantity-=2;
+                ingredient["Roots"].quantity-=1;
+                ingredient["Honey"].quantity-=1;
                 message("You brewed a Boost potion. Use it in the barracks to give a unit a permanent boost to defense.");
                 gotobrewery();
             }else{
-                message("You require 2 Roots and 2 Honey for that. You only have " + ingredient["Roots"].quantity + " roots and " + ingredient["Honey"].quantity + " Honey.")
+                message("You require 1 Roots and 1 Honey for that. You only have " + ingredient["Roots"].quantity + " roots and " + ingredient["Honey"].quantity + " Honey.")
             }
         });
           $("#Resistance").click(function(){
-            if(ingredient["Herbs"].quantity>=2 && ingredient["Honey"].quantity>=2){
+            if(ingredient["Herbs"].quantity>=1 && ingredient["Honey"].quantity>=1){
                 resistancepotion+=1;
-                ingredient["Herbs"].quantity-=2;
-                ingredient["Honey"].quantity-=2;
+                ingredient["Herbs"].quantity-=1;
+                ingredient["Honey"].quantity-=1;
                 message("You brewed a Boost potion. Use it in the barracks to give a unit a permanent boost to resistance.");
                 gotobrewery();
             }else{
-                message("You require 2 Herbs and 2 honey for that. You only have " + ingredient["Herbs"].quantity + " Herbs and " + ingredient["Honey"].quantity + " honey.")
+                message("You require 1 Herbs and 1 honey for that. You only have " + ingredient["Herbs"].quantity + " Herbs and " + ingredient["Honey"].quantity + " honey.")
             }
         });
           $("#Health").click(function(){
-            if(ingredient["Mushrooms"].quantity>=2 && ingredient["Sap"].quantity>=2){
+            if(ingredient["Mushrooms"].quantity>=1 && ingredient["Sap"].quantity>=1){
                 healthpotion+=1;
-                ingredient["Mushrooms"].quantity-=2;
-                ingredient["Sap"].quantity-=2;
+                ingredient["Mushrooms"].quantity-=1;
+                ingredient["Sap"].quantity-=1;
                 message("You brewed a Health potion. Use it in the barracks to give a unit a permanent boost to it's health.");
                 gotobrewery();
             }else{
-                message("You require 2 Mushrooms and 2 Sap for that. You only have " + ingredient["Mushrooms"].quantity + " Mushrooms and " + ingredient["Sap"].quantity + " Sap.")
+                message("You require 1 Mushrooms and 1 Sap for that. You only have " + ingredient["Mushrooms"].quantity + " Mushrooms and " + ingredient["Sap"].quantity + " Sap.")
             }
         });
              $("#Levelup").click(function(){
-            if(ingredient["Roots"].quantity>=5 && ingredient["Herbs"].quantity>=5){
+            if(ingredient["Roots"].quantity>=3 && ingredient["Herbs"].quantity>=3){
                 leveluppotion+=1;
-                ingredient["Roots"].quantity-=5;
-                ingredient["Herbs"].quantity-=5;
+                ingredient["Roots"].quantity-=3;
+                ingredient["Herbs"].quantity-=3;
                 message("You brewed a Level-up potion. Use it in the barracks to give a unit a level up.");
                 gotobrewery();
             }else{
-                message("You require 5 Roots and 5 Herbs for that. You only have " + ingredient["Roots"].quantity + " roots and " + ingredient["Herbs"].quantity + " herbs.")
+                message("You require 3 Roots and 3 Herbs for that. You only have " + ingredient["Roots"].quantity + " roots and " + ingredient["Herbs"].quantity + " herbs.")
             }
         });
     }
@@ -906,6 +931,8 @@ indiv_newday(day);
         this.lightning=1;
         this.fire=2;
         this.ice=.5;
+        
+        this.maxcharge=1;
 
         this.usedspecial=false;
         this.index=e;
@@ -1515,17 +1542,17 @@ indiv_newday(day);
             this.maxhealth=40;
         }
         if(level===2){
-            this.attack= 40;
+            this.attack= 30;
             this.health= 60;
             this.maxhealth=60;
         }
         if(level===3){
-            this.attack= 60;
+            this.attack= 40;
             this.health= 80;
             this.maxhealth=80;
         }
         if(level===4){
-            this.attack= 75;
+            this.attack= 50;
             this.health= 100;
             this.maxhealth=100;
         }
@@ -1543,6 +1570,8 @@ indiv_newday(day);
         this.lightning=1;
         this.fire=.5;
         this.ice=2;
+        
+        this.maxcharge=1;
 
         this.usedspecial=false;
         this.index=e;
@@ -1595,6 +1624,8 @@ indiv_newday(day);
         this.lightning=.5;
         this.fire=1;
         this.ice=1;
+        
+        this.maxcharge=2;
 
         this.usedspecial=false;
         this.index=e;
@@ -1647,6 +1678,8 @@ indiv_newday(day);
         this.lightning=1;
         this.fire=2;
         this.ice=.5;
+        
+        this.maxcharge=2;
 
         this.usedspecial=false;
         this.index=e;
@@ -1855,6 +1888,8 @@ indiv_newday(day);
         this.lightning=2;
         this.fire=1;
         this.ice=1;
+        
+        this.maxcharge=5;
 
         this.charge= 0;
         this.usedspecial=false;
@@ -1908,6 +1943,7 @@ indiv_newday(day);
         this.fire=1;
         this.ice=1;
 
+        this.maxcharge=1;
 
         this.usedspecial=false;
         this.usedsleep=3;
@@ -2012,6 +2048,8 @@ indiv_newday(day);
         this.lightning=1;
         this.fire=.5;
         this.ice=2;
+        
+        this.maxcharge=2;
 
         this.usedspecial=false;
         this.phasedout=false;
@@ -2066,6 +2104,7 @@ indiv_newday(day);
         this.fire=1;
         this.ice=1;
 
+        this.maxcharge=1;
 
         this.usedspecial=false;
         this.usedsleep=3;
@@ -2171,6 +2210,8 @@ indiv_newday(day);
         this.lightning=2;
         this.fire=1;
         this.ice=1;
+        
+        this.maxcharge=1;
 
         this.usedspecial=false;
         this.phasedout=false;
@@ -2225,6 +2266,8 @@ indiv_newday(day);
         this.lightning=1;
         this.fire=2;
         this.ice=.5;
+        
+        this.maxcharge=1;
 
         this.usedspecial=false;
         this.phasedout=false;
@@ -2333,6 +2376,7 @@ indiv_newday(day);
         this.fire=1;
         this.ice=1;
 
+        this.maxcharge=1;
 
         this.usedspecial=false;
         this.usedsleep=3;
@@ -2604,6 +2648,8 @@ indiv_newday(day);
         this.lightning=1;
         this.fire=2;
         this.ice=.5;
+        
+        this.maxcharge=3;
 
         this.usedspecial=false;
         this.index=e;
@@ -2657,6 +2703,8 @@ indiv_newday(day);
         this.lightning=1;
         this.fire=1;
         this.ice=1;
+        
+        this.maxcharge=3;
 
         this.usedspecial=false;
         this.index=e;
@@ -2762,6 +2810,8 @@ indiv_newday(day);
         this.lightning=1;
         this.fire=.5;
         this.ice=2;
+        
+        this.maxcharge=3;
 
         this.usedspecial=false;
         this.index=e;
@@ -3094,6 +3144,8 @@ function Eye(e,Egroupindex,level){
         this.fire=1;
         this.ice=1;
         this.protectedby=-1;
+            
+            this.maxcharge=2;
 
         this.usedspecial=false;
         this.usedpoison=false;
@@ -3615,7 +3667,7 @@ function createsoldier(choice,name){
         this.realtype="Sorcerer";
         this.name="Benedict Powerhouse";
 
-        this.attack= 30;
+        this.attack= 40;
         this.defense= 0;
         this.resistance= 30;
         this.health= 80;
@@ -4006,7 +4058,7 @@ function createsoldier(choice,name){
         this.name="Ivy";
         this.index=e;
 
-        this.attack= 6;
+        this.attack= 5;
         this.defense= 0;
         this.resistance= 0;
         this.health= 80;
@@ -4849,6 +4901,9 @@ function newEindex(){
     function exchangeunits(temp){
         var location2 = groups[temp].location;
         var location1= groups[curgroupnum].location;
+        if(location1==71 || location2==71){
+            return;
+        }
         var isfortified = false;
         if((($("#space" + location1).data("fortify")==true) || ($("#space" + location1).data("castle")==true)) && ($("#space" + location2).data("fortify")==true || $("#space" + location2).data("castle")==true)){
 isfortified=true;
@@ -5529,7 +5584,7 @@ function clearspaces(e){
                     if (slots[1]!=-1){
                         units[slots[1]].curleft=125;
                         units[slots[1]].curtop=currenttop;
-                        $('#battlebackground').append('<div STYLE="position:absolute; TOP:' + currenttop + 'px; LEFT:125px;" class="unit"  id="' + slots[1] + '" ><img src="' + units[slots[1]].backpic + '"/></div>');
+                        $('#battlebackground').append('<div STYLE="position:absolute; TOP:' + currenttop + 'px; LEFT:125px;" class="unit"  id="' + slots[1] + '" ><img class="dirpics" src="' + units[slots[1]].backpic + '"/></div>');
                         $('#' + slots[1]).append('<div class="healthbar" id = "HB' + slots[1] + '" style="width: ' + (units[slots[1]].health/units[slots[1]].maxhealth)*100 + '%"></div><div class="level"><p>' + units[slots[1]].level + '</p></div><div class="energybar" id ="EB' + units[slots[1]].index + '"style="width: ' + (units[slots[1]].energy) + '%"></div>');
                         
                         if(units[slots[1]].type==="Wizard" || (checkslots("Wizard") && units[slots[1]].type==="Mimic")){
@@ -5631,23 +5686,9 @@ var mult = 0;
                     $("#battlebackground").hide();
                         $('#E' + Eslots[1]).append('<div class="healthbar" id = "EHB' + Eslots[1] + '" style="width: ' + (Eunits[Eslots[1]].health/Eunits[Eslots[1]].maxhealth)*100 + '%"></div>');
                     if(Eunits[Eslots[1]].charge===0){
-                        var maxcharge = 0;
-                        if( Eunits[Eslots[1]].type === "Beekeeper" || Eunits[Eslots[1]].type === "Necromancer" || Eunits[Eslots[1]].type === "Shaman" || Eunits[Eslots[1]].type === "Wisp" || Eunits[Eslots[1]].type === "Frostwraith" || Eunits[Eslots[1]].type === "Waterwraith"){
-                            maxcharge = 1;
-                            $('#E' + Eslots[1]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[1] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[1]].charge +'/' + maxcharge +'</div>');
-                        }
-                        if(Eunits[Eslots[1]].type === "Fire Elemental" || Eunits[Eslots[1]].type === "Ice Elemental" || Eunits[Eslots[1]].type === "Flamewraith"  || Eunits[Eslots[1]].type === "Wizard"){
-                            maxcharge = 2;
-                            $('#E' + Eslots[1]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[1] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[1]].charge +'/' + maxcharge +'</div>');
-                        }
-                        if(Eunits[Eslots[1]].type === "Lightning Elemental" || Eunits[Eslots[1]].type === "Angel" || Eunits[Eslots[1]].type === "Frostlord" || Eunits[Eslots[1]].type === "Demon" || Eunits[Eslots[1]].type === "Unknown" || Eunits[Eslots[1]].type === "Dragon"){
-                            maxcharge = 3;
-                            $('#E' + Eslots[1]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[1] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[1]].charge +'/' + maxcharge +'</div>');
-                        }
-                        if(Eunits[Eslots[1]].type === "Cannon"){
-                           maxcharge=5;
-                            $('#E' + Eslots[1]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[1] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[1]].charge +'/' + maxcharge +'</div>');
-                        }
+
+                            $('#E' + Eslots[1]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[1] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[1]].charge +'/' + Eunits[Eslots[1]].maxcharge +'</div>');
+                        
                     }
 
                     if (Eslots[2]!=-1){
@@ -5656,48 +5697,18 @@ var mult = 0;
                         $('#battlebackground').append('<div STYLE="position:absolute; TOP:25px; LEFT:' +  Eunits[Eslots[2]].curleft + 'px;" class="Eunit"  id="E' + Eslots[2] + '" ><img src="' + Eunits[Eslots[2]].image + '"/></div>');
                         $('#E' + Eslots[2]).append('<div class="healthbar" id = "EHB' + Eslots[2] + '" style="width: ' + (Eunits[Eslots[2]].health/Eunits[Eslots[2]].maxhealth)*100 + '%"></div>');
                         if(Eunits[Eslots[2]].charge===0){
-                            var maxcharge = 0;
-                            if(Eunits[Eslots[2]].type === "Beekeeper" || Eunits[Eslots[2]].type === "Necromancer" || Eunits[Eslots[2]].type === "Shaman" || Eunits[Eslots[2]].type === "Wisp" || Eunits[Eslots[2]].type === "Frostwraith" || Eunits[Eslots[2]].type === "Waterwraith"){
-                                maxcharge = 1;
-                                $('#E' + Eslots[2]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[2] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[2]].charge +'/' + maxcharge +'</div>');
-                            }
-                            if(Eunits[Eslots[2]].type === "Fire Elemental" || Eunits[Eslots[2]].type === "Ice Elemental" || Eunits[Eslots[2]].type === "Flamewraith" || Eunits[Eslots[2]].type === "Wizard"){
-                                maxcharge = 2;
-                                $('#E' + Eslots[2]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[2] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[2]].charge +'/' + maxcharge +'</div>');
-                            }
-                            if(Eunits[Eslots[2]].type === "Lightning Elemental" || Eunits[Eslots[2]].type === "Angel" || Eunits[Eslots[2]].type === "Frostlord" || Eunits[Eslots[2]].type === "Demon" || Eunits[Eslots[2]].type === "Unknown" || Eunits[Eslots[2]].type === "Dragon"){
-                                maxcharge = 3;
-                                $('#E' + Eslots[2]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[2] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[2]].charge +'/' + maxcharge +'</div>');
-                            }
-                            if(Eunits[Eslots[2]].type === "Cannon"){
-                               maxcharge=5;
-                                $('#E' + Eslots[2]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[2] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[2]].charge +'/' + maxcharge +'</div>');
+ 
+                                $('#E' + Eslots[2]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[2] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[2]].charge +'/' + Eunits[Eslots[2]].maxcharge +'</div>');
                             }
                         }
-                    }
                     if (Eslots[3]!=-1){
                         Eunits[Eslots[3]].curleft=325-mult*100;
                         Eunits[Eslots[3]].curtop=25;
                         $('#battlebackground').append('<div STYLE="position:absolute; TOP:25px; LEFT:' +  Eunits[Eslots[3]].curleft + 'px;" class="Eunit"  id="E' + Eslots[3] + '" ><img src="' + Eunits[Eslots[3]].image + '"/></div>');
                         $('#E' + Eslots[3]).append('<div class="healthbar" id = "EHB' + Eslots[3] + '" style="width: ' + (Eunits[Eslots[3]].health/Eunits[Eslots[3]].maxhealth)*100 + '%"></div>');
                         if(Eunits[Eslots[3]].charge===0){
-                            var maxcharge = 0;
-                            if(Eunits[Eslots[3]].type === "Beekeeper" || Eunits[Eslots[3]].type === "Necromancer" || Eunits[Eslots[3]].type === "Shaman" || Eunits[Eslots[3]].type === "Wisp" || Eunits[Eslots[3]].type === "Frostwraith" || Eunits[Eslots[3]].type === "Waterwraith"){
-                                maxcharge = 1;
-                                $('#E' + Eslots[3]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[3] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[3]].charge +'/' + maxcharge +'</div>');
-                            }
-                            if(Eunits[Eslots[3]].type === "Fire Elemental" || Eunits[Eslots[3]].type === "Ice Elemental" || Eunits[Eslots[3]].type === "Flamewraith" || Eunits[Eslots[3]].type === "Wizard"){
-                                maxcharge = 2;
-                                $('#E' + Eslots[3]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[3] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[3]].charge +'/' + maxcharge +'</div>');
-                            }
-                            if(Eunits[Eslots[3]].type === "Lightning Elemental" || Eunits[Eslots[3]].type === "Angel" || Eunits[Eslots[3]].type === "Frostlord" || Eunits[Eslots[3]].type === "Demon" || Eunits[Eslots[3]].type === "Unknown" || Eunits[Eslots[3]].type === "Dragon"){
-                                maxcharge = 3;
-                                $('#E' + Eslots[3]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[3] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[3]].charge +'/' + maxcharge +'</div>');
-                            }
-                            if(Eunits[Eslots[3]].type === "Cannon"){
-                              maxcharge=5;
-                                $('#E' + Eslots[3]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[3] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[3]].charge +'/' + maxcharge +'</div>');
-                            }
+                                $('#E' + Eslots[3]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[3] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[3]].charge +'/' + Eunits[Eslots[3]].maxcharge +'</div>');
+                            
                         }
 
                     }
@@ -5707,23 +5718,8 @@ var mult = 0;
                         $('#battlebackground').append('<div STYLE="position:absolute; TOP:25px; LEFT:' +  Eunits[Eslots[4]].curleft + 'px;" class="Eunit"  id="E' + Eslots[4] + '" ><img src="' + Eunits[Eslots[4]].image + '"/></div>');
                         $('#E' + Eslots[4]).append('<div class="healthbar" id = "EHB' + Eslots[4] + '" style="width: ' + (Eunits[Eslots[4]].health/Eunits[Eslots[4]].maxhealth)*100 + '%"></div>');
                         if(Eunits[Eslots[4]].charge===0){
-                            var maxcharge = 0;
-                            if(Eunits[Eslots[4]].type === "Beekeeper" || Eunits[Eslots[4]].type === "Necromancer" || Eunits[Eslots[4]].type === "Shaman" || Eunits[Eslots[4]].type === "Wisp" || Eunits[Eslots[4]].type === "Frostwraith" || Eunits[Eslots[4]].type === "Waterwraith"){
-                                maxcharge = 1;
-                                $('#E' + Eslots[4]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[4] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[4]].charge +'/' + maxcharge +'</div>');
-                            }
-                            if(Eunits[Eslots[4]].type === "Fire Elemental" || Eunits[Eslots[4]].type === "Ice Elemental" || Eunits[Eslots[4]].type === "Flamewraith" || Eunits[Eslots[4]].type === "Wizard"){
-                                maxcharge = 2;
-                                $('#E' + Eslots[4]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[4] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[4]].charge +'/' + maxcharge +'</div>');
-                            }
-                            if(Eunits[Eslots[4]].type === "Lightning Elemental" || Eunits[Eslots[4]].type === "Angel" || Eunits[Eslots[4]].type === "Frostlord" || Eunits[Eslots[4]].type === "Demon" || Eunits[Eslots[4]].type === "Unknown" || Eunits[Eslots[4]].type === "Dragon"){
-                                maxcharge = 3;
-                                $('#E' + Eslots[4]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[4] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[4]].charge +'/' + maxcharge +'</div>');
-                            }
-                            if(Eunits[Eslots[4]].type === "Cannon"){
-                              maxcharge=5;
-                                $('#E' + Eslots[4]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[4] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[4]].charge +'/' + maxcharge +'</div>');
-                            }
+                                $('#E' + Eslots[4]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[4] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[4]].charge +'/' + Eunits[Eslots[4]].maxcharge +'</div>');
+                            
                         }
                     }
                     if (Eslots[5]!=-1){
@@ -5732,23 +5728,7 @@ var mult = 0;
                         $('#battlebackground').append('<div STYLE="position:absolute; TOP:25px; LEFT:' +  Eunits[Eslots[5]].curleft + 'px;" class="Eunit"  id="E' + Eslots[5] + '" ><img src="' + Eunits[Eslots[5]].image + '"/></div>');
                         $('#E' + Eslots[5]).append('<div class="healthbar" id = "EHB' + Eslots[5] + '" style="width: ' + (Eunits[Eslots[5]].health/Eunits[Eslots[5]].maxhealth)*100 + '%"></div>');
                         if(Eunits[Eslots[5]].charge===0){
-                            var maxcharge = 0;
-                            if(Eunits[Eslots[5]].type === "Beekeeper" || Eunits[Eslots[5]].type === "Necromancer" || Eunits[Eslots[5]].type === "Shaman" || Eunits[Eslots[5]].type === "Wisp" || Eunits[Eslots[5]].type === "Frostwraith" || Eunits[Eslots[5]].type === "Waterwraith"){
-                                maxcharge = 1;
-                                $('#E' + Eslots[5]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div  id = "ORBE' + Eslots[5] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[5]].charge +'/' + maxcharge +'</div>');
-                            }
-                            if(Eunits[Eslots[5]].type === "Fire Elemental" || Eunits[Eslots[5]].type === "Ice Elemental" || Eunits[Eslots[5]].type === "Flamewraith" || Eunits[Eslots[5]].type === "Wizard"){
-                                maxcharge = 2;
-                                $('#E' + Eslots[5]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[5] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[5]].charge +'/' + maxcharge +'</div>');
-                            }
-                            if(Eunits[Eslots[5]].type === "Lightning Elemental" || Eunits[Eslots[5]].type === "Angel" || Eunits[Eslots[5]].type === "Frostlord" || Eunits[Eslots[5]].type === "Demon" || Eunits[Eslots[5]].type === "Unknown" || Eunits[Eslots[5]].type === "Dragon"){
-                                maxcharge = 3;
-                                $('#E' + Eslots[5]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[5] + '" style=color:yellow;"position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[5]].charge +'/' + maxcharge +'</div>');
-                            }
-                            if(Eunits[Eslots[5]].type === "Cannon"){
-                               maxcharge=5;
-                                $('#E' + Eslots[5]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[5] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[5]].charge +'/' + maxcharge +'</div>');
-                            }
+                                $('#E' + Eslots[5]).append('<img class="ORBIMG" style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORBE' + Eslots[5] + '" style="color:yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:50px; width:10px; height:10px ">' + Eunits[Eslots[5]].charge +'/' + Eunits[Eslots[5]].maxcharge +'</div>');
                         }
                     }
                     getstatsbattle();
@@ -7056,7 +7036,7 @@ var mult = 0;
             }
             $("#battlebackground").append("<p style='margin-left:30%; font-size:30px'>Click to continue</p>");
 
-             var rand =  Math.floor((Math.random() * 3) + 1);
+             var rand =  Math.floor((Math.random() * 3) + 2);
             for(var i = 1; i<rand;i++){
                  lootenemyfunction();
             }
@@ -7080,6 +7060,7 @@ var mult = 0;
         return !isNaN(parseFloat(n)) && isFinite(n);
     }
    
+    var dir;
     function attackbadguy(){
         $('.Eunit').mousedown(function(e){
             $("#TEXT").empty();
@@ -7102,6 +7083,33 @@ var mult = 0;
                     $("#TEXT").append("<p>" + units[selectedindex].name + " has already used an action this turn</p>");
                     return;
                 }
+                //change directional pic
+                var dirleft= units[selectedindex].curleft - Eunits[enemyindex].curleft;
+                var dirtop=units[selectedindex].curtop - Eunits[enemyindex].curtop;
+                
+                if(Math.abs(dirleft)>=Math.abs(dirtop)){
+                    if(dirleft>0){
+                        dir=units[selectedindex].leftpic;
+                    } else{
+                        dir=units[selectedindex].rightpic;
+                    }
+                }else{
+                    if(dirtop>0){
+                        dir=units[selectedindex].backpic;
+                    } else{
+                        dir=units[selectedindex].image;
+                    }
+                }
+
+                setTimeout(function(){
+                    
+                    if(units[selectedindex].usedaction){
+                        $("#" + selectedindex + " .dirpic").attr("src", dir);
+                        showailments()
+                    }
+                },100)
+                
+                
                 if(units[selectedindex].usedaction===true){
                         units[selectedindex].moved===true;
                     }
@@ -8648,7 +8656,7 @@ var mult = 0;
                             };
                             var defense=0;
                             if(Eunits[enemyindex].enfeeble===0){defense=Eunits[enemyindex].resistance}
-                            var damage = (units[selectedindex].attack + units[selectedindex].attacktempboost - defense) * 3 * Eunits[enemyindex].lightning;
+                            var damage = (units[selectedindex].attack + units[selectedindex].attacktempboost - defense) * 2 * Eunits[enemyindex].lightning;
                             if (damage < 0) {
                                 damage = 0
                             }
@@ -9155,6 +9163,7 @@ showailments();
                     $("#TEXT").append("<p>" + units[selectedindex].name + " has already used an action this turn</p>");
                     return;
                 }
+                
                 //determine enemy's number
                 for (var i = 0; i < index; i++) {
                     var temp=this.id;
@@ -9162,6 +9171,30 @@ showailments();
                     if (units[i].index === parseInt(temp,10)) {
                         allyindex = i;
                     }};
+                
+                //change directional pic
+                var dirleft= units[selectedindex].curleft - units[allyindex].curleft;
+                var dirtop=units[selectedindex].curtop - units[allyindex].curtop;
+                if(Math.abs(dirleft)>=Math.abs(dirtop)){
+                    if(dirleft>0){
+                        dir=units[selectedindex].leftpic;
+                    } else{
+                        dir=units[selectedindex].rightpic;
+                    }
+                }else{
+                    if(dirtop>0){
+                        dir=units[selectedindex].backpic;
+                    } else{
+                        dir=units[selectedindex].image;
+                    }
+                }
+
+                setTimeout(function(){
+                    
+                    if(units[selectedindex].usedaction){
+                        $("#" + selectedindex + " img").attr("src", dir);
+                    }
+                },100)
 
                 function Damaging(index,damage) {
                     var temp = "#" + index;
@@ -11169,7 +11202,7 @@ function enemyturn(selectedactions){
                                     units[slots[x]].curtop = 10000;
                                     units[slots[x]].type = "Dead";
                                 }
-                                Eunits[Eslots[y]].charge -= 2;
+                                Eunits[Eslots[y]].charge -= Eunits[Eslots[y]].maxcharge;
                                 //minus one to offset charging
                                 Eunits[Eslots[y]].charge -= 1;
                                 charging();
@@ -11578,10 +11611,10 @@ function enemyturn(selectedactions){
 
                         $("#ORBE" + + Eunits[Eslots[y]].index).remove();
                         var maxcharge = 0;
-                        if(Eunits[Eslots[y]].type === "Beekeeper" || Eunits[Eslots[y]].type === "Necromancer" || Eunits[Eslots[y]].type === "Shaman" || Eunits[Eslots[y]].type === "Wisp" || Eunits[Eslots[y]].type === "Frostwraith" || Eunits[Eslots[y]].type === "Waterwraith"){
+                        if(Eunits[Eslots[y]].type === "Beekeeper" || Eunits[Eslots[y]].type === "Necromancer" || Eunits[Eslots[y]].type === "Shaman" || Eunits[Eslots[y]].type === "Wisp" || Eunits[Eslots[y]].type === "Frostwraith" || Eunits[Eslots[y]].type === "Waterwraith" || Eunits[Eslots[y]].type === "Fire Elemental"){
                             maxcharge = 1;
                         }
-                        if(Eunits[Eslots[y]].type === "Fire Elemental" || Eunits[Eslots[y]].type === "Ice Elemental" || Eunits[Eslots[y]].type === "Flamewraith" || Eunits[Eslots[y]].type === "Wizard"){
+                        if(Eunits[Eslots[y]].type === "Ice Elemental" || Eunits[Eslots[y]].type === "Flamewraith" || Eunits[Eslots[y]].type === "Wizard"){
                             maxcharge = 2;
                         }
                         if(Eunits[Eslots[y]].type === "Lightning Elemental" || Eunits[Eslots[y]].type === "Angel" || Eunits[Eslots[y]].type === "Frostlord" || Eunits[Eslots[y]].type === "Demon" || Eunits[Eslots[y]].type === "Unknown" || Eunits[Eslots[y]].type === "Dragon"){
@@ -13044,7 +13077,7 @@ function enemyturn(selectedactions){
                         scaredmove()
 
                         findenemy();
-                        if (Eunits[Eslots[y]].charge >= 2) {
+                        if (Eunits[Eslots[y]].charge >= Eunits[Eslots[y]].maxcharge) {
                             if(Eunits[Eslots[y]].silenced>0){
                             } else {
                                  firewhotoattack("Turtle");
@@ -13787,15 +13820,15 @@ function text(words,left,top){
 function TEMPstartcombat(){
 
                  Eunits[newEindex()]=new Goblin(curEindex, 1,2);
-//                Eunits[newEindex()]=new Eye(curEindex, 1,2);
-//                Eunits[newEindex()]=new Eye(curEindex, 1,2);
+//                Eunits[newEindex()]=new Bat(curEindex, 1,2);
+//                Eunits[newEindex()]=new Bat(curEindex, 1,2);
 //                Eunits[newEindex()]=new Eye(curEindex, 1,2);
               //  Eunits[newEindex()]=new Beekeeper(curEindex, 1,2);
 
                 Egroups[Egroupindex]=new Enewgroup(1,70,1000,"Warrior");
-                units[index]=new Mimic(index,"Mimic");
-                units[index]=new Archer(index,"Wizard1");
-                units[index]=new Rouge(index,"Knight");
+                units[index]=new Wizard(index,"Wizard1");
+                units[index]=new Archer(index,"Archer1");
+                units[index]=new Healer(index,"Healer1");
 
                 units[0].slot=1;
                 units[1].slot=2;
@@ -14024,5 +14057,5 @@ assignlocations();
     });
     
 
-           TEMPstartcombat();
+           //TEMPstartcombat();
 })//done
