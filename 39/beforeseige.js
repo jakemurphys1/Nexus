@@ -1,5 +1,5 @@
 
-var qnum=-2;
+var qnum=0;
 
 function castle(withairship){
     endthis=false;
@@ -73,27 +73,61 @@ function castle(withairship){
 function queue(){
     qnum+=1;
     switch(qnum){
-        case 0:
-                castle("without");
-        break;
         case 1:
-            enterChar("Templar2",410,80);
+            enterChar("Sorcerer",450,400);
             enterChar("Wizard1",400,400);
-            movevert("Templar2",200,"end")
+            dialog("We're safe...","Wizard1")
         break
         case 2:
-            dialog("Sir, the next wave is about to hit!","Templar2")
+            dialog("For now...","Wizard1")
         break
         case 3:
-        movevert("Wizard1",-1)
-            dialog("Prepare the others, we cannot allow them to enter the temple!","Wizard1")
+        movehor("Sorcerer",-1)
+            dialog("Can we survive another assault?","Sorcerer")
         break
         case 4:
-        movevert("Wizard1",-1)
-            dialog("If even one enemy breaks through a window, all is lost!","Wizard1")
+            dialog("We must endure. We have to give the others more time!","Wizard1")
         break
-         case 5:
-            window.location.href = '../38_seige3/Seige.html'
+        case 5:
+        movehor("Wizard1",1)
+            dialog("But Listen, even if the temple falls, YOU must survive!","Wizard1")
+        break
+        case 6:
+            dialog("Therefore, if I tell you to retreat and hide, you must listen!","Wizard1")
+        break
+        case 7:
+            dialog("Sir, we cannot allow the source to be destroyed.","Sorcerer")
+        break
+        case 8:
+        movevert("Wizard1",1)
+            dialog("The source can never be fully destroyed, but it can be blotted out.","Wizard1")
+        break
+        case 9:
+        movehor("Wizard1",1)
+            dialog("You are more valuable. You have the power to destroy the demigod.","Wizard1")
+        break
+        case 10:
+            dialog("As long as you can still fight, we still have hope.","Wizard1")
+        break
+        case 11:
+            enterChar("Templar2",410,100);
+            movevert("Templar2",200,"end")
+        break
+        case 12:
+            dialog("Another wave is about to hit!","Templar2")
+        break
+        case 13:
+            movevert("Wizard1",-1)
+            dialog("Already! We can't withstand another assault.","Wizard1")
+        break
+        case 14:
+            dialog("Tell the others to fall back into the keep and barricade it!","Wizard1")
+        break
+        case 15:
+            dialog("We'll make our final stand within.","Wizard1")
+        break
+         case 16:
+            window.location.href = 'overwhelm.html'
         break
     }
 }
@@ -102,8 +136,6 @@ function queue(){
 
 $(window).load(function(){
     changesong("01/Hurry.mp3")
-    opening("Chapter Sixteen:","Breaking Point")
-
 
         
     

@@ -1,0 +1,125 @@
+<!doctype HTML>
+
+<html>
+
+<head>
+    <title>WAR!</title>
+    <link rel = "stylesheet" type = "text/css" href = "../warcss.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+    
+           <script type = "text/javascript" src = "palace.js"></script>
+    <script type = "text/javascript" src = "../warjs.js"></script>
+
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <style>
+        .areas{
+        background-color:red;
+/*            font-size:0;*/
+        }
+    </style>
+</head>
+
+<body style='background-image: url("../Pictures/floor.jpg")'>
+<!--Header -->
+<div id="top">
+
+</div>
+
+<!--backgroud -->
+<div id="background"><img  style="position:absolute" id="background" src="pics/final-back.png" /><img style="position:absolute; margin-left:20px" class="train" id="background" src="pics/final.png" />
+    <div class='areas' id = 'space1' style ='LEFT:60px ; top:100px'><img src ="../Pictures/Eddy.gif" />1</div>
+    <div class='areas' id = 'space2' style ='LEFT:110px ; top:100px'>2</div>
+    <div class='areas' id = 'space3' style ='LEFT:160px ; top:100px'><img src ="../Pictures/Eddy.gif" />3</div>
+    <div class='areas' id = 'space4' style ='LEFT:210px ; top:100px'>4</div>
+    <div class='areas' id = 'space5' style ='LEFT:260px ; top:100px'><img src ="../Pictures/Eddy.gif" />5</div>
+    <div class='areas' id = 'space6' style ='LEFT:310px ; top:100px'>6</div>
+    <div class='areas' id = 'space7' style ='LEFT:360px ; top:100px'><img src ="../Pictures/Eddy.gif" />7</div>
+    <div class='areas' id = 'space8' style ='LEFT:410px ; top:100px'>8</div>
+    <div class='areas' id = 'space9' style ='LEFT:460px ; top:100px'><img src ="../Pictures/Eddy.gif" />9</div>
+    <div class='areas' id = 'space10' style ='LEFT:510px ; top:100px'><img src="pics/diamond.gif" class="crystal" id="C10"/>10</div>
+    
+    <div class='areas' id = 'space11' style ='LEFT:60px ; top:160px'>11</div>
+    <div class='areas' id = 'space12' style ='LEFT:110px ; top:160px'><img src="pics/diamond.gif" class="crystal" id="C12"/>12</div>
+    <div class='areas' id = 'space13' style ='LEFT:160px ; top:160px'>13</div>
+    <div class='areas' id = 'space14' style ='LEFT:210px ; top:160px'><img src="pics/diamond.gif" class="crystal" id="C14"/>14</div>
+    <div class='areas' id = 'space15' style ='LEFT:260px ; top:160px'>15</div>
+    <div class='areas' id = 'space16' style ='LEFT:310px ; top:160px'><img src="pics/diamond.gif" class="crystal" id="C16"/>16</div>
+    <div class='areas' id = 'space17' style ='LEFT:360px ; top:160px'>17</div>
+    <div class='areas' id = 'space18' style ='LEFT:410px ; top:160px'><img src="pics/diamond.gif" class="crystal" id="C18"/>18</div>
+    <div class='areas' id = 'space19' style ='LEFT:460px ; top:160px'>19</div>
+    <div class='areas' id = 'space20' style ='LEFT:510px ; top:160px'><img src ="../Pictures/Eddy.gif" />20</div>
+    
+    <div class='areas' id = 'space21' style ='LEFT:60px ; top:220px'><img src ="../Pictures/Eddy.gif" />21</div>
+    <div class='areas' id = 'space22' style ='LEFT:110px ; top:220px'>22</div>
+    <div class='areas' id = 'space23' style ='LEFT:160px ; top:220px'><img src="pics/diamond.gif" class="crystal" id="C23"/>23</div>
+    <div class='areas' id = 'space24' style ='LEFT:210px ; top:220px'>24</div>
+    <div class='areas' id = 'space25' style ='LEFT:260px ; top:220px'>25</div>
+    <div class='areas' id = 'space26' style ='LEFT:310px ; top:220px'>26</div>
+    <div class='areas' id = 'space27' style ='LEFT:360px ; top:220px'><img src="pics/diamond.gif" class="crystal" id="C27"/>27</div>
+    <div class='areas' id = 'space28' style ='LEFT:410px ; top:220px'>28</div>
+    <div class='areas' id = 'space29' style ='LEFT:460px ; top:220px'><img src="pics/diamond.gif" class="crystal" id="C29"/>29</div>
+    <div class='areas' id = 'space30' style ='LEFT:510px ; top:220px'>30</div>
+    
+    <div class='areas' id = 'space31' style ='LEFT:60px ; top:280px'>31</div>
+    <div class='areas' id = 'space32' style ='LEFT:110px ; top:280px'><img src="pics/diamond.gif" class="crystal" id="C32"/>32</div>
+    <div class='areas' id = 'space33' style ='LEFT:160px ; top:280px'>33</div>
+    <div class='areas' id = 'space34' style ='LEFT:210px ; top:280px'>34</div>
+    <div class='areas' id = 'space70' style ='width: 50px; height: 58px; LEFT:250px ; top:275px'><img class="nexus" src ="../Pictures/nexus.gif" /></div>
+    <div class='areas' id = 'space36' style ='LEFT:310px ; top:280px'>36</div>
+    <div class='areas' id = 'space37' style ='LEFT:360px ; top:280px'>37</div>
+    <div class='areas' id = 'space38' style ='LEFT:410px ; top:280px'><img src="pics/diamond.gif" class="crystal" id="C38"/>38</div>
+    <div class='areas' id = 'space39' style ='LEFT:460px ; top:280px'>39</div>
+    <div class='areas' id = 'space40' style ='LEFT:510px ; top:280px'><img src ="../Pictures/Eddy.gif" />40</div>
+    
+    <div class='areas' id = 'space41' style ='LEFT:60px ; top:340px'><img src ="../Pictures/Eddy.gif" />41</div>
+    <div class='areas' id = 'space42' style ='LEFT:110px ; top:340px'>42</div>
+    <div class='areas' id = 'space43' style ='LEFT:160px ; top:340px'><img src="pics/diamond.gif" class="crystal" id="C43"/>43</div>
+    <div class='areas' id = 'space44' style ='LEFT:210px ; top:340px'>44</div>
+    <div class='areas' id = 'space45' style ='LEFT:260px ; top:340px'>45</div>
+    <div class='areas' id = 'space46' style ='LEFT:310px ; top:340px'>46</div>
+    <div class='areas' id = 'space47' style ='LEFT:360px ; top:340px'><img src="pics/diamond.gif" class="crystal" id="C47"/>47</div>
+    <div class='areas' id = 'space48' style ='LEFT:410px ; top:340px'>48</div>
+    <div class='areas' id = 'space49' style ='LEFT:460px ; top:340px'><img src="pics/diamond.gif" class="crystal" id="C49"/>49</div>
+    <div class='areas' id = 'space50' style ='LEFT:510px ; top:340px'>50</div>
+    
+    <div class='areas' id = 'space51' style ='LEFT:60px ; top:400px'>51</div>
+    <div class='areas' id = 'space52' style ='LEFT:110px ; top:400px'><img src="pics/diamond.gif" class="crystal" id="C52"/>52</div>
+    <div class='areas' id = 'space53' style ='LEFT:160px ; top:400px'>53</div>
+    <div class='areas' id = 'space54' style ='LEFT:210px ; top:400px'><img src="pics/diamond.gif" class="crystal" id="C54"/>54</div>
+    <div class='areas' id = 'space55' style ='LEFT:260px ; top:400px'>55</div>
+    <div class='areas' id = 'space56' style ='LEFT:310px ; top:400px'><img src="pics/diamond.gif" class="crystal" id="C56"/>56</div>
+    <div class='areas' id = 'space57' style ='LEFT:360px ; top:400px'>57</div>
+    <div class='areas' id = 'space58' style ='LEFT:410px ; top:400px'><img src="pics/diamond.gif" class="crystal" id="C58"/>58</div>
+    <div class='areas' id = 'space59' style ='LEFT:460px ; top:400px'>59</div>
+    <div class='areas' id = 'space60' style ='LEFT:510px ; top:400px'><img src ="../Pictures/Eddy.gif" />60</div>
+    
+    <div class='areas' id = 'space61' style ='LEFT:60px ; top:460px'><img src ="../Pictures/Eddy.gif" />61</div>
+    <div class='areas' id = 'space62' style ='LEFT:110px ; top:460px'>62</div>
+    <div class='areas' id = 'space63' style ='LEFT:160px ; top:460px'><img src ="../Pictures/Eddy.gif" />63</div>
+    <div class='areas' id = 'space64' style ='LEFT:210px ; top:460px'>64</div>
+    <div class='areas' id = 'space65' style ='LEFT:260px ; top:460px'><img src ="../Pictures/Eddy.gif" />65</div>
+    <div class='areas' id = 'space66' style ='LEFT:310px ; top:460px'>66</div>
+    <div class='areas' id = 'space67' style ='LEFT:360px ; top:460px'><img src ="../Pictures/Eddy.gif" />67</div>
+    <div class='areas' id = 'space68' style ='LEFT:410px ; top:460px'>68</div>
+    <div class='areas' id = 'space69' style ='LEFT:460px ; top:460px'><img src ="../Pictures/Eddy.gif" />69</div>
+    <div class='areas' id = 'space35' style ='LEFT:510px ; top:460px'><img src="pics/diamond.gif" class="crystal" id="C35"/>35</div>
+    
+
+
+
+    
+</div>
+<div id="TEXT">
+</div>
+<div id="passarea"></div>
+<div class="actions">
+
+</div>
+
+</body>
+
+</html>

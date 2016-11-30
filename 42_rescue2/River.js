@@ -37,7 +37,7 @@ function containaccessories(){
         $("#space7").data("move1",'8').data("move2",'').data("move3",'').data("move4",'').data("left",80).data("top",450).data("location",7).data("fortify",false);
         $("#space8").data("move1",'9').data("move2",'7').data("move3",'').data("move4",'').data("left",150).data("top",450).data("location",8).data("fortify",false);
         $("#space9").data("move1",'10').data("move2",'8').data("move3",'').data("move4",'').data("left",220).data("top",450).data("location",9).data("fortify",false);
-        $("#space10").data("move1",'11').data("move2",'9').data("move3",'').data("move4",'').data("left",360).data("top",450).data("location",10).data("fortify",false);
+        $("#space10").data("move1",'11').data("move2",'9').data("move3",'').data("move4",'').data("left",290).data("top",450).data("location",10).data("fortify",false);
 
         $("#space11").data("move1",'12').data("move2",'10').data("move3",'').data("move4",'').data("left",360).data("top",450).data("location",11).data("fortify",false);
         $("#space12").data("move1",'70').data("move2",'11').data("move3",'').data("move4",'').data("left",360).data("top",390).data("location",12).data("fortify",false);
@@ -49,7 +49,7 @@ function containaccessories(){
         $("#space21").data("move1",'22').data("move2",'20').data("move3",'').data("move4",'').data("left",510).data("top",230).data("location",21).data("fortify",false);
         $("#space22").data("move1",'23').data("move2",'21').data("move3",'').data("move4",'').data("left",510).data("top",300).data("location",22).data("fortify",false);
         $("#space23").data("move1",'24').data("move2",'22').data("move3",'').data("move4",'').data("left",510).data("top",370).data("location",23).data("fortify",false);
-        $("#space24").data("move1",'23').data("move2",'18').data("move3",'').data("move4",'').data("left",510).data("top",440).data("location",24).data("fortify",false);
+        $("#space24").data("move1",'23').data("move2",'25').data("move3",'').data("move4",'').data("left",510).data("top",440).data("location",24).data("fortify",false);
         $("#space25").data("move1",'24').data("move2",'').data("move3",'').data("move4",'').data("left",510).data("top",510).data("location",25).data("fortify",false);
     }
 
@@ -506,7 +506,7 @@ function liberate(curloc){
                         top: $("#space" + thistemp).data("top") + 'px'
                     });
                 }
-                if (Egroups[i].location === 9 & nomove(10) === false & nomove(13) === false && Egroups[i].hasmoved === false) {
+                if (Egroups[i].location === 9 & nomove(10) === false && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
                     if (direction === 1) {
                         thistemp = 10;
@@ -637,7 +637,7 @@ function liberate(curloc){
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Ice Elemental');
                     break;
                 case 9:
-                    Eunits[newEindex()]=new FrostLord(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Frostlord(curEindex, Egroupindex,difflevel);
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'frostlord');
                     break;
                 case 10:
@@ -702,7 +702,7 @@ function liberate(curloc){
                     break;
             }
         }
-        if (day<30 && day>=20){
+        if (day<50 && day>=20){
             switch(temp){
                 case 1:
                 case 2:
@@ -794,21 +794,18 @@ function set_area_background(i){
     return backgroundpic;
 }
 
- var enemies=6;
+
 var raft=1;
 function indiv_newday(){
            $('.heading').remove();
    
-    for(var i =1;i<6;i++){
+     var enemies=6;
+    for(var i =1;i<7;i++){
         if(Egroups[i].location<0){
-            console.log("missingone")
             enemies-=1;
         }
     }
-    if(enemies==0){
-        winbattle();
-    }
-        $('#top').append("<h1 class = 'heading'>Enemies: " + enemies + "/6   </h1><span class='heading' style='margin-left:20px'>Turn: " + day + "/30</span>");
+        $('#top').append("<h1 class = 'heading'>Enemies: " + enemies + "/6   </h1><span class='heading' style='margin-left:20px'>Turn: " + day + "/50</span>");
     
      if($("#space71").data("filled")==0 && raft==2){
            var temp=$("#space71").offset();
@@ -871,23 +868,17 @@ function indiv_newday(){
             var civsaved = 0;
         for(var i = 0;i<index;i++){
             if(units[i].group!=0){
-                if(units[i].type=="Civilian" && parseInt(groups[units[i].group].location)>18 && parseInt(groups[units[i].group].location)!=78 && parseInt(groups[units[i].group].location)!=71){
+                if(units[i].type=="Civilian" && parseInt(groups[units[i].group].location)>18 && parseInt(groups[units[i].group].location)!=70 && parseInt(groups[units[i].group].location)!=71){
                     civsaved+=1;
                 }
             }
         }
     
-            var enemyleft=0;
-        for(var i = 1;i<Egroupindex;i++){
-            if(Egroups[i].location>=19){
-                    enemyleft+=1;
-            }
-        }
-        if(enemyleft==0 && civsaved == 3){
+        if(enemies==0 && civsaved == 3){
             winbattle("../43/beforeseige.html")
         }
     
-    if(day==30){
+    if(day==50){
         gameover()
     }
    
@@ -905,6 +896,7 @@ function enemyconquer(){
 
 function condition71(){
       var count=0;
+    
             for(var i=0;i<index;i++){
                 if(units[i].group==curgroupnum){
                     count+=1;
@@ -913,12 +905,17 @@ function condition71(){
             if(count>1){
                 message("Only one soldier can enter a raft at a time.")
                 return "stop";
-            }else{
+            }else if(raft!=1){
+                return "stop";
+            }
+    else{
                 return"go";
             }
 }
 
 $(window).load(function(){
+    changesong("01/Battle.wav")
+    
     Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new Goblin(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
@@ -930,9 +927,9 @@ $(window).load(function(){
     Egroups[Egroupindex]=new Enewgroup(2,19,1000,'Frostlord');
     
          Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
-    Eunits[newEindex()]=new Cannon(curEindex, Egroupindex,difflevel);
+    Eunits[newEindex()]=new Magnet(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
-    Egroups[Egroupindex]=new Enewgroup(3,20,1000,'Cannon');
+    Egroups[Egroupindex]=new Enewgroup(3,20,1000,'Clunker');
     
             Eunits[newEindex()]=new Magnet(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
@@ -951,21 +948,6 @@ $(window).load(function(){
     
      clickEicon();
     Egroupinfo();
-    
-//    $("#space71").mousedown(function(e){
-//        if(e.button === 2 ) {
-//            var count=0;
-//            for(var i=0;i<index;i++){
-//                if(units[i].group==curgroupnum){
-//                    count+=1;
-//                }
-//            }
-//            if(count>1){
-//                message("Only one soldier can enter a raft at a time.")
-//                return;
-//            }
-//        }
-//    })
     
     units[index]= new Civilian(index, name);
     units[index]= new Civilian(index, name);
