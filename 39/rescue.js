@@ -1,132 +1,66 @@
 
 var qnum=0;
 
-function castle(withairship){
-    endthis=false;
-  $("body").append("<div style='background-color:lightblue;margin-top:0px;margin-left:-0px' id = 'quickscene'>" +
-                 "<img src = 'pics/castle.png' /><div class='trees' STYLE='position:absolute; TOP:570px; LEFT:-220px;' ><img style='height:80px' src='pics/wall-enemy.gif'/></div></div>")
-          $('.trees').animate({
-                        left: "+1080px"
-                    }, 3000,"linear"); 
-    $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:-140px;" ><img style="height:80px" src="./pics/wall-enemy.gif"/></div>');
-      $('.trees').animate({
-                        left: "+1160px"
-                    }, 3000,"linear"); 
-        $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:-60px;" ><img style="height:80px" src="pics/wall-enemy.gif"/></div>');
-      $('.trees').animate({
-                        left: "+1220px"
-                    }, 3000,"linear"); 
-            $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:20px;" ><img style="height:80px" src="pics/wall-enemy.gif"/></div>');
-      $('.trees').animate({
-                        left: "+1300px"
-                    }, 3000,"linear"); 
-                $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:100px;" ><img style="height:80px" src="pics/wall-enemy.gif"/></div>');
-      $('.trees').animate({
-                        left: "+1380px"
-                    }, 3000,"linear"); 
-        $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:180px;" ><img style="height:80px" src="pics/wall-enemy.gif"/></div>');
-      $('.trees').animate({
-                        left: "+1460px"
-                    }, 3000,"linear"); 
-        $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:260px;" ><img style="height:80px" src="pics/wall-enemy.gif"/></div>');
-      $('.trees').animate({
-                        left: "+1520px"
-                    }, 3000,"linear"); 
-        $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:340px;" ><img style="height:80px" src="pics/wall-enemy.gif"/></div>');
-      $('.trees').animate({
-                        left: "+1600px"
-                    }, 3000,"linear"); 
-           $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:400px;" ><img style="height:80px" src="pics/wall-enemy.gif"/></div>');
-      $('.trees').animate({
-                        left: "+1680px"
-                    }, 3000,"linear"); 
-           $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:460px;" ><img style="height:80px" src="pics/wall-enemy.gif"/></div>');
-      $('.trees').animate({
-                        left: "+1760px"
-                    }, 3000,"linear"); 
-               $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:540px;" ><img style="height:80px" src="pics/wall-enemy.gif"/></div>');
-      $('.trees').animate({
-                        left: "+1840px"
-                    }, 3000,"linear"); 
-    
-    if(withairship=="Without"){
-         text("The Hordes of Darkness Attack",100,-800)
-    }
-         
-    setInterval(function(){
-        if(endthis){
-            return;
-        }
-         $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:-300px;" ><img style="height:80px" src="pics/wall-enemy.gif"/></div>');
-            $('.trees').animate({
-                        left: "+1000px"
-                    }, 3000,"linear"); 
-    },500)
-  setTimeout(function(){
-      $("#quickscene").remove();
-      endthis=true;
-      queue();
-  },3000)
-
-}
-
 function queue(){
     qnum+=1;
     switch(qnum){
         case 1:
-            enterChar("Sorcerer",450,400);
-            enterChar("Wizard1",400,400);
+            addobject("EffectFire",200,100)
+            addobject("EffectFire",100,100)
+            addobject("EffectFire",100,50)
+            addobject("EffectFire",500,100)
+            addobject("EffectFire",500,50)
+            addobject("EffectFire",600,50)
+            addobject("EffectFire",700,150)
+            enterChar("Mimic",-100,300);
+            movehor("Mimic",400,"end")
         break
         case 2:
-            dialog("We're safe...","Wizard1")
+            movehor("Mimic",-1)
+            dialog("Follow me, if we make it across the river, we should be able to escape!","Mimic")
         break
         case 3:
-        movehor("Sorcerer",-1)
-            dialog("Can we survive another assault?","Sorcerer")
+            enterChar("fisherman",-100,200);
+            enterChar("fisherman2",-100,300);
+            enterChar("fisherman3",-100,400);
+            enterChar("fisherman4",-100,450);
+            movehor("fisherman",300)
+            movehor("fisherman2",300)
+            movehor("fisherman3",300)
+            movehor("fisherman4",300)
+            enterChar("Knight",900,300);
+            enterChar("Archer2",900,400);
+            enterChar("Sorcerer",900,450);
+            movehor("Knight",-300)
+            movehor("Archer2",-300)
+            movehor("Sorcerer",-300,"end")
         break
         case 4:
-            dialog("We must endure. We have to give the others more time!","Wizard1")
+        movehor("Mimic",1)
+            dialog("Who are you?","Mimic")
         break
         case 5:
-        movehor("Wizard1",1)
-            dialog("But Listen, even if the temple falls, YOU must survive!","Wizard1")
+            dialog("We're here to help.","Archer2")
         break
         case 6:
-            dialog("Therefore, if I tell you to retreat and hide, you must listen!","Wizard1")
+            dialog("We have an airship.","Sorcerer")
         break
         case 7:
-            dialog("Sir, we cannot allot the source to be destroyed.","Sorcerer")
+            dialog("Guess we don't have much of a choice. Let's go.","Mimic")
         break
         case 8:
-        movevert("Wizard1",1)
-            dialog("The source can never be fully destroyed, but it can be blotted out.","Wizard1")
+            movehor("Mimic",300)
+            movehor("Knight",300)
+            movehor("Archer2",300)
+            movehor("Sorcerer",300)
+            movehor("fisherman",300)
+            movehor("fisherman2",300)
+            movehor("fisherman3",300)
+            movehor("fisherman4",300)
+            delay(1000)
         break
         case 9:
-        movehor("Wizard1",1)
-            dialog("You are more valuable. You have the power to destroy the demigod.","Wizard1")
-        break
-        case 10:
-            dialog("As long as you can still fight, we still have hope.","Wizard1")
-        break
-        case 11:
-            enterChar("Templar2",410,100);
-            movevert("Templar2",200)
-        break
-        case 12:
-            dialog("Another wave is about to hit!","Templar2")
-        break
-        case 13:
-            movevert("Wizard1",-1)
-            dialog("Already, we can't without another assault.","Wizard1")
-        break
-        case 14:
-            dialog("Tell the others to fall back into the keep and barricade it!","Wizard1")
-        break
-                case 15:
-            dialog("We'll make our final stand within.","Wizard1")
-        break
-         case 5:
-            window.location.href = '../38_seige3/Seige.html'
+            window.location.href = 'abovehedge.html'
         break
     }
 }
@@ -135,6 +69,7 @@ function queue(){
 
 $(window).load(function(){
 doeffect("Dramatic.wav")
+changesong("01/Hurry.mp3")
 
         
     

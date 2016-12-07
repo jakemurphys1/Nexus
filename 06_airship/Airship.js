@@ -1,8 +1,6 @@
 
 
     var allynum=0;
-
-var noheal=false;
 var noexplore=true;
 
 var number_of_units=8;

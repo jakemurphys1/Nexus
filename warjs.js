@@ -171,6 +171,7 @@ function changesong(song){
         var sorcererincrease=1;
 
         var hasloaded=false;
+        var inanimation=false;
 
    var groupindex=1;
 
@@ -694,7 +695,7 @@ var barrackbutton;
             sorcerermana=100;
         }
 
-var diffinverse=0;
+            var diffinverse=0;
         switch(difflevel){
             case 1:
                 diffinverse=3;
@@ -723,6 +724,9 @@ var diffinverse=0;
             }
         }
         for (var i=0;i<index;i++){
+            if(units[i].group<0){
+                units[i].group=0;
+            }
             if(units[i].enroute>0){
                 units[i].enroute-=1;
             }
@@ -945,7 +949,7 @@ var diffinverse=0;
         this.curleft=0;
         this.curtop=25;
         this.group=Egroupindex;
-        this.description="These flittery creatures are hard to catch. They can use icy magic which can put units to sleep.";
+        this.description="These flittery creatures are hard to catch. They can use icy magic that can hit regardless of location.";
         this.picture="<div class='Ebarrackpic' id='E"+ e + "'><img src='../Pictures/Enemies/Wisp.gif'/></div>";
         this.image='../Pictures/Enemies/Wisp.gif';
         this.dying='../Pictures/Enemies/Wisp_dying.gif'
@@ -1270,22 +1274,22 @@ var diffinverse=0;
         this.level=level;
 
         if(level===1){
-            this.attack= 10;
+            this.attack= 20;
             this.health= 30;
             this.maxhealth=30;
         }
         if(level===2){
-            this.attack= 20;
+            this.attack= 30;
             this.health= 50;
             this.maxhealth=50;
         }
         if(level===3){
-            this.attack= 30;
+            this.attack= 40;
             this.health= 70;
             this.maxhealth=70;
         }
         if(level===4){
-            this.attack= 37;
+            this.attack= 50;
             this.health= 85;
             this.maxhealth=85;
         }
@@ -1396,7 +1400,7 @@ var diffinverse=0;
             this.health= 150;
             this.maxhealth=150;
         }
-        this.defense= 30;
+        this.defense= 35;
         this.resistance= 0;
 
         this.sleep=0;
@@ -2829,6 +2833,60 @@ var diffinverse=0;
         this.image='../Pictures/Enemies/Demon.gif';
         this.dying='../Pictures/Enemies/Demon_dying.gif'
     }
+    function Demigod(e,Egroupindex,level){
+        this.type= "Demigod";
+        this.name="Demigod";
+        this.level=level;
+
+        if(level===1){
+            this.attack= 100;
+            this.health= 10000;
+            this.maxhealth=10000;
+        }
+        if(level===2){
+            this.attack= 130;
+            this.health= 10000;
+            this.maxhealth=10000;
+        }
+        if(level===3){
+            this.attack= 160;
+            this.health= 10000;
+            this.maxhealth=10000;
+        }
+        if(level===4){
+            this.attack= 200;
+            this.health= 10000;
+            this.maxhealth=10000;
+        }
+        this.defense= 1000;
+        this.resistance= 1000;
+
+        this.sleep=0;
+        this.immobilized=0;
+        this.blind=0;
+        this.silenced=0;
+        this.poison=0;
+        this.enfeeble=0;
+        this.terrify=0;
+        this.lightning=1;
+        this.fire=1;
+        this.ice=1;
+        
+        this.maxcharge=3;
+
+        this.usedspecial=false;
+        this.index=e;
+        this.usedaction=false;
+        this.alive=true;
+        this.charge= 0;
+        this.curleft=0;
+        this.curtop=25;
+        this.group=Egroupindex;
+        this.description="Elite among it's kind, this rare creature can instantly kill any units with it's death spell for 5 charge. Defeat to get it's soul to summon.";
+        this.picture="<div class='Ebarrackpic' id='E"+ e + "'><img src='../Pictures/Enemies/Demigod.gif'/></div>";
+        this.image='../Pictures/Enemies/Demigod.gif';
+        this.dying='../Pictures/Enemies/Demigod.gif'
+    }
 
 function Eye(e,Egroupindex,level){
         this.type= "Eye";
@@ -3353,6 +3411,8 @@ function createsoldier(choice,name){
         this.abilityimmunity=false;
         this.abilitycounter=false;
         this.abilitysteadfast=false;
+        
+        this.counterindex=[];
 
         this.picture="<div class='barrackpic' id='"+ e + "'><img src='../CinePics/characters/"  + type + "/" + type +  "_front.gif' /></div>";
         this.image='../CinePics/characters/' + type + '/' + type + '_front.gif';
@@ -3360,6 +3420,10 @@ function createsoldier(choice,name){
         this.rightpic ='../CinePics/characters/' + type + '/' + type + '_right.gif';
         this.leftpic ='../CinePics/characters/' + type + '/' + type + '_left.gif'; 
         this.backpic ='../CinePics/characters/' + type + '/' + type + '_back.gif'; 
+        this.attackfront = '../CinePics/characters/' + type + '/' + type + '_attack_front.gif'; 
+        this.attackback = '../CinePics/characters/' + type + '/' + type + '_back.gif'; 
+        this.attackleft = '../CinePics/characters/' + type + '/' + type + '_attack_left.gif'; 
+        this.attackright = '../CinePics/characters/' + type + '/' + type + '_attack_right.gif'; 
         index+=1;
         if (e===-1){
             this.curleft=1;
@@ -3437,7 +3501,7 @@ function createsoldier(choice,name){
         this.abilitysweep=false;
         this.abilityfreemove=false;
         this.abilitypiercer=false;
-        this.abilityreact=false;
+        this.abilitywail=false;
 
         this.picture="<div class='barrackpic' id='"+ e + "'><img src='../CinePics/characters/"  + type + "/" + type +  "_front.gif' /></div>";
         this.image='../CinePics/characters/' + type + '/' + type + '_front.gif';
@@ -3445,6 +3509,10 @@ function createsoldier(choice,name){
         this.rightpic ='../CinePics/characters/' + type + '/' + type + '_right.gif';
         this.leftpic ='../CinePics/characters/' + type + '/' + type + '_left.gif'; 
         this.backpic ='../CinePics/characters/' + type + '/' + type + '_back.gif'; 
+        this.attackfront = '../CinePics/characters/' + type + '/' + type + '_attack_front.gif'; 
+        this.attackback = '../CinePics/characters/' + type + '/' + type + '_attack_back.gif'; 
+        this.attackleft = '../CinePics/characters/' + type + '/' + type + '_attack_left.gif'; 
+        this.attackright = '../CinePics/characters/' + type + '/' + type + '_attack_right.gif'; 
         index+=1;
     }
     function Thief(e,type){
@@ -3519,6 +3587,10 @@ function createsoldier(choice,name){
         this.rightpic ='../CinePics/characters/' + type + '/' + type + '_right.gif';
         this.leftpic ='../CinePics/characters/' + type + '/' + type + '_left.gif'; 
         this.backpic ='../CinePics/characters/' + type + '/' + type + '_back.gif'; 
+        this.attackfront = '../CinePics/characters/' + type + '/' + type + '_attack_front.gif'; 
+        this.attackback = '../CinePics/characters/' + type + '/' + type + '_back.gif'; 
+        this.attackleft = '../CinePics/characters/' + type + '/' + type + '_attack_left.gif'; 
+        this.attackright = '../CinePics/characters/' + type + '/' + type + '_attack_right.gif'; 
         index+=1;
     }
 
@@ -3592,6 +3664,7 @@ function createsoldier(choice,name){
         this.rightpic ='../CinePics/characters/' + type + '/' + type + '_right.gif';
         this.leftpic ='../CinePics/characters/' + type + '/' + type + '_left.gif'; 
         this.backpic ='../CinePics/characters/' + type + '/' + type + '_back.gif'; 
+        this.casting = '../CinePics/characters/' + type + '/' + type + '_casting.gif'; 
         index+=1;
     }
     function Wizard(e,type){
@@ -3663,6 +3736,7 @@ function createsoldier(choice,name){
         this.rightpic ='../CinePics/characters/' + type + '/' + type + '_right.gif';
         this.leftpic ='../CinePics/characters/' + type + '/' + type + '_left.gif'; 
         this.backpic ='../CinePics/characters/' + type + '/' + type + '_back.gif'; 
+        this.casting = '../CinePics/characters/' + type + '/' + type + '_casting.gif'; 
         index+=1;
     }
     function Sorcerer(e,type){
@@ -3727,7 +3801,7 @@ function createsoldier(choice,name){
         this.abilityfireblast=false;
         this.abilitylightning=false;
         this.abilitymanaincrease=false;
-        this.abilityslumber=false;
+        this.abilityearth=false;
         this.abilitydeath=false;
 
         this.picture="<div class='barrackpic' id='"+ e + "'><img src='../CinePics/characters/"  + type + "/" + type +  "_front.gif' /></div>";
@@ -3736,6 +3810,7 @@ function createsoldier(choice,name){
         this.rightpic ='../CinePics/characters/' + type + '/' + type + '_right.gif';
         this.leftpic ='../CinePics/characters/' + type + '/' + type + '_left.gif'; 
         this.backpic ='../CinePics/characters/' + type + '/' + type + '_back.gif'; 
+        this.casting = '../CinePics/characters/' + type + '/' + type + '_casting.gif'; 
         index+=1;
     }
 
@@ -4007,7 +4082,9 @@ function createsoldier(choice,name){
         this.enfeeble=0;
 
         this.captured="";
+        this.braced=false;
 
+        
         this.immune=false;
         this.frosttouch=false;
         this.storm=false;
@@ -4049,6 +4126,11 @@ function createsoldier(choice,name){
         this.rightpic ='../CinePics/characters/' + type + '/' + type + '_right.gif';
         this.leftpic ='../CinePics/characters/' + type + '/' + type + '_left.gif'; 
         this.backpic ='../CinePics/characters/' + type + '/' + type + '_back.gif'; 
+        
+        this.attackfront = '../CinePics/characters/' + type + '/' + type + '_front.gif'; 
+        this.attackback = '../CinePics/characters/' + type + '/' + type + '_back.gif'; 
+        this.attackleft = '../CinePics/characters/' + type + '/' + type + '_left.gif'; 
+        this.attackright = '../CinePics/characters/' + type + '/' + type + '_right.gif'; 
         index+=1;
     }
     function Enchantress(e,type){
@@ -4129,6 +4211,7 @@ function createsoldier(choice,name){
         this.rightpic ='../CinePics/characters/' + type + '/' + type + '_right.gif';
         this.leftpic ='../CinePics/characters/' + type + '/' + type + '_left.gif'; 
         this.backpic ='../CinePics/characters/' + type + '/' + type + '_back.gif'; 
+        this.casting = '../CinePics/characters/' + type + '/' + type + '_casting.gif'; 
         index+=1;
     }
     function Healer(e,type){
@@ -4203,6 +4286,7 @@ function createsoldier(choice,name){
         this.rightpic ='../CinePics/characters/' + type + '/' + type + '_right.gif';
         this.leftpic ='../CinePics/characters/' + type + '/' + type + '_left.gif'; 
         this.backpic ='../CinePics/characters/' + type + '/' + type + '_back.gif'; 
+        this.casting = '../CinePics/characters/' + type + '/' + type + '_casting.gif'; 
         index+=1;
     }
 
@@ -5610,7 +5694,7 @@ function clearspaces(e){
                     if (slots[2]!=-1){
                         units[slots[2]].curleft=225;
                         units[slots[2]].curtop=currenttop;
-                        $('#battlebackground').append('<div STYLE="position:absolute; TOP:' + currenttop + 'px; LEFT:225px;" class="unit"  id="' + slots[2] + '" ><img src="' + units[slots[2]].backpic + '"/></div>');
+                        $('#battlebackground').append('<div STYLE="position:absolute; TOP:' + currenttop + 'px; LEFT:225px;" class="unit"  id="' + slots[2] + '" ><img class="dirpic" src="' + units[slots[2]].backpic + '"/></div>');
                         $('#' + slots[2]).append('<div class="healthbar" id = "HB' + slots[2] + '" style="width: ' + (units[slots[2]].health/units[slots[2]].maxhealth)*100 + '%"></div><div class="level"><p>' + units[slots[2]].level + '</p></div><div class="energybar" id ="EB' + units[slots[2]].index + '"style="width: ' + (units[slots[2]].energy) + '%"></div>');
                         if(units[slots[2]].type==="Wizard" || (checkslots("Wizard") && units[slots[2]].type==="Mimic")){
                             $('#' + slots[2]).append('<img style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORB' + slots[2] + '" style="color: yellow; position: absolute; font-size:20px; margin-top:-30px; margin-left:55px; width:10px; height:10px ">' + units[slots[2]].charge +'</div>');
@@ -5631,7 +5715,7 @@ function clearspaces(e){
                     if (slots[3]!=-1){
                         units[slots[3]].curleft=325;
                         units[slots[3]].curtop=currenttop;
-                        $('#battlebackground').append('<div STYLE="position:absolute; TOP:' + currenttop + 'px; LEFT:325px;" class="unit"  id="' + slots[3] + '" ><img src="' + units[slots[3]].backpic + '"/></div>');
+                        $('#battlebackground').append('<div STYLE="position:absolute; TOP:' + currenttop + 'px; LEFT:325px;" class="unit"  id="' + slots[3] + '" ><img class="dirpic" src="' + units[slots[3]].backpic + '"/></div>');
                         $('#' + slots[3]).append('<div class="healthbar" id = "HB' + slots[3] + '" style="width: ' + (units[slots[3]].health/units[slots[3]].maxhealth)*100 + '%"></div><div class="level"><p>' + units[slots[3]].level + '</p></div><div class="energybar" id ="EB' + units[slots[3]].index + '"style="width: ' + (units[slots[3]].energy) + '%"></div>');
                         if(units[slots[3]].type==="Wizard" || (checkslots("Wizard") && units[slots[3]].type==="Mimic")){
                             $('#' + slots[3]).append('<img style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORB' + slots[3] + '" style="color: yellow;position: absolute; font-size:20px; margin-top:-30px; margin-left:55px; width:10px; height:10px ">' + units[slots[3]].charge +'</div>');
@@ -5784,6 +5868,10 @@ var mult = 0;
     function battlemove(){
 
         $('.battleareas').mousedown(function(e) {
+            if(inanimation){
+                console.log("got here")
+                return;
+            }
             $("#TEXT").empty();
             var newpic;
             if(e.button === 2 ){
@@ -5902,19 +5990,19 @@ var mult = 0;
                     }
 
                     if(units[selectedindex].curleft + 100 === futureleft){
-                        $("#" + selectedindex + " img").attr("src", units[selectedindex].rightpic) 
+                        $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].rightpic) 
                     }
                     if(units[selectedindex].curleft - 100 === futureleft){
-                        $("#" + selectedindex + " img").attr("src", units[selectedindex].leftpic)
+                        $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].leftpic)
                     }
                        if(units[selectedindex].curtop + 100 === futuretop){
-                        $("#" + selectedindex + " img").attr("src", units[selectedindex].image) 
+                        $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].image) 
                     }
                     if(units[selectedindex].curtop - 100 === futuretop){
-                        $("#" + selectedindex + " img").attr("src", units[selectedindex].backpic)
+                        $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].backpic)
                     }
                     showailments();
-                    //backhere
+
                     function checktypes(type){
                         if(units[slots[1]].type == type || units[slots[2]].type == type || units[slots[3]].type == type){
                             return true;
@@ -6153,7 +6241,6 @@ var mult = 0;
                 return;
             }
             //gives stats on selected unit
-
             for (var i = 0; i < index; i++) {
                 if (units[i].index === parseInt($(this).attr("id"),10)) {
                     if(units[i].sleep>0){
@@ -6169,7 +6256,7 @@ var mult = 0;
                     $("#TEXT").append('<div id="abilitycontainer"></div>').append('<div id="abilitycontainer2"></div><ul>ABILITIES</ul>');
 
                     if(units[selectedindex].type==="Soldier"){
-                        $('#abilitycontainer').append("<div id='Soldier_Normal' class='ability'><img src=../Pictures/abilities/Soldier/Soldier_Normal.png' /></div>");
+                        $('#abilitycontainer').append("<div id='Soldier_Normal' class='ability'><img src='../Pictures/abilities/Soldier/Normal.png' /></div>");
                         $("#Soldier_Normal").click(function(){
                             message("Normal Attack: Deals damage equal to it's attack to an adjacent enemy.")
                         });
@@ -6205,7 +6292,7 @@ var mult = 0;
                         }
                     }
                     if(units[selectedindex].type==="Knight"){
-                        $('#abilitycontainer').append("<div id='Knight_Normal' class='ability'><img src='../Pictures/abilities/Soldier/Soldier_Normal.png' /></div>");
+                        $('#abilitycontainer').append("<div id='Knight_Normal' class='ability'><img src='../Pictures/abilities/Soldier/Normal.png' /></div>");
                         $("#Knight_Normal").click(function(){
                             message("Normal Attack: Deals damage equal to it's attack to an adjacent enemy.")
                         });
@@ -6233,10 +6320,10 @@ var mult = 0;
                                 message("Free Move: Moving no longer uses energy.")
                             });
                         }
-                        if(units[selectedindex].abilityreact===true){
-                            $('#abilitycontainer2').append("<div id='Knight_React' class='ability'><img src='../Pictures/abilities/Knight/Knight_React.png' /></div>");
-                            $("#Knight_React").click(function(){
-                                message("React: Enemies moving next to Knight will make knight attack that enemy for half damage..")
+                        if(units[selectedindex].abilitywail===true){
+                            $('#abilitycontainer2').append("<div id='Knight_Wail' class='ability'><img src='../Pictures/abilities/Knight/Knight_Wail.png' /></div>");
+                            $("#Knight_Wail").click(function(){
+                                message("Wail: Attack an adjacent enemy multiple takes based on remaining stamina. Each strike past the first has a chance of missing.")
                             });
                         }
                     }
@@ -6481,10 +6568,10 @@ var mult = 0;
                                 message("Power increase: Sorcerer will gain 10 power a turn instead of 5.")
                             });
                         }
-                        if(units[selectedindex].abilityslumber===true){
-                            $('#abilitycontainer').append("<div id='Sorcerer_slumber' class='ability'><img src='../Pictures/abilities/Sorcerer/Sorcerer_Slumber.png' /></div>");
-                            $("#Sorcerer_slumber").click(function(){
-                                message("Slumber: Puts all enemies to sleep for a turn. Costs 10 power.")
+                        if(units[selectedindex].abilityearth===true){
+                            $('#abilitycontainer').append("<div id='Sorcerer_earthr' class='ability'><img src='../Pictures/abilities/Sorcerer/Sorcerer_Earth.png' /></div>");
+                            $("#Sorcerer_earth").click(function(){
+                                message("Earth: Deals X2 physical damage to any enemy. Costs 20 power.")
                             });
                         }
                         if(units[selectedindex].abilitydeath===true){
@@ -6639,6 +6726,15 @@ var mult = 0;
                             if(checktypes("Wizard")){
                                 $('#mimicchoice').append(new Option('Gust(1)','Gust(1)'));
                             }
+                            if(checktypes("Guard") && typeof(braceActive) != "undefined"){
+                                $('#mimicchoice').append(new Option('Brace','Brace'));
+                            }
+                            if(checktypes("Sorcerer") && typeof(ultimateActive) != "undefined"){
+                                $('#mimicchoice').append(new Option('Blood-Sacrifice','Blood-Sacrifice'));
+                            }
+                            if(units[selectedindex].ultimate==true){
+                                $('#mimicchoice').append(new Option('Ultimate','Ultimate'));
+                            }
                             if(checktypes("Healer")){
                                 $('#mimicchoice').append(new Option('Vigor','Vigor'));
                             }
@@ -6753,6 +6849,9 @@ var mult = 0;
                         }
                         if(units[selectedindex].abilitysweep===true){
                             $('#knightchoice').append(new Option('Sweep'));
+                        }
+                        if(units[selectedindex].abilitywail===true){
+                            $('#knightchoice').append(new Option('Wail'));
                         }
                         $('#knightAttack').addClass('battlehighlight');
                         selectedaction = 'knightAttack';
@@ -6897,11 +6996,13 @@ var mult = 0;
                         clickactionbuttons();
                         break;
                     case "Guard":
-                            tipmessage("Guard","This is a Guard. He is a master of defense. It may have a low attack, but it has both great defense and resistance. It has a shield shown in blue above it's health. Any damage to it will be absorbed by that shield first.");
                         $('.actions').empty();
                         $('.actions').append("<select class = 'options' id='guardchoice' style='position:absolute; margin-left:5px; margin-right:40px; margin-top: 2px; width:110px;'><option value = 'Bash'>Bash</option></select><div class = 'actionbutton' style='position:absolute; margin-top:30px; margin-left:5px' id = 'guardUse'>Use</div></div>");
                         if(units[selectedindex].abilityprotect===true){
                             $('#guardchoice').append(new Option('Protect'));
+                        }
+                        if(typeof(braceActive) != "undefined"){
+                            $('#guardchoice').append(new Option('Brace'));
                         }
                         if(units[selectedindex].abilityreshield===true){
                             $('#guardchoice').append(new Option('Reshield'));
@@ -6957,8 +7058,16 @@ var mult = 0;
                         if(units[selectedindex].abilityfireblast===true){
                             $('#sorcererchoice').append(new Option('Fireblast(30)'));
                         }
-                        if(units[selectedindex].abilityslumber===true){
-                            $('#sorcererchoice').append(new Option('Slumber(20)'));
+                        if(units[selectedindex].abilityearth===true){
+                            $('#sorcererchoice').append(new Option('Earth(20)'));
+                        }
+                        if(typeof(ultimateActive) != "undefined"){
+                            if(units[selectedindex].ultimate===true){
+                                $('#sorcererchoice').append(new Option('Ultimate'));
+                            }else{
+                                $('#sorcererchoice').append(new Option('Blood-Sacrifice'));
+                            }
+
                         }
                         if(units[selectedindex].abilitydeath===true){
                             $('#sorcererchoice').append(new Option('Death(50)'));
@@ -7086,7 +7195,7 @@ var mult = 0;
                     }
                 }
 
-
+                var elementalNum=1;
                 //determine whether this unit did an action this turn
                 if (units[selectedindex].usedaction === true && !(units[selectedindex].abilitydoubletap===true && units[selectedindex].moved===false)) {
                     $("#TEXT").append("<p>" + units[selectedindex].name + " has already used an action this turn</p>");
@@ -7155,7 +7264,7 @@ var mult = 0;
                                 },300)
                                 return;
                             }else{
-                                $("#E" + enemyindex).fadeOut();
+                            $("#E" + enemyindex).fadeOut();
                             $("#E" + enemyindex).animate({
                                 left: 225 + "px",
                                 top: 25 + "px"
@@ -7166,12 +7275,14 @@ var mult = 0;
 
                             
                         } else {
+                            inanimation=true;
                             $("#ORBE" + enemyindex).remove();
                             $("#E" + enemyindex + " .ORBIMG").remove();
                             $("#E" + enemyindex + " .ailment").remove();
                             $("#E" + enemyindex + " img").attr("src",Eunits[enemyindex].dying);
                             setTimeout(function(){
                                 $("#E" + enemyindex).remove();
+                                inanimation=false
                             },1500)
                             //$("#E" + enemyindex).effect('explode');
                         }
@@ -7200,6 +7311,22 @@ var mult = 0;
                     var temp = "#E" + index;
                     var tempbar = "#EHB" + index;
                     
+                    var elementalchange = "normalDamage";
+                    if(elementalNum>1){
+                        elementalchange = "BigDamage";
+                    }
+                    if(elementalNum<1){
+                        elementalchange = "SmallDamage";
+                    }
+                    console.log(elementalchange)
+                    $("#battlebackground").append('<p class="damage ' + elementalchange +'" style="margin-top:' + (Eunits[index].curtop-500) +'px; margin-left:' + (Eunits[index].curleft) +'px;">' + damage + '</p>');
+                    $('.damage').animate({
+                        top: (450)+'px'
+                    }, 1000);
+                    
+                    if(damage == "Miss"){
+                        damage=0;
+                    }
                     $("#TEXT").append("<p>" + units[selectedindex].name + " did " + damage + " damage to " + Eunits[index].name + "\n</p>");
                     Eunits[index].health -= damage;
                     setTimeout(function(){dies(index);},500);
@@ -7207,20 +7334,9 @@ var mult = 0;
                     
                     $(tempbar).remove();
                     $(temp).append('<div class="healthbar" id ="EHB' + Eunits[index].index + '"style="width: ' + (Eunits[index].health / Eunits[index].maxhealth) * 100 + '%"></div>');
-                    $(".damage").remove();
-                    
-                    
-
-                    $("#battlebackground").append('<p class="damage" style="position: absolute; font-size:40px; margin-top:' + (Eunits[index].curtop-500) +'px; margin-left:' + (Eunits[index].curleft) +'px; color:white ">' + damage + '</p>');
-                    $('.damage').animate({
-                        top: (450)+'px'
-                    }, 1000);
-                    
-                                
-
-
                     setTimeout(function(){
                         $(".damage").remove();
+                        turngray();
                     },1000)
                 }
 
@@ -7250,7 +7366,79 @@ var mult = 0;
     },500).fadeOut(500);
     Arrow.play();
 }
+                function slashattack(){
+                    $("#" + selectedindex).css("z-index","2")
+                    if(Eunits[enemyindex].curleft<units[selectedindex].curleft){
+                        setTimeout(function(){
+                            $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].attackleft) 
+                        },100)
 
+                        $("#" + selectedindex).animate({
+                            left: "-=60px"
+                        },500)
+                        setTimeout(function(){
+                            $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].leftpic)
+                        },500) 
+                    }
+                    if(Eunits[enemyindex].curleft>units[selectedindex].curleft){
+                        setTimeout(function(){
+                            $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].attackright) 
+                        },100)
+
+                        $("#" + selectedindex).animate({
+                            left: "+=60px"
+                        },500)
+                        setTimeout(function(){
+                            $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].rightpic)
+                        },500)
+                    }
+                    if(Eunits[enemyindex].curtop<units[selectedindex].curtop){
+                        setTimeout(function(){
+                            $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].attackback)
+                        },100)
+                        
+                        $("#" + selectedindex).animate({
+                            top: "-=40px"
+                        },500)
+                        setTimeout(function(){
+                            $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].backpic)
+                        },500)
+                    }
+                    if(Eunits[enemyindex].curtop>units[selectedindex].curtop){
+                        setTimeout(function(){
+                                                $("#" + selectedindex).css("z-index","auto")
+                            $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].attackfront)
+                        },100)
+                        $("#" + selectedindex).animate({
+                            top: "+=40px"
+                        },500)
+                        setTimeout(function(){
+                            $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].image)
+                        },500)
+                    }
+                        setTimeout(function(){
+                            $("#" + selectedindex).css("z-index","auto")
+                            $("#E" + enemyindex).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
+                            $(".slashEffects").fadeOut(2000);
+                            Sword.play();
+                            $("#" + selectedindex).animate({
+                                top: units[selectedindex].curtop + "px",
+                                left: units[selectedindex].curleft + "px",
+                            },500)
+                        },500)
+                }
+                function checktypes(type){
+                                var typepresent = false;
+                                for(var p =0;p<index;p++){
+                                    if(selectedindex>=index){
+                                        return;
+                                    }
+                                    if(units[p].type == type && units[p].group == units[selectedindex].group){
+                                        typepresent=true;
+                                    }
+                                }
+                                return typepresent
+                            }
                 //rouge
                 if (selectedaction === "rougeAttack" || selectedaction === "mimicAttack" ) {
                     if (units[selectedindex].curleft === Eunits[enemyindex].curleft || units[selectedindex].curtop === Eunits[enemyindex].curtop) {
@@ -7409,6 +7597,7 @@ var mult = 0;
                                 if ($('#elemental option:selected').text() === "Lightning") {
                                     elementalboost = Eunits[enemyindex].lightning;
                                 }
+                                elementalNum=elementalboost;
                                 damage = damage * elementalboost;
                             }
 
@@ -7704,6 +7893,7 @@ var mult = 0;
                                     if (Eunits[Eslots[z]].alive === true && magnetthere===false) {
                                         if ((Eunits[Eslots[z]].curleft === Eunits[enemyindex].curleft - 100 && Eunits[Eslots[z]].curtop === Eunits[enemyindex].curtop) || (Eunits[Eslots[z]].curleft === Eunits[enemyindex].curleft + 100 && Eunits[Eslots[z]].curtop === Eunits[enemyindex].curtop) || (Eunits[Eslots[z]].curleft === Eunits[enemyindex].curleft && Eunits[Eslots[z]].curtop === Eunits[enemyindex].curtop + 100) || (Eunits[Eslots[z]].curleft === Eunits[enemyindex].curleft && Eunits[Eslots[z]].curtop === Eunits[enemyindex].curtop - 100)) {
                                             var smalldamage = ((units[selectedindex].attack) - Eunits[Eslots[z]].defense) * Eunits[Eslots[z]].fire;
+                                                                            elementalNum=Eunits[Eslots[z]].fire;
                                             if (smalldamage < 0) {
                                                 smalldamage = 0
                                             }
@@ -7748,14 +7938,10 @@ var mult = 0;
                         }
                         if ($('#soldierchoice option:selected').text() === "Normal") {
                             if ((units[selectedindex].curtop - 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curtop + 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curleft - 100 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop) || (units[selectedindex].curleft + 100 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop)) {
-                                Sword.play();
                                 units[selectedindex].usedaction = true;
+                                slashattack();
 
-
-                                $("#E" + enemyindex).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
                                 setTimeout(function(){Damaging(enemyindex, damage);},500);
-                                $(".slashEffects").fadeOut(2000);
-                                turngray();
                                 return;
                             }
                         }
@@ -7817,13 +8003,12 @@ var mult = 0;
                                     $("#EB" + units[selectedindex].index).remove();
                                     $("#" + selectedindex).append('<div class="energybar" id ="EB'+ units[selectedindex].index + '"style="width: ' + units[selectedindex].energy + '%"></div>');
                                 }
-                                Sword.play();
+
                                 units[selectedindex].usedaction = true;
 
-                                $("#E" + enemyindex).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
                                 setTimeout(function(){Damaging(enemyindex, damage);},500);
-                                $(".slashEffects").fadeOut(2000);
-                                turngray();
+                                slashattack()
+
                             }
                         }
                         if ($('#knightchoice option:selected').text() === "Piercer" || e.options[e.selectedIndex].value==="Piercer") {
@@ -7843,10 +8028,49 @@ var mult = 0;
                                 Specialsound.play();
                                 units[selectedindex].usedspecial = true;
                                 units[selectedindex].usedaction = true;
-                                $("#E" + enemyindex).append("<div class='slashEffects'><img style='width:200px; margin-left:-50px' src='../Pictures/Effects/EffectSlash.gif' /></div>");
+                                slashattack()
                                 setTimeout(function(){Damaging(enemyindex, damage);},500);
-                                $(".slashEffects").fadeOut(2000);
                                 return;
+                            }
+                        }
+                        if ($('#knightchoice option:selected').text() === "Wail" || e.options[e.selectedIndex].value==="Wail") {
+                            var damage = (units[selectedindex].attack + units[selectedindex].attacktempboost - Eunits[enemyindex].defense);
+                            if (damage < 0) {
+                                damage = 0
+                            }
+                            if ((units[selectedindex].curtop - 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curtop + 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curleft - 100 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop) || (units[selectedindex].curleft + 100 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop)) {
+                                if(units[selectedindex].energy<20){
+                                    message("The Knight doesn't have enough stamina to use wail. Pass the turn without using him to refill his stamina.");
+                                    return;
+                                } else{
+                                    var blows = Math.floor(units[selectedindex].energy/20)
+                                    var loopnum=0
+                                    inanimation=true;
+                                    for(var i =0;i<blows;i++){
+                                        setTimeout(function(){
+                                            var tempdamage = damage;
+                                            if(Math.floor((Math.random() * 4) + loopnum)>3){
+                                                tempdamage="Miss"
+                                            }
+                                            loopnum+=1;
+                                            if(Eunits[enemyindex].health<=0){
+                                                return
+                                            }
+                                            units[selectedindex].energy-=20;
+                                            $("#EB" + units[selectedindex].index).remove();
+                                            $("#" + selectedindex).append('<div class="energybar" id ="EB'+ units[selectedindex].index + '"style="width: ' + units[selectedindex].energy + '%"></div>');
+                                            Specialsound.play();
+                                            units[selectedindex].usedaction = true;
+                                            slashattack()
+                                            setTimeout(function(){Damaging(enemyindex, tempdamage);},500);
+                                        },i*1000)
+
+                                    }
+                                    setTimeout(function(){
+                                        inanimation=false;
+                                    },1000*blows)
+
+                            }
                             }
                         }
                         if ($('#knightchoice option:selected').text() === "Swirl"  || e.options[e.selectedIndex].value==="Swirl") {
@@ -7869,32 +8093,24 @@ var mult = 0;
                                     damage = 0
                                 }
                                 if (units[selectedindex].curtop - 100 === Eunits[Eslots[z]].curtop && units[selectedindex].curleft === Eunits[Eslots[z]].curleft) {
-                                    Sword.play();
+                                        slashattack()
                                     units[selectedindex].usedaction = true;
-                                    $("#E" + Eslots[z]).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
                                     Damaging(Eslots[z], damage);
-                                    $(".slashEffects").fadeOut(2000);
                                 }
                                 if (units[selectedindex].curtop + 100 === Eunits[Eslots[z]].curtop && units[selectedindex].curleft === Eunits[Eslots[z]].curleft) {
-                                    Sword.play();
+                                        slashattack()
                                     units[selectedindex].usedaction = true;
-                                    $("#E" + Eslots[z]).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
                                     Damaging(Eslots[z], damage);
-                                    $(".slashEffects").fadeOut(2000);
                                 }
                                 if (units[selectedindex].curleft - 100 === Eunits[Eslots[z]].curleft && units[selectedindex].curtop === Eunits[Eslots[z]].curtop) {
-                                    Sword.play();
+                                        slashattack()
                                     units[selectedindex].usedaction = true;
-                                    $("#E" + Eslots[z]).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
                                     Damaging(Eslots[z], damage);
-                                    $(".slashEffects").fadeOut(2000);
                                 }
                                 if (units[selectedindex].curleft + 100 === Eunits[Eslots[z]].curleft && units[selectedindex].curtop === Eunits[Eslots[z]].curtop) {
-                                    Sword.play();
+                                        slashattack()
                                     units[selectedindex].usedaction = true;
-                                    $("#E" + Eslots[z]).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
                                     Damaging(Eslots[z], damage);
-                                    $(".slashEffects").fadeOut(2000);
                                 }
                             }
                         }
@@ -7920,26 +8136,22 @@ var mult = 0;
                                 }
                                 if (units[selectedindex].curtop - 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) {
                                     if((Eunits[enemyindex].curleft===Eunits[Eslots[z]].curleft && Eunits[enemyindex].curtop===Eunits[Eslots[z]].curtop) || (Eunits[enemyindex].curleft-100 ===Eunits[Eslots[z]].curleft && Eunits[enemyindex].curtop===Eunits[Eslots[z]].curtop) || (Eunits[enemyindex].curleft+100 ===Eunits[Eslots[z]].curleft && Eunits[enemyindex].curtop===Eunits[Eslots[z]].curtop)){
-                                        Sword.play();
                                         units[selectedindex].usedaction = true;
-                                        $("#E" + enemyindex).append("<div class='slashEffects'><img style='width:400px; margin-left:-200px' src='../Pictures/Effects/EffectSlash.gif' /></div>");
+                                        slashattack()
                                         Damaging(Eslots[z], damage);
-                                        $(".slashEffects").fadeOut(2000);
+
                                     }
                                 }
                                 if (units[selectedindex].curtop + 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) {
                                     if((Eunits[enemyindex].curleft===Eunits[Eslots[z]].curleft && Eunits[enemyindex].curtop===Eunits[Eslots[z]].curtop) || (Eunits[enemyindex].curleft-100 ===Eunits[Eslots[z]].curleft && Eunits[enemyindex].curtop===Eunits[Eslots[z]].curtop) || (Eunits[enemyindex].curleft+100 ===Eunits[Eslots[z]].curleft && Eunits[enemyindex].curtop===Eunits[Eslots[z]].curtop)){
-                                        Sword.play();
                                         units[selectedindex].usedaction = true;
-                                        $("#E" + enemyindex).append("<div class='slashEffects'><img style='width:400px; margin-left:-200px' src='../Pictures/Effects/EffectSlash.gif' /></div>");
+                                        slashattack()
                                         Damaging(Eslots[z], damage);
-                                        $(".slashEffects").fadeOut(2000);
                                     }
                                 }
                                 if (units[selectedindex].curleft - 100 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop) {
 
                                     if((Eunits[enemyindex].curtop===Eunits[Eslots[z]].curtop && Eunits[enemyindex].curleft===Eunits[Eslots[z]].curleft) || (Eunits[enemyindex].curtop-100 ===Eunits[Eslots[z]].curtop && Eunits[enemyindex].curleft===Eunits[Eslots[z]].curleft) || (Eunits[enemyindex].curtop+100 ===Eunits[Eslots[z]].curtop && Eunits[enemyindex].curleft===Eunits[Eslots[z]].curleft)){
-                                        Sword.play();
                                         if(units[selectedindex].usedaction === false){
                                             if(units[selectedindex].energy<30){
                                                 message("The Knight doesn't have enough stamina to use sweep. Pass the turn without using him to refill his stamina.");
@@ -7948,14 +8160,13 @@ var mult = 0;
                                             units[selectedindex].energy-=30;
                                         }
                                         units[selectedindex].usedaction = true;
-                                        $("#E" + enemyindex).append("<div class='slashEffects'><img style='transform: rotate(90deg) translate(-100%,-100%); width:400px;margin-left:-230px; margin-top:330px' src='../Pictures/Effects/EffectSlash.gif' /></div>");
+                                        slashattack()
                                         Damaging(Eslots[z], damage);
-                                        $(".slashEffects").fadeOut(2000);
                                     }
                                 }
                                 if (units[selectedindex].curleft + 100 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop) {
                                     if((Eunits[enemyindex].curtop===Eunits[Eslots[z]].curtop && Eunits[enemyindex].curleft===Eunits[Eslots[z]].curleft) || (Eunits[enemyindex].curtop-100 ===Eunits[Eslots[z]].curtop && Eunits[enemyindex].curleft===Eunits[Eslots[z]].curleft) || (Eunits[enemyindex].curtop+100 ===Eunits[Eslots[z]].curtop && Eunits[enemyindex].curleft===Eunits[Eslots[z]].curleft)){
-                                        Sword.play();
+                                        slashattack()
                                         if(units[selectedindex].usedaction === false){
                                             if(units[selectedindex].energy<30){
                                                 message("The Knight doesn't have enough stamina to use sweep. Pass the turn without using him to refill his stamina.");
@@ -7964,9 +8175,7 @@ var mult = 0;
                                             units[selectedindex].energy-=30;
                                         }
                                         units[selectedindex].usedaction = true;
-                                        $("#E" + enemyindex).append("<div class='slashEffects'><img style='transform: rotate(90deg) translate(-100%,-100%);width:400px;margin-left:-230px; margin-top:330px' src='../Pictures/Effects/EffectSlash.gif' /></div>");
                                         Damaging(Eslots[z], damage);
-                                        $(".slashEffects").fadeOut(2000);
                                     }
                                 }
                             }
@@ -7978,7 +8187,7 @@ var mult = 0;
                 //Thief
                 if (selectedaction === "thiefAttack" || selectedaction === "mimicAttack") {
                     if (units[selectedindex].blind === 0) {
-                        var e = document.getElementById("knightchoice");
+                        var e = document.getElementById("thiefchoice");
                             if(selectedaction === "mimicAttack"){
                                 e = document.getElementById("mimicchoice");
                             }
@@ -8000,13 +8209,9 @@ var mult = 0;
                                 damage=damage*2;
                             }
                             if ((units[selectedindex].curtop - 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curtop + 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curleft - 100 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop) || (units[selectedindex].curleft + 100 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop)) {
-                                Sword.play();
                                 units[selectedindex].usedaction = true;
-
-                                $("#E" + enemyindex).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
+                                slashattack()
                                 setTimeout(function(){Damaging(enemyindex, damage);},500);
-                                $(".slashEffects").fadeOut(2000);
-                                turngray();
                             }
                         }
                         if ($('#thiefchoice option:selected').text() === "Steal"  || $('#thiefchoice option:selected').text() === "Mug" || e.options[e.selectedIndex].value==="Steal") {
@@ -8152,36 +8357,6 @@ var mult = 0;
                                             break;
                                                 
                                         }
-                                        
-//                                        if(stealnum<=10){
-//                                            ingredient[1].quantity += 1;
-//                                            $("#TEXT").append("<p>He stole a " + ingredient[1].name + "</p>")
-//                                        }
-//                                        if(stealnum<=20 && stealnum>10){
-//                                            ingredient[2].quantity += 1;
-//                                            $("#TEXT").append("<p>He stole a " + ingredient[2].name + "</p>")
-//                                        }
-//                                        if(stealnum<=30 && stealnum>20){
-//                                            ingredient[3].quantity += 1;
-//                                            $("#TEXT").append("<p>He stole a " + ingredient[3].name + "</p>")
-//                                        }
-//                                        if(stealnum<=40 && stealnum>30){
-//                                            ingredient[4].quantity += 1;
-//                                            $("#TEXT").append("<p>He stole a " + ingredient[4].name + "</p>")
-//                                        }
-//                                        if(stealnum<=50 && stealnum>40){
-//                                            ingredient[5].quantity += 1;
-//                                            $("#TEXT").append("<p>He stole a " + ingredient[5].name + "</p>")
-//                                        }
-//                                        if(stealnum===51){
-//                                            $("#TEXT").append(Eunits[enemyindex].name + " has nothing to steal.");
-//                                        }
-//                                        if(stealnum===52){
-//                                            $("#TEXT").append(Eunits[enemyindex].name + " has nothing to steal.");
-//                                        }
-//                                        if(stealnum===53){
-//                                            $("#TEXT").append(Eunits[enemyindex].name + " has nothing to steal.");
-//                                        }
                                     }
 
                                 } else {
@@ -8192,7 +8367,6 @@ var mult = 0;
                                     $("#" + selectedindex).addClass("Invisible");
 
                                 }
-                                turngray();
                             }
                         }
                     } else {
@@ -8202,22 +8376,24 @@ var mult = 0;
                 //mage
                 if (selectedaction === "mageCast" || selectedaction === "mimicAttack") {
                     if (units[selectedindex].silenced === 0) {
-                        if((Eunits[Eslots[1]].type==="Sounddepressor" && Eunits[Eslots[1]].alive===true) || (Eunits[Eslots[2]].type==="Sounddepressor" && Eunits[Eslots[2]].alive===true) || (Eunits[Eslots[3]].type==="Sounddepressor" && Eunits[Eslots[3]].alive===true) || (Eunits[Eslots[4]].type==="Sounddepressor" && Eunits[Eslots[4]].alive===true) || (Eunits[Eslots[5]].type==="Sounddepressor" && Eunits[Eslots[5]].alive===true)){
-                            message("The Sound Depressor nullifies all magic.")
-                            return;
-                        }
                           var e = document.getElementById("magechoice");
                             if(selectedaction === "mimicAttack"){
                                 e = document.getElementById("mimicchoice");
                             }
                         //fire
                         if ($('#magechoice option:selected').text() === "Fire" || e.options[e.selectedIndex].value==="Fire") {
+                            
                             var defense=0;
                             if(Eunits[enemyindex].enfeeble===0){defense=Eunits[enemyindex].resistance}
                             var damage = (units[selectedindex].attack - defense + units[selectedindex].attacktempboost) * Eunits[enemyindex].fire;
+                            elementalNum = Eunits[enemyindex].fire;
                             if (damage < 0) {
                                 damage = 0
                             }
+                        if((Eunits[Eslots[1]].type==="Sounddepressor" && Eunits[Eslots[1]].alive===true) || (Eunits[Eslots[2]].type==="Sounddepressor" && Eunits[Eslots[2]].alive===true) || (Eunits[Eslots[3]].type==="Sounddepressor" && Eunits[Eslots[3]].alive===true) || (Eunits[Eslots[4]].type==="Sounddepressor" && Eunits[Eslots[4]].alive===true) || (Eunits[Eslots[5]].type==="Sounddepressor" && Eunits[Eslots[5]].alive===true)){
+                            message("The Sound Depressor nullifies all magic.")
+                            return;
+                        }
 
                             if ((units[selectedindex].curtop + 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft+100 === Eunits[enemyindex].curleft) || (units[selectedindex].curtop + 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft-100 === Eunits[enemyindex].curleft) || (units[selectedindex].curtop - 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft+100 === Eunits[enemyindex].curleft) || (units[selectedindex].curtop - 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft-100 === Eunits[enemyindex].curleft) || (units[selectedindex].curtop - 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curtop + 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curleft - 100 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop) || (units[selectedindex].curleft + 100 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop) || (units[selectedindex].curtop - 200 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curtop + 200 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curleft - 200 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop) || (units[selectedindex].curleft + 200 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop)) {
                                 if (Eunits[enemyindex].phasedout === true) {
@@ -8236,6 +8412,14 @@ var mult = 0;
                                 }
 
                                 //effects
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
+                                $("#" + selectedindex).append("<img style='margin-left:-16px;margin-top:-170px' class='effect' src='../Pictures/Effects/Mage_effect.gif' />")
+                            },100)
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $(".effect").remove();
+                            },1000)
                                 $("#battlebackground").append("<div class='Effects' style='top: " + units[selectedindex].curtop +"px; left: " + units[selectedindex].curleft +"px'><img src='../Pictures/Effects/EffectFire.gif' /></div>");
                                 $(".Effects").animate({
                                     left: Eunits[enemyindex].curleft + "px",
@@ -8252,7 +8436,10 @@ var mult = 0;
                         }
                         //zap
                         if ($('#magechoice option:selected').text() === "Zap" || e.options[e.selectedIndex].value==="Zap") {
-
+                        if((Eunits[Eslots[1]].type==="Sounddepressor" && Eunits[Eslots[1]].alive===true) || (Eunits[Eslots[2]].type==="Sounddepressor" && Eunits[Eslots[2]].alive===true) || (Eunits[Eslots[3]].type==="Sounddepressor" && Eunits[Eslots[3]].alive===true) || (Eunits[Eslots[4]].type==="Sounddepressor" && Eunits[Eslots[4]].alive===true) || (Eunits[Eslots[5]].type==="Sounddepressor" && Eunits[Eslots[5]].alive===true)){
+                            message("The Sound Depressor nullifies all magic.")
+                            return;
+                        }
 
                             if ((units[selectedindex].curtop - 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft)
                                 || (units[selectedindex].curtop + 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) 
@@ -8263,11 +8450,19 @@ var mult = 0;
                                 || (units[selectedindex].curleft - 200 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop) 
                                 || (units[selectedindex].curleft + 200 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop)) {
                                 Zap.play();
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
+                                $("#" + selectedindex).append("<img style='margin-left:-16px;margin-top:-170px' class='effect' src='../Pictures/Effects/Mage_effect.gif' />")
+                            },100)
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $(".effect").remove();
+                            },1000)
                                 if(units[selectedindex].usedaction === true && units[selectedindex].abilitydoubletap===true){
                                     units[selectedindex].moved=true;
                                 }
                                 units[selectedindex].usedaction = true;
-
+                                elementalNum=Eunits[enemyindex].lightning;
 
 
 
@@ -8400,11 +8595,16 @@ var mult = 0;
                         }
                         //Freeze
                         if ($('#magechoice option:selected').text() === "Freeze" || e.options[e.selectedIndex].value==="Freeze") {
+                        if((Eunits[Eslots[1]].type==="Sounddepressor" && Eunits[Eslots[1]].alive===true) || (Eunits[Eslots[2]].type==="Sounddepressor" && Eunits[Eslots[2]].alive===true) || (Eunits[Eslots[3]].type==="Sounddepressor" && Eunits[Eslots[3]].alive===true) || (Eunits[Eslots[4]].type==="Sounddepressor" && Eunits[Eslots[4]].alive===true) || (Eunits[Eslots[5]].type==="Sounddepressor" && Eunits[Eslots[5]].alive===true)){
+                            message("The Sound Depressor nullifies all magic.")
+                            return;
+                        }
                             var defense = 0;
                             if (Eunits[enemyindex].enfeeble === 0) {
                                 defense = Eunits[enemyindex].resistance
                             }
                             var damage = ((units[selectedindex].attack) - defense + units[selectedindex].attacktempboost) * Eunits[enemyindex].ice;
+                            elementalNum=Eunits[enemyindex].ice;
                             if (damage < 0) {
                                 damage = 0
                             }
@@ -8438,6 +8638,14 @@ var mult = 0;
                             }, 500);
                             $(".staticEffects").fadeOut(2000);
                             Iceattack.play();
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
+                                $("#" + selectedindex).append("<img style='margin-left:-16px;margin-top:-170px' class='effect' src='../Pictures/Effects/Mage_effect.gif' />")
+                            },100)
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $(".effect").remove();
+                            },1000)
 
                                 if(units[selectedindex].usedaction === true && units[selectedindex].abilitydoubletap===true){
                                     units[selectedindex].moved=true;
@@ -8447,6 +8655,10 @@ var mult = 0;
                         }
                         //Pain
                         if ($('#magechoice option:selected').text() === "Pain" || e.options[e.selectedIndex].value==="Pain") {
+                        if((Eunits[Eslots[1]].type==="Sounddepressor" && Eunits[Eslots[1]].alive===true) || (Eunits[Eslots[2]].type==="Sounddepressor" && Eunits[Eslots[2]].alive===true) || (Eunits[Eslots[3]].type==="Sounddepressor" && Eunits[Eslots[3]].alive===true) || (Eunits[Eslots[4]].type==="Sounddepressor" && Eunits[Eslots[4]].alive===true) || (Eunits[Eslots[5]].type==="Sounddepressor" && Eunits[Eslots[5]].alive===true)){
+                            message("The Sound Depressor nullifies all magic.")
+                            return;
+                        }
                             var defense = 0;
                             if (Eunits[enemyindex].enfeeble === 0) {
                                 defense = Eunits[enemyindex].resistance
@@ -8465,6 +8677,14 @@ var mult = 0;
                                 }, 500);
                                 $(".staticEffects").fadeOut(2000);
                                 Death.play();
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
+                                $("#" + selectedindex).append("<img style='margin-left:-16px;margin-top:-170px' class='effect' src='../Pictures/Effects/Mage_effect.gif' />")
+                            },100)
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $(".effect").remove();
+                            },1000)
                                 $("#battlebackground").append("<div class='slashEffects' style='margin-top: " + (Eunits[enemyindex].curtop-450) +"px; margin-left: " + (Eunits[enemyindex].curleft-0) +"px'><img src='../Pictures/Effects/pain.gif' /></div>");
                                 $(".slashEffects").fadeOut(2000);
                                 if(units[selectedindex].usedaction === true && units[selectedindex].abilitydoubletap===true){
@@ -8481,21 +8701,23 @@ var mult = 0;
                             }
                 }
                 //wizard
+                //backhere
                 if (selectedaction === "wizardCast" || selectedaction === "mimicAttack") {
                     if (units[selectedindex].silenced === 0) {
-                        if((Eunits[Eslots[1]].type==="Sounddepressor" && Eunits[Eslots[1]].alive===true) || (Eunits[Eslots[2]].type==="Sounddepressor" && Eunits[Eslots[2]].alive===true) || (Eunits[Eslots[3]].type==="Sounddepressor" && Eunits[Eslots[3]].alive===true) || (Eunits[Eslots[4]].type==="Sounddepressor" && Eunits[Eslots[4]].alive===true) || (Eunits[Eslots[5]].type==="Sounddepressor" && Eunits[Eslots[5]].alive===true)){
-                            message("The Sound Depressor nullifies all magic.")
-                            return;
-                        }
                         var e = document.getElementById("wizardchoice");
                             if(selectedaction === "mimicAttack"){
                                 e = document.getElementById("mimicchoice");
                             }
                         //bolt
                         if ($('#wizardchoice option:selected').text() === "Bolt(2)" || e.options[e.selectedIndex].value==="Bolt(2)") {
+                        if((Eunits[Eslots[1]].type==="Sounddepressor" && Eunits[Eslots[1]].alive===true) || (Eunits[Eslots[2]].type==="Sounddepressor" && Eunits[Eslots[2]].alive===true) || (Eunits[Eslots[3]].type==="Sounddepressor" && Eunits[Eslots[3]].alive===true) || (Eunits[Eslots[4]].type==="Sounddepressor" && Eunits[Eslots[4]].alive===true) || (Eunits[Eslots[5]].type==="Sounddepressor" && Eunits[Eslots[5]].alive===true)){
+                            message("The Sound Depressor nullifies all magic.")
+                            return;
+                        }
                             var defense=0;
                             if(Eunits[enemyindex].enfeeble===0){defense=Eunits[enemyindex].resistance}
                             var damage = ((units[selectedindex].attack + units[selectedindex].attacktempboost) * 2 - defense) * Eunits[enemyindex].lightning;
+                            elementalNum = Eunits[enemyindex].lightning;
                             if (damage < 0) {
                                 damage = 0
                             }
@@ -8513,13 +8735,21 @@ var mult = 0;
                                 $("#TEXT").append("The wraith phased back in.")
                             }
                             var tempran= Math.floor((Math.random() * 2) + 1);
-
-                            var tempran= Math.floor((Math.random() * 2) + 1);
                             if(units[selectedindex].abilityelementalailments===true && tempran===2){
                                 Eunits[enemyindex].immobilized=2;
                                 showailments();
                             }
                             //effects
+                            //backhere
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
+                                $("#" + selectedindex).append("<img style='margin-left:20px;margin-top:-160px' class='effect' src='../Pictures/Effects/Wizard_effect.gif' />")
+                            },100)
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $(".effect").remove();
+                            },1000)
+                            
                             $("#battlebackground").append("<div class='staticEffects' style='margin-top: " + (Eunits[enemyindex].curtop-750) +"px; margin-left: " + (Eunits[enemyindex].curleft-100) +"px'><img src='../Pictures/Effects/EffectLightning.gif' /></div>");
                             setTimeout(function(){Damaging(enemyindex, damage);},500);
                             $(".staticEffects").fadeOut(2000);
@@ -8530,9 +8760,14 @@ var mult = 0;
                         }
                         //Missile
                         if ($('#wizardchoice option:selected').text() === "Missile(X)"  || e.options[e.selectedIndex].value==="Missile(X)") {
+                        if((Eunits[Eslots[1]].type==="Sounddepressor" && Eunits[Eslots[1]].alive===true) || (Eunits[Eslots[2]].type==="Sounddepressor" && Eunits[Eslots[2]].alive===true) || (Eunits[Eslots[3]].type==="Sounddepressor" && Eunits[Eslots[3]].alive===true) || (Eunits[Eslots[4]].type==="Sounddepressor" && Eunits[Eslots[4]].alive===true) || (Eunits[Eslots[5]].type==="Sounddepressor" && Eunits[Eslots[5]].alive===true)){
+                            message("The Sound Depressor nullifies all magic.")
+                            return;
+                        }
                             var defense=0;
                             if(Eunits[enemyindex].enfeeble===0){defense=Eunits[enemyindex].resistance}
                             var damage = (units[selectedindex].attack + units[selectedindex].attacktempboost - defense) * Eunits[enemyindex].fire * units[selectedindex].charge;
+                            elementalNum = Eunits[enemyindex].fire
                             if (damage < 0) {
                                 damage = 0
                             }
@@ -8561,6 +8796,14 @@ var mult = 0;
                             var keepgoing=units[selectedindex].charge;
                             setTimeout(function(){Damaging(enemyindex, damage);},500*keepgoing);
                             //effects
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
+                                $("#" + selectedindex).append("<img style='margin-left:20px;margin-top:-160px' class='effect' src='../Pictures/Effects/Wizard_effect.gif' />")
+                            },100)
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $(".effect").remove();
+                            },1000)
 
                             while(keepgoing>0){
                                 $("#battlebackground").append("<div class='Effects' style='top: " + units[selectedindex].curtop +"px; left: " + units[selectedindex].curleft +"px'><img src='../Pictures/Effects/EffectFire.gif' /></div>");
@@ -8576,9 +8819,14 @@ var mult = 0;
                         }
                         //gust
                         if ($('#wizardchoice option:selected').text() === "Gust(1)"  || e.options[e.selectedIndex].value==="Gust(1)") {
+                        if((Eunits[Eslots[1]].type==="Sounddepressor" && Eunits[Eslots[1]].alive===true) || (Eunits[Eslots[2]].type==="Sounddepressor" && Eunits[Eslots[2]].alive===true) || (Eunits[Eslots[3]].type==="Sounddepressor" && Eunits[Eslots[3]].alive===true) || (Eunits[Eslots[4]].type==="Sounddepressor" && Eunits[Eslots[4]].alive===true) || (Eunits[Eslots[5]].type==="Sounddepressor" && Eunits[Eslots[5]].alive===true)){
+                            message("The Sound Depressor nullifies all magic.")
+                            return;
+                        }
                             var defense=0;
                             if(Eunits[enemyindex].enfeeble===0){defense=Eunits[enemyindex].resistance}
                             var damage = (units[selectedindex].attack - defense + units[selectedindex].attacktempboost) * Eunits[enemyindex].ice;
+                            elementalNum = Eunits[enemyindex].ice;
                             if (damage < 0) {
                                 damage = 0
                             }
@@ -8600,6 +8848,15 @@ var mult = 0;
                                 Eunits[enemyindex].sleep=1;
                                 showailments();
                             }
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
+                                $("#" + selectedindex).append("<img style='margin-left:20px;margin-top:-160px' class='effect' src='../Pictures/Effects/Wizard_effect.gif' />")
+                            },100)
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $(".effect").remove();
+                            },1000)
+                            
                             Gust.play();
                             units[selectedindex].charge -= 1;
                             units[selectedindex].usedaction = true;
@@ -8616,6 +8873,10 @@ var mult = 0;
                         }
                         //drain
                         if ($('#wizardchoice option:selected').text() === "Drain"  || e.options[e.selectedIndex].value==="Drain") {
+                        if((Eunits[Eslots[1]].type==="Sounddepressor" && Eunits[Eslots[1]].alive===true) || (Eunits[Eslots[2]].type==="Sounddepressor" && Eunits[Eslots[2]].alive===true) || (Eunits[Eslots[3]].type==="Sounddepressor" && Eunits[Eslots[3]].alive===true) || (Eunits[Eslots[4]].type==="Sounddepressor" && Eunits[Eslots[4]].alive===true) || (Eunits[Eslots[5]].type==="Sounddepressor" && Eunits[Eslots[5]].alive===true)){
+                            message("The Sound Depressor nullifies all magic.")
+                            return;
+                        }
                             if ((units[selectedindex].curtop - 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curtop + 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curleft - 100 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop) || (units[selectedindex].curleft + 100 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop)) {
                                 $("#TEXT").append("<p>" + units[selectedindex].name + " drained all charge from " + Eunits[enemyindex].name + "\n</p>");
 
@@ -8626,6 +8887,15 @@ var mult = 0;
                                 Eunits[enemyindex].charge = 0;
                                 units[selectedindex].usedaction = true;
                                 Absorb.play();
+                            //effects
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
+                                $("#" + selectedindex).append("<img style='margin-left:20px;margin-top:-160px' class='effect' src='../Pictures/Effects/Wizard_effect.gif' />")
+                            },100)
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $(".effect").remove();
+                            },1000)
 
                                     $("#ORBE" + enemyindex).remove();
                                     var maxcharge = 0;
@@ -8675,6 +8945,7 @@ var mult = 0;
                             var defense=0;
                             if(Eunits[enemyindex].enfeeble===0){defense=Eunits[enemyindex].resistance}
                             var damage = (units[selectedindex].attack + units[selectedindex].attacktempboost - defense) * 2 * Eunits[enemyindex].lightning;
+                            elementalNum = Eunits[enemyindex].lightning;
                             if (damage < 0) {
                                 damage = 0
                             }
@@ -8700,6 +8971,26 @@ var mult = 0;
                             $(".manabar").remove();
                             $("#" + selectedindex).append('<div class="manabar" id ="EB' + units[selectedindex].index + '"style="width: ' + (sorcerermana) + '%"></div>');
                         }
+                        
+                        //Ultimate
+                        if ($('#sorcererchoice option:selected').text() === "Ultimate"  || e.options[e.selectedIndex].value==="Ultimate") {
+
+                            //effects
+                            setTimeout(function(){
+                                $("#E" + enemyindex).remove();
+                            },1000)
+                            inanimation=true;
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
+                            },100)
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                inanimation=false
+                            },1000)
+                            $("#battlebackground").append("<div class='slashEffects' style='margin-top: " + (Eunits[enemyindex].curtop-450) +"px; margin-left: " + (Eunits[enemyindex].curleft-20) +"px'><img style='width:100px;height:100px' src='../Pictures/Effects/ultimate.gif' /></div>");
+                            setTimeout(function(){Damaging(enemyindex, Eunits[enemyindex].health);},3000);
+                            units[selectedindex].usedaction = true;
+                        }
                         //Blizzard
                         if ($('#sorcererchoice option:selected').text() === "Blizzard(20)"  || e.options[e.selectedIndex].value==="Blizzard(20)") {
                             if (sorcerermana < 20) {
@@ -8711,6 +9002,7 @@ var mult = 0;
                             for(var i=1;i<6;i++){
                                 if(Eunits[Eslots[i]].enfeeble===0){defense=Eunits[Eslots[i]].resistance}
                                 var damage = ((units[selectedindex].attack + units[selectedindex].attacktempboost) - defense) * Eunits[Eslots[i]].ice;
+                                elementalNum = Eunits[Eslots[i]].ice;
                                 if (damage < 0) {
                                     damage = 0
                                 }
@@ -8735,6 +9027,12 @@ var mult = 0;
                             }
                             $("#battlebackground").append("<img class='totalbackground' src='../Pictures/Effects/Blizzard.gif' />");
                             Hurricane.play();
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
+                            },100)
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                            },1000)
                             $(".totalbackground").fadeOut(2000);
                             sorcerermana -= 20;
                             units[selectedindex].usedaction = true;
@@ -8765,6 +9063,12 @@ var mult = 0;
                             }
                             $("#TEXT").append("<p>" + units[selectedindex].name + " did " + damage + " damage to " + Eunits[enemyindex].name + "\n</p>");
                             Lightning.play();
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
+                            },100)
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                            },1000)
                             sorcerermana-=30;
                             units[selectedindex].usedaction = true;
 
@@ -8781,6 +9085,7 @@ var mult = 0;
                                 if (Eunits[Eslots[z]].alive === true) {
                                     if ((Eunits[Eslots[z]].curleft === Eunits[enemyindex].curleft - 100 && Eunits[Eslots[z]].curtop === Eunits[enemyindex].curtop) || (Eunits[Eslots[z]].curleft === Eunits[enemyindex].curleft + 100 && Eunits[Eslots[z]].curtop === Eunits[enemyindex].curtop) || (Eunits[Eslots[z]].curleft === Eunits[enemyindex].curleft && Eunits[Eslots[z]].curtop === Eunits[enemyindex].curtop + 100) || (Eunits[Eslots[z]].curleft === Eunits[enemyindex].curleft && Eunits[Eslots[z]].curtop === Eunits[enemyindex].curtop - 100)) {
                                         var smalldamage = ((units[selectedindex].attack) - Eunits[Eslots[z]].resistance) * Eunits[Eslots[z]].fire;
+                                        elementalNum = Eunits[Eslots[z]].fire;
                                         if (smalldamage < 0) {
                                             smalldamage = 0
                                         }
@@ -8801,21 +9106,37 @@ var mult = 0;
                             $(".manabar").remove();
                             $("#" + selectedindex).append('<div class="manabar" id ="EB' + units[selectedindex].index + '"style="width: ' + (sorcerermana) + '%"></div>');
                         }
-                        //Slumber
-                        if ($('#sorcererchoice option:selected').text() === "Slumber(20)"  || e.options[e.selectedIndex].value==="Slumber(20)") {
-                            if (sorcerermana < 10) {
-                                $("#TEXT").append("<p>" + units[selectedindex].name + " only has " + sorcerermana + " power. He needs a 10 power to use Blizzard.\n</p>");
+                        //Earth
+                        if ($('#sorcererchoice option:selected').text() === "Earth(20)"  || e.options[e.selectedIndex].value==="Earth(20)") {
+                            if (sorcerermana < 20) {
+                                $("#TEXT").append("<p>" + units[selectedindex].name + " only has " + sorcerermana + " power. He needs a 20 power to use Earth.\n</p>");
                                 return;
                             }
-
-                            for(var i=1;i<6;i++){
-                                if(Eunits[Eslots[i]].alive===false){
-                                    continue;
-                                }
-                                Eunits[Eslots[i]].sleep+=1;
+                            var defense=0;
+                            if(Eunits[enemyindex].enfeeble===0){defense=Eunits[enemyindex].defense}
+                            var damage = (units[selectedindex].attack + units[selectedindex].attacktempboost - defense) * 2;
+                            if (damage < 0) {
+                                damage = 0
                             }
-showailments();
-                            sorcerermana -= 10;
+                            setTimeout(function(){Damaging(enemyindex, damage);},500);
+                            //animation
+                            $("#battlebackground").append("<div class='Effects' style='top: " + units[selectedindex].curtop +"px; left: " + units[selectedindex].curleft +"px'><img src='../Pictures/Effects/Earth.gif' /></div>");
+                            setTimeout(function(){
+                            Sword.play()      
+                            },500)
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
+                            },100)
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                            },1000)
+
+                            $(".Effects").animate({
+                                left: Eunits[enemyindex].curleft + "px",
+                                    top: Eunits[enemyindex].curtop + "px"
+                            },500).fadeOut(500);
+                            //backearth
+                            sorcerermana -= 20;
                             units[selectedindex].usedaction = true;
                             $(".manabar").remove();
                             $("#" + selectedindex).append('<div class="manabar" id ="EB' + units[selectedindex].index + '"style="width: ' + (sorcerermana) + '%"></div>');
@@ -8826,13 +9147,21 @@ showailments();
                                 $("#TEXT").append("<p>" + units[selectedindex].name + " only has " + sorcerermana + " power. He needs a 50 power to use Death.\n</p>");
                                 return;
                             }
-if( Eunits[enemyindex].type==="Dragon" ||  Eunits[enemyindex].type==="Hands"|| Eunits[enemyindex].type==="Unknown" ||  Eunits[enemyindex].type==="Unknown2"){
-    message("You can't target this unit with death.")
-    return;
-}
+                            if( Eunits[enemyindex].type==="Dragon" ||  Eunits[enemyindex].type==="Hands"|| Eunits[enemyindex].type==="Unknown" ||  Eunits[enemyindex].type==="Unknown2" ||  Eunits[enemyindex].type==="Demigod"){
+                                message("You can't target this unit with death.")
+                                return;
+                            }
                             Death.play();
+                            
                             Eunits[enemyindex].health=0;
                             //effects
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
+                            },100)
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                            },1000)
+                            
                             $("#battlebackground").append("<div class='slashEffects' style='margin-top: " + (Eunits[enemyindex].curtop-450) +"px; margin-left: " + (Eunits[enemyindex].curleft-0) +"px'><img src='../Pictures/Effects/Death.gif' /></div>");
                             setTimeout(function(){dies(enemyindex);},500);
                             $(".slashEffects").fadeOut(2000);
@@ -8972,13 +9301,10 @@ showailments();
                         }
                         if ($('#guardchoice option:selected').text() === "Bash") {
                             if ((units[selectedindex].curtop - 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curtop + 100 === Eunits[enemyindex].curtop && units[selectedindex].curleft === Eunits[enemyindex].curleft) || (units[selectedindex].curleft - 100 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop) || (units[selectedindex].curleft + 100 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop)) {
-                                Sword.play();
+                                slashattack();
                                 units[selectedindex].usedaction = true;
 
-
-                                $("#E" + enemyindex).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
                                 setTimeout(function(){Damaging(enemyindex, damage);},500);
-                                $(".slashEffects").fadeOut(2000);
                                 turngray();
                                 return;
                             }
@@ -9165,7 +9491,6 @@ showailments();
                     }
                  units[selectedindex].usedaction = true;
                 }
-                turngray();   
                
             }//end of ebutton
         });
@@ -9278,11 +9603,20 @@ showailments();
                                 if (units[j].index === parseInt(temp3, 10)) {
                                     allyindex = j;
                                 }
-                            }
-                            ;
+                            };
 
                             units[selectedindex].usedaction = true;
                             Cleanse.play();
+                            //backhere
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
+                                $("#" + selectedindex).append("<img style='margin-left:00px;margin-top:-100px' class='effect' src='../Pictures/Effects/Healer_effect.gif' />")
+                            },100)
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $(".effect").remove();
+                            },1000)
+                            
                             if(units[selectedindex].abilitycleanse===true){
                                 units[allyindex].poison = 0;
                                 units[allyindex].blind = 0;
@@ -9315,15 +9649,24 @@ showailments();
                             }
 
                             temp3 = temp3.replace("E", "");
-if(units[selectedindex].abilitydoublevigor===true){
-    $("#TEXT").append("<p>" + units[selectedindex].name + " gave an extra turn to all your other allies\n</p>");
-} else{
-    $("#TEXT").append("<p>" + units[selectedindex].name + " gave an extra turn to " + units[allyindex].name + "\n</p>");
-}
+                            if(units[selectedindex].abilitydoublevigor===true){
+                                $("#TEXT").append("<p>" + units[selectedindex].name + " gave an extra turn to all your other allies\n</p>");
+                            } else{
+                                $("#TEXT").append("<p>" + units[selectedindex].name + " gave an extra turn to " + units[allyindex].name + "\n</p>");
+                            }
 
                             units[selectedindex].usedaction = true;
 
                             Cleanse.play();
+                            //backhere
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
+                                $("#" + selectedindex).append("<img style='margin-left:00px;margin-top:-100px' class='effect' src='../Pictures/Effects/Healer_effect.gif' />")
+                            },100)
+                            setTimeout(function(){
+                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $(".effect").remove();
+                            },1000)
                             if(units[selectedindex].abilitymove===true){
                                 units[allyindex].moved = false;
                             }
@@ -9528,8 +9871,8 @@ if(units[selectedindex].abilitydoublevigor===true){
                         $("#TEXT").append("<p>The Knight learned 'PIERCER'. Use this special to do damage that ignores defenses.</p>");
                         break;
                     case 6:
-                        units[curindex].abilityreact=true;
-                        $("#TEXT").append("<p>The Knight learned 'REACT'. Any enemy that moves next to the Knight will be attacked.</p>");
+                        units[curindex].abilitywail=true;
+                        $("#TEXT").append("<p>The Knight learned 'REACT'. Attack an enemy multiple times based on remaining stamina with increasing chance of missing.</p>");
                         break;
                 }
             }
@@ -9689,14 +10032,14 @@ if(units[selectedindex].abilitydoublevigor===true){
                         units[curindex].abilityfireblast=true;
                         $("#TEXT").append("<p>The Sorcerer learned 'FIREBLAST'. Deals 2X fire, magic damage to any enemy and 1X fire, magic damage to all adjacent enemies.</p>");
                         break;
-                    case 4:
+                    case 4:                         
+                        units[curindex].abilityearth=true;
+                        $("#TEXT").append("<p>The Sorcerer learned 'Earth'. Deals 2X physical damage.</p>");
+                        break;
+                    case 5:
                         units[curindex].abilitymanaincrease=true;
                         sorcererincrease=2;
                         $("#TEXT").append("<p>The Sorcerer learned 'POWER INCREASE'. Daily increase of Power is doubled.</p>");
-                        break;
-                    case 5:
-                        units[curindex].abilityslumber=true;
-                        $("#TEXT").append("<p>The Sorcerer learned 'SLUMBER'. Puts all enemies to sleep.</p>");
                         break;
                     case 6:
                         units[curindex].abilitydeath=true;
@@ -9789,7 +10132,7 @@ if(units[selectedindex].abilitydoublevigor===true){
         }
     }
 
-    var gameoverset=false;
+                    var gameoverset=false;
     function gameovercheck(){
         var alldead = true
          
@@ -9946,6 +10289,7 @@ function clickactionbuttons(){
                 return;
             }
             $("#TEXT").append("<p>" + units[selectedindex].name + " escaped and will return to the capitol in " + (1+difflevel) + " days.\n</p>");
+            console.log(selectedindex)
             units[selectedindex].enroute=1+difflevel;
             $("#" + selectedindex).remove();
             units[selectedindex].group=0;
@@ -9974,7 +10318,9 @@ function clickactionbuttons(){
                 $(".actionbutton").remove();
                 battleon=false;
                 $('.actions').append("<div class = 'actionbutton' id='Pass'><p>Pass</p></div>");
+                
                 presspass();
+                startcombat();
             }//end of loses battle
         }
         if(selectedaction==="enchantressUse") {
@@ -10005,14 +10351,42 @@ function clickactionbuttons(){
                 units[selectedindex].usedaction = true;
             }
         }
-        if(selectedaction==="guardUse") {
+        if(selectedaction==="sorcererCast" || selectedaction==="mimicAttack") {
+            var e = document.getElementById("sorcererchoice");
+            if(selectedaction==="mimicAttack"){
+                var e = document.getElementById("mimicchoice");
+            }
+            if (e.options[e.selectedIndex].text === "Blood-Sacrifice" && units[selectedindex].usedaction === false) {
+                if(units[selectedindex].braced){
+                        units[selectedindex].ultimate=true;
+                    units[selectedindex].health=1;
+                var temp = "#" + selectedindex;
+                var tempbar="#HB" + selectedindex;
+                $(tempbar).remove();
+                $(temp).append('<div class="healthbar" id ="HB'+ units[selectedindex].index + '"style="width: ' + (units[selectedindex].health/units[selectedindex].maxhealth)*100 + '%"></div>');
+                }else{
+                    ADies("whatever",selectedindex)
+                }
+
+            }
+        }
+        if(selectedaction==="guardUse" || selectedaction==="mimicAttack") {
             var e = document.getElementById("guardchoice");
+            if(selectedaction==="mimicAttack"){
+                var e = document.getElementById("mimicchoice");
+            }
             if (e.options[e.selectedIndex].text === "Reshield" && units[selectedindex].usedaction === false) {
                 units[selectedindex].energy+=10;
                 selectedaction="";
                 units[selectedindex].usedaction = true;
                 $("#EB" + units[selectedindex].index).remove();
                 $("#" + selectedindex).append('<div class="energybar" id ="EB'+ units[selectedindex].index + '"style="width: ' + units[selectedindex].energy + '%"></div>');
+            }
+            if (e.options[e.selectedIndex].text === "Brace" && units[selectedindex].usedaction === false) {
+                $("#TEXT").html("<p>" + units[selectedindex].name + "use braced. If the next source of damage would kill him, and he currently has more than 1 health, it reduces his health to 1 instead.</p>")
+                units[selectedindex].braced=true
+                selectedaction="";
+                units[selectedindex].usedaction = true;
             }
         }
         function youlose() {
@@ -10033,6 +10407,17 @@ function clickactionbuttons(){
                 presspass();
             }
         }
+        function ADies(type, index) {
+                        var dyingname = "";
+                        var temp="#"+index;
+                        //$(temp).attr("src",Eunits[index].dying);
+                        $(temp).effect("explode");
+                        dyingname=units[index].name;
+                        $("#TEXT").append("<p>" + dyingname + " has died</p>");
+                        units[index].alive=false;
+                        units[index].group=-1;
+                        units[index].location=0;
+                    }
         function ADamaging(index,damage) {
             var temp = "#" + index;
             var tempbar="#HB" + index;
@@ -10051,22 +10436,26 @@ function clickactionbuttons(){
 }
 
     //Bad guy's turn//////////////////////////////////////////////////////////////////////////////////////////
-    function passturnbutton(){
+function passturnbutton(){
         $('.actionbutton').click(function () {
             enemyturn($(this).attr('id'));
         })//end of action button
     }
-var damagenum=0;
-    var curenemyleft=0;
-    var curenemytop=0;
+                                var damagenum=0;
+                                var curenemyleft=0;
+                                var curenemytop=0;
 function enemyturn(selectedactions){
-
+        //prevents enemy's turn if in a length animation.
+        if(inanimation){
+            return;
+        }
     $('*').removeClass("selectedUnit");
     $('*').removeClass('battlehighlight');
     $(this).addClass('battlehighlight');
+
     selectedaction = selectedactions;
     if (selectedaction === "PassTurn") {
-
+    selectedindex=-1;
         //reset allies
         $("#TEXT").empty();
         for (var i = 0; i < index; i++) {
@@ -11516,10 +11905,18 @@ function enemyturn(selectedactions){
                                 $("#" + index).append('<div class="energybar" id ="EB'+ units[index].index + '"style="width: ' + units[index].energy + '%"></div>');
                             } else{units[index].health-=damage}
                             //steadfast stuff
-                            if(units[index].health<1 && (units[index].health + damage)!=1 && (units[index].abilitysteadfast===true || units[index].accessory==="Steadfast_Band")){
+                            if(units[index].health<1 && (units[index].health + damage)!=1){
+                                if(units[index].abilitysteadfast===true || units[index].accessory==="Steadfast_Band"){
                                 units[index].health = 1;
                                 $("#TEXT").append(units[index].name + " was saved by steadfast.</p>");
+                                }
+                                if(units[index].braced===true){
+                                units[index].health = 1;
+                                $("#TEXT").append(units[index].name + " was saved by brace.</p>");
+                                }
                             }
+                            units[index].braced=false;
+                            
                             $(tempbar).remove();
                             $(temp).append('<div class="healthbar" id ="HB'+ units[index].index + '"style="width: ' + (units[index].health/units[index].maxhealth)*100 + '%"></div>');
                         }
@@ -11578,19 +11975,13 @@ function enemyturn(selectedactions){
                             clickactionbuttons();
                         }
                         if(units[index].type==="Golem"){
-    units[index].type="Enchantress"
-}
+                            units[index].type="Enchantress"
+                        }
                     }
+                    var counternum=0;
                     function countering(index,y){
-                        if(units[index].abilitycounter===true && Eunits[Eslots[y]].phasedout!=true){
-                            var counterdamage=parseInt((Eunits[Eslots[y]].attack - Eunits[Eslots[y]].defense) *.5);
-                            if(counterdamage<0){counterdamage=0}
-                            Eunits[Eslots[y]].health-= counterdamage;
-                            $("#TEXT").append(units[index].name + " countered for " + counterdamage + " damage");
-                            $("#EHB" + Eslots[y]).remove();
-                            $("#E" + Eslots[y]).append('<div class="healthbar" id ="EHB'+ Eunits[Eslots[y]].index + '"style="width: ' + (Eunits[Eslots[y]].health/Eunits[Eslots[y]].maxhealth)*100 + '%"></div>');
-                            $("#E" + Eslots[y]).append('<p class="damage" style="position: absolute; font-size:40px; margin-top:-70px; margin-left:30px; color:white; font-weight:bold ">' + counterdamage + '</p>');
-                            $(".damage").delay(1000).effect("puff");
+                        if(units[index].abilitycounter===true && Eunits[Eslots[y]].phasedout!=true && units[index].type=="Soldier" ){
+                            units[index].counterindex.push(y)
                         }
                     }
                     function reacting(){
@@ -12673,7 +13064,7 @@ function enemyturn(selectedactions){
                     }
 
                     //summons
-                    if ((Eunits[Eslots[y]].type === "Demon")) {
+                    if ((Eunits[Eslots[y]].type === "Demon" || Eunits[Eslots[y]].type === "Demigod")) {
 
                         if(Eunits[Eslots[y]].blind>0 || Eunits[Eslots[y]].terrify>0){
                         } else{
@@ -12733,7 +13124,7 @@ function enemyturn(selectedactions){
                                         //minus one to offset charging
                                         Eunits[Eslots[y]].charge -= 1;
                                         charging();
-                                        $("#TEXT").append("The demon cast DEATH and killed " + units[slots[i]].name)
+                                        $("#TEXT").append("The "+ Eunits[Eslots[y]].name +" cast DEATH and killed " + units[slots[i]].name)
                                         Dies(units[slots[i]].type,slots[i]);
                                         Eunits[Eslots[y]].usedaction=true;
                                         $("#battlebackground").append("<div class='slashEffects' style='margin-top: " + (units[slots[i]].curtop-450) +"px; margin-left: " + (units[slots[i]].curleft-0) +"px'><img src='../Pictures/Effects/Death.gif' /></div>");
@@ -13517,12 +13908,14 @@ function enemyturn(selectedactions){
                                         }
 
                                     }//end of while
-                                    for(i = 1; i<4;i++){
-                                        Damaging(10, slots[i]);
-                                        if (units[slots[i]].health <= 0) {
-                                            Dies(enemyonbottom, slots[i]);
-                                            units[slots[i]].curleft = 10000;
-                                            units[slots[i]].curtop = 10000;
+                                    for(m = 1; m<4;m++){
+                                        var damage = (Eunits[Eslots[y]].attack/2) - units[slots[m]].resistance
+                                        
+                                        Damaging(damage, slots[m]);
+                                        if (units[slots[m]].health <= 0) {
+                                            Dies(enemyonbottom, slots[m]);
+                                            units[slots[m]].curleft = 10000;
+                                            units[slots[m]].curtop = 10000;
                                         }
                                     }
                                 }
@@ -13652,7 +14045,8 @@ function enemyturn(selectedactions){
 
             } else{
                 Eunits[Eslots[y]].sleep-=1;
-            }//end of is sleep if statement
+            }//end of is sleep if statement    
+            
 
             for(var a =1;a<4;a++){
                 for(var b = 1;b<6;b++){
@@ -13670,30 +14064,132 @@ function enemyturn(selectedactions){
 
         }//end of enemy's turns
             stormcheck();
-        for(var i = 1;i<6;i++){
-            if (Eunits[Eslots[i]].health <= 0) {
-                if (Eunits[Eslots[i]].type === "Bee" || Eunits[Eslots[i]].type === "Zombie" || Eunits[Eslots[i]].type === "Golem") {
+                    //counter attacking
+            function slashattack(selectedindex,enemyindex){
+                    $("#" + selectedindex).css("z-index","2")
+                    if(Eunits[enemyindex].curleft<units[selectedindex].curleft){
+                        setTimeout(function(){
+                            $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].attackleft) 
+                        },100)
 
-                    $("#E" + Eslots[i]).fadeOut();
-                    $("#E" + Eslots[i]).animate({
-                        left: 225 + "px",
-                        top: 25 + "px"
-                    });
-                    Eunits[Eslots[i]].curleft = 225;
-                    Eunits[Eslots[i]].curtop = 25;
-                } else {
-                    $("#E" + Eslots[i]).effect('explode');
+                        $("#" + selectedindex).animate({
+                            left: "-=60px"
+                        },500)
+                        setTimeout(function(){
+                            $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].leftpic)
+                        },500) 
+                    }
+                    if(Eunits[enemyindex].curleft>units[selectedindex].curleft){
+                        setTimeout(function(){
+                            $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].attackright) 
+                        },100)
+
+                        $("#" + selectedindex).animate({
+                            left: "+=60px"
+                        },500)
+                        setTimeout(function(){
+                            $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].rightpic)
+                        },500)
+                    }
+                    if(Eunits[enemyindex].curtop<units[selectedindex].curtop){
+                        setTimeout(function(){
+                            $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].attackback)
+                        },100)
+                        
+                        $("#" + selectedindex).animate({
+                            top: "-=40px"
+                        },500)
+                        setTimeout(function(){
+                            $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].backpic)
+                        },500)
+                    }
+                    if(Eunits[enemyindex].curtop>units[selectedindex].curtop){
+                        setTimeout(function(){
+                                                $("#" + selectedindex).css("z-index","auto")
+                            $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].attackfront)
+                        },100)
+                        $("#" + selectedindex).animate({
+                            top: "+=40px"
+                        },500)
+                        setTimeout(function(){
+                            $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].image)
+                        },500)
+                    }
+                        setTimeout(function(){
+                            $("#" + selectedindex).css("z-index","auto")
+                            $("#E" + enemyindex).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
+                            $(".slashEffects").fadeOut(2000);
+                            Sword.play();
+                            $("#" + selectedindex).animate({
+                                top: units[selectedindex].curtop + "px",
+                                left: units[selectedindex].curleft + "px",
+                            },500)
+                        },500)
                 }
-                Eunits[Eslots[i]].alive = false;
-                if(Eunits[Eslots[i]].health>-1000000){
-                     $("#TEXT").append("<p>" + Eunits[Eslots[i]].name + " has been killed</p>");
-                } 
-               
-                if ((Eslots[1] === -1 || Eunits[Eslots[1]].alive === false) && (Eslots[2] === -1 || Eunits[Eslots[2]].alive === false) && (Eslots[3] === -1 || Eunits[Eslots[3]].alive === false) && (Eslots[4] === -1 || Eunits[Eslots[4]].alive === false) && (Eslots[5] === -1 || Eunits[Eslots[5]].alive === false)) {
-                    youwin();
+            function checkcounter(enemyindex,index,loop){
+                                    var counterdamage=parseInt((Eunits[enemyindex].attack - Eunits[enemyindex].defense) *.5);
+                                    if(counterdamage<0){counterdamage=0}
+                                    Eunits[enemyindex].health-= counterdamage;
+                                    $("#TEXT").append("<p>" + units[index].name + " countered for " + counterdamage + " damage</p>");
+                                    $("#EHB" + enemyindex).remove();
+                                    $("#E" + enemyindex).append('<div class="healthbar" id ="EHB'+ Eunits[enemyindex].index + '"style="width: ' + (Eunits[enemyindex].health/Eunits[enemyindex].maxhealth)*100 + '%"></div>');
+                                    $("#E" + enemyindex).append('<p class="damage" style="position: absolute; font-size:40px; margin-top:-70px; margin-left:30px; color:white; font-weight:bold ">' + counterdamage + '</p>');
+                                    $(".damage").delay(1000).effect("puff");
+                
+                                    slashattack(index,enemyindex)
+                                    if(loop<counterarray.length){
+                                        var loopnum=loop+1;
+                                        console.log("loopnum",loopnum)
+                                        setTimeout(function(){
+                                            console.log("hi")
+                                            checkcounter(counterarray[loopnum]-1,index,loopnum)
+                                        },loopnum * 1000)
+
+                                    }
+                        checkdeath()
+            }
+            for(var a =1;a<4;a++){
+                        if(typeof(units[slots[a]].counterindex) != 'undefined'){
+                            var counterarray = units[slots[a]].counterindex;
+                            console.log(counterarray)
+                            units[slots[a]].counterindex=[]
+                            if(counterarray.length>0){
+                                    inanimation=true;
+                                    setTimeout(function(){
+                                       inanimation=false; 
+                                    },1000*counterarray.length)
+                                    checkcounter(counterarray[0]-1,slots[a],0)  
+                            }
+                        }
+                    }
+        
+            function checkdeath(){
+            for(var i = 1;i<6;i++){
+                if (Eunits[Eslots[i]].health <= 0) {
+                    if (Eunits[Eslots[i]].type === "Bee" || Eunits[Eslots[i]].type === "Zombie" || Eunits[Eslots[i]].type === "Golem") {
+
+                        $("#E" + Eslots[i]).fadeOut();
+                        $("#E" + Eslots[i]).animate({
+                            left: 225 + "px",
+                            top: 25 + "px"
+                        });
+                        Eunits[Eslots[i]].curleft = 225;
+                        Eunits[Eslots[i]].curtop = 25;
+                    } else {
+                        $("#E" + Eslots[i]).effect('explode');
+                    }
+                    Eunits[Eslots[i]].alive = false;
+                    if(Eunits[Eslots[i]].health>-1000000){
+                         $("#TEXT").append("<p>" + Eunits[Eslots[i]].name + " has been killed</p>");
+                    } 
+
+                    if ((Eslots[1] === -1 || Eunits[Eslots[1]].alive === false) && (Eslots[2] === -1 || Eunits[Eslots[2]].alive === false) && (Eslots[3] === -1 || Eunits[Eslots[3]].alive === false) && (Eslots[4] === -1 || Eunits[Eslots[4]].alive === false) && (Eslots[5] === -1 || Eunits[Eslots[5]].alive === false)) {
+                        youwin();
+                    }
                 }
             }
         }
+        checkdeath()
 
         $('*').usedaction=false;
         $('*').removeClass("selected");
@@ -13704,11 +14200,6 @@ function enemyturn(selectedactions){
         if(units[slots[i]].abilityinvisible===true){
             units[slots[i]].type="Invisible";
                $("#" + slots[i]).addClass("Invisible");
-        }
-        if(units[slots[i]].bracing===true){
-            units[slots[i]].bracing=false;
-            units[slots[i]].defense-=20;
-            units[slots[i]].resistance-=20;
         }
         units[slots[i]].attacktempboost=0;
         units[slots[i]].defensetempboost=0;
@@ -13825,16 +14316,17 @@ function text(words,left,top){
   
 function TEMPstartcombat(){
 
-                 Eunits[newEindex()]=new Clunker(curEindex, 1,2);
-                Eunits[newEindex()]=new Warrior(curEindex, 1,2);
+                 Eunits[newEindex()]=new FireElemental(curEindex, 1,2);
+  //              Eunits[newEindex()]=new Sparrow(curEindex, 1,2);
 //                Eunits[newEindex()]=new Bat(curEindex, 1,2);
 //                Eunits[newEindex()]=new Eye(curEindex, 1,2);
               //  Eunits[newEindex()]=new Beekeeper(curEindex, 1,2);
 
                 Egroups[Egroupindex]=new Enewgroup(1,70,1000,"Warrior");
                 units[index]=new Mage(index,"Mage2");
-                units[index]=new Mimic(index,"Mimic");
                 units[index]=new Thief(index,"Thief2");
+                units[index]=new Soldier(index,"Soldier2");
+
 
                 units[0].slot=1;
                 units[1].slot=2;
@@ -13843,8 +14335,11 @@ function TEMPstartcombat(){
                 units[1].group=1;
                 units[2].group=1;
 
-    units[1].level=4
+    units[1].braced=true;
     units[0].flight=true;
+        units[1].flight=true;
+    
+    units[0].abilityfreeze=true;
     units[1].abilitygrapplinghook=true;
     units[2].level="-";
      units[2].abilitymedkit=true;

@@ -1,6 +1,5 @@
 var height = 2
 function airship(upOrDown,enemyexists){
-    console.log("airship")
     var enemy="";
     if(enemyexists){
         enemy="<div id='Eairship' STYLE='position:absolute; TOP:100px; LEFT:1005px;' class='unit' ><img src='../CinePics/enemyship.gif'/></div>"

@@ -77,94 +77,60 @@ function queue(){
                 castle("without");
         break;
         case 1:
-            enterChar("Sorcerer",410,80);
-            enterChar("Wizard1",400,400);
-            movevert("Sorcerer",200,"end")
+            enterChar("Wizard2",360,100);
+            movevert("Wizard2",-1)
+            delay(3000)
         break
         case 2:
-            dialog("May I speak with you?","Sorcerer")
+            enterChar("Templar2",900,300);
+            movehor("Templar2",-400,"end")
         break
         case 3:
-        movevert("Wizard1",-1)
-            dialog("Of course.","Wizard1")
+        movevert("Templar2",-1)
+            dialog("The Horde has broken through the defenses.","Templar2")
         break
          case 4:
-            dialog("I wish to help fight in the next battle","Sorcerer")
+                 movevert("Wizard2",1)
+            dialog("Tell the others to fall back here.","Wizard2")
         break
          case 5:
-           dialog("You have so little experience. You never even used a Nexus before we found you.","Wizard1")
+           dialog("We will make our last stand here!","Wizard2")
         break
          case 6:
-            dialog("I have practiced, and I promise to be an asset.","Sorcerer")
+            dialog("And tell Ridley to hide.","Wizard2")
         break
          case 7:
-            dialog("And your power...","Wizard1")
+            enterChar("Sorcerer",900,300);
+            movehor("Sorcerer",-300,"end")
         break
          case 8:
-            dialog("I don't know why I was given this power, and why it's own cost makes it unusable.","Sorcerer")
+            movevert("Sorcerer",-1)
+            dialog("I will fight too.","Sorcerer")
         break
           case 9:
-           dialog("it's not unusable, just not easy to use.","Wizard1")
+           dialog("You are too important!","Wizard2")
         break
         case 10:
-           dialog("The power to kill a demigod shouldn't be easily accessable, but I'm sure the Nexus has a way for us to use it.","Wizard1")
+           dialog("There is no place to hide or run. All we can do is fight.","Sorcerer")
         break
         case 11:
-        movevert("Wizard1",1)
-           dialog("The others will find a way.","Wizard1")
+           dialog("He is right, we need to stand together.","Templar2")
         break
         case 12:
-        enterChar("Templar2",410,80);
-        movevert("Templar2",130,"end")
+           dialog("This is not a battle we can win.","Wizard2")
         break
         case 13:
-           dialog("The horde is about to attack the shield crystals.","Templar2")
+           dialog("You underestimate your army.","Sorcerer")
         break
         case 14:
-        movevert("Wizard1",-1)
-           dialog("Gather the others!","Wizard1")
+        movevert("Wizard2",-1)
+           dialog("Fine, we'll make our last stand here...","Wizard2")
         break
-         case 15:
-         changesong("01/Hurry.mp3")
-           castle("without");
-        break
-        case 16:
-        $("#Templar2").remove()
-        $("#Sorcerer").remove()
-                 enterChar("Soldier2",200,300);
-            enterChar("Archer3",250,300);
-            enterChar("Knight",300,300);
-            enterChar("Healer1",350,300);
-            enterChar("Templar2",400,300);
-            enterChar("Rouge2",450,300);
-            enterChar("Mage2",500,300);
-            enterChar("Wizard1",400,400);
-            enterChar("Sorcerer",550,300);
-            movevert("Wizard1",-1,"end")
-        break
-        case 17:
-            dialog("The horde is about to attack the shield crystals.","Wizard1")
-        break
-        case 18:
-            dialog("As you know, the crystals create the shield that protects us from aircraft assault.","Wizard1")
-        break
-        case 19:
-            dialog("If we lose the shield, we will be helpless.","Wizard1")
-        break
-        case 20:
-            dialog("There will be eddy's near the shield. We can use the eddys to instantly move between our them and our Nexus or other eddys.","Wizard1")
-        break
-        case 21:
-            dialog("But if an enemy drags a crystal to an eddy, it will be destroyed.","Wizard1")
-        break
-        case 22:
-            dialog("We cannot let that happen.","Wizard1")
-        break
-        case 23:
-            dialog("Let's go!","Wizard1")
-        break
-         case 24:
-            window.location.href = '../20_seige2/Seige.html'
+        case 15:
+           dialog("...Together","Wizard2")
+        break;
+         case 16:
+            window.location.href = '../44_seige_final/Seige.html'
         break
     }
 }
@@ -172,8 +138,8 @@ function queue(){
 //window.location.href = './beforeairship.html'
 
 $(window).load(function(){
-    changesong("01/Peaceful.mp3")
-    opening("Chapter Nine:","The Power")
+    changesong("01/Threat.mp3")
+    opening("Chapter Eighteen:","The Source")
 
 
         

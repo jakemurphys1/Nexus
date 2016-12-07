@@ -8,7 +8,7 @@ function queue(){
 
 $(window).load(function(){
     setTimeout(function(){
-        window.location.href = 'rescue.html'
+        window.location.href = 'meeting.html'
     },5000)
     
     setInterval(function(){

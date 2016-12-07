@@ -3257,7 +3257,8 @@ function indiv_gotocapitol(){
             $("#TEXT").append('<div class="gotobutton" id = "gotobrewery"><p>BREWERY</p></div>');
         }
 }
-
+    var braceActive=true;
+var ultimateActive=true;
 function winbattle(){
       $(".areas").remove();
                 $('#Pass').remove();
