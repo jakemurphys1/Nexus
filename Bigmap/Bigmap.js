@@ -53,6 +53,8 @@ var money=0;
         var Hirelevelup=0;
         var curresearch="Weapon_LevelupIron";
 
+var tempstart = true;
+
 //research stuff
         var Ironweaponlevelup=0;
         var Steelweaponlevelup=0;

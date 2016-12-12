@@ -202,16 +202,53 @@ function queue(){
           case 34:
              dialog("Any less, however, and we will be begin to descend.","Knight")
         break
-         case 35:
+        case 35:
+             dialog("Now there may be some classes you are less familiar with...","Knight")
+        break
+        case 36:
+             dialog("I'm a Knight. Like a soldier, I'm great at close-range physical damage.","Knight")
+        break
+        case 37:
+             dialog("However, because of this armor, every attack, and even moving, requires energy.","Knight")
+        break
+        case 38:
+             dialog("I start out each battle full of energy, but if I run out, I have go a turn without doing anything to replenish it.","Knight")
+        break
+        case 39:
+            movevert("Sorcerer",10)
+             dialog("I'm a sorcerer. I have use powerful magic attacks that require mana shown in blue over my health.","Sorcerer")
+        break
+        case 40:
+             dialog("My mana replenishes outside of combat when you pass the turn.","Sorcerer")
+        break
+        case 41:
+             dialog("So, please don't send me into battle if you see that I have low mana.","Sorcerer")
+        break
+        case 42:
+                    movevert("Wizard1",10)
+             dialog("I'm a wizard. I also do magical attack, but I have to charge first to use them.","Wizard1")
+        break
+        case 43:
+                    movevert("Templar1",10)
+             dialog("I'm a templar. Like a rouge, I can shoot any enemy that's in a straight line.","Templar1")
+        break
+        case 44:
+             dialog("I have special arrows that can help against magical enemies.","Templar1")
+        break
+        case 45:
+                    movevert("Healer1",10)
+             dialog("And I'm a healer. I can use the ability 'Vigor', which can allow allies to perform an additional action for the turn.","Healer1")
+        break
+         case 46:
              movevert("Knight",20,"end")
         break
-           case 36:
+           case 47:
              dialog("You all know what is at stake.","Knight")
         break
-         case 37:
+         case 48:
              dialog("We can not fail this day!","Knight")
         break
-          case 38:
+          case 49:
               window.location.href = '../06_airship/Airship.html'
         break
           

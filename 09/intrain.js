@@ -6,8 +6,8 @@ function queue(){
     qnum+=1;
     switch(qnum){
         case 1:
-            enterChar("Sandra-R",570,310,"no","relax")
-            enterChar("Edgar-R",300,310)
+            enterChar("Sandra-R",440,240,"no","relax")
+            enterChar("Edgar-R",210,240)
             movevert("Edgar-R",-1)
         break
         case 2:
@@ -63,6 +63,7 @@ function queue(){
 
 $(window).load(function(){
      opening("Chapter 4:","The Hunt")
+         localStorage.setItem("level", "9");
     loopeffect = new Audio();
     loopeffect.src="../sounds/insidetrain.mp3";
     loopeffect.volume=.3;
@@ -73,19 +74,19 @@ $(window).load(function(){
         $(".train").animate({
             top:"-=5"
         },300)
-        setTimeout(function(){
-            $(".train").animate({
-            top:"+=5"
-        },300)
+            setTimeout(function(){
+                $(".train").animate({
+                top:"+=5"
+            },300)
         },300)
         
         $(".Object").animate({
             top:"-=5"
         },300)
-        setTimeout(function(){
-            $(".Object").animate({
-            top:"+=5"
-        },300)
+            setTimeout(function(){
+                $(".Object").animate({
+                top:"+=5"
+            },300)
         },300)
     },2000)
     

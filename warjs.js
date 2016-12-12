@@ -1,4 +1,7 @@
-     var difflevel=2;    
+     
+
+var difflevel=2;
+
 var day= 0, mana= 0;
     var spot1="", spot2="", spot3="";
     var battleon=false;
@@ -7,14 +10,35 @@ var summoning;
 
 // window.location.href = '../08_Arena/Arena.html'
 
+        function getCookie(cname) {
+           
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+
+        for(var i=0; i<ca.length; i++) {
+            var c = ca[i];
+
+            while (c.charAt(0)==' ') c = c.substring(1);
+            if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+        }
+
+        return "";
+    }
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            var expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        }
+
         var angel=false;
         var demon=false;
         var djinn=false;
         var frostlord=false;
-    var angelrest=0;
-    var demonrest=0;
-    var djinnrest=0;
-    var frostlordrest=0;
+        var angelrest=0;
+        var demonrest=0;
+        var djinnrest=0;
+        var frostlordrest=0;
 
         var replicaterecipe=true;
         var reviverecipe=true;
@@ -209,7 +233,9 @@ function changesong(song){
 //clicking buttons on map///////////////////////////////////////////
  
     function gotocapitol(){
-      indiv_gotocapitol();
+        if (typeof indiv_gotocapitol == 'function'){
+                     indiv_gotocapitol();
+            }
 
         $("#gotobarracks").click(function(){
             gotobarracks();
@@ -254,7 +280,7 @@ var barrackbutton;
         $("#TEXT").append('<div class="row" id="barracks"></div>');
 
         for(var i =0;i<index;i++){
-            if((units[i].group===0 || units[i].group===-1) && units[i].type!="Djinn" && units[i].type!="Sparrow" && units[i].type!="Turtle" && units[i].type!="Spider" && units[i].type!="Bear" && units[i].type!="Wolf" && units[i].type!="Dead"){
+            if((units[i].group===0 || units[i].group===-1) && units[i].type!="Djinn" && units[i].isanimal==false){
                 $("#barracks").append(units[i].picture);
                 if((units[i].healing>0 || units[i].health<units[i].maxhealth) && recoverpotion>0 && units[i].alive===true){
                     $('#' + i).append("<div class='Recover' id='Recover" + i + "'><p>Heal</p></div>")
@@ -279,6 +305,19 @@ var barrackbutton;
                 }
                 if(units[i].type==="Healer" && units[i].alive===true){
                     $("#" +i).append('<div class="healerbar" id ="EB' + i + '"style="width: ' + (units[i].power) + '%"></div>');
+                }
+                $("#" +i).append('<div class="potionLetters"></div>');
+                if(units[i].healthpotion==true){
+                    $("#" +i + " .potionLetters").append('<span class="potionLetter">H</span>');
+                }
+                if(units[i].strengthpotion==true){
+                    $("#" +i + " .potionLetters").append('<span class="potionLetter">S</span>');
+                }
+                if(units[i].resistpotion==true){
+                    $("#" +i + " .potionLetters").append('<span class="potionLetter">R</span>');
+                }
+                if(units[i].defensepotion==true){
+                    $("#" +i + " .potionLetters").append('<span class="potionLetter">D</span>');
                 }
             }
         }
@@ -356,29 +395,53 @@ var barrackbutton;
          
        $(".barrackpic").click(function(){
             if(barrackbutton=="Strength"){
-                var add = Math.round(units[this.id].attack*.1)
+                if(units[this.id].strengthpotion==true){
+                    message("This unit has already been given a strength potion.")
+                    return;
+                }
+
+                var add = Math.round(units[this.id].attack*.3)
+                message("This unit's attack increased by " + add)
                 units[this.id].attack+=add;
                 strengthpotion-=1;
+                units[this.id].strengthpotion=true;
                 gotobarracks();
             }
            if(barrackbutton=="Defense"){
-                var add = Math.round(units[this.id].defense*.1)
+                if(units[this.id].defensepotion==true){
+                    message("This unit has already been given a defense potion.")
+                    return;
+                }
+                var add = Math.round(units[this.id].defense*.3)
+                message("This unit's defense increased by " + add)
                 units[this.id].defense+=add;
                 defensepotion-=1;
+                units[this.id].defensepotion=true;
                 gotobarracks();
             }
            if(barrackbutton=="Resistance"){
-                var add = Math.round(units[this.id].resistance*.1)
+                if(units[this.id].resistpotion==true){
+                    message("This unit has already been given a Resistance potion.")
+                    return;
+                }
+                var add = Math.round(units[this.id].resistance*.3)
+                message("This unit's resistance increased by " + add)
                 units[this.id].resistance+=add;
                 resistancepotion-=1;
+                units[this.id].resistpotion=true;
                 gotobarracks();
             }
            if(barrackbutton=="Health"){
-              
-                var add = Math.round(units[this.id].maxhealth*.1)
+                if(units[this.id].healthpotion==true){
+                    message("This unit has already been given a Health potion.")
+                    return;
+                }
+                var add = Math.round(units[this.id].maxhealth*.3)
+                message("This unit's health increased by " + add)
                 units[this.id].maxhealth+=add;
                 units[this.id].health+=add;
                 healthpotion-=1;
+                units[this.id].healthpotion=true;
                gotobarracks();
             }
            if(barrackbutton=="Levelup"){
@@ -402,6 +465,10 @@ var barrackbutton;
         getstats();
         groupunit();
         creategroup();
+        
+                if (typeof indiv_gotobarracks == 'function'){
+                     indiv_gotobarracks();
+            }
          
     }
 
@@ -453,20 +520,20 @@ var barrackbutton;
         }
        
          if(strengthrecipe===true){
-            $("#TEXT").append("<p class='brewpotions' id='Strength'>Str. Boost(" + strengthpotion +") <br> 1 mushrooms <BR> 1 berries.</p>");
-                if(ingredient["Mushrooms"].quantity>=1 && ingredient["Berries"].quantity>=1){
+            $("#TEXT").append("<p class='brewpotions' id='Strength'>Str. Boost(" + strengthpotion +") <br> 3 mushrooms <BR> 3 berries.</p>");
+                if(ingredient["Mushrooms"].quantity>=3 && ingredient["Berries"].quantity>=3){
                  $("#Strength").addClass("highlight")
              }
         }
         if(defenserecipe===true){
-            $("#TEXT").append("<p class='brewpotions' id='Defense'>Def. Boost(" + defensepotion +")<br> 1 root <br> 1 honey</p>");
-            if(ingredient["Roots"].quantity>=1 && ingredient["Honey"].quantity>=1){
+            $("#TEXT").append("<p class='brewpotions' id='Defense'>Def. Boost(" + defensepotion +")<br> 3root <br> 3 honey</p>");
+            if(ingredient["Roots"].quantity>=3 && ingredient["Honey"].quantity>=3){
                  $("#Defense").addClass("highlight")
              }
         }
         if(resistancerecipe===true){
-            $("#TEXT").append("<p class='brewpotions' id='Resistance'>Resist.boost(" + resistancepotion +")<br> 1 herb <br> 1 honey</p>");
-            if(ingredient["Herbs"].quantity>=1 && ingredient["Honey"].quantity>=1){
+            $("#TEXT").append("<p class='brewpotions' id='Resistance'>Resist.boost(" + resistancepotion +")<br> 3 herb <br> 3 honey</p>");
+            if(ingredient["Herbs"].quantity>=3 && ingredient["Honey"].quantity>=3){
                  $("#Resistance").addClass("highlight")
              }
         }
@@ -474,8 +541,8 @@ var barrackbutton;
             //$("#TEXT").append("<p class='brewpotions' id='standin1'>Standin1:(" + standin1potion +") <br> 1 mushroom <BR> 6 bone marrow</p>");
         }
         if(healthrecipe===true){
-            $("#TEXT").append("<p class='brewpotions' id='Health'>Health(" + healthpotion +")<br> 1 Mushroom <br> 1 Sap</p>");
-                if(ingredient["Mushrooms"].quantity>=1 && ingredient["Sap"].quantity>=1){
+            $("#TEXT").append("<p class='brewpotions' id='Health'>Health(" + healthpotion +")<br> 3 Mushroom <br> 3 Sap</p>");
+                if(ingredient["Mushrooms"].quantity>=3 && ingredient["Sap"].quantity>=3){
                  $("#Health").addClass("highlight")
              }
         }
@@ -510,7 +577,6 @@ var barrackbutton;
                 message("You require 4 flowers and 4 extract for that. You only have " + ingredient["Flowers"].quantity + " Flowers and " + ingredient["Extract"].quantity + " extract.")
             }
         });
-        
         $("#Recover").click(function(){
             if(ingredient["Flowers"].quantity>=2 && ingredient["Berries"].quantity>=2){
                 recoverpotion+=1;
@@ -522,7 +588,6 @@ var barrackbutton;
                 message("You require 2 flowers and 2 berries for that. You only have " + ingredient["Flowers"].quantity + " flowers and " + ingredient["Berries"].quantity + " berries.")
             }
         });
-        
         $("#Teleport").click(function(){
             if(ingredient["Powder"].quantity>=2 && ingredient["Sap"].quantity>=2){
                 teleportpotion+=1;
@@ -534,48 +599,49 @@ var barrackbutton;
                 message("You require 2 powder and 2 sap for that. You only have " + ingredient["Powder"].quantity + " powder and " + ingredient["Sap"].quantity + " sap.")
             }
         });
+        
         $("#Strength").click(function(){
-            if(ingredient["Mushrooms"].quantity>=1 && ingredient["Berries"].quantity>=1){
+            if(ingredient["Mushrooms"].quantity>=3 && ingredient["Berries"].quantity>=3){
                 strengthpotion+=1;
-                ingredient["Mushrooms"].quantity-=1;
-                ingredient["Berries"].quantity-=1;
+                ingredient["Mushrooms"].quantity-=3;
+                ingredient["Berries"].quantity-=3;
                 message("You brewed a Boost potion. Use it in the barracks to give a unit a permanent boost to strength.");
                 gotobrewery();
             }else{
-                message("You require 1 mushrooms and 1 Berries for that. You only have " + ingredient["Mushrooms"].quantity + " mushrooms and " + ingredient["Berries"].quantity + " berries.")
+                message("You require 3 mushrooms and 3 Berries for that. You only have " + ingredient["Mushrooms"].quantity + " mushrooms and " + ingredient["Berries"].quantity + " berries.")
             }
         });
           $("#Defense").click(function(){
-            if(ingredient["Roots"].quantity>=1 && ingredient["Honey"].quantity>=1){
+            if(ingredient["Roots"].quantity>=3 && ingredient["Honey"].quantity>=3){
                 defensepotion+=1;
-                ingredient["Roots"].quantity-=1;
-                ingredient["Honey"].quantity-=1;
+                ingredient["Roots"].quantity-=3;
+                ingredient["Honey"].quantity-=3;
                 message("You brewed a Boost potion. Use it in the barracks to give a unit a permanent boost to defense.");
                 gotobrewery();
             }else{
-                message("You require 1 Roots and 1 Honey for that. You only have " + ingredient["Roots"].quantity + " roots and " + ingredient["Honey"].quantity + " Honey.")
+                message("You require 3 Roots and 3 Honey for that. You only have " + ingredient["Roots"].quantity + " roots and " + ingredient["Honey"].quantity + " Honey.")
             }
         });
           $("#Resistance").click(function(){
-            if(ingredient["Herbs"].quantity>=1 && ingredient["Honey"].quantity>=1){
+            if(ingredient["Herbs"].quantity>=3 && ingredient["Honey"].quantity>=3){
                 resistancepotion+=1;
-                ingredient["Herbs"].quantity-=1;
-                ingredient["Honey"].quantity-=1;
+                ingredient["Herbs"].quantity-=3;
+                ingredient["Honey"].quantity-=3;
                 message("You brewed a Boost potion. Use it in the barracks to give a unit a permanent boost to resistance.");
                 gotobrewery();
             }else{
-                message("You require 1 Herbs and 1 honey for that. You only have " + ingredient["Herbs"].quantity + " Herbs and " + ingredient["Honey"].quantity + " honey.")
+                message("You require 3 Herbs and 3 honey for that. You only have " + ingredient["Herbs"].quantity + " Herbs and " + ingredient["Honey"].quantity + " honey.")
             }
         });
           $("#Health").click(function(){
-            if(ingredient["Mushrooms"].quantity>=1 && ingredient["Sap"].quantity>=1){
+            if(ingredient["Mushrooms"].quantity>=3 && ingredient["Sap"].quantity>=3){
                 healthpotion+=1;
-                ingredient["Mushrooms"].quantity-=1;
-                ingredient["Sap"].quantity-=1;
+                ingredient["Mushrooms"].quantity-=3;
+                ingredient["Sap"].quantity-=3;
                 message("You brewed a Health potion. Use it in the barracks to give a unit a permanent boost to it's health.");
                 gotobrewery();
             }else{
-                message("You require 1 Mushrooms and 1 Sap for that. You only have " + ingredient["Mushrooms"].quantity + " Mushrooms and " + ingredient["Sap"].quantity + " Sap.")
+                message("You require 3 Mushrooms and 3 Sap for that. You only have " + ingredient["Mushrooms"].quantity + " Mushrooms and " + ingredient["Sap"].quantity + " Sap.")
             }
         });
              $("#Levelup").click(function(){
@@ -1228,8 +1294,8 @@ var barrackbutton;
         }
         if(level===2){
             this.attack= 30;
-            this.health= 40;//40
-            this.maxhealth=40;//40
+            this.health= 40;
+            this.maxhealth=40;
         }
         if(level===3){
             this.attack= 40;
@@ -2666,7 +2732,7 @@ var barrackbutton;
         this.curleft=0;
         this.curtop=25;
         this.group=Egroupindex;
-        this.description="While weak in the close range, this rare creature can create a dangerous snow storm. Defeat to get it's soul to summon.";
+        this.description="While weak in the close range, this rare creature can create a dangerous snow storm.";
         this.picture="<div class='Ebarrackpic' id='E"+ e + "'><img src='../Pictures/Enemies/Frostlord.gif'/></div>";
         this.image='../Pictures/Enemies/Frostlord.gif';
         this.dying='../Pictures/Enemies/Frostlord_dying.gif'
@@ -2721,7 +2787,7 @@ var barrackbutton;
         this.curleft=0;
         this.curtop=25;
         this.group=Egroupindex;
-        this.description="Tough to kill, this rare creature heal itself with it's magic and fly. Defeat to get it's soul to summon.";
+        this.description="Tough to kill, this rare creature heal itself with it's magic and fly.";
         this.picture="<div class='Ebarrackpic' id='E"+ e + "'><img src='../Pictures/Enemies/Angel.gif'/></div>";
         this.image='../Pictures/Enemies/Angel.gif';
         this.dying='../Pictures/Enemies/Angel_dying.gif'
@@ -2774,7 +2840,7 @@ var barrackbutton;
         this.curleft=0;
         this.curtop=25;
         this.group=Egroupindex;
-        this.description="Tough to kill, this rare creature can give and take equally well. Defeat to get it's soul to summon.";
+        this.description="Tough to kill, this rare creature can give and take equally well.";
         this.picture="<div class='Ebarrackpic' id='E"+ e + "'><img src='../Pictures/Enemies/Djinn.gif'/></div>";
         this.image='../Pictures/Enemies/Djinn.gif';
         this.dying='../Pictures/Enemies/Djinn_dying.gif'
@@ -2828,7 +2894,7 @@ var barrackbutton;
         this.curleft=0;
         this.curtop=25;
         this.group=Egroupindex;
-        this.description="Elite among it's kind, this rare creature can instantly kill any units with it's death spell for 5 charge. Defeat to get it's soul to summon.";
+        this.description="Elite among it's kind, this rare creature can instantly kill any units with it's death spell for 5 charge.";
         this.picture="<div class='Ebarrackpic' id='E"+ e + "'><img src='../Pictures/Enemies/Demon.gif'/></div>";
         this.image='../Pictures/Enemies/Demon.gif';
         this.dying='../Pictures/Enemies/Demon_dying.gif'
@@ -3388,6 +3454,7 @@ function createsoldier(choice,name){
         this.levelresistance=1;
         this.levelattack=3;
         
+        this.isanimal=false;
 
         this.weapon="Bronze Sword";
         this.armor="Bronze Armor";
@@ -3404,6 +3471,11 @@ function createsoldier(choice,name){
 
         this.enroute=0;
         this.healing=0;
+        
+        this.healthpotion=false;
+        this.strengthpotion=false;
+        this.resistpotion=false;
+        this.defensepotion=false;
 
         this.medkit=false;
         this.abilitymedkit=false;
@@ -3477,6 +3549,8 @@ function createsoldier(choice,name){
         this.leveldefense=3;
         this.levelresistance=0;
         this.levelattack=3;
+        
+        this.isanimal=false;
 
         this.weapon="Bronze Sword";
         this.armor="Bronze Armor";
@@ -3496,6 +3570,11 @@ function createsoldier(choice,name){
 
         this.enroute=0;
         this.healing=0;
+        
+                this.healthpotion=false;
+        this.strengthpotion=false;
+        this.resistpotion=false;
+        this.defensepotion=false;
 
         this.abilityswirl=false;
         this.abilitysweep=false;
@@ -3570,10 +3649,17 @@ function createsoldier(choice,name){
         this.damageplus=1;
         this.defensetempboost=0;
         this.protectedby=-1;
+        
+        this.isanimal=false;
 
         this.enroute=0;
         this.healing=0;
         this.abilitymug=true;
+        
+        this.healthpotion=false;
+        this.strengthpotion=false;
+        this.resistpotion=false;
+        this.defensepotion=false;
 
         this.abilitybackstab=false;
         this.abilityinvisible=false;
@@ -3648,9 +3734,16 @@ function createsoldier(choice,name){
         this.attacktempboost=0;
         this.defensetempboost=0;
         this.protectedby=-1;
+        
+        this.isanimal=false;
 
         this.enroute=0;
         this.healing=0;
+        
+        this.healthpotion=false;
+        this.strengthpotion=false;
+        this.resistpotion=false;
+        this.defensepotion=false;
 
         this.abilityelementalailments=false;
         this.abilityzap=false;
@@ -3720,9 +3813,16 @@ function createsoldier(choice,name){
         this.attacktempboost=0;
         this.defensetempboost=0;
         this.protectedby=-1;
+        
+        this.isanimal=false;
 
         this.enroute=0;
         this.healing=0;
+        
+        this.healthpotion=false;
+        this.strengthpotion=false;
+        this.resistpotion=false;
+        this.defensepotion=false;
 
         this.abilitybolt=false;
         this.abilitymissile=false;
@@ -3789,6 +3889,8 @@ function createsoldier(choice,name){
         this.weaponboost=0;
         this.armorboost=0;
         this.resistboost=0;
+        
+        this.isanimal=false;
 
         this.power=0;
         this.attacktempboost=0;
@@ -3797,6 +3899,11 @@ function createsoldier(choice,name){
 
         this.enroute=0;
         this.healing=0;
+        
+        this.healthpotion=false;
+        this.strengthpotion=false;
+        this.resistpotion=false;
+        this.defensepotion=false;
 
         this.abilityfireblast=false;
         this.abilitylightning=false;
@@ -3860,6 +3967,8 @@ function createsoldier(choice,name){
         this.leveldefense=3;
         this.levelresistance=2;
         this.levelattack=2;
+        
+        this.isanimal=false;
 
         this.weapon="Wooden Bow";
         this.armor="Bronze Armor";
@@ -3873,6 +3982,11 @@ function createsoldier(choice,name){
 
         this.enroute=0;
         this.healing=0;
+        
+        this.healthpotion=false;
+        this.strengthpotion=false;
+        this.resistpotion=false;
+        this.defensepotion=false;
 
         this.defensetempboost=0;
         this.attacktempboost=0;
@@ -3940,6 +4054,8 @@ function createsoldier(choice,name){
         this.leveldefense=2;
         this.levelresistance=2;
         this.levelattack=3;
+        
+        this.isanimal=false;
 
         this.weapon="Wooden Bow";
         this.armor="Bronze Armor";
@@ -3952,6 +4068,11 @@ function createsoldier(choice,name){
 
         this.enroute=0;
         this.healing=0;
+        
+        this.healthpotion=false;
+        this.strengthpotion=false;
+        this.resistpotion=false;
+        this.defensepotion=false;
 
         this.defensetempboost=0;
         this.attacktempboost=0;
@@ -4018,6 +4139,8 @@ function createsoldier(choice,name){
         this.leveldefense=0;
         this.levelresistance=3;
         this.levelattack=2;
+        
+        this.isanimal=false;
 
         this.weapon="Wooden Bow";
         this.armor="Bronze Armor";
@@ -4030,6 +4153,11 @@ function createsoldier(choice,name){
 
         this.enroute=0;
         this.healing=0;
+        
+        this.healthpotion=false;
+        this.strengthpotion=false;
+        this.resistpotion=false;
+        this.defensepotion=false;
 
         this.defensetempboost=0;
         this.attacktempboost=0;
@@ -4089,6 +4217,8 @@ function createsoldier(choice,name){
         this.frosttouch=false;
         this.storm=false;
         this.aetherban=false;
+        
+        this.isanimal=false;
 
         this.level=1;
         this.experience=0;
@@ -4109,6 +4239,11 @@ function createsoldier(choice,name){
 
         this.enroute=0;
         this.healing=0;
+        
+        this.healthpotion=false;
+        this.strengthpotion=false;
+        this.resistpotion=false;
+        this.defensepotion=false;
 
         this.defensetempboost=0;
         this.attacktempboost=0;
@@ -4170,6 +4305,8 @@ function createsoldier(choice,name){
         this.frosttouch=false;
         this.storm=false;
         this.aetherban=false;
+        
+        this.isanimal=false;
 
         this.captured="";
 
@@ -4192,6 +4329,11 @@ function createsoldier(choice,name){
 
         this.enroute=0;
         this.healing=0;
+        
+        this.healthpotion=false;
+        this.strengthpotion=false;
+        this.resistpotion=false;
+        this.defensepotion=false;
 
         this.defensetempboost=0;
         this.attacktempboost=0;
@@ -4242,6 +4384,8 @@ function createsoldier(choice,name){
         this.silenced=0;
         this.poison=0;
         this.enfeeble=0;
+        
+        this.isanimal=false;
 
         this.captured="";
 
@@ -4269,6 +4413,11 @@ function createsoldier(choice,name){
 
         this.enroute=0;
         this.healing=0;
+        
+        this.healthpotion=false;
+        this.strengthpotion=false;
+        this.resistpotion=false;
+        this.defensepotion=false;
 
         this.attacktempboost=0;
         this.defensetempboost=0;
@@ -4316,6 +4465,8 @@ function createsoldier(choice,name){
         this.silenced=0;
         this.poison=0;
         this.enfeeble=0;
+        
+        this.isanimal=false;
      
         this.usedsleep=1;
         this.usedblindness=1;
@@ -4356,6 +4507,11 @@ function createsoldier(choice,name){
         this.weaponboost=0;
         this.armorboost=0;
         this.resistboost=0;
+        
+        this.healthpotion=false;
+        this.strengthpotion=false;
+        this.resistpotion=false;
+        this.defensepotion=false;
 
         this.attacktempboost=0;
         this.defensetempboost=0;
@@ -4394,6 +4550,8 @@ function createsoldier(choice,name){
         this.curtop=425;
         this.group=0;
         this.slot=0;
+      
+              this.isanimal=false;
 
         this.sleep=0;
         this.immobilized=0;
@@ -4434,6 +4592,11 @@ function createsoldier(choice,name){
 
         this.enroute=0;
         this.healing=0;
+      
+        this.healthpotion=false;
+        this.strengthpotion=false;
+        this.resistpotion=false;
+        this.defensepotion=false;
 
         this.medkit=false;
         this.abilitymedkit=false;
@@ -4964,7 +5127,6 @@ function newEindex(){
                 }
 
                 $("#TEXT").empty();
-                tipmessage("creategroup","Good, you created a group. Click on it to select it, and then you will see a yellow space you can move it. Right-click the yellow space to move your group there.");
                 spot1="";
                 spot2="";
                 spot3="";
@@ -4982,11 +5144,17 @@ function newEindex(){
                     exchangeunits(temp);
                 }
             });
+            if (typeof indiv_creategroup == 'function'){
+                     indiv_creategroup();
+            }
         })
+        
+
     }
 
     //exchange////////////////////////////////////////////////////////////////////////////
     function exchangeunits(temp){
+        console.log("checking")
         var location2 = groups[temp].location;
         var location1= groups[curgroupnum].location;
         if((location1==71 && location2==70) || (location2==71 && location1==70)){
@@ -5097,10 +5265,16 @@ isfortified=true;
                 }
 
 
-
+                if (typeof indiv_exchange == 'function'){
+                         indiv_exchange();
+                }
             }
         });
         getstats();
+            if (typeof indiv_exchangeunits == 'function'){
+                     indiv_exchangeunits();
+            }
+        
     }
     function newgroup(e){
         this.index=e;
@@ -5124,7 +5298,7 @@ isfortified=true;
     function getstats(){
         $('.barrackpic').click(function(){
                 var curunit = $(this).attr('id');
-            $("#stats").remove();
+                $("#stats").remove();
                 $("body").append('<div id="stats"></div>');
                 $("#stats").append("<p>Level: " + units[curunit].level + "</p><p>Type: " + units[curunit].type +
                 "</p><p>Health: " + units[curunit].health + "/" + units[curunit].maxhealth + "</p><p>Attack: " + units[curunit].attack + "</p><p>Defense: " + units[curunit].defense + "</p><p>Resistance: " + units[curunit].resistance + "</p>")
@@ -5224,6 +5398,9 @@ isfortified=true;
                 presspass();
                 getstats();
 
+            }
+                if (typeof indiv_groupinfo == 'function'){
+                     indiv_groupinfo();
             }
         });
 
@@ -5472,6 +5649,7 @@ function clearspaces(e){
         if(gameoverset==true){
             return;
         }
+
         //check if there's a fight
         function checkslots(type){
                 var typepresent = false;
@@ -5758,7 +5936,7 @@ function clearspaces(e){
                         }
                     }
                     //to shift units left if more than 3 enemies
-var mult = 0;
+                    var mult = 0;
                     if(Eslots[4]!=-1){
                         mult=1
                     }
@@ -5832,6 +6010,9 @@ var mult = 0;
                         setTimeout(function(){enemyturn("PassTurn")},500);
                     }
                     groups[i].haste=false;
+                    if (typeof indiv_startcombat == 'function'){
+                             indiv_startcombat();
+                    }
                     return;
                 }
             }
@@ -7337,7 +7518,7 @@ var mult = 0;
                     setTimeout(function(){
                         $(".damage").remove();
                         turngray();
-                    },1000)
+                    },900)
                 }
 
                 function turngray() {
@@ -8062,7 +8243,7 @@ var mult = 0;
                                             Specialsound.play();
                                             units[selectedindex].usedaction = true;
                                             slashattack()
-                                            setTimeout(function(){Damaging(enemyindex, tempdamage);},500);
+                                            setTimeout(function(){Damaging(enemyindex, tempdamage)},500);
                                         },i*1000)
 
                                     }
@@ -8225,9 +8406,9 @@ var mult = 0;
                                 $("#TEXT").empty();
                                 var randnum=Math.floor((Math.random() * Eunits[enemyindex].maxhealth) + 1);
                                 if(Eunits[enemyindex].abilitybettersteal===true){
-                                    randnum=Eunits[enemyindex].health+1;
+                                    randnum=10000000
                                 }
-                                if(randnum>Eunits[enemyindex].health){
+                                if(randnum>(Eunits[enemyindex].health-damage)){
                                     Eunits[enemyindex].item="";
                                     var stealnum=Math.floor((Math.random() * 33) + 1);
                                     if(Eunits[enemyindex].type==="Clunker" || Eunits[enemyindex].type==="Sounddepressor" || Eunits[enemyindex].type==="Magnet" || Eunits[enemyindex].type==="Cannon"){
@@ -8265,7 +8446,7 @@ var mult = 0;
                                                $("#TEXT").append("<p>He stole a Flower</p>") 
                                             break;
                                             case 8:
-                                               ingredient["Mushrooms"].quantity += 2;
+                                               ingredient["Flowers"].quantity += 2;
                                                $("#TEXT").append("<p>He stole 2 Flowers</p>") 
                                             break;
                                             case 9:
@@ -9872,7 +10053,7 @@ showailments();
                         break;
                     case 6:
                         units[curindex].abilitywail=true;
-                        $("#TEXT").append("<p>The Knight learned 'REACT'. Attack an enemy multiple times based on remaining stamina with increasing chance of missing.</p>");
+                        $("#TEXT").append("<p>The Knight learned 'Wail'. Attack an enemy multiple times based on remaining stamina with increasing chance of missing.</p>");
                         break;
                 }
             }
@@ -10289,7 +10470,6 @@ function clickactionbuttons(){
                 return;
             }
             $("#TEXT").append("<p>" + units[selectedindex].name + " escaped and will return to the capitol in " + (1+difflevel) + " days.\n</p>");
-            console.log(selectedindex)
             units[selectedindex].enroute=1+difflevel;
             $("#" + selectedindex).remove();
             units[selectedindex].group=0;
@@ -10358,7 +10538,8 @@ function clickactionbuttons(){
             }
             if (e.options[e.selectedIndex].text === "Blood-Sacrifice" && units[selectedindex].usedaction === false) {
                 if(units[selectedindex].braced){
-                        units[selectedindex].ultimate=true;
+                    units[selectedindex].ultimate=true;
+                    units[selectedindex].usedaction = true;
                     units[selectedindex].health=1;
                 var temp = "#" + selectedindex;
                 var tempbar="#HB" + selectedindex;
@@ -12067,6 +12248,7 @@ function enemyturn(selectedactions){
                                     left: Eunits[Eslots[y]].curleft + 'px',
                                     top: Eunits[Eslots[y]].curtop + 'px'
                                 }, 500);
+
                                 reacting();
                             }
                             if (upempty === true && Eunits[Eslots[y]].usedaction === false && Eunits[Eslots[y]].moved === false) {
@@ -12939,10 +13121,7 @@ function enemyturn(selectedactions){
                             } else {
                                 var tempslot=-1;
 
-                                Eunits[Eslots[y]].charge-=1;
-                                //minus one to offset charging
-                                Eunits[Eslots[y]].charge -= 1;
-                                charging();
+
 
                                 //find empty slot
                                 for (var o =1;o<6;o++){
@@ -12953,14 +13132,13 @@ function enemyturn(selectedactions){
 
 
                                 if(tempslot!=-1){
-                                    if(units[slots[1]].aetherban===true || units[slots[2]].aetherban===true || units[slots[2]].aetherban===true){
-                                        $("#TEXT").append("<p>The summoner can't summon due to the aetherban</p>");
-
-                                    } else {
                                         Eunits[Eslots[tempslot]].health = Eunits[Eslots[tempslot]].maxhealth;
                                         Eunits[Eslots[tempslot]].alive = true;
                                         $("#E" + Eslots[tempslot]).fadeIn();
-                                    }
+                                        Eunits[Eslots[y]].charge-=1;
+                                        //minus one to offset charging
+                                        Eunits[Eslots[y]].charge -= 1;
+                                        charging()
                                 }
                             }
                         } else {
@@ -12977,11 +13155,7 @@ function enemyturn(selectedactions){
 
                                 var tempslot=-1;
 
-                                //find free index number
-                                Eunits[Eslots[y]].charge-=1;
-                                //minus one to offset charging
-                                Eunits[Eslots[y]].charge -= 1;
-                                charging();
+
 
 
                                 //find empty slot
@@ -13000,10 +13174,6 @@ function enemyturn(selectedactions){
                                     }else if(enemyonright===""){
                                         Eunits[Eslots[tempslot]].curleft+=100;
                                     }
-                                    if(units[slots[1]].aetherban===true || units[slots[2]].aetherban===true || units[slots[2]].aetherban===true){
-                                        $("#TEXT").append("<p>The summoner can't summon due to the aetherban</p>");
-
-                                    } else{
                                         $("#E" + Eslots[tempslot]).animate({
                                             top: Eunits[Eslots[tempslot]].curtop + "px",
                                             left: Eunits[Eslots[tempslot]].curleft + "px"
@@ -13011,8 +13181,11 @@ function enemyturn(selectedactions){
                                         Eunits[Eslots[tempslot]].health=Eunits[Eslots[tempslot]].maxhealth;
                                         Eunits[Eslots[tempslot]].alive=true;
                                         $("#E" + Eslots[tempslot]).fadeIn();
-                                    }
-
+                                //find free index number
+                                Eunits[Eslots[y]].charge-=1;
+                                //minus one to offset charging
+                                Eunits[Eslots[y]].charge -= 1;
+                                charging();
                                 }
                             }
                         } else {
@@ -13023,18 +13196,14 @@ function enemyturn(selectedactions){
                     if ((Eunits[Eslots[y]].type === "Shaman")) {
 
                         //summon Golem
-                        if (Eunits[Eslots[y]].charge >= 1) {
+                        if (Eunits[Eslots[y]].charge >= 2) {
                             if(Eunits[Eslots[y]].silenced>0){
                             } else {
 
                                 var tempslot=-1;
 
-                                //find free index number
-                                Eunits[Eslots[y]].charge-=1;
-                                //minus one to offset charging
-                                Eunits[Eslots[y]].charge -= 1;
-                                charging();
 
+//backhere
                                 if(Eunits[Eslots[1]].alive===false && !(enemyonbottom!=""&& enemyonleft!="" && enemyonright!="")){
                                     if(enemyonbottom===""){
                                         Eunits[Eslots[1]].curtop+=100;
@@ -13043,10 +13212,6 @@ function enemyturn(selectedactions){
                                     }else if(enemyonright===""){
                                         Eunits[Eslots[1]].curleft+=100;
                                     }
-                                    if(units[slots[1]].aetherban===true || units[slots[2]].aetherban===true || units[slots[2]].aetherban===true){
-                                        $("#TEXT").append("<p>The summoner can't summon due to the aetherban</p>");
-
-                                    } else {
                                         $("#E" + Eslots[1]).animate({
                                             top: Eunits[Eslots[1]].curtop + "px",
                                             left: Eunits[Eslots[1]].curleft + "px"
@@ -13054,7 +13219,10 @@ function enemyturn(selectedactions){
                                         Eunits[Eslots[1]].health = Eunits[Eslots[1]].maxhealth;
                                         Eunits[Eslots[1]].alive = true;
                                         $("#E" + Eslots[1]).fadeIn();
-                                    }
+                                        Eunits[Eslots[y]].charge-=1;
+                                //minus one to offset charging
+                                Eunits[Eslots[y]].charge -= 1;
+                                charging();
                                 }
                             }
                         } else {
@@ -13776,9 +13944,6 @@ function enemyturn(selectedactions){
                             } else {
                                 flamewraithwhotoattack();
                             }
-                        } else {
-                            charging();
-                            Eunits[Eslots[y]].usedaction=true;
                         }
 
                         if(Eunits[Eslots[y]].terrify>0){
@@ -14127,7 +14292,7 @@ function enemyturn(selectedactions){
                         },500)
                 }
             function checkcounter(enemyindex,index,loop){
-                                    var counterdamage=parseInt((Eunits[enemyindex].attack - Eunits[enemyindex].defense) *.5);
+                                    var counterdamage=parseInt((units[index].attack - Eunits[enemyindex].defense) *.5);
                                     if(counterdamage<0){counterdamage=0}
                                     Eunits[enemyindex].health-= counterdamage;
                                     $("#TEXT").append("<p>" + units[index].name + " countered for " + counterdamage + " damage</p>");
@@ -14316,16 +14481,16 @@ function text(words,left,top){
   
 function TEMPstartcombat(){
 
-                 Eunits[newEindex()]=new FireElemental(curEindex, 1,2);
-  //              Eunits[newEindex()]=new Sparrow(curEindex, 1,2);
-//                Eunits[newEindex()]=new Bat(curEindex, 1,2);
-//                Eunits[newEindex()]=new Eye(curEindex, 1,2);
-              //  Eunits[newEindex()]=new Beekeeper(curEindex, 1,2);
+                // Eunits[newEindex()]=new Bee(curEindex, 1,2);
+               Eunits[newEindex()]=new Angel(curEindex, 1,2);
+              //  Eunits[newEindex()]=new Shaman(curEindex, 1,2);
+              //  Eunits[newEindex()]=new Bee(curEindex, 1,2);
+              //  Eunits[newEindex()]=new Bee(curEindex, 1,2);
 
                 Egroups[Egroupindex]=new Enewgroup(1,70,1000,"Warrior");
-                units[index]=new Mage(index,"Mage2");
-                units[index]=new Thief(index,"Thief2");
                 units[index]=new Soldier(index,"Soldier2");
+                units[index]=new Knight(index,"Knight");
+                units[index]=new Thief(index,"Thief1");
 
 
                 units[0].slot=1;
@@ -14339,9 +14504,9 @@ function TEMPstartcombat(){
     units[0].flight=true;
         units[1].flight=true;
     
-    units[0].abilityfreeze=true;
-    units[1].abilitygrapplinghook=true;
-    units[2].level="-";
+    units[0].abilitycounter=true;
+    units[1].abilitywail=true;
+    units[2].abilityinvisible=true;
      units[2].abilitymedkit=true;
     units[2].health=80;
     
@@ -14356,9 +14521,17 @@ units[0].abilityincreaseenergy=true
                 startcombat();
    
     }
-
+function saving(){
+    localStorage.setItem("level", "10");
+    if(parseInt( localStorage.getItem("diff"))>0){
+        difflevel=parseInt(localStorage.getItem("diff"));
+    }
+}
 
 $(window).load(function(){
+    if(parseInt( localStorage.getItem("diff"))>0){
+        difflevel=parseInt(localStorage.getItem("diff"));
+    }
 
 
 
@@ -14433,8 +14606,7 @@ assignlocations();
     //move allies
     $(".areas").mousedown(function(e){
         if(e.button === 2 ) {
-            tipmessage("firstmove","Good, you moved, and now the group looks grey. Press the 'Pass' button so you can move again.")
-             $(".areas").removeClass("battlehighlight");
+            
             $('#TEXT').empty();
             $(".actions").empty().append("<div class = 'actionbutton' id='Pass'><p>Pass</p></div>");
             presspass();
@@ -14531,12 +14703,14 @@ assignlocations();
             curloc = groups[activenum].location;
             }
           
-            
+            if (typeof indiv_moveally == 'function'){
+                     indiv_moveally();
+            }
            
             
             startcombat();
-
            liberate(curloc);
+
         }
     });
 
@@ -14560,5 +14734,8 @@ assignlocations();
     $(".actions").append("<div class = 'actionbutton' id='Pass'><p>Pass</p></div>");
     presspass();
 
-           //TEMPstartcombat();
+        if(typeof(tempstart) != 'undefined'){
+            TEMPstartcombat();
+        }      
+
 })//done

@@ -99,7 +99,7 @@ function newunit(){
         switch(temp){
             case 1:
                 tempclass="Mage";
-                  tempname="Sandra";
+                  tempname="Mage2";
                 break;
             case 2:
                 tempclass="Guard";
@@ -115,7 +115,7 @@ function newunit(){
                 break;
             case 5:
                 tempclass="Soldier";
-                  tempname="Edgar";
+                  tempname="Soldier2";
                 break;
             case 6:
                 tempclass="Thief";
@@ -440,7 +440,11 @@ function enemyconquer(){
 }
 
 $(window).load(function(){
-    changesong("Battle.mp3")
+        changesong("Battle.mp3")
+        localStorage.setItem("level", "8");
+    if(parseInt( localStorage.getItem("diff"))>0){
+        difflevel=parseInt(localStorage.getItem("diff"));
+    }
         containaccessories();
     
     Eunits[newEindex()]=new ESoldier(curEindex, Egroupindex,difflevel);

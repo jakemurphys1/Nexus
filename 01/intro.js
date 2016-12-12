@@ -88,7 +88,7 @@ function castle(withairship){
             $("#airship").animate({
                 top:"-=400px"
             },2000,"linear")
-       text("...Who is the Only One that May Know the Answer to...",100,-350)
+       text("For if They Fail to find this person",100,-350)
 
   }
 }
@@ -120,16 +120,13 @@ function Entrance(){
         
   enterCharIntro("Soldier2",200,-400);
     enterCharIntro("Archer3",250,-400);
-    enterCharIntro("Knight",300,-400);
+    enterCharIntro("Knight2",300,-400);
     enterCharIntro("Sorcerer",350,-400);
-    enterCharIntro("Wizard1",400,-400);
-    enterCharIntro("Healer1",450,-400);
-    enterCharIntro("Enchantress",500,-400);
-    enterCharIntro("Guard",550,-400);
-    enterCharIntro("Templar1",600,-400);
-    enterCharIntro("Rouge2",650,-400);
-    enterCharIntro("Thief2",700,-400);
-    enterCharIntro("Mage2",750,-400);
+    enterCharIntro("Wizard2",400,-400);
+    enterCharIntro("Healer2",450,-400);
+    enterCharIntro("Templar2",500,-400);
+    enterCharIntro("Rouge2",550,-400);
+    enterCharIntro("Mage2",600,-400);
     
   
          text("A small band of heroes prepare to defend it...",50,-300)
@@ -169,7 +166,7 @@ function Docking(){
     },2000)
     
   
-         text("While a small group leaves to seek the Story-Teller...",50,450)
+         text("While a small group leaves to seek the Story-Teller",50,450)
 
   setTimeout(function(){
       $("#quickscene").remove();
@@ -224,7 +221,7 @@ function airship(){
                         left: "+1840px"
                     }, 3000,"linear"); 
     
-     text("Save the Light From the Darkness",50,250)
+     text("The World will be Devoured by Darkness",50,250)
      
      setTimeout(function(){
          $(".epictext").fadeOut();
@@ -244,7 +241,7 @@ function airship(){
   setTimeout(function(){
       $("#quickscene").remove();
       queue();
-  },20000)
+  },17000)
 }
 
 function queue(){

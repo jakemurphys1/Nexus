@@ -605,10 +605,10 @@ function liberate(curloc){
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Warrior');
                     break;
                 case 10:
-                    Eunits[newEindex()]=new Bee(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Beekeeper(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Bee(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Beekeeper');
+                    Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Sparrow');
                     break;
             }
         }
@@ -1078,8 +1078,11 @@ function airship(upOrDown){
 
 
 $(window).load(function(){
-changesong("01/Battle.wav")
-    
+    changesong("01/Battle.wav")
+    localStorage.setItem("level", "6");
+    if(parseInt( localStorage.getItem("diff"))>0){
+        difflevel=parseInt(localStorage.getItem("diff"));
+    }
     
     $('.fan').mouseenter(function(){
         $(".fan").addClass("hidden")

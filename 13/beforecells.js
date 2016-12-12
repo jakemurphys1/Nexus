@@ -90,6 +90,7 @@ function queue(){
 $(window).load(function(){
     opening("Chapter 6:","Where am I?")
     changesong("01/Threat.mp3")
+    saving();
         
     
 });

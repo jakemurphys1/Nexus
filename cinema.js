@@ -41,6 +41,7 @@ function opening(chapter,name){
     $("#opener").fadeIn(3000);
 
   setTimeout(function(){
+      $("#cinema img").removeClass("hidden")
       $("#quickscene").remove();
       queue();
   },5000)
@@ -166,6 +167,13 @@ function delay(time){
     setTimeout(function(){
         queue();
     },time)
+}
+
+function saving(){
+    localStorage.setItem("level", "10");
+    if(parseInt( localStorage.getItem("diff"))>0){
+        difflevel=parseInt(localStorage.getItem("diff"));
+    }
 }
 
 var ondialog=false;

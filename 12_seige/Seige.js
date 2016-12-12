@@ -306,10 +306,11 @@ var wall4 = 100;
                         top: $("#space" + thistemp).data("top") + 'px'
                     });
                 }
-                if (Egroups[i].location === 6 & nomove(7) === false && Egroups[i].hasmoved === false) {
+                if (Egroups[i].location === 6 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
                     wall1-=25;
                     $("#wall1").css("width", wall1 + "%");
+                               Sword.play()
                     if(wall1==0){
                         gameover();
                     }
@@ -380,10 +381,11 @@ var wall4 = 100;
                         top: $("#space" + thistemp).data("top") + 'px'
                     });
                 }
-                if (Egroups[i].location === 12 & nomove(9) === false && Egroups[i].hasmoved === false) {
+                if (Egroups[i].location === 12 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
                       wall2-=25;
                                $("#wall2").css("width", wall2 + "%");
+                    Sword.play()
                       if(wall2==0){
                         gameover();
                     }
@@ -458,10 +460,11 @@ var wall4 = 100;
                         top: $("#space" + thistemp).data("top") + 'px'
                     });
                 }
-                if (Egroups[i].location === 18 & nomove(20) === false && Egroups[i].hasmoved === false) {
+                if (Egroups[i].location === 18 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
                       wall3-=25;
                          $("#wall3").css("width", wall3 + "%");
+                               Sword.play()
                       if(wall3==0){
                         gameover();
                     }
@@ -534,10 +537,11 @@ var wall4 = 100;
                         top: $("#space" + thistemp).data("top") + 'px'
                     });
                 }
-                if (Egroups[i].location === 24 & nomove(23) === false && Egroups[i].hasmoved === false) {
+                if (Egroups[i].location === 24 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
                     wall4-=25;
                            $("#wall4").css("width", wall4 + "%");
+                               Sword.play()
                       if(wall4==0){
                         gameover();
                     }
@@ -708,9 +712,6 @@ var wall4 = 100;
                     break;
             }
         }
-        if(day ==30){
-            winbattle();
-        }
         clickEicon();
         Egroupinfo();
     }
@@ -758,6 +759,7 @@ function set_area_background(i){
 function indiv_newday(){
            $('.heading').remove();
         $('#top').append("<h1 class = 'heading'>Turn: " + day + "/30</h1>");
+    saving();
     if(day>30){
         winbattle("../13/beforecells.html")
     }

@@ -29,7 +29,6 @@
 
 var number_of_units=6;
 
-noheal=false;
 var wolves=0;
 var bears=0;
 var spiders=0;
@@ -947,6 +946,7 @@ function enemyconquer(){
 
 $(window).load(function(){
     changesong("01/hunting.wav")
+
         containaccessories();
  wolflimit = 5+2*difflevel;
  sparrowlimit=5+2*difflevel;

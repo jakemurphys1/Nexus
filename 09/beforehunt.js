@@ -24,14 +24,14 @@ function queue(){
             movevert("Sandra-R",1,"end")
         break
         case 5:
-            enterChar("Enchantress",650,460)
-            movevert("Enchantress",-30,"end")
+            enterChar("Archer1",650,460)
+            movevert("Archer1",-30,"end")
         break
           case 6:
-            movehor("Enchantress",-200,"end")
+            movehor("Archer1",-200,"end")
         break
         case 7:
-            movehor("Enchantress",1,"end")
+            movehor("Archer1",1,"end")
         break
         case 8:
             enterChar("Rouge1",650,460)
@@ -54,11 +54,10 @@ function queue(){
             movehor("Guard",-100,"end")
         break
         case 14:
-            enterChar("Archer1",650,460)
-            movevert("Archer1",-30,"end")
+            queue();
         break
           case 15:
-            movehor("Archer1",200,"end")
+            queue();
         break
         case 16:
             enterChar("Edgar-R",650,460)
@@ -87,6 +86,7 @@ function queue(){
         break
          case 24:
              movehor("Edgar-R",-300,"end")
+            movehor("Sandra-R",-250)
         break
           case 25:
              movevert("Edgar-R",-50,"end")
@@ -107,9 +107,44 @@ function queue(){
              movehor("Edgar-R",1,"end")
         break
         case 28:
-            dialog("We only have a limited time before the packs stop coming. We have a number we need to catch before that. Now, let's go.","Edgar-R")
+            dialog("We only have a limited time before the packs stop coming. We have a number we need to catch before that.","Edgar-R")
         break
         case 29:
+            enterChar("Enchantress",300,-100)
+            movevert("Enchantress",200,"end")
+        break
+        case 30:
+            dialog("Hi, Edgar!","Enchantress")
+        break
+        case 31:
+            movevert("Edgar-R",-1)
+            dialog("Sofia! Glad you could make it!","Edgar-R")
+        break
+        case 32:
+            dialog("Sofia, this is my Daughter Sandra","Edgar-R")
+        break
+        case 33:
+            dialog("Nice to meet you.","Enchantress")
+        break
+        case 34:
+            dialog("You too. I'm not familiar with your class.","Sandra-R")
+        break
+        case 35:
+            dialog("I'm an Enchantress. I can absorb energy from enemies that ignores their defenses.","Enchantress")
+        break
+        case 36:
+            dialog("The closer I am, the more I will absorb.","Enchantress")
+        break
+        case 37:
+            dialog("I can then use that energy to cast powerful enchantments.","Enchantress")
+        break
+        case 38:
+            dialog("My absorbed energy stays with me even after combat.","Enchantress")
+        break
+        case 39:
+            dialog("Well, the elk aren't going to wait for us, let's go.","Edgar-R")
+        break
+        case 40:
              window.location.href = '../10_Hunter/Hunter.html'
         break
          

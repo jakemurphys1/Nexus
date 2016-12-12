@@ -29,7 +29,7 @@
         var teleportpotion=0;
         var boostpotion=0;
 noheal=true;
-var number_of_units=6;
+var number_of_units=5;
 
 function containaccessories(){
     
@@ -76,22 +76,18 @@ function newunit(){
                 tempname="Sandra";
                 break;
             case 2:
-                tempclass="Enchantress";
-                tempname="Enchantress";
-                break;
-            case 3:
                 tempclass="Archer";
                 tempname="Archer1";
                 break;
-            case 4:
+            case 3:
                 tempclass="Guard";
                 tempname="Guard";
                 break;
-            case 5:
+            case 4:
                 tempclass="Soldier";
                 tempname="Edgar"
                 break;
-            case 6:
+            case 5:
                 tempclass="Rouge";
                 tempname="Rouge1"
                 break;
@@ -106,7 +102,6 @@ function newunit(){
             }
         }
     }//end of while
-    console.log(tempclass,tempname)
     if(tempclass && tempname){
         createsoldier(tempclass,tempname);
     }
@@ -414,6 +409,10 @@ function enemyconquer(){
 
 $(window).load(function(){
     changesong("01/battle.wav")
+    localStorage.setItem("level", "4");
+    if(parseInt( localStorage.getItem("diff"))>0){
+        difflevel=parseInt(localStorage.getItem("diff"));
+    }
     
      message("Each group can only have 3 units in it, so you will need to choose which units will fight the beasts. Click the enemies to learn more about them. Use the right units against the right enemies.")
 
@@ -452,10 +451,10 @@ $(window).load(function(){
         message("This is one of those robots. Lightning is good against robots.")
     })
      $("#EM2").click(function(){
-        message("These are sparrows. They will fly instantly to your units. Using units with higher defense, like the soldier, will be important.")
+        message("These are sparrows. They will fly instantly to your units. Using units with higher defense, like the soldier or guard, will be important.")
     })
       $("#EM3").click(function(){
-        message("These are fire elementals. They have a high 'Resistance', so magic attacks won't be effective. But it has a low 'defense', so physical attacks will be. They are also long-range, so you will probably want some long-range attacker like archers.")
+        message("These are fire elementals. They have a high 'Resistance', so magic attacks won't be effective. But it has a low 'defense', so physical attacks will be. They are also long-range, so you will probably want some long-range attackers like archers.")
     })
        $("#EM4").click(function(){
         message("This is a turtle. This one has a high 'Defense', so physical attacks won't be effective. But it has a low 'Resistance', so magic will be effective.")

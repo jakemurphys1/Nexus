@@ -126,4 +126,5 @@ function queue(){
 
 $(window).load(function(){
     changesong("01/Peaceful.mp3")
+        localStorage.setItem("level", "7");
 });

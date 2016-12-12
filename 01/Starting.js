@@ -6,7 +6,7 @@ var qnum=0;
 
 function transform(name){
     doeffect("transform.wav")
-  $("body").append("<div style='background-color:#dfdcdc;margin-top:0px;margin-left:-0px' id = 'quickscene'><img style='width:50%; height:50%;margin-left:25%;margin-top:25%' src='pics/" + name + "_transform.gif' /></div>")
+  $("body").append("<div style='background-color:#dfdcdc;margin-top:0px;margin-left:-0px' id = 'quickscene'><img style='width:30%; height:30%;margin-left:35%;margin-top:25%' src='pics/" + name + "_transform.gif' /></div>")
 
 
   setTimeout(function(){
@@ -125,6 +125,7 @@ function queue(){
 }
 
 $(window).load(function(){
+        localStorage.setItem("level", "1");
     opening("Chapter One:","Enter the Nexus")
         changesong("Peaceful.mp3")
 

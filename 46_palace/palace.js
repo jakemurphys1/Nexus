@@ -290,7 +290,6 @@ function liberate(curloc){}
                     } else if(nomove(11)==false){
                         thistemp = 11;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 2 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -299,7 +298,6 @@ function liberate(curloc){}
                     } else if(nomove(3)==false){
                         thistemp = 3;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 3 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -308,7 +306,6 @@ function liberate(curloc){}
                     } else if(nomove(4)==false){
                         thistemp = 4;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 4 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -316,8 +313,7 @@ function liberate(curloc){}
                         thistemp = 14;
                     } else if(nomove(5)==false){
                         thistemp = 5;
-                    }
-                    Egroups[i].location = thistemp;  
+                    } 
                 }
                 if (Egroups[i].location === 5 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -326,14 +322,12 @@ function liberate(curloc){}
                     } else if(nomove(6)==false){
                         thistemp = 6;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 6 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
                     if(nomove(16)==false){
                         thistemp = 16;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 7 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -342,7 +336,6 @@ function liberate(curloc){}
                     } else if(nomove(6)==false){
                         thistemp = 6;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 8 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -350,8 +343,7 @@ function liberate(curloc){}
                         thistemp = 18;
                     } else if(nomove(7)==false){
                         thistemp = 7;
-                    }
-                    Egroups[i].location = thistemp;  
+                    } 
                 }
                 if (Egroups[i].location === 9 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -362,7 +354,6 @@ function liberate(curloc){}
                     } else if(nomove(8)==false){
                         thistemp = 8;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 10 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -371,7 +362,6 @@ function liberate(curloc){}
                     } else if(nomove(20)==false){
                         thistemp = 20;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 11 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -380,7 +370,6 @@ function liberate(curloc){}
                     } else if(nomove(21)==false){
                         thistemp = 21;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 12 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -389,7 +378,6 @@ function liberate(curloc){}
                     } else if(nomove(22)==false){
                         thistemp = 22;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 13 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -400,7 +388,6 @@ function liberate(curloc){}
                     } else if(nomove(14)==false){
                         thistemp = 14;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 14 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -411,7 +398,6 @@ function liberate(curloc){}
                     } else if(nomove(15)==false){
                         thistemp = 15;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 15 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -421,8 +407,7 @@ function liberate(curloc){}
                         thistemp = 16;
                     } else if(nomove(25)==false){
                         thistemp = 25;
-                    }
-                    Egroups[i].location = thistemp;  
+                    } 
                 }
                 if (Egroups[i].location === 16 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -433,7 +418,6 @@ function liberate(curloc){}
                     } else if(nomove(26)==false){
                         thistemp = 26;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 17 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -444,7 +428,6 @@ function liberate(curloc){}
                     } else if(nomove(27)==false){
                         thistemp = 27;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 18 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -455,7 +438,6 @@ function liberate(curloc){}
                     } else if(nomove(28)==false){
                         thistemp = 28;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 19 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -465,8 +447,7 @@ function liberate(curloc){}
                         thistemp = 18;
                     } else if(nomove(29)==false){
                         thistemp = 29;
-                    }
-                    Egroups[i].location = thistemp;  
+                    }  
                 }
                 if (Egroups[i].location === 20 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -477,7 +458,6 @@ function liberate(curloc){}
                     } else if(nomove(30)==false){
                         thistemp = 30;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 21 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -486,7 +466,6 @@ function liberate(curloc){}
                     } else if(nomove(31)==false){
                         thistemp = 31;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 22 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -497,7 +476,6 @@ function liberate(curloc){}
                     } else if(nomove(32)==false){
                         thistemp = 32;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 23 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -508,7 +486,6 @@ function liberate(curloc){}
                     } else if(nomove(24)==false){
                         thistemp = 24;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 24 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -518,8 +495,7 @@ function liberate(curloc){}
                         thistemp = 14;
                     } else if(nomove(34)==false){
                         thistemp = 34;
-                    }
-                    Egroups[i].location = thistemp;  
+                    }  
                 }
                 if (Egroups[i].location === 25 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -529,8 +505,7 @@ function liberate(curloc){}
                         thistemp = 33;
                     } else if(nomove(24)==false){
                         thistemp = 24;
-                    }
-                    Egroups[i].location = thistemp;  
+                    } 
                 }
                 if (Egroups[i].location === 26 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -541,7 +516,6 @@ function liberate(curloc){}
                     } else if(nomove(36)==false){
                         thistemp = 36;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 27 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -552,7 +526,6 @@ function liberate(curloc){}
                     } else if(nomove(37)==false){
                         thistemp = 37;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 28 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -565,7 +538,6 @@ function liberate(curloc){}
                     } else if(nomove(38)==false){
                         thistemp = 38;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 29 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -576,7 +548,6 @@ function liberate(curloc){}
                     } else if(nomove(28)==false){
                         thistemp = 28;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 30 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -587,7 +558,6 @@ function liberate(curloc){}
                     } else if(nomove(40)==false){
                         thistemp = 40;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 31 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -598,7 +568,6 @@ function liberate(curloc){}
                     } else if(nomove(21)==false){
                         thistemp = 21;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 32 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -609,7 +578,6 @@ function liberate(curloc){}
                     } else if(nomove(33)==false){
                         thistemp = 33;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 33 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -622,7 +590,6 @@ function liberate(curloc){}
                     } else if(nomove(34)==false){
                         thistemp = 34;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 34 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -633,7 +600,6 @@ function liberate(curloc){}
                     } else if(nomove(44)==false){
                         thistemp = 44;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 35 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -642,7 +608,6 @@ function liberate(curloc){}
                     } else if(nomove(69)==false){
                         thistemp = 69;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 36 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -653,7 +618,6 @@ function liberate(curloc){}
                     } else if(nomove(46)==false){
                         thistemp = 46;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 37 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -666,7 +630,6 @@ function liberate(curloc){}
                     } else if(nomove(36)==false){
                         thistemp = 36;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 38 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -679,7 +642,6 @@ function liberate(curloc){}
                     } else if(nomove(37)==false){
                         thistemp = 37;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 39 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -691,8 +653,7 @@ function liberate(curloc){}
                         thistemp = 29;
                     } else if(nomove(40)==false){
                         thistemp = 40;
-                    }
-                    Egroups[i].location = thistemp;  
+                    } 
                 }
                 if (Egroups[i].location === 40 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -703,7 +664,6 @@ function liberate(curloc){}
                     } else if(nomove(50)==false && (crystals["49"])){
                         thistemp = 50;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 41 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -714,7 +674,6 @@ function liberate(curloc){}
                     } else if(nomove(51)==false){
                         thistemp = 51;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 42 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -724,8 +683,7 @@ function liberate(curloc){}
                         thistemp = 43;
                     } else if(nomove(52)==false){
                         thistemp = 52;
-                    }
-                    Egroups[i].location = thistemp;  
+                    } 
                 }
                 if (Egroups[i].location === 43 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -736,7 +694,6 @@ function liberate(curloc){}
                     } else if(nomove(44)==false){
                         thistemp = 44;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 44 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -747,7 +704,6 @@ function liberate(curloc){}
                     } else if(nomove(45)==false){
                         thistemp = 45;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 45 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -760,7 +716,6 @@ function liberate(curloc){}
                     }else if(nomove(44)==false){
                         thistemp = 44;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 46 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -771,7 +726,6 @@ function liberate(curloc){}
                     } else if(nomove(45)==false){
                         thistemp = 45;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 47 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -782,7 +736,6 @@ function liberate(curloc){}
                     } else if(nomove(48)==false){
                         thistemp = 48;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 48 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -794,8 +747,7 @@ function liberate(curloc){}
                         thistemp = 47;
                     } else if(nomove(38)==false){
                         thistemp = 38;
-                    }
-                    Egroups[i].location = thistemp;  
+                    } 
                 }
                 if (Egroups[i].location === 49 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -806,7 +758,6 @@ function liberate(curloc){}
                     } else if(nomove(48)==false){
                         thistemp = 48;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 50 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -817,7 +768,6 @@ function liberate(curloc){}
                     } else if(nomove(40)==false){
                         thistemp = 40;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 51 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -825,8 +775,7 @@ function liberate(curloc){}
                         thistemp = 52;
                     } else if(nomove(41)==false){
                         thistemp = 41;
-                    }
-                    Egroups[i].location = thistemp;  
+                    } 
                 }
                     
                 if (Egroups[i].location === 52 && Egroups[i].hasmoved === false) {
@@ -836,7 +785,6 @@ function liberate(curloc){}
                     } else if(nomove(53)==false){
                         thistemp = 53;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 53 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -847,7 +795,6 @@ function liberate(curloc){}
                     } else if(nomove(54)==false){
                         thistemp = 54;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 54 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -858,7 +805,6 @@ function liberate(curloc){}
                     } else if(nomove(55)==false){
                         thistemp = 55;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 55 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -869,7 +815,6 @@ function liberate(curloc){}
                     } else if(nomove(45)==false){
                         thistemp = 45;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 56 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -879,8 +824,7 @@ function liberate(curloc){}
                         thistemp = 55;
                     } else if(nomove(57)==false){
                         thistemp = 57;
-                    }
-                    Egroups[i].location = thistemp;  
+                    } 
                 }
                 if (Egroups[i].location === 57 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -891,7 +835,6 @@ function liberate(curloc){}
                     } else if(nomove(49)==false){
                         thistemp = 49;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 58 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -902,7 +845,6 @@ function liberate(curloc){}
                     } else if(nomove(57)==false){
                         thistemp = 57;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 59 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -913,7 +855,6 @@ function liberate(curloc){}
                     } else if(nomove(49)==false){
                         thistemp = 49;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 60 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -922,7 +863,6 @@ function liberate(curloc){}
                     } else if(nomove(59)==false){
                         thistemp = 59;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                     
                 if (Egroups[i].location === 61 && Egroups[i].hasmoved === false) {
@@ -932,7 +872,6 @@ function liberate(curloc){}
                     } else if(nomove(51)==false){
                         thistemp = 51;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 62 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -940,8 +879,7 @@ function liberate(curloc){}
                         thistemp = 52;
                     } else if(nomove(63)==false){
                         thistemp = 63;
-                    }
-                    Egroups[i].location = thistemp;  
+                    } 
                 }
                 if (Egroups[i].location === 63 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -950,7 +888,6 @@ function liberate(curloc){}
                     } else if(nomove(64)==false){
                         thistemp = 64;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 64 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -959,7 +896,6 @@ function liberate(curloc){}
                     } else if(nomove(65)==false){
                         thistemp = 65;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 65 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -968,14 +904,12 @@ function liberate(curloc){}
                     } else if(nomove(66)==false){
                         thistemp = 66;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 66 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
                     if(nomove(56)==false){
                         thistemp = 56;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 67 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -984,7 +918,6 @@ function liberate(curloc){}
                     } else if(nomove(66)==false){
                         thistemp = 66;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 68 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -993,7 +926,6 @@ function liberate(curloc){}
                     } else if(nomove(67)==false){
                         thistemp = 67;
                     }
-                    Egroups[i].location = thistemp;  
                 }
                 if (Egroups[i].location === 69 && Egroups[i].hasmoved === false) {
                     Egroups[i].hasmoved = true;
@@ -1004,11 +936,12 @@ function liberate(curloc){}
                     } else if(nomove(68)==false){
                         thistemp = 68;
                     }
-                    Egroups[i].location = thistemp;  
+
                 }
 
                     
                     if(thistemp!=""){
+                        Egroups[i].location = thistemp;  
                         Egroups[i].curleft = $("#space" + thistemp).data("left");
                         Egroups[i].curtop = $("#space" + thistemp).data("top");
                         $('#EM' + i).animate({
@@ -1507,7 +1440,7 @@ function set_area_background(i){
     return backgroundpic;
 }
 
-var demigodin=false;
+var demigodin=-1;
 function indiv_newday(){
            $('.heading').remove();
     for(var i = 1;i<groupindex;i++){
@@ -1521,8 +1454,8 @@ function indiv_newday(){
         gameover()
     }
     if(energy>=(200 + 150*difflevel)){
-        if(demigodin==false){
-            demigodin=true;
+        if(demigodin==0){
+            demigodin=parseInt(Egroupindex);
             Eunits[newEindex()]=new Demigod(curEindex, Egroupindex,difflevel);
             Egroups[Egroupindex]=new Enewgroup(Egroupindex,4,400,'Demigod');
         }
@@ -1532,7 +1465,13 @@ function indiv_newday(){
 function indiv_gotocapitol(){
       $("#TEXT").empty().append('<div class="gotobutton" id = "gotobarracks"><p>BARRACKS</p></div><div class="gotobutton" id = "gotobrewery"><p>BREWERY</p></div>');
 }
-
+function indiv_youwin(){
+    if(demigodin>0){
+        if(Eunits[demigodin].location<0){
+            winbattle("../47/final.html")
+        }
+    }
+}
 
 function levelresearch(){
     

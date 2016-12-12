@@ -37,6 +37,7 @@ input:focus {
     position:absolute;
     overflow-y: hidden;
   overflow-x: hidden;
+    background-color:black;
 }
 #quickscene{
       width:830px;
@@ -734,4 +735,34 @@ margin-top:-10px;
     position: absolute; 
     font-size:30px;
         text-shadow: 2px 2px 2px #000000
+}
+.potionLetter{
+    color:gold;
+        text-shadow: 2px 2px 2px #000000
+}
+.potionLetters{
+    margin-top:-35px;
+    margin-left:0px;
+    width:50px;
+    z-index:10;
+    position:absolute;
+}
+.dead{
+    -ms-transform:rotate(90deg);
+    -webkit-transform:rotate(90deg);
+    transform:rotate(90deg);
+    width:60px;
+    height:60px;
+}
+.dying{
+        width:60px;
+    height:60px;
+}
+
+.addhere .row{
+    margin-top:100px;
+}
+
+#openerpic{
+
 }

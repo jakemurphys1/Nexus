@@ -1,5 +1,3 @@
-   difflevel=3;
-
     var allynum=0;
 
         var angel=false;
@@ -164,15 +162,15 @@ function liberate(curloc){
     }
 
  function tipmessage(index, e){
-        if(tipmessagearray[index]===true || hasloaded==true){
-            return;
-        }
-        tipmessagearray[index]=true;
-        $("#top").append("<div class='tipmessage' style='word-wrap:break-word; position: absolute; border: gold solid 5px; z-index:1; margin-left:100px; width:350px; height: 140px; background-color:gray'></div>");
-        $(".tipmessage").append("<p align='center' style='font-size: 15px; margin-left:5px; margin-right:5px; margin-top:0px'>" + e + "</p>");
-        setInterval(function(){
-            $(".tipmessage").addClass("removewindow");
-        },100)
+//        if(tipmessagearray[index]===true || hasloaded==true){
+//            return;
+//        }
+//        tipmessagearray[index]=true;
+//        $("#top").append("<div class='tipmessage' style='word-wrap:break-word; position: absolute; border: gold solid 5px; z-index:1; margin-left:100px; width:350px; height: 140px; background-color:gray'></div>");
+//        $(".tipmessage").append("<p align='center' style='font-size: 15px; margin-left:5px; margin-right:5px; margin-top:0px'>" + e + "</p>");
+//        setInterval(function(){
+//            $(".tipmessage").addClass("removewindow");
+//        },100)
     }
 
 
@@ -225,18 +223,45 @@ function set_area_background(i){
 
 
 function indiv_newday(){
-if(day==2){
-    tipmessage("exchange","You can move units between groups. Click one group and then right-click a group that's beside it.")
-}
-    if(day==3){
-    tipmessage("attack","You can attack an adjacent enemy by clicking the group and then right-clicking the enemy's group.")
-}
-    
-   
+   if(hasmoved==1){
+       hasmoved+=1;
+           $(".instructionText").html("Excellent. Your group can move again. Move it up once more, and then, when it is next to Teresa's group, right-click Teresa's group.")
+   }
 }
 function indiv_gotocapitol(){
       $("#TEXT").empty().append('<div class="gotobutton" id = "gotobarracks"><p>BARRACKS</p></div>');
+    $(".instructionText").html("Good, the nexus's menu is now on the right. Currently, it only shows 'Barracks'. Click 'Barracks' to see your units.")
 }
+function indiv_gotobarracks(){
+        $(".instructionText").html("Now you can see all your units. Currently, you only have those two. Doubleclick each of them to load them to the top, and then click 'Create Group'.")
+}
+function indiv_groupinfo(){
+    if(hasmoved==0){
+            $(".instructionText").html("That group is now selected. You can see who's in that group on the right. Right-click the yellow box that just popped up above the Nexus. That box shows where this group can move.")
+    }
+}
+function indiv_creategroup(){
+    $(".instructionText").html("Great Job. You can now see that group was placed on the Nexus. It's the blue box with an 'S' on it. Click on it.")
+}
+var hasmoved=0;
+function indiv_moveally(){
+        if(hasmoved==0){
+            hasmoved+=1;
+            $(".instructionText").html("Good, now see that the group turned grey. That means it moved this turn. Click the 'Pass' button at the bottom to pass the turn.")
+        }
+}
+function indiv_exchangeunits(){
+        $(".instructionText").html("Notice that both groups are shown on the right. Click on Teresa, and then right-click the empty space in the other group. If you right-click on another unit, it will switch the units.")
+}
+function indiv_exchange(){
+            $(".instructionText").html("Ok, now they should all be in one group. Now move the group up next to the Goblin if it isn't already. When Right beneath the Goblin, and with the group selected, right-click it. You may need to pass turn if your group is still grey.")
+}
+function indiv_startcombat(){
+    setTimeout(function(){
+            $("#TEXT").html("<p>You units are battling the Goblin!. Click on a unit, and then right-click an adjacent space to move it there. Also right-click the Goblin to attack it. Your units all have different ranges, so experiment with moving them.</p> <p>When you move them, notice that they become greyer. Like outside the battle, click 'PassTurn' at the bottom to move them again. Now, kill that Goblin.</p>")
+    },500)
+}
+
 function indiv_youwin(){
     console.log("check")
      if(Egroups[1].location<0){
@@ -271,13 +296,13 @@ function enemyconquer(){
 $(window).load(function(){
      
     changesong("01/Battle.wav")
-    tipmessage("starting","We need to group ourselves. Click on the Nexus to see the available soldiers.")
-    
+    localStorage.setItem("level", "2");
+    if(parseInt( localStorage.getItem("diff"))>0){
+        difflevel=parseInt(localStorage.getItem("diff"));
+    }
           Eunits[newEindex()]=new Goblin(curEindex, 1,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(1,1,200,'goblin');
-    
-    
-    
+        Egroups[Egroupindex]=new Enewgroup(1,1,200,'goblin');
+
     units[0]= new Archer(0,"Archer1");
     groups[groupindex]= new tempnewgroup(groupindex);
     units[0].group=1;
@@ -294,4 +319,6 @@ $(window).load(function(){
                     exchangeunits(temp);
                 }
             });
+    
+    setCookie("level","1");
 });
