@@ -635,11 +635,12 @@ $(window).load(function(){
     setTimeout(function(){
         $("#extender img").attr("src","pics/bridge_up.gif")
     },3500)
+    saving("14");
     
         containaccessories();
-    units[0]= new Soldier(0,"Soldier2");
-    units[1]= new Knight(1,"Knight2");
-    units[2]= new Guard(2,"Guard");
+    units[0]= new Soldier(0,"Soldier-C");
+    units[1]= new Knight(1,"Knight-C");
+    units[2]= new Guard(2,"Guard-C");
     groups[groupindex]= new tempnewgroup(groupindex);
     units[0].group=1;
     units[0].slot=1

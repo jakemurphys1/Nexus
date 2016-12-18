@@ -243,19 +243,19 @@ function newunit(){
         switch(temp){
             case 1:
                 tempclass="Mage";
-                   tempname="Mage2"
+                   tempname="Mage-C"
                 break;
             case 2:
                 tempclass="Guard";
-                   tempname="Guard"
+                   tempname="Guard-C"
                 break;
             case 3:
                 tempclass="Archer";
-                   tempname="Archer1"
+                   tempname="Archer4"
                 break;
             case 4:
                 tempclass="Soldier";
-                   tempname="Soldier2"
+                   tempname="Soldier-C"
                 break;
             case 5:
                 tempclass="Enchantress";
@@ -263,7 +263,7 @@ function newunit(){
                 break;
             case 6:
                 tempclass="Rouge";
-                   tempname="Rouge1"
+                   tempname="Rouge2"
                 break;
             case 7:
                 tempclass="Thief";
@@ -271,7 +271,7 @@ function newunit(){
                 break;
             case 8:
                 tempclass="Knight";
-                   tempname="Knight"
+                   tempname="Knight-C"
                 break;
         }
 
@@ -917,7 +917,7 @@ function liberate(curloc){
 //towns and castles
 function set_area_background(i){
         var backgroundpic="";
-                        backgroundpic="../Pictures/backgroundpics/roadbackground.png";
+                        backgroundpic="../Pictures/backgroundpics/cell3background.png";
     return backgroundpic;
 }
 function updateHeader(){
@@ -975,6 +975,7 @@ function enemyconquer(){
 
 $(window).load(function(){
     changesong("01/Battle.wav")
+    saving("32")
         containaccessories();
     
          updateHeader(); 

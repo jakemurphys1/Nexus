@@ -156,19 +156,19 @@ function newunit(){
         switch(temp){
             case 1:
                 tempclass="Mage";
-                  tempname="Mage2";
+                  tempname="Sandra";
                 break;
             case 2:
                 tempclass="Wizard";
-                  tempname="Wizard2";
+                  tempname="Wizard1";
                 break;
             case 3:
                 tempclass="Archer";
-                  tempname="Archer3";
+                  tempname="Archer2";
                 break;
             case 4:
                 tempclass="Templar";
-                  tempname="Templar2";
+                  tempname="Templar1";
                 break;
             case 5:
                 tempclass="Soldier";
@@ -180,11 +180,11 @@ function newunit(){
                 break;
             case 7:
                 tempclass="Rouge";
-                  tempname="Rouge2";
+                  tempname="Rouge1";
                 break;
             case 8:
                 tempclass="Healer";
-                  tempname="Healer2";
+                  tempname="Healer1";
                 break;
             case 9:
                 tempclass="Sorcerer";
@@ -1454,7 +1454,7 @@ function indiv_newday(){
         gameover()
     }
     if(energy>=(200 + 150*difflevel)){
-        if(demigodin==0){
+        if(demigodin==-1){
             demigodin=parseInt(Egroupindex);
             Eunits[newEindex()]=new Demigod(curEindex, Egroupindex,difflevel);
             Egroups[Egroupindex]=new Enewgroup(Egroupindex,4,400,'Demigod');
@@ -1467,7 +1467,7 @@ function indiv_gotocapitol(){
 }
 function indiv_youwin(){
     if(demigodin>0){
-        if(Eunits[demigodin].location<0){
+        if(Egroups[demigodin].location<0){
             winbattle("../47/final.html")
         }
     }
@@ -1551,6 +1551,7 @@ function checkcrystal(){
 
 $(window).load(function(){
     changesong("01/Final-Battle.wav")
+    saving("46")
 
     var locationIsland="right"
     

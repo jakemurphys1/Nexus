@@ -9,15 +9,15 @@ function queue(){
             opening("Chapter Fifteen:","The Beach")
             break;
         case 1:
-            enterChar("Guard",200,520);
+            enterChar("Guard-C",200,520);
             enterChar("Archer4",340,500);
             addobject("baby",350,550,35)
             addobject("nexus",150,550)
-            movehor("Guard",1)
+            movehor("Guard-C",1)
             delay(1000)
             break;
         case 2:
-            dialog("I can't believe it's been so long since we used a Nexus.","Guard")
+            dialog("I can't believe it's been so long since we used a Nexus.","Guard-C")
             break
         case 3:
         movehor("Archer4",-1)
@@ -27,31 +27,31 @@ function queue(){
        dialog("Not sure why weren't doing it now.","Archer4")
             break
         case 5:
-         dialog("For old time's sake.","Guard")
+         dialog("For old time's sake.","Guard-C")
         break
          case 6:
          dialog("Those weren't happy times.","Archer4")
         break
         case 7:
-         dialog("They remind me of when we first met.","Guard")
+         dialog("They remind me of when we first met.","Guard-C")
         break
         case 8:
         dialog("In those cold cells?","Archer4")
         break
          case 9:
-         dialog("You were so pretty.","Guard")
+         dialog("You were so pretty.","Guard-C")
         break
          case 10:
          dialog("Were?","Archer4")
         break
          case 11:
-         dialog("I know those were miserable times, but without them, I wouldn't have you or the little one.","Guard")
+         dialog("I know those were miserable times, but without them, I wouldn't have you or the little one.","Guard-C")
         break
          case 12:
         dialog("You have a way to always look at the bright side.","Archer4")
         break
         case 13:
-         dialog("Hard to believe it's only been a year since we escaped.","Guard")
+         dialog("Hard to believe it's only been a year since we escaped.","Guard-C")
         break
          case 14:
          movevert("Archer4",1)
@@ -59,13 +59,13 @@ function queue(){
         break
          case 15:
          movehor("Guard",100)
-         dialog("I think it's time I introduce little Bruce to the ocean.","Guard")
+         dialog("I think it's time I introduce little Bruce to the ocean.","Guard-C")
         break
           case 16:
           dialog("That's not going to happen!","Archer4")
         break
         case 17:
-        dialog("C'mon, if he's going to live next to the beach, he needs to be introduced to it.","Guard")
+        dialog("C'mon, if he's going to live next to the beach, he needs to be introduced to it.","Guard-C")
         break
         case 18:
               dialog("When he can walk, you can dip him in that disgusting water.","Archer4")
@@ -84,7 +84,7 @@ function queue(){
               dialog("Hello...","Guard")
         break
         case 22:
-              dialog("I'm looking for a Bernard and a Olivia.","General")
+              dialog("I'm looking for a Bernard and an Olivia.","General")
         break
         case 23:
               dialog("That's us. What do you want?","Archer4")
@@ -100,7 +100,7 @@ function queue(){
               dialog("I'm not. Well, not really. Have you ever wondered why that prison was built?","General")
         break
         case 27:
-              dialog("So a bunch of bad people can get money from apathetic people.","Guard")
+              dialog("So a bunch of bad people can get money from apathetic people.","Guard-C")
         break
         case 28:
               dialog("No, that's how it was maintained. The 'why' is because of the Nexus.","General")
@@ -129,10 +129,10 @@ function queue(){
         dialog("I want you to leave now!","Archer4")
         break
         case 36:
-              dialog("In about thirty years, a darkness is descend, and your son will be vital in stopping it.","General")
+              dialog("In about thirty years, a darkness will descend, and your son will be vital in stopping it.","General")
         break
         case 37:
-              dialog("Then come back in thirty years.","Guard")
+              dialog("Then come back in thirty years.","Guard-C")
         break
         case 38:
               dialog("I'm afraid he will need special training to meet his potential.","General")
@@ -144,8 +144,8 @@ function queue(){
               dialog("I'm afraid I will have to take your baby.","General")
         break
         case 41:
-        movevert("Guard",-50)
-              dialog("THE HELL YOU ARE!","Guard")
+        movevert("Guard-C",-50)
+              dialog("THE HELL YOU ARE!","Guard-C")
         break
         case 42:
         addobject("Soldier",200,-100)
@@ -173,8 +173,13 @@ function queue(){
     var beach = new Audio();
         beach.src = "../sounds/beach.wav";
         beach.volume=.3;
+
 $(window).load(function(){
     changesong("01/peaceful.mp3")
+    saving("35")
+    setTimeout(function(){
+        $(".wave").removeClass("hidden")
+    },300)
     beach.play()
     setInterval(function(){
         beach.play()

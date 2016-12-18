@@ -150,5 +150,6 @@ function queue(){
 
 $(window).load(function(){
     changesong("01/Threat.mp3")
+    saving("45")
 
 });

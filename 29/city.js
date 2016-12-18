@@ -68,13 +68,13 @@ function queue(){
          dialog("And we need it fast.","Knight")
         break
          case 11:
-         dialog("! may still have some contacts that can help us find some jobs that pay well...","Thief1")
+         dialog("I may still have some contacts that can help us find some jobs that pay well...","Thief1")
         break
          case 12:
          dialog("Sounds like there's a 'but'.","Archer2")
         break
         case 13:
-         dialog("Not the most legal, but based on what I've seen, you may be okay with that.","Thief1")
+         dialog("Not the safest things, but based on what I've seen, you may be okay with that.","Thief1")
         break
          case 14:
          dialog("We'll do what we can. But I feel that won't be enough.","Knight")

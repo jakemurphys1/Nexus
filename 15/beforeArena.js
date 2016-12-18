@@ -20,7 +20,7 @@ function queue(){
              dialog("Welcome to day 2.","Thief1")
             break
         case 3:
-            dialog("But today will be tougher.","Thief1")
+            dialog("Today will be tougher than the last.","Thief1")
             break
         case 4:
             dialog("This group will be stronger and smarter.","Thief1")
@@ -38,16 +38,16 @@ function queue(){
             movevert("Thief1",-1,"end")
         break
         case 9:
-            dialog("This is an enchantress.","Thief1")
+            dialog("We now have an enchantress.","Thief1")
         break
          case 10:
-            dialog("She can absorb energy from enemies to be used later for powerful enchantments.","Thief1")
+            dialog("She should be able to help a little, but we need to stay vigilant.","Thief1")
         break
          case 11:
-            dialog("Try to stock up on energy early; we're going to need it.","Thief1")
+            dialog("If we use our potions correctly, and pay attention to our enemy's movements, we should be able to survive this.","Thief1")
         break
         case 12:
-            dialog("Move out!.","Thief1")
+            dialog("Now Move out!","Thief1")
         break
          case 13:
             window.location.href = '../16_Arena2/Arena.html'
@@ -57,6 +57,6 @@ function queue(){
 
 $(window).load(function(){
     doeffect("Dramatic.wav")
-
+    saving("15")
      opening("Chapter Seven:","Back to the Arena")
 });

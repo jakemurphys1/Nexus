@@ -626,7 +626,7 @@ function indiv_newday(){
         
     }
     if(day>=35){
-        winbattle("../45/aftertemple.html")
+        winbattle("../45/beforeseige.html")
     }
 }
 function indiv_gotocapitol(){
@@ -804,6 +804,7 @@ function castle(withairship){
 
 $(window).load(function(){
     changesong("01/Battle.wav")
+    saving("44")
         containaccessories();
     setTimeout(function(){
 //                            units[index]= new Knight(index,"Knight");

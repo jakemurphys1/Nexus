@@ -63,7 +63,7 @@ function queue(){
 
 $(window).load(function(){
      opening("Chapter 4:","The Hunt")
-         localStorage.setItem("level", "9");
+         saving("9")
     loopeffect = new Audio();
     loopeffect.src="../sounds/insidetrain.mp3";
     loopeffect.volume=.3;

@@ -840,6 +840,7 @@ function enemyconquer(){
 
 $(window).load(function(){
     changesong("01/town.mp3")
+    saving("34")
         containaccessories();
     
          updateHeader(); 

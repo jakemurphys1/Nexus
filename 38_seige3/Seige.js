@@ -949,8 +949,8 @@ function liberate(curloc){}
                     break;
                 case 4:
                     Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Cannon(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Cannon');
+                    Eunits[newEindex()]=new Vacuum(curEindex, Egroupindex,difflevel);
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Vacuum');
                     break;
                 case 5:
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
@@ -960,9 +960,9 @@ function liberate(curloc){}
                     break;
                 case 6:
                     Eunits[newEindex()]=new Magnet(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Cannon(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Vacuum(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'Cannon');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'Vacuum');
                     break;
                 case 7:
                     Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
@@ -1104,10 +1104,11 @@ function set_area_background(i){
 
 
 function indiv_newday(){
+    saving("38")
            $('.heading').remove();
         $('#top').html("<h1 class = 'heading'>Turn: " + day + "/30</h1>");
     if(day>=30){
-        winbattle("../29/escaped.html")
+        winbattle("../39/beforeseige.html")
     }
 }
 function indiv_gotocapitol(){

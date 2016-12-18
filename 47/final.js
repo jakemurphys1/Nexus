@@ -196,6 +196,10 @@ function credits(){
 $(".addhere").animate({
     top:"-=2200"
 },30000,'linear')
+
+setTimeout(function(){
+    window.location.href = "../index.html";
+},35000)
 }
 
 function queue(){

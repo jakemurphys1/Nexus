@@ -946,7 +946,7 @@ function enemyconquer(){
 
 $(window).load(function(){
     changesong("01/hunting.wav")
-
+saving("10")
         containaccessories();
  wolflimit = 5+2*difflevel;
  sparrowlimit=5+2*difflevel;

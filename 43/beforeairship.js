@@ -105,13 +105,14 @@ function queue(){
         break
         case 12:
         movevert("Knight",1)
+        movevert("Mimic",1)
         dialog("Look at the Sun.","Knight")
         break
          case 13:
          sun()
         break
          case 14:
-         movevert("Mimic",1)
+         movehor("Mimic",-1)
          dialog("There isn't much time left...","Knight")
         break
         case 15:
@@ -125,7 +126,7 @@ function queue(){
             dialog("I believe that is the answer.","Knight")
         break
         case 18:
-            dialog("At the Temple we have a man that has a special power that can only be used by sacrificing his life first.","Knight")
+            dialog("At the Temple, we have a man that has a special power that can only be used by sacrificing his life first.","Knight")
         break
         case 19:
             dialog("Needless to say, a dead sorcerer can't then use the power.","Knight")
@@ -156,6 +157,7 @@ function queue(){
 }
 
 $(window).load(function(){
+    saving("43")
                     propeller.src="../sounds/Helicopter.wav";
                     propeller.volume=.05;
                     propeller.loop=true;

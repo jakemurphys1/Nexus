@@ -78,9 +78,12 @@ function queue(){
             dialog("Once we have all of the civilians into the Nexus, we can continue.","Knight")
         break
         case 12:
-            dialog("Now, let's go!","Knight")
+            dialog("Since it will be so close quarters, we can exchange between any two groups as long as they are within 6 spaces of one another.","Knight")
         break
         case 13:
+            dialog("Now, let's go!","Knight")
+        break
+        case 14:
             window.location.href = '../40_rescue1/rescue2.html'
         break
     }
@@ -89,7 +92,7 @@ function queue(){
 //window.location.href = './beforeairship.html'
 
 $(window).load(function(){
-doeffect("Dramatic.wav")
+changesong("01/Hurry.mp3")
 
         
     

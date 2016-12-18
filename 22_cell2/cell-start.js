@@ -394,8 +394,8 @@ return "Angel"
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Spitter');
                     break;
                 case 9:
-                    Eunits[newEindex()]=new Frostlord(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Frostlord');
+                    Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Wolf');
                     break;
                 case 10:
                     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
@@ -448,7 +448,7 @@ return "Angel"
                     break;
             }
         }
-              if (day<=15 && day>10){
+        if (day<=15 && day>10){
             switch(temp){
                 case 1:
                 case 2:
@@ -496,7 +496,7 @@ return "Angel"
                     break;
             }
         }
-                      if (day<=20 && day>15){
+        if (day<=20 && day>15){
             switch(temp){
                 case 1:
                 case 2:
@@ -545,7 +545,7 @@ return "Angel"
                     break;
             }
         }
-            if (day>20 && day<=25){
+        if (day>20 && day<=25){
             switch(temp){
                 case 1:
                 case 2:
@@ -581,8 +581,8 @@ return "Angel"
                     break;
                 case 9:
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Cannon(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Cannon');
+                    Eunits[newEindex()]=new Magnet(curEindex, Egroupindex,difflevel);
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Magnet');
                     break;
                 case 10:
                     Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
@@ -780,6 +780,7 @@ function liberate(){
 }
 $(window).load(function(){
     changesong("01/Battle.wav")
+    saving("22")
     setTimeout(function(){
         $("#extender img").attr("src","pics/bridge_up.gif")
     },3500)

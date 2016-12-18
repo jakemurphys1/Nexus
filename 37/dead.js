@@ -42,32 +42,32 @@ function queue(){
             delay(3000)
         break
          case 12:
-         enterChar("Guard",400,-200);
+         enterChar("Guard-C",400,-200);
             enterChar("Archer4",500,-200);
             
             $("#Archer4 img").css("transform","rotate(180deg)")
            $("#Archer4 img").css("-ms-transform","rotate(180deg)")
            $("#Archer4 img").css("-webkit-transform","rotate(180deg)")
-            $("#Guard img").css("transform","rotate(180deg)")
-           $("#Guard img").css("-ms-transform","rotate(180deg)")
-           $("#Guard img").css("-webkit-transform","rotate(180deg)")
+            $("#Guard-C img").css("transform","rotate(180deg)")
+           $("#Guard-C img").css("-ms-transform","rotate(180deg)")
+           $("#Guard-C img").css("-webkit-transform","rotate(180deg)")
             $("#Archer4").animate({
                top:"+=500px"
            },3000, "linear")
-            $("#Guard").animate({
+            $("#Guard-C").animate({
                top:"+=500px"
            },3000, "linear")
             
         delay(3000)
         break
         case 13:
-         dialog("Where are we?","Guard")
+         dialog("Where are we?","Guard-C")
         break
          case 14:
          dialog("I think we are lost in the Nexus.","Archer4")
         break
          case 15:
-         dialog("I'm sorry I wasn't stronger.","Guard")
+         dialog("I'm sorry I wasn't stronger.","Guard-C")
         break
           case 16:
           dialog("I don't understand what all just happened, but I trust the Nexus.","Archer4")
@@ -76,7 +76,7 @@ function queue(){
         dialog("I believe that our baby will be protected.","Archer4")
         break
         case 18:
-              dialog("What now?","Guard")
+              dialog("What now?","Guard-C")
         break
         case 19:
        dialog("I guess it's time for our next adventure.","Archer4")
@@ -89,7 +89,7 @@ function queue(){
                width:"0px",
                 height:"0px"
            },5000, "linear")
-            $("#Guard img").animate({
+            $("#Guard-C img").animate({
                width:"0px",
                 height:"0px"
            },5000, "linear")
@@ -102,4 +102,5 @@ function queue(){
 }
 $(window).load(function(){
     changesong("01/dead.mp3")
+    saving("37")
 });

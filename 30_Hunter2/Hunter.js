@@ -935,7 +935,7 @@ function indiv_gotocapitol(){
 
 function capturedAll(){
     if(wolves>=wolflimit && sparrows>=sparrowlimit && spiders>=spiderlimit && bears>=bearlimit && elk>=elklimit && turtles>=turtlelimit){
-        winbattle("../31/afterhunt.html");
+        winbattle("../31/beforecell3.html");
     }
 }
 
@@ -947,6 +947,7 @@ function enemyconquer(){
 }
 
 $(window).load(function(){
+    saving("30")
     changesong("01/hunting.wav")
         containaccessories();
  wolflimit = 10+2*difflevel;

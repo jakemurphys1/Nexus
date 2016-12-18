@@ -39,4 +39,5 @@ function queue(){
 
 $(window).load(function(){
     changesong("01/Hurry.mp3")
+    saving("27")
 });

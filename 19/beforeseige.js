@@ -125,7 +125,6 @@ function queue(){
            dialog("Gather the others!","Wizard1")
         break
          case 15:
-         changesong("01/Hurry.mp3")
            castle("without");
         break
         case 16:
@@ -152,7 +151,7 @@ function queue(){
             dialog("If we lose the shield, we will be helpless.","Wizard1")
         break
         case 20:
-            dialog("There will be eddy's near the shield. We can use the eddys to instantly move between our them and our Nexus or other eddys.","Wizard1")
+            dialog("There will be eddy's near the shield. We can use the eddys to instantly move between them and our Nexus or other eddys.","Wizard1")
         break
         case 21:
             dialog("But if an enemy drags a crystal to an eddy, it will be destroyed.","Wizard1")
@@ -172,9 +171,9 @@ function queue(){
 //window.location.href = './beforeairship.html'
 
 $(window).load(function(){
-    changesong("01/Peaceful.mp3")
+    changesong("01/Descent.mp3")
     opening("Chapter Nine:","The Power")
-
+    saving("19")
 
         
     

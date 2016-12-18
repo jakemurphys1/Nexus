@@ -875,7 +875,7 @@ function indiv_newday(){
         }
     
         if(enemies==0 && civsaved == 3){
-            winbattle("../43/beforeseige.html")
+            winbattle("../43/beforeairship.html")
         }
     
     if(day==50){
@@ -915,6 +915,7 @@ function condition71(){
 
 $(window).load(function(){
     changesong("01/Battle.wav")
+    saving("42")
     
     Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new Goblin(curEindex, Egroupindex,difflevel);
@@ -945,13 +946,18 @@ $(window).load(function(){
     Eunits[newEindex()]=new Flamewraith(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(6,25,1000,'Flamewraith');
+    console.log("hi")
+    setTimeout(function(){
+        units[index]= new Civilian(13, "fisherman");
+        units[index]= new Civilian(14, "fisherman");
+        units[index]= new Civilian(15, "fisherman");
+    },200)
+
     
      clickEicon();
     Egroupinfo();
     
-    units[index]= new Civilian(index, name);
-    units[index]= new Civilian(index, name);
-    units[index]= new Civilian(index, name);
+
     
     
         containaccessories();

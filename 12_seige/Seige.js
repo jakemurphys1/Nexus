@@ -779,5 +779,5 @@ function enemyconquer(){
 $(window).load(function(){
     changesong("01/Battle.wav")
         containaccessories();
-
+saving("12")
 });

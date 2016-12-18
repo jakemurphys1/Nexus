@@ -28,7 +28,6 @@
         var revivepotion=0;
         var teleportpotion=0;
         var boostpotion=0;
-noheal=false
 var number_of_units=8;
 crystaldestroyed= 0;
 
@@ -820,6 +819,7 @@ function liberate(curloc){}
           for(var i = 1;i<Egroupindex;i++){
               if(Egroups[i].location==25 || Egroups[i].location==30 || Egroups[i].location==36 || Egroups[i].location==41){
                   $("#EM" + i).remove()
+                  Egroups[i].location=-2;
               }
           }
           for(var i = 1;i<17;i++){
@@ -829,7 +829,7 @@ function liberate(curloc){}
                   crystaldestroyed+=1;
                    $('.heading').remove();
                     $('#top').html("<h1 class = 'heading'>Turn: " + day + "/30</h1><span style='margin-left:40px'>Crystals Destroyed: " + crystaldestroyed + "/" + (14-difflevel*2) +"</span>");
-                  if(crystaldestroyed>(14-(difflevel*2))){
+                  if(crystaldestroyed>(10-(difflevel*2))){
                      gameover();
                      }
               }
@@ -866,6 +866,8 @@ function liberate(curloc){}
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,200,'Bat');
                     break;
                 case 3:
+                    Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'Fire Elemental');
                 case 4:
                 case 5:
                     Eunits[newEindex()]=new Goblin(curEindex, Egroupindex,difflevel);
@@ -900,7 +902,7 @@ function liberate(curloc){}
                     break;
             }
         }
-        if (day<20 && day>=10){
+        if (day<20 && day>10){
             switch(temp){
                 case 1:
                 case 2:
@@ -1063,9 +1065,9 @@ function set_area_background(i){
 
 function indiv_newday(){
            $('.heading').remove();
-        $('#top').html("<h1 class = 'heading'>Turn: " + day + "/30</h1><span style='margin-left:40px'>Crystals Destroyed: " + crystaldestroyed + "/" + (14-difflevel*2) +"</span>");
+        $('#top').html("<h1 class = 'heading'>Turn: " + day + "/30</h1><span style='margin-left:40px'>Crystals Destroyed: " + crystaldestroyed + "/" + (10-difflevel*2) +"</span>");
     if(day>=30){
-        winbattle("../29/escaped.html")
+        winbattle("../21/beforecells.html")
     }
 }
 function indiv_gotocapitol(){
@@ -1083,6 +1085,7 @@ function enemyconquer(){
 $(window).load(function(){
     changesong("01/Battle.wav")
         containaccessories();
+    saving("20")
 
     $('#background').append('<img src="pics/diamond.gif" class="crystal" id="C1" style="left:105px; top:220px" />');
     $('#background').append('<img src="pics/diamond.gif" class="crystal" id="C2" style="left:105px; top:280px" />');

@@ -11,20 +11,20 @@ function queue(){
             movehor("Enchantress",1);
             movehor("Rouge2",1);
 
-            enterChar("Guard",0,180);
+            enterChar("Guard-C",0,180);
             enterChar("Thief2",0,240);
-            enterChar("Knight",0,290);
-            enterChar("Mage2",-100,240);
-            enterChar("Soldier2",-100,180);
+            enterChar("Knight-C",0,290);
+            enterChar("Mage-C",-100,240);
+            enterChar("Soldier-C",-100,180);
 
-            movehor("Guard",150);
+            movehor("Guard-C",150);
             movehor("Thief2",150);
-            movehor("Knight",150);
-            movehor("Soldier2",150);
-            movehor("Mage2",150,"end");
+            movehor("Knight-C",150);
+            movehor("Soldier-C",150);
+            movehor("Mage-C",150,"end");
         break
         case 2:
-            dialog("Olive!","Guard")
+            dialog("Olive!","Guard-C")
         break
         case 3:
             movehor("Archer4",-1)
@@ -33,7 +33,7 @@ function queue(){
               dialog("Bernard!","Archer4")
         break
          case 4:
-            dialog("We're here to save you!","Guard")
+            dialog("We're here to save you!","Guard-C")
         break
          case 5:
            movehor("Rouge2",1)
@@ -46,8 +46,8 @@ function queue(){
            dialog("This platform won't retract with people on it unless all enemies are defeated.","Thief2")
         break
          case 8:
-         movevert("Knight",-1)
-           dialog("So, we'll wait until they finish?","Knight")
+         movevert("Knight-C",-1)
+           dialog("So, we'll wait until they finish?","Knight-C")
         break
           case 9:
            dialog("Afraid it's not that simple.","Thief2")
@@ -56,11 +56,11 @@ function queue(){
            dialog("The controllers know we are trying to escape.","Thief2")
         break
          case 11:
-           dialog("They will send more creatures to try to kill before they can escape.","Thief2")
+           dialog("They will send more creatures to try to kill them before they can escape.","Thief2")
         break
          case 12:
-         movevert("Guard",1)
-           dialog("We have to do something.","Guard")
+         movevert("Guard-C",1)
+           dialog("We have to do something.","Guard-C")
         break
          case 13:
            dialog("Go on without us!","Archer4")
@@ -69,23 +69,23 @@ function queue(){
            dialog("She doesn't speak for all of us!","Enchantress")
         break
         case 15:
-           dialog("The platform won't retract, but it will extend.","Guard")
+           dialog("The platform won't retract, but it will extend.","Guard-C")
         break
          case 16:
-           dialog("Send me!","Guard")
+           dialog("Send me!","Guard-C")
         break
          case 17:
-           dialog("Send us.","Knight")
+           dialog("Send us.","Knight-C")
         break
          case 18:
-           dialog("Me too!","Soldier2")
+           dialog("Me too!","Soldier-C")
         break
         case 19:
            dialog("Ok, it can only hold three. You three help them, and Tina and I will make sure the platform still works when you are done.","Thief2")
         break
           case 20:
-          movehor("Guard",1)
-           dialog("We're coming Olive!","Guard")
+          movehor("Guard-C",1)
+           dialog("We're coming Olive!","Guard-C")
         break
         case 21:
            window.location.href = '../22_cell2/cell-start.html'

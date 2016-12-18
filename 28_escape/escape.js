@@ -425,7 +425,7 @@ function liberate(curloc){}
 //towns and castles
 function set_area_background(i){
         var backgroundpic="";
-        backgroundpic="../Pictures/backgroundpics/grassbackground.png";
+        backgroundpic="../Pictures/backgroundpics/desertbackground.png";
     return backgroundpic;
 }
 function updateHeader(){
@@ -612,6 +612,7 @@ function enemyconquer(){}
 
 $(window).load(function(){
     changesong("01/Battle.wav")
+    saving("28")
         containaccessories();
     leveluppotion=10;
          updateHeader(); 

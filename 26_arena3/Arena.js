@@ -1014,6 +1014,7 @@ $(window).load(function(){
     
     changesong("Battle.mp3")
         containaccessories();
+    saving("26")
     
     Eunits[newEindex()]=new ESoldier(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(1,23,500,'Soldier');

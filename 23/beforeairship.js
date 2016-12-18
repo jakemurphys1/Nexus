@@ -145,4 +145,5 @@ $(window).load(function(){
                     propeller.volume=.05;
                     propeller.loop=true;
                     propeller.play();
+    saving("23")
 });

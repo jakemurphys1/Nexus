@@ -13,47 +13,47 @@ function queue(){
             
             enterChar("Thief2",250,340);
             enterChar("Archer4",250,290);
-            enterChar("Knight2",250,240);
-            enterChar("Soldier2",250,190);
+            enterChar("Knight-C",250,240);
+            enterChar("Soldier-C",250,190);
             enterChar("Rouge2",250,140);
-            enterChar("Mage2",250,90);
+            enterChar("Mage-C",250,90);
   
             movevert("Thief2",100,"end")
             movevert("Archer4",100,"no")
-            movevert("Knight2",100,"no")
-            movevert("Soldier2",100,"no")
+            movevert("Knight-C",100,"no")
+            movevert("Soldier-C",100,"no")
             movevert("Rouge2",100,"no")
-            movevert("Mage2",100,"no")
+            movevert("Mage-C",100,"no")
 
 
             break;
         case 2:
                enterChar("Enchantress",250,90);
-            enterChar("Guard",250,140);
-            movevert("Guard",150)
+            enterChar("Guard-C",250,140);
+            movevert("Guard-C",150)
             movevert("Enchantress",150,"end")
             
             movehor("Archer4",50)
-            movehor("Knight2",50)
-            movehor("Soldier2",-50)
+            movehor("Knight-C",50)
+            movehor("Soldier-C",-50)
             movevert("Rouge2",150)
-            movevert("Mage2",150)
+            movevert("Mage-C",150)
              movevert("Thief2",-1)
 
             break
         case 3:
             movehor("Rouge2",-100)
-            movehor("Mage2",-100)
-              movevert("Guard",100)
+            movehor("Mage-C",-100)
+              movevert("Guard-C",100)
             movevert("Enchantress",100)
             dialog("Is everyone inside the triangle?","Thief2")
             break
         case 4:
-       movevert("Mage2",1)
-        movevert("Knight2",1)
+       movevert("Mage-C",1)
+        movevert("Knight-C",1)
          movevert("Archer4",1)
           movevert("Rouge2",1)
-           movevert("Soldier2",50,"end")
+           movevert("Soldier-C",50,"end")
            
             break
         case 5:
@@ -79,4 +79,5 @@ function queue(){
 
 $(window).load(function(){
     changesong("01/Hurry.mp3")
+    saving("33")
 });

@@ -120,7 +120,7 @@ function queue(){
 
 $(window).load(function(){
     opening("Chapter 5:","Seige")
-    saving();
+    saving("11");
     
     changesong("Drummer.wav")
         

@@ -277,8 +277,6 @@ return "Angel"
 //special abilities
     function traincommands(e){
 
-            $('.actions').append("<div class = 'actionbutton' style='position:absolute; margin-top:30px; margin-left:265px; width:100px' id = 'Capture'>Capture</div>");
-
         clickactionbuttons();
     }
 
@@ -721,7 +719,6 @@ function indiv_gotocapitol(){
 }
 
 function indiv_return(){
-    console.log("indiv_return")
     var civreturned = true;
     for (var i = 12;i<16;i++){
         if(units[i].group!=0){
@@ -730,29 +727,15 @@ function indiv_return(){
     }
     
     if(civreturned){
-        console.log("got through")
-        winbattle();
+        winbattle("../41/beforeriver.html");
     }
 }
 
-function capturedAll(name){
-     switch(name){
-                                case "Spider":
-                                createsoldier("Spider","Spider")
-                                break;
-                                case "Sparrow":
-                                createsoldier("Sparrow","Sparrow");
-                                break;
-                                case "Turtle":
-                                createsoldier("Turtle","Turtle")
-                                break;
-                                case "Bear":
-                                createsoldier("Bear","Bear")
-                                break;
-                                case "Wolf":
-                                createsoldier("Wolf","Wolf")
-                                break;
-                        }
+function indiv_ally_dies(index){
+    if(index >=13){
+        $("#TEXT").append("<p>You can't allow any Civilians to die!</p>")
+        gameover();
+    }
 }
 
 function levelresearch(){}
@@ -789,6 +772,12 @@ function enemyconquer(){}
  function tempexchangeunits(temp){
         var location2 = groups[temp].location;
         var location1= groups[curgroupnum].location;
+    console.log(parseInt(location2)-parseInt(location1))
+            if(parseInt(location2)-parseInt(location1)>6 || parseInt(location2)-parseInt(location1)<-6){
+                        $("#TEXT").empty();
+                        $('#TEXT').append("These groups are too far apart to exchange.");
+                return;
+            }
 
 
         $("#TEXT").empty();
@@ -894,6 +883,7 @@ function enemyconquer(){}
 
 $(window).load(function(){
     changesong("01/Battle.wav")
+    saving("40")
         containaccessories();
     
          updateHeader(); 
@@ -943,7 +933,7 @@ $(window).load(function(){
     units[11].slot=3
     
  
-             units[12]= new Civilian(12,"fisherman");
+    units[12]= new Mimic(12,"Mimic");
     units[13]= new Civilian(13,"fisherman");
     units[14]= new Civilian(14,"fisherman");
     groups[groupindex]= new tempnewgroup(groupindex,5);
@@ -955,6 +945,7 @@ $(window).load(function(){
     units[14].slot=3
 
         units[15]= new Civilian(15,"fisherman");
+        units[15]= new Civilian(16,"fisherman");
     groups[groupindex]= new tempnewgroup(groupindex,4);
     units[15].group=6;
     units[15].slot=1

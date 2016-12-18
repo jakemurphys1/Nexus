@@ -110,7 +110,7 @@ function queue(){
             break
         case 5:
          movevert("Knight",-1)
-        dialog("Since you first enter the Nexus, which I guess was a recent event, have you had some wierd dreams?","Knight")
+        dialog("Since you first enter the Nexus, which I am guessing was a recent event, have you had some wierd dreams?","Knight")
         break
          case 6:
         dialog("Vivid dreams that felt real?","Knight")
@@ -185,6 +185,7 @@ function queue(){
             dialog("But, in order to use it, he must charge using his entire life.","Knight")
         break
            case 30:
+           movehor("Sorcerer",1)
              dialog("Which means he dies before he can even use it.","Sorcerer")
         break
               case 31:
@@ -200,7 +201,7 @@ function queue(){
              dialog("I'm sure this is important, but...","Sandra")
         break
          case 35:
-             dialog("If you are under our protection, the horde will find you again and kill you.","Knight")
+             dialog("If you aren't under our protection, the horde will find you again and kill you.","Knight")
         break
            case 36:
              dialog("You will join us, and try to figure out where your other dream is.","Knight")
@@ -223,4 +224,6 @@ $(window).load(function(){
                     propeller.volume=.05;
                     propeller.loop=true;
                     propeller.play();
+    saving("19")
+    changesong("01/Evasion.mp3")
 });

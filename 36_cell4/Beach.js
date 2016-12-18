@@ -618,14 +618,16 @@ function enemyconquer(){
     var beach = new Audio();
         beach.src = "../sounds/beach.wav";
         beach.volume=.3;
+
 $(window).load(function(){
     beach.play()
+    saving("36")
     setInterval(function(){
         beach.play()
     },18000)
         containaccessories();
     
-    units[0]= new Guard(0,"Guard");
+    units[0]= new Guard(0,"Guard-C");
     units[1]= new Archer(1,"Archer4");
     groups[groupindex]= new tempnewgroup(groupindex,6);
     units[0].group=1;

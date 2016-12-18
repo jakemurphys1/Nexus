@@ -1079,7 +1079,15 @@ function airship(upOrDown){
 
 $(window).load(function(){
     changesong("01/Battle.wav")
-    localStorage.setItem("level", "6");
+    if(thismode=1){
+        saving("6")
+    }
+    if(thismode=2){
+        saving("18")
+    }
+    if(thismode=3){
+         saving("24")
+    }
     if(parseInt( localStorage.getItem("diff"))>0){
         difflevel=parseInt(localStorage.getItem("diff"));
     }

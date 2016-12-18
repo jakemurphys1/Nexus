@@ -159,5 +159,6 @@ $(window).load(function(){
                     propeller.volume=.05;
                     propeller.loop=true;
                     propeller.play();
+    saving("25")
     changesong("01/Hurry.mp3")
 });

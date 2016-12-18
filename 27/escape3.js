@@ -163,7 +163,7 @@ function queue(){
             movevert("Rouge2",1)
             movevert("Soldier2",1)
             movevert("Sandra",1)
-              dialog("Ok, Soldiers! Let's GO!","Knight")
+              dialog("I didn't want to use these, but I brought some extra 'Level up' potions. Hopefully, that should help us against this thing.","Knight")
         break
         case 27:
               window.location.href = '../28_escape/escape.html'

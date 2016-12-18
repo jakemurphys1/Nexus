@@ -121,4 +121,5 @@ function queue(){
 
 $(window).load(function(){
     changesong("peaceful.mp3")
+    saving("33")
 });

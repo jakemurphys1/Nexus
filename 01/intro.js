@@ -8,7 +8,7 @@ var qnum=0;
 
 function sun(){
       $("body").append("<div style='background-color:#0ecfd2;margin-top:0px;margin-left:-0px' id = 'quickscene'>" + "<img style= 'margin-left:35%;margin-top:20%; width:200px' src = 'pics/Sun1.gif' /></div>")
-      text("The Sun is Waning",200,100)
+      //text("The Sun is Waning",200,100)
       
       setTimeout(function(){
           queue();
@@ -65,7 +65,7 @@ function castle(withairship){
                     }, 3000,"linear"); 
     
     if(withairship=="Without"){
-         text("The Hordes of Darkness Attack",100,-800)
+     //    text("The Hordes of Darkness Attack",100,-800)
     }
          
     setInterval(function(){
@@ -99,7 +99,7 @@ function Source(){
                  "<img style='width:100%;height:100%' src = 'pics/Source.png' /><img id='source' style='position:absolute; margin-top:250px;margin-left:-480px;width:100px' src = 'pics/Source.gif'/></div>")
     
     
-         text("To Destroy the Source of All Light",100,-200)
+        // text("To Destroy the Source of All Light",100,-200)
 
   setTimeout(function(){
       $("#quickscene").remove();
@@ -129,7 +129,7 @@ function Entrance(){
     enterCharIntro("Mage2",600,-400);
     
   
-         text("A small band of heroes prepare to defend it...",50,-300)
+    //     text("A small band of heroes prepare to defend it...",50,-300)
 
   setTimeout(function(){
       $("#quickscene").remove();
@@ -166,7 +166,7 @@ function Docking(){
     },2000)
     
   
-         text("While a small group leaves to seek the Story-Teller",50,450)
+ //        text("While a small group leaves to seek the Story-Teller",50,450)
 
   setTimeout(function(){
       $("#quickscene").remove();
@@ -221,7 +221,7 @@ function airship(){
                         left: "+1840px"
                     }, 3000,"linear"); 
     
-     text("The World will be Devoured by Darkness",50,250)
+ //    text("The World will be Devoured by Darkness",50,250)
      
      setTimeout(function(){
          $(".epictext").fadeOut();

@@ -70,7 +70,7 @@ function queue(){
          
         break
          case 11:
-            dialog("Do any of you have any special abilities, ones you have never seen anyone else obtain.","Sorcerer")
+            dialog("Do any of you have any special abilities, ones you have never seen anyone else possess.","Sorcerer")
         break
          case 12:
          dialog("No, I'm just a standard Thief.","Thief1")
@@ -105,7 +105,7 @@ function queue(){
               dialog("We already thought of that, but the protect ability only redirects enemy's damage, not self-inflicted damage.","Sorcerer")
         break
           case 22:
-              dialog("I don't see how this sheild ability will help us.","Knight")
+              dialog("I don't see how this shield ability will help us.","Knight")
         break
          case 23:
               dialog("Did anyone else in your group have anything special?","Archer2")
@@ -133,4 +133,5 @@ function queue(){
 
 $(window).load(function(){
     changesong("01/Evasion.mp3")
+    saving("29")
 });

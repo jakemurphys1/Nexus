@@ -80,9 +80,10 @@ function airship(upOrDown,enemyexists){
 
     
   setTimeout(function(){
+            queue();
       $("#quickscene").remove();
-      queue();
-  },3000)
+
+  },5000)
 }
 
 function queue(){
@@ -194,4 +195,6 @@ $(window).load(function(){
                     propeller.play();
     opening("Final Chapter:","The Palace")
     changesong("01/Descent.mp3")
+    
+   // $("div").removeClass("hidden")
 });

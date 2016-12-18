@@ -175,6 +175,7 @@ function queue(){
         break
         case 24:
         $("#Bottle").remove()
+        doeffect("Cleanse.wav")
             enterChar("Sandra-R", 650,400,"end")
         break
         case 25:
@@ -228,4 +229,5 @@ function queue(){
 
 $(window).load(function(){
 changesong("Peaceful.mp3")
+saving("17")
 });

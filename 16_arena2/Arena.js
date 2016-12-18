@@ -944,6 +944,7 @@ function enemyconquer(){
 
 $(window).load(function(){
     changesong("Battle.mp3")
+    saving("16")
         containaccessories();
     
     Eunits[newEindex()]=new ESoldier(curEindex, Egroupindex,difflevel);
