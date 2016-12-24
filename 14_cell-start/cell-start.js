@@ -449,7 +449,7 @@ return "Angel"
                     break;
             }
         }
-              if (day<=15 && day>10){
+        if (day<=15 && day>10){
             switch(temp){
                 case 1:
                 case 2:
@@ -461,7 +461,7 @@ return "Angel"
                 case 4:
                     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'Vampire');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'Wolf');
                     break;
                 case 5:
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
@@ -495,7 +495,7 @@ return "Angel"
                     break;
             }
         }
-                      if (day<20 && day>15){
+        if (day<20 && day>15){
             switch(temp){
                 case 1:
                 case 2:

@@ -169,7 +169,7 @@ function Docking(){
           
     
   
-         text("The group of heroes rejoice...",50,450)
+ //        text("The group of heroes rejoice...",50,450)
 
   setTimeout(function(){
       $("#quickscene").remove();

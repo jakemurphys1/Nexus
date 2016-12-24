@@ -39,7 +39,7 @@ function queue(){
             dialog("Where?","Sandra-R")
         break
           case 11:
-            dialog("It's a terrible country to the north. They still have slaves, and sometimes they force this to fight to the death.","Edgar-R")
+            dialog("It's a terrible country to the north. They still have slaves, and sometimes they force them to fight to the death.","Edgar-R")
         break
           case 12:
             dialog("That's horrible. I wonder why I dreamed about it.","Sandra-R")

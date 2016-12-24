@@ -22,7 +22,7 @@ function queue(){
             dialog("Edgar, I'm glad you're here.","Guard")
             break
         case 4:
-        dialog("Wouldn't miss it the hunt.","Edgar")
+        dialog("Would never miss the hunt.","Edgar")
         break
          case 5:
         dialog("Is this your daughter?","Guard")

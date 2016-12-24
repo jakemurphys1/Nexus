@@ -3269,6 +3269,50 @@ function winbattle(){
                 $("#background").append("<div style='position: absolute; background-color:gray; width:200px; height:400px; margin-top:-400px; margin-left:200px'><p style='font-size:20px; margin-left:20px'>YOU WIN</p><p>Created by Jake Murphy</p><p>Music by 'Light elves Music'. See more at</p><p>'butterflytea.bandcamp.com'</p><p>Special thanks to:</p><p>www.piskelapp.com</p><p>mapeditor.org</p><p>This game and all of it's images are licensed under a: <p>Creative Commons Attribution-ShareAlike 3.0 Unported License</p></p></div>")
 }
 
+function TEMPstartcombat(){
+
+                 Eunits[newEindex()]=new ESoldier(curEindex, 1,2);
+               Eunits[newEindex()]=new Frostwraith(curEindex, 1,2);
+       //         Eunits[newEindex()]=new ESoldier(curEindex, 1,2);
+//                Eunits[newEindex()]=new Bee(curEindex, 1,2);
+//                Eunits[newEindex()]=new Bee(curEindex, 1,2);
+
+                Egroups[Egroupindex]=new Enewgroup(1,70,1000,"Warrior");
+                units[index]=new Enchantress(index,"Enchantress");
+                units[index]=new Wizard(index,"Wizard1");
+                units[index]=new Guard(index,"Guard");
+
+
+                units[0].slot=1;
+                units[1].slot=2;
+                units[2].slot=3;
+                units[0].group=1;
+                units[1].group=1;
+                units[2].group=1;
+
+
+        units[0].abilityfireCircle=true;
+    units[0].abilityiceFall=true;
+    units[0].abilitystorm=true;
+    units[0].flight=true;
+        units[1].flight=true;
+    
+    units[0].mana=1000;
+    units[1].abilitymissile=true;
+     units[2].abilitymedkit=true;
+         units[2].medkit=true;
+    units[2].health=80;
+    
+        mana=100
+        
+        Eunits[0].attack=0;
+
+                groups[groupindex]= new newgroup(1);
+
+                startcombat();
+   
+    }
+
 $(window).load(function(){
 
         containaccessories();

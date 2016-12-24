@@ -127,7 +127,7 @@ function queue(){
 $(window).load(function(){
         localStorage.setItem("level", "1");
     opening("Chapter One:","Enter the Nexus")
-        changesong("Peaceful.mp3")
+        changesong("01/town.mp3")
 
     addobject("nexus",540,230)
 });

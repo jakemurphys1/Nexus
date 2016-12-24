@@ -24,7 +24,7 @@ function queue(){}
 $(window).load(function(){
 var level = parseInt(localStorage.getItem("level"));
 var curmusic = new Audio();
-    curmusic.src="sounds/music/Epic.mp3";
+    curmusic.src="sounds/music/01/Flying.mp3";
      curmusic.volume=.2;
     curmusic.loop=true;
     curmusic.play();

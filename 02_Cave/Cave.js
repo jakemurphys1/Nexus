@@ -256,10 +256,41 @@ function indiv_exchangeunits(){
 function indiv_exchange(){
             $(".instructionText").html("Ok, now they should all be in one group. Now move the group up next to the Goblin if it isn't already. When Right beneath the Goblin, and with the group selected, right-click it. You may need to pass turn if your group is still grey.")
 }
+var battleloc = 0;
 function indiv_startcombat(){
     setTimeout(function(){
-            $("#TEXT").html("<p>You units are battling the Goblin!. Click on a unit, and then right-click an adjacent space to move it there. Also right-click the Goblin to attack it. Your units all have different ranges, so experiment with moving them.</p> <p>When you move them, notice that they become greyer. Like outside the battle, click 'PassTurn' at the bottom to move them again. Now, kill that Goblin.</p>")
+            $("#TEXT").html("<p>You units are battling the Goblin! Click on one of your units.</p>")
     },500)
+}
+function indiv_clickUnit(){
+        if(battleloc==0){
+                $("#TEXT").html("<p>Good, notice that it now has a yellow background. That means it is selected.</p> <p>Now hover your arrow directly above it or to the side. That will show a yellow box. That is a space in which the unit can move. Right-click that space.</p>")
+        }
+        if(battleloc==1){
+                $("#TEXT").html("<p>Click on the green Archer, and then right-click the goblin.</p>")
+        }
+
+}
+function indiv_moveunit(){
+    if(battleloc==0){
+            battleloc+=1
+        $("#TEXT").html("<p>Great job! You can move your other units the same way, but they are still quite far from that goblin.</p><p>Sandra's fire can only hit enemies up to two spaces away, and Edgar has to be right next to them. However, Teresa, the archer, can hit anyone.</p><p> Click on her, and then right-click the goblin.</p>")
+    }
+    if(battleloc==2){
+        $("#TEXT").html("<p>Move to kill the goblin. After you've move and did all the action you want to do, press the 'Passturn' button at the bottom.</p>")
+    }
+
+}
+function indiv_archershoot(){
+    if(battleloc==1){
+            battleloc+=1
+            $("#TEXT").html("<p>Awesome, you hit him! Notice that she used her default 'Normal' Arrow shown in the orange box below the field. When she levels up, she can use special arrows. When she does, click that orange box to select her other abilities.<p/> <p>Your units can only do one action and one move a turn. Press the 'PassTurn' button to refresh your units and allow your enemies a turn.</p>")
+    }
+
+}
+function indiv_passTurn(){
+    battleloc+=1
+                    $("#TEXT").html("<p>Here he comes! Now that you know how to move and attack, kill that goblin!.</p>")
 }
 
 function indiv_youwin(){

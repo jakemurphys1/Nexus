@@ -226,7 +226,7 @@ function queue(){
         break
         case 42:
                     movevert("Wizard1",10)
-             dialog("I'm a wizard. I also do magical attack, but I have to charge first to use them.","Wizard1")
+             dialog("I'm a wizard. I also do magical attacks, but I have to charge first to use them.","Wizard1")
         break
         case 43:
                     movevert("Templar1",10)

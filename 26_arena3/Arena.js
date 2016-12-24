@@ -1012,7 +1012,7 @@ function killunit(){
 $(window).load(function(){
     
     
-    changesong("Battle.mp3")
+    changesong("01/Battle.wav")
         containaccessories();
     saving("26")
     

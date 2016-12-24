@@ -102,6 +102,7 @@ function queue(){
                                 top:"+=130px",
                   },2000);
             delay(2000);
+            doeffect("success.wav")
         break
       case 27:
              movehor("Edgar-R",1,"end")

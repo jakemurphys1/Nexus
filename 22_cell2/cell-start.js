@@ -639,7 +639,7 @@ return "Angel"
                     break;
             }
         }
-        if (day<35 && day>30){
+        if (day<=35 && day>30){
             switch(temp){
                 case 1:
                 case 2:

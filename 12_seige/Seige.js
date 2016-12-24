@@ -28,7 +28,6 @@
         var revivepotion=0;
         var teleportpotion=0;
         var boostpotion=0;
-noheal=false
 var number_of_units=8;
 
 function containaccessories(){

@@ -943,7 +943,7 @@ function enemyconquer(){
 }
 
 $(window).load(function(){
-    changesong("Battle.mp3")
+    changesong("01/Battle.wav")
     saving("16")
         containaccessories();
     

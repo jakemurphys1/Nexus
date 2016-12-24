@@ -118,6 +118,9 @@ input:focus {
     font-size:20px;
     Margin-top:10px;
 }
+#TEXT p {
+    padding:5px;
+}
 
 #passarea{
     height:70px;
@@ -667,11 +670,11 @@ margin-top:-10px;
     width:50%;
     margin-left:13px;
     text-align:center;
-    height:30px;
+    height:40px;
     margin-top:10px;
 }
 .potions p{
-    height:30px;
+    height:25px;
 }
 .brewpotions{
     background-color:gray;

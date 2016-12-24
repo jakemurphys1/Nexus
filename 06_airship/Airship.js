@@ -1,6 +1,4 @@
-
-
-    var allynum=0;
+var allynum=0;
 var noexplore=true;
 
 var number_of_units=8;
@@ -605,9 +603,9 @@ function liberate(curloc){
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Warrior');
                     break;
                 case 10:
-                    Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Sparrow');
                     break;
             }
@@ -846,13 +844,17 @@ function liberate(curloc){
         }
                 if (day<30 && day>=20){
                     if(day==20){
+                        setTimeout(function(){
                         if(engine10){
-                        engine10=false;
-                        engines-=1;
+                            engine10=false;
+                            engines-=1;
                         }
                         fan10exists=false;
                         Lightning.play();
                         $("#fan10").remove()
+                        },2000)
+
+                        airship(0,true)
                     }
             switch(temp){
                 case 3:
@@ -986,8 +988,9 @@ function enemyconquer(){
 }
 
 var height = 2;
-function airship(upOrDown){
-    if(upOrDown==0 || (upOrDown==-1 && height==1)){
+function airship(upOrDown, withmissile){
+
+    if((upOrDown==0 || (upOrDown==-1 && height==1)) && withmissile!=true){
         return;
     }
   $("body").append("<div style='background-color:lightblue' id = 'cinemabackground'><div id='airship' STYLE='position:absolute; TOP:" + height*100 + "px; LEFT:405px;' class='unit' ><img src='../CinePics/airship.gif'/></div><div id='Eairship' STYLE='position:absolute; TOP:" + height*100 + "px; LEFT:505px;' class='unit' ><img src='../CinePics/enemyship.gif'/></div>"+
@@ -1072,20 +1075,27 @@ function airship(upOrDown){
                 gameover();
         },2000)
     }
-  
+  if(withmissile){
+      $("#cinemabackground").append('<div class="missile" STYLE="position:absolute; TOP:' + (height*100 +20) + 'px; LEFT:500px;" ><img style="height:30px" src="../Pictures/missile.gif"/></div>');
+      missile.play()
+          $('.missile').animate({
+                        left: '-=50px',
+                        top:"-=15px"
+                    }, 1800,"linear");
+  }
 }
 
 
 
 $(window).load(function(){
     changesong("01/Battle.wav")
-    if(thismode=1){
+    if(thismode==1){
         saving("6")
     }
-    if(thismode=2){
+    if(thismode==2){
         saving("18")
     }
-    if(thismode=3){
+    if(thismode==3){
          saving("24")
     }
     if(parseInt( localStorage.getItem("diff"))>0){

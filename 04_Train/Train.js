@@ -392,7 +392,7 @@ if(Egroups[1].location<0){
     }
 }
 function indiv_gotocapitol(){
-      $("#TEXT").empty().append('<div class="gotobutton" id = "gotobarracks"><p>BARRACKS</p></div><div class="gotobutton" id = "gotobrewery"><p>BREWERY</p></div>');
+      $("#TEXT").empty().append('<div class="gotobutton" id = "gotobarracks"><p>BARRACKS</p></div>');
 }
 function indiv_youwin(){
      if(Egroups[1].location<0){
@@ -454,10 +454,10 @@ $(window).load(function(){
         message("These are sparrows. They will fly instantly to your units. Using units with higher defense, like the soldier or guard, will be important.")
     })
       $("#EM3").click(function(){
-        message("These are fire elementals. They have a high 'Resistance', so magic attacks won't be effective. But it has a low 'defense', so physical attacks will be. They are also long-range, so you will probably want some long-range attackers like archers.")
+        message("These are fire elementals. They have a high 'Resistance', so magic attacks won't be effective. They are also long-range, so you will probably want some long-range attackers like archers. Notice that they are fire, so if you use elemental attacks, Ice would be best.")
     })
        $("#EM4").click(function(){
-        message("This is a turtle. This one has a high 'Defense', so physical attacks won't be effective. But it has a low 'Resistance', so magic will be effective.")
+        message("This is a turtle. This one has a high 'Defense', so physical attacks won't be effective. However, it does have low 'Resistance', so you should use magic. Also, the Rouge's poison arrow can be useful here.")
     })
         $("#EM5").click(function(){
         message("These are goblins. Click on the group and then notice their icons appears to the right. Click on the icon to see it's stats. All units are equally effective against them.")

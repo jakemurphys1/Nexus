@@ -181,6 +181,15 @@ var summoning;
                    var dramatic = new Audio();
         dramatic.src = "../sounds/Dramatic.wav";
         dramatic.volume=1;
+                   var fail = new Audio();
+        fail.src = "../sounds/fail.wav";
+        fail.volume=1;
+                   var success = new Audio();
+        success.src = "../sounds/success.wav";
+        success.volume=1;
+                       var missile = new Audio();
+        missile.src = "../sounds/missile.wav";
+        missile.volume=1;
     
     var curmusic = new Audio();
 }
@@ -291,7 +300,6 @@ var barrackbutton;
         $("#TEXT").append('<div class="row" id="barracks"></div>');
 
         for(var i =0;i<index;i++){
-            console.log(units[i].isanimal)
             if((units[i].group===0 || units[i].group===-1) && units[i].type!="Djinn" && units[i].isanimal==false){
                 $("#barracks").append(units[i].picture);
                 if((units[i].healing>0 || units[i].health<units[i].maxhealth) && recoverpotion>0 && units[i].alive===true){
@@ -494,7 +502,7 @@ var barrackbutton;
 
         $("#TEXT").append("<p style='text-align:center'>Brewery</p>");
         $("#TEXT").append("<p style='margin-left:5%'>Brew Potion:</p>");
-        $("#TEXT").append("<p style='margin-left:55%; margin-top:-38px'>Ingredients:</p>");
+        $("#TEXT").append("<p style='margin-left:55%; margin-top:-45px'>Ingredients:</p>");
         $("#TEXT").append("<div id='Ingredients' style = 'background-color: gray; text-align: center; border: black solid; width:auto; position:absolute; margin-left:150px; height:auto'></div>");
 
         //populate ingredients
@@ -605,7 +613,7 @@ var barrackbutton;
                 teleportpotion+=1;
                 ingredient["Powder"].quantity-=2;
                 ingredient["Sap"].quantity-=2;
-                message("You brewed a Teleport potion. Use it in the barracks to bring a unit that escaped immediately back to the capitol.")
+                message("You brewed a Teleport potion. Use it in the barracks to bring a unit that escaped immediately back to the barracks.")
                 gotobrewery();
             }else{
                 message("You require 2 powder and 2 sap for that. You only have " + ingredient["Powder"].quantity + " powder and " + ingredient["Sap"].quantity + " sap.")
@@ -688,7 +696,7 @@ var barrackbutton;
             hospitalclick();
             function hospitalclick(){
                 $("#TEXT").empty().append("<p>Select unit to send to hospital</p>");
-                tipmessage("Healing","Select a unit on the right to send to the hospital for " + (1+difflevel) + " days.");
+                tipmessage("Healing","Select a unit on the right to send to the hospital for " + (1+difflevel) + " turns.");
                 for(var i=0;i<index;i++){
                     if (units[i].group === curgroupnum){
                         $("#TEXT").append(units[i].picture);
@@ -1131,7 +1139,7 @@ var barrackbutton;
         this.curleft=0;
         this.curtop=25;
         this.group=Egroupindex;
-        this.description="These fast beasts will explode when it comes into contact with one of your units";
+        this.description="These fast beasts can move two spaces a turn and deal magic damage up close.";
         this.picture="<div class='Ebarrackpic' id='E"+ e + "'><img src='../Pictures/Enemies/hellhound.gif' /></div>";
         this.image='../Pictures/Enemies/hellhound.gif';
         this.dying='../Pictures/Enemies/hellhound_dying.gif'
@@ -3479,7 +3487,7 @@ function createsoldier(choice,name){
         
         this.type= "Soldier";
         this.realtype="Soldier";
-        this.name="Edgar Elron";
+        this.name="The Soldier";
         this.index=e;
 
         this.attack= 60;
@@ -3576,7 +3584,7 @@ function createsoldier(choice,name){
     function Knight(e,type){
         this.type= "Knight";
         this.realtype="Knight";
-        this.name="Sir Bernand";
+        this.name="The Knight";
         this.index=e;
 
         this.attack= 80;
@@ -3664,7 +3672,7 @@ function createsoldier(choice,name){
     function Thief(e,type){
         this.type= "Thief";
         this.realtype="Thief";
-        this.name="Slick the shadow";
+        this.name="The Thief";
         this.index=e;
 
         this.attack= 40;
@@ -3751,7 +3759,7 @@ function createsoldier(choice,name){
     function Mage(e,type){
         this.type= "Mage";
         this.realtype="Mage";
-        this.name="Sandra Dragonheart";
+        this.name="The Mage";
 
         this.attack= 40;
         this.defense= 15;
@@ -3832,9 +3840,9 @@ function createsoldier(choice,name){
     function Wizard(e,type){
         this.type= "Wizard";
         this.realtype="Wizard";
-        this.name="Rourke Storm";
+        this.name="The Wizard";
 
-        this.attack= 50;
+        this.attack= 60;
         this.defense= 0;
         this.resistance= 30;
         this.health= 80;
@@ -3912,7 +3920,7 @@ function createsoldier(choice,name){
     function Sorcerer(e,type){
         this.type= "Sorcerer";
         this.realtype="Sorcerer";
-        this.name="Benedict Powerhouse";
+        this.name="The Sorcerer";
 
         this.attack= 40;
         this.defense= 0;
@@ -3995,7 +4003,7 @@ function createsoldier(choice,name){
     function Rouge(e,type){
         this.type= "Rouge";
         this.realtype="Rouge";
-        this.name="Renrick of the poisons";
+        this.name="The Rouge";
 
         this.attack= 30;
         this.defense= 10;
@@ -4067,7 +4075,7 @@ function createsoldier(choice,name){
         this.duration=0;
 
         this.abilityblindness=false;
-        this.abilitysleep=false;
+        this.false=true;
         this.abilityailmentduration=false;
         this.abilityenfeeble=false;
         this.abilitydoublearrows=false;
@@ -4083,7 +4091,7 @@ function createsoldier(choice,name){
     function Archer(e,type){
         this.type= "Archer";
         this.realtype="Archer";
-        this.name="Miranda of Vastwood";
+        this.name="The Archer";
 
         this.attack= 40;
         this.defense= 10;
@@ -4169,7 +4177,7 @@ function createsoldier(choice,name){
     function Templar(e,type){
         this.type= "Templar";
         this.realtype="Templar";
-        this.name="Johnny Goldblade";
+        this.name="The Templar";
 
         this.attack= 30;
         this.defense= 0;
@@ -4256,7 +4264,7 @@ function createsoldier(choice,name){
     function Guard(e,type){
         this.type= "Guard";
         this.realtype="Guard";
-        this.name="Alphonse Elron";
+        this.name="The Guard";
         this.index=e;
 
         this.attack= 30;
@@ -4350,7 +4358,7 @@ function createsoldier(choice,name){
         
         this.type= "Enchantress";
         this.realtype="Enchantress";
-        this.name="Ivy";
+        this.name="The Enchantress";
         this.index=e;
 
         this.attack= 5;
@@ -4435,7 +4443,7 @@ function createsoldier(choice,name){
     function Healer(e,type){
         this.type= "Healer";
         this.realtype="Healer";
-        this.name="Samantha Peacemaker";
+        this.name="The Healer";
         this.index=e;
 
         this.attack= 10;
@@ -4519,7 +4527,7 @@ function createsoldier(choice,name){
     function Mimic(e,type){
         this.type= "Mimic";
         this.realtype="Mimic";
-        this.name="Burt";
+        this.name="The Mimic";
 
         this.attack= 40;
         this.defense= 15;
@@ -4611,7 +4619,7 @@ function createsoldier(choice,name){
         
         this.type= "Civilian";
         this.realtype="Civilian";
-        this.name="Civilian";
+        this.name="The Civilian";
         this.index=e;
 
         this.attack= 10;
@@ -5117,11 +5125,11 @@ function newEindex(){
             var templeft=temp.left;
             var temptop=temp.top;
             if(units[$(this).attr("id")].healing>0){
-                message("This unit is still healing for " + units[$(this).attr("id")].healing + " more days." );
+                message("This unit is still healing for " + units[$(this).attr("id")].healing + " more turns." );
                 return;
             }
             if(units[$(this).attr("id")].enroute>0){
-                message("This unit is still traveling to the capitol and will take " + units[$(this).attr("id")].enroute + " more days." );
+                message("This unit is disoriented from escaping and will take " + units[$(this).attr("id")].enroute + " more turns to return." );
                 return;
             }
             if(units[$(this).attr("id")].alive===false){
@@ -5141,7 +5149,7 @@ function newEindex(){
 
                 $(this).animate({
                     left: 593 - templeft + 'px',
-                    top: 160-temptop + 'px'
+                    top: 180-temptop + 'px'
                 }, 500);
                 return;
             }
@@ -5149,7 +5157,7 @@ function newEindex(){
                 spot2=$(this).attr("id");
                 $(this).animate({
                     left: 680 - templeft + 'px',
-                    top: 160-temptop + 'px'
+                    top: 180-temptop + 'px'
                 }, 500);
                 return;
             }
@@ -5157,7 +5165,7 @@ function newEindex(){
                 spot3=$(this).attr("id");
                 $(this).animate({
                     left: 767 - templeft + 'px',
-                    top: 160-temptop + 'px'
+                    top: 180-temptop + 'px'
                 }, 500);
                 return;
             }
@@ -5214,7 +5222,6 @@ function newEindex(){
 
     //exchange////////////////////////////////////////////////////////////////////////////
     function exchangeunits(temp){
-        console.log("checking")
         var location2 = groups[temp].location;
         var location1= groups[curgroupnum].location;
         if((location1==71 && location2==70) || (location2==71 && location1==70)){
@@ -5922,7 +5929,6 @@ function clearspaces(e){
                         $('#' + slots[1]).append('<div class="healthbar" id = "HB' + slots[1] + '" style="width: ' + (units[slots[1]].health/units[slots[1]].maxhealth)*100 + '%"></div><div class="level"><p>' + units[slots[1]].level + '</p></div><div class="energybar" id ="EB' + units[slots[1]].index + '"style="width: ' + (units[slots[1]].energy) + '%"></div>');
                         
                         if(units[slots[1]].type==="Wizard" || (checkslots("Wizard") && units[slots[1]].type==="Mimic")){
-                            console.log("got here")
                             $('#' + slots[1]).append('<img  style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORB' + slots[1] + '" style="color: yellow; position: absolute; font-size:20px; margin-top:-30px; margin-left:55px; width:10px; height:10px ">' + units[slots[1]].charge +'</div>');
                         }
                         if(units[slots[1]].type==="Enchantress"){
@@ -6120,7 +6126,6 @@ function clearspaces(e){
 
         $('.battleareas').mousedown(function(e) {
             if(inanimation){
-                console.log("got here")
                 return;
             }
             $("#TEXT").empty();
@@ -6261,19 +6266,11 @@ function clearspaces(e){
                             return false;
                         }
                     }
-                    if(units[selectedindex].type=="Wizard" || (units[selectedindex].type=="Mimic" && checktypes("Wizard"))){
-                        $("#ORB" + units[selectedindex].index).remove();
-                        $('#' + selectedindex).append('<img style="position: absolute; margin-top:40px; margin-left:-30px; width:35px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORB' + selectedindex + '" style="color: yellow; position: absolute; font-size:20px; margin-top:-30px; margin-left:55px; width:10px; height:10px ">' + units[selectedindex].charge +'</div>');
-                    }
-                     if(units[selectedindex].type=="Enchantress"){
-                          $("#ORB" + units[selectedindex].index).remove();
-                             $('#' + selectedindex).append('<img class="ORB" style="position: absolute; margin-top:40px; margin-left:-30px; width:48px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORB' + selectedindex + '" style="color: yellow; position: absolute; font-size:17px; margin-top:-27px; margin-left:50px; width:10px; height:10px ">' + units[selectedindex].mana +'</div>');
-                     }
                    
                      
 
                     if(units[selectedindex].immobilized>0){
-                        $("#TEXT").append("This unit is immobolized for another " + units[selectedindex].immobilized + " days.");
+                        $("#TEXT").append("This unit is immobolized for another " + units[selectedindex].immobilized + " turns.");
                         return;
                     }
 
@@ -6479,6 +6476,9 @@ function clearspaces(e){
                 $('#' + selectedindex).removeClass("lighticon");
                 $('#' + selectedindex).addClass("grayicon");
             }
+            if (typeof indiv_moveunit == 'function'){
+                     indiv_moveunit();
+            }
         });
 
     }
@@ -6487,10 +6487,12 @@ function clearspaces(e){
         var selectedindex=-1;
         var selectedaction = "";
     function getstatsbattle(){
+        
         $('.unit').click(function(){
             if (battleon===false){
                 return;
             }
+
             //gives stats on selected unit
             for (var i = 0; i < index; i++) {
                 if (units[i].index === parseInt($(this).attr("id"),10)) {
@@ -6532,7 +6534,7 @@ function clearspaces(e){
                         if(units[selectedindex].abilitycounter===true){
                             $('#abilitycontainer').append("<div id='Soldier_Counter' class='ability'><img src='../Pictures/abilities/Soldier/Soldier_counter.png' /></div>");
                             $("#Soldier_Counter").click(function(){
-                                message("Counter: Portion of damage dealt to soldier is dealt back to the enemy if it's a closerange attack.")
+                                message("Counter: Soldier counter-attacks at half damage to an enemy if it attacks with a closerange attack.")
                             });
                         }
                         if(units[selectedindex].abilitymedkit===true){
@@ -6671,7 +6673,7 @@ function clearspaces(e){
                         if(units[selectedindex].abilityiceFall===true){
                             $('#abilitycontainer2').append("<div id='Enchantress_iceFall' class='ability'><img src='../Pictures/abilities/Enchantress/Enchantress_iceFall.png' /></div>");
                             $("#Enchantress_iceFall").click(function(){
-                                message("Ice Fall: A random enemy will be hit by an ice sickle.")
+                                message("Ice Fall: A random enemy may will be hit by an ice sickle. The more enemies, the more likely a hit. Costs 50 mana.")
                             });
                         }
                         if(units[selectedindex].abilitybestow===true){
@@ -6683,7 +6685,7 @@ function clearspaces(e){
                         if(units[selectedindex].abilityfireCircle===true){
                             $('#abilitycontainer2').append("<div id='Enchantress_fireCircle' class='ability'><img src='../Pictures/abilities/Enchantress/Enchantress_fireCircle.png' /></div>");
                             $("#Enchantress_fireCircle").click(function(){
-                                message("Fire Circle: Enchants an ally with fire circle. Adjacent Enemies to that ally take fire damage every turn.")
+                                message("Fire Circle: Enchants an ally with fire circle. Adjacent Enemies to that ally take fire damage every turn. Costs 50 mana.")
                             });
                         }
                     }
@@ -6774,7 +6776,7 @@ function clearspaces(e){
                         if(units[selectedindex].abilitymissile===true){
                             $('#abilitycontainer').append("<div id='Wizard_Missile' class='ability'><img src='../Pictures/abilities/Wizard/Wizard_Missile.png' /></div>");
                             $("#Wizard_Missile").click(function(){
-                                message("Missile: Deals fire, magic damage to any enemy. Higher the charge, the more damage.")
+                                message("Missile: Deals fire, magic damage to any enemy in a straight line. Higher the charge, the more damage.")
                             });
                         }
                         if(units[selectedindex].abilityelementalailments===true){
@@ -6820,7 +6822,7 @@ function clearspaces(e){
                             });
                         }
                         if(units[selectedindex].abilityearth===true){
-                            $('#abilitycontainer').append("<div id='Sorcerer_earthr' class='ability'><img src='../Pictures/abilities/Sorcerer/Sorcerer_Earth.png' /></div>");
+                            $('#abilitycontainer').append("<div id='Sorcerer_earth' class='ability'><img src='../Pictures/abilities/Sorcerer/Sorcerer_Earth.png' /></div>");
                             $("#Sorcerer_earth").click(function(){
                                 message("Earth: Deals X2 physical damage to any enemy. Costs 20 power.")
                             });
@@ -6851,7 +6853,7 @@ function clearspaces(e){
                         }
                         if(units[selectedindex].abilityimmobolize===true){
                             $('#abilitycontainer2').append("<div id='Archer_immobolize' class='ability'><img src='../Pictures/abilities/Archer/Archer_Immobilize.png' /></div>");
-                            $("#Archer_Immobolize").click(function(){
+                            $("#Archer_immobolize").click(function(){
                                 message("Immobolize arrow: Inflict immobolize onto an enemy. I won't be able to move for two turns.")
                             });
                         }
@@ -7143,7 +7145,7 @@ function clearspaces(e){
                             $('#enchantresschoice').append(new Option('Storm(30)'));
                         }
                         if(units[selectedindex].abilityiceFall===true){
-                            $('#enchantresschoice').append(new Option('Ice_Fall(70)'));
+                            $('#enchantresschoice').append(new Option('Ice_Fall(50)'));
                         }
                         $('#enchantressUse').addClass('battlehighlight');
                         selectedaction = 'enchantressUse';
@@ -7325,7 +7327,9 @@ function clearspaces(e){
                         clickactionbuttons();
                         break;
                 }//end of switch
-
+                if (typeof indiv_clickUnit == 'function'){
+                         indiv_clickUnit();
+                }
             }
         });
         $('.Eunit').click(function(){
@@ -7334,7 +7338,7 @@ function clearspaces(e){
                 var temp = $(this).attr("id").replace("E","");
                 if (Eunits[i].index === parseInt(temp,10)) {
                     $('#TEXT').empty();
-                    $('#TEXT').append("<ul>Stats for " + Eunits[i].name + " <li>Type: " + Eunits[i].type + "</li> <li>Attack: " + Eunits[i].attack + "</li> <li>Defense: " + Eunits[i].defense + "</li><li>Resistance: " + Eunits[i].resistance + "</li><li>Charge: " + Eunits[i].charge + "</li><li>Health: " + Eunits[i].health + "</li></ul>");
+                    $('#TEXT').append("<ul>Stats for " + Eunits[i].name + " <li>Type: " + Eunits[i].type + "</li> <li>Attack: " + Eunits[i].attack + "</li> <li>Defense: " + Eunits[i].defense + "</li><li>Resistance: " + Eunits[i].resistance + "</li><li>Health: " + Eunits[i].health + "</li><li>" + Eunits[i].description + "</li></ul>");
                 }
             }
         });
@@ -7522,16 +7526,13 @@ function clearspaces(e){
 
                             
                         } else {
-                            inanimation=true;
                             $("#ORBE" + enemyindex).remove();
                             $("#E" + enemyindex + " .ORBIMG").remove();
                             $("#E" + enemyindex + " .ailment").remove();
                             $("#E" + enemyindex + " img").attr("src",Eunits[enemyindex].dying);
                             setTimeout(function(){
                                 $("#E" + enemyindex).remove();
-                                inanimation=false
                             },1500)
-                            //$("#E" + enemyindex).effect('explode');
                         }
                         
                         if(units[selectedindex].type==="Enchantress" && Eunits[enemyindex].alive === false){
@@ -7598,23 +7599,27 @@ function clearspaces(e){
                     }
                 }
                 function shootarrow(enemyindex,selectedindex){
-    //effects
-    var tempAngle = Math.atan((units[selectedindex].curleft-Eunits[enemyindex].curleft)/(Eunits[enemyindex].curtop-units[selectedindex].curtop))/(Math.PI/180);
-  //  if(units[selectedindex].curleft>Eunits[enemyindex].curleft){
-  //      tempAngle+=180;
-  //  }
-    if(units[selectedindex].curtop<=Eunits[enemyindex].curtop){
-        tempAngle+=180;
-    }
-    $("#battlebackground").append("<div class='Effects' style='top: " + units[selectedindex].curtop +"px; left: " + units[selectedindex].curleft +"px'><img style = ' -ms-transform: rotate(" + tempAngle + "deg); -webkit-transform: rotate(" + tempAngle + "deg); transform: rotate(" + tempAngle + "deg);' src='../Pictures/Effects/Arrow.gif' /></div>");
-    $(".Effects").animate({
-        left: Eunits[enemyindex].curleft + "px",
-        top: Eunits[enemyindex].curtop + "px"
-    },500).fadeOut(500);
-    Arrow.play();
+                    //effects
+                    var tempAngle = Math.atan((units[selectedindex].curleft-Eunits[enemyindex].curleft)/(Eunits[enemyindex].curtop-units[selectedindex].curtop))/(Math.PI/180);
+                  //  if(units[selectedindex].curleft>Eunits[enemyindex].curleft){
+                  //      tempAngle+=180;
+                  //  }
+                    if(units[selectedindex].curtop<=Eunits[enemyindex].curtop){
+                        tempAngle+=180;
+                    }
+                    $("#battlebackground").append("<div class='Effects' style='top: " + units[selectedindex].curtop +"px; left: " + units[selectedindex].curleft +"px'><img style = ' -ms-transform: rotate(" + tempAngle + "deg); -webkit-transform: rotate(" + tempAngle + "deg); transform: rotate(" + tempAngle + "deg);' src='../Pictures/Effects/Arrow.gif' /></div>");
+                    $(".Effects").animate({
+                        left: Eunits[enemyindex].curleft + "px",
+                        top: Eunits[enemyindex].curtop + "px"
+                    },500).fadeOut(500);
+                    Arrow.play();
 }
                 function slashattack(){
                     $("#" + selectedindex).css("z-index","2")
+                    inanimation=true;
+                    setTimeout(function(){
+                        inanimation=false;
+                    },1000)
                     if(Eunits[enemyindex].curleft<units[selectedindex].curleft){
                         setTimeout(function(){
                             $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].attackleft) 
@@ -8106,66 +8111,64 @@ function clearspaces(e){
                                 units[selectedindex].usedaction = true;
                             }
                             if(e.options[e.selectedIndex].value==="Exploding") {
-                                damage=damage * Eunits[enemyindex].fire;
                                 if (units[selectedindex].usedexploding === 0) {
                                     $("#TEXT").append('<p>' + units[selectedindex].name + ' is out of exploding arrows\n</p>');
                                     return
                                 }
                                 units[selectedindex].usedexploding -= 1;
-                                if (Eunits[enemyindex].phasedout === true) {
-                                    if (Eunits[enemyindex].type === "Frostwraith") {
-                                    } else {
-                                        damage = 0;
-                                    }
-                                    Eunits[enemyindex].phasedout = false;
-                                    $("#E" + Eunits[enemyindex].index).removeClass("Invisible");
-                                    $("#TEXT").append("The wraith phased back in.")
-                                }
                                 if(magnetthere===false){
-                                    Lightning.play();
-                                    $("#E" + enemyindex).append("<div class='staticEffects' style='margin-top:-180px; margin-left:-120px'><img src='../Pictures/Effects/EffectExplode.gif' /></div>");
-                                    setTimeout(function(){Damaging(enemyindex, damage);},500);
-                                    setTimeout(function(){dies(enemyindex);},500);
-                                    setTimeout(function(){ $(".staticEffects").remove()},500);
+                                    shootarrow(enemyindex,selectedindex);
+                                    setTimeout(function(){
+                                        Lightning.play();
+                                        $("#E" + enemyindex).append("<div class='staticEffects' style='margin-top:-180px; margin-left:-120px'><img src='../Pictures/Effects/EffectExplode.gif' /></div>");
+                                        setTimeout(function(){ $(".staticEffects").remove()},500);
+                                    },500)
+
+                                    
                                 }
                                 if(magnetthere===true){
                                     shootarrow(enemyindex,selectedindex);
                                 }
                                 units[selectedindex].usedaction = true;
-
-
                                 //adjacent enemies
-                                for (var z = 1; z < 6; z++) {
-
-                                    if (Eunits[Eslots[z]].alive === true && magnetthere===false) {
-                                        if ((Eunits[Eslots[z]].curleft === Eunits[enemyindex].curleft - 100 && Eunits[Eslots[z]].curtop === Eunits[enemyindex].curtop) || (Eunits[Eslots[z]].curleft === Eunits[enemyindex].curleft + 100 && Eunits[Eslots[z]].curtop === Eunits[enemyindex].curtop) || (Eunits[Eslots[z]].curleft === Eunits[enemyindex].curleft && Eunits[Eslots[z]].curtop === Eunits[enemyindex].curtop + 100) || (Eunits[Eslots[z]].curleft === Eunits[enemyindex].curleft && Eunits[Eslots[z]].curtop === Eunits[enemyindex].curtop - 100)) {
-                                            var smalldamage = ((units[selectedindex].attack) - Eunits[Eslots[z]].defense) * Eunits[Eslots[z]].fire;
-                                                                            elementalNum=Eunits[Eslots[z]].fire;
-                                            if (smalldamage < 0) {
-                                                smalldamage = 0
-                                            }
-                                            if (Eunits[Eslots[z]].phasedout === true) {
-                                                if (Eunits[Eslots[z]].type === "Frostwraith") {
-                                                } else {
-                                                    damage = 0;
+                                setTimeout(function(){
+                                    for (var z = 1; z < 6; z++) {
+                                        if (Eunits[Eslots[z]].alive === true && magnetthere===false) {
+                                            if ((Eunits[Eslots[z]].curleft === Eunits[enemyindex].curleft - 100 && Eunits[Eslots[z]].curtop === Eunits[enemyindex].curtop) || (Eunits[Eslots[z]].curleft === Eunits[enemyindex].curleft + 100 && Eunits[Eslots[z]].curtop === Eunits[enemyindex].curtop) || (Eunits[Eslots[z]].curleft === Eunits[enemyindex].curleft && Eunits[Eslots[z]].curtop === Eunits[enemyindex].curtop + 100) || (Eunits[Eslots[z]].curleft === Eunits[enemyindex].curleft && Eunits[Eslots[z]].curtop === Eunits[enemyindex].curtop - 100) || (enemyindex==Eslots[z])) {
+                                                var smalldamage = ((units[selectedindex].attack) - Eunits[Eslots[z]].defense) * Eunits[Eslots[z]].fire;
+                                                elementalNum=Eunits[Eslots[z]].fire;
+                                                if (smalldamage < 0) {
+                                                    smalldamage = 0
                                                 }
-                                                Eunits[Eslots[z]].phasedout = false;
-                                                $("#E" + Eunits[Eslots[z]].index).removeClass("Invisible");
-                                                $("#TEXT").append("The wraith phased back in.")
+                                                if (Eunits[Eslots[z]].phasedout === true) {
+                                                    if (Eunits[Eslots[z]].type === "Frostwraith") {
+                                                    } else {
+                                                        damage = 0;
+                                                    }
+                                                    Eunits[Eslots[z]].phasedout = false;
+                                                    $("#E" + Eunits[Eslots[z]].index).removeClass("Invisible");
+                                                    $("#TEXT").append("The wraith phased back in.")
+                                                }
+                                                $("#TEXT").append("<p>" + units[selectedindex].name + " did " + smalldamage + " damage to " + Eunits[Eslots[z]].name + "\n</p>");
+                                                    Damaging(Eslots[z], smalldamage);
+
+
                                             }
-                                            $("#TEXT").append("<p>" + units[selectedindex].name + " did " + smalldamage + " damage to " + Eunits[Eslots[z]].name + "\n</p>");
-                                            Damaging(Eslots[z], smalldamage);
                                         }
                                     }
+                                },500)
 
-                                }
                             }
                         } else {
                             $("#TEXT").append("This unit is blind for " + units[selectedindex].blind + " more turns.")
                         }
+                    if (typeof indiv_archershoot == 'function'){
+                            indiv_archershoot();
+                    }
                      if(units[selectedindex].usedaction === true){
                                 return;
                             }
+
                 }
                 //soldier
                 if (selectedaction === "soldierAttack" || selectedaction === "mimicAttack") {
@@ -8287,12 +8290,10 @@ function clearspaces(e){
                                                 if(units[slots[i]].curtop==newtop && units[slots[i]].curleft==Eunits[enemyindex].curleft){
                                                     keepgoing=false;
                                                     newtop+=100;
-                                                                                                  console.log("here2")
                                                 }
                                             }
                                             for(var i = 1;i<6;i++){
                                                 if(Eunits[Eslots[i]].curtop==newtop && Eunits[Eslots[i]].curleft==Eunits[enemyindex].curleft){
-                                                    console.log("here")
                                                     keepgoing=false;
                                                     newtop+=100;
                                                 }
@@ -8343,14 +8344,12 @@ function clearspaces(e){
                                             newleft-=100
                                             for(var i = 1;i<4;i++){
                                                 if(units[slots[i]].curleft==newleft && units[slots[i]].curtop==Eunits[enemyindex].curtop){
-                                                                                                        console.log("here3")
                                                     keepgoing=false;
                                                     newleft+=100;
                                                 }
                                             }
                                             for(var i = 1;i<6;i++){
                                                 if(Eunits[Eslots[i]].curleft==newleft && Eunits[Eslots[i]].curtop==Eunits[enemyindex].curtop && keepgoing){
-                                                      console.log("here4")
                                                     keepgoing=false;
                                                     newleft+=100;
                                                 }
@@ -8371,14 +8370,12 @@ function clearspaces(e){
                                             newleft+=100
                                             for(var i = 1;i<4;i++){
                                                 if(units[slots[i]].curleft==newleft && units[slots[i]].curtop==Eunits[enemyindex].curtop){
-                                                    console.log("here1")
                                                     keepgoing=false
                                                     newleft-=100
                                                 }
                                             }
                                             for(var i = 1;i<6;i++){
                                                 if(Eunits[Eslots[i]].curleft==newleft && Eunits[Eslots[i]].curtop==Eunits[enemyindex].curtop){
-                                                    console.log("here2")
                                                     keepgoing=false;
                                                     newleft-=100;
                                                 }
@@ -8949,7 +8946,6 @@ function clearspaces(e){
                                     }
                                 }
                                 if(units[selectedindex].curtop === Eunits[enemyindex].curtop && units[selectedindex].curleft < Eunits[enemyindex].curleft){
-                                    console.log("check here")
                                     $("#battlebackground").append("<div class='staticEffects' style='transform: rotate(90deg) translate(-100%,-100%); margin-top: " + (units[selectedindex].curtop-320) +"px; margin-left: " + (units[selectedindex].curleft-280) +"px'><img src='../Pictures/Effects/Zap.gif' /></div>");
                                     for(var i =1;i<6;i++){
                                         if(Eunits[Eslots[i]].alive===false){
@@ -9132,7 +9128,7 @@ function clearspaces(e){
                         }
                             var defense=0;
                             if(Eunits[enemyindex].enfeeble===0){defense=Eunits[enemyindex].resistance}
-                            var damage = ((units[selectedindex].attack + units[selectedindex].attacktempboost) * 2 - defense) * Eunits[enemyindex].lightning;
+                            var damage = ((units[selectedindex].attack + units[selectedindex].attacktempboost) - defense) * 2 * Eunits[enemyindex].lightning;
                             elementalNum = Eunits[enemyindex].lightning;
                             if (damage < 0) {
                                 damage = 0
@@ -9179,38 +9175,58 @@ function clearspaces(e){
                             message("The Sound Depressor nullifies all magic.")
                             return;
                         }
-                            var defense=0;
-                            if(Eunits[enemyindex].enfeeble===0){defense=Eunits[enemyindex].resistance}
-                            var damage = (units[selectedindex].attack + units[selectedindex].attacktempboost - defense) * Eunits[enemyindex].fire * units[selectedindex].charge;
-                            elementalNum = Eunits[enemyindex].fire
-                            if (damage < 0) {
-                                damage = 0
+                            if(Eunits[enemyindex].curleft!=units[selectedindex].curleft && Eunits[enemyindex].curtop!=units[selectedindex].curtop){
+                                return;
                             }
                             if (units[selectedindex].charge < 1) {
                                 $("#TEXT").append("<p>" + units[selectedindex].name + " only has a charge of " + units[selectedindex].charge + ". He needs a charge of at least 1 to use missiles.\n</p>");
                                 return;
                             }
-
-                            if (Eunits[enemyindex].phasedout === true) {
-                                if (Eunits[enemyindex].type === "Frostwraith") {
-                                } else {
-                                    damage = 0;
-                                }
-                                Eunits[enemyindex].phasedout = false;
-                                $("#E" + Eunits[enemyindex].index).removeClass("Invisible");
-                                $("#TEXT").append("The wraith phased back in.")
-                            }
-                            var tempran= Math.floor((Math.random() * 2) + 1);
-                            if(units[selectedindex].abilityelementalailments===true && tempran===2){
-                                Eunits[enemyindex].blind=2;
-                                showailments();
-                            }
-
-                            units[selectedindex].usedaction = true;
-
-                            var keepgoing=units[selectedindex].charge;
-                            setTimeout(function(){Damaging(enemyindex, damage);},500*keepgoing);
-                            //effects
+                               
+                                    var blows = units[selectedindex].charge;
+                                    var loopnum=0
+                                    inanimation=true;
+                                    for(var i =0;i<blows;i++){
+                                        setTimeout(function(){
+                                            var defense=0;
+                                            if(Eunits[enemyindex].enfeeble===0){defense=Eunits[enemyindex].resistance}
+                                            var damage = (units[selectedindex].attack + units[selectedindex].attacktempboost - defense) * Eunits[enemyindex].fire;
+                                            elementalNum = Eunits[enemyindex].fire
+                                            if (damage < 0) {
+                                                damage = 0
+                                            }
+                                            if (Eunits[enemyindex].phasedout === true) {
+                                                if (Eunits[enemyindex].type === "Frostwraith") {
+                                                } else {
+                                                    damage = 0;
+                                                }
+                                                Eunits[enemyindex].phasedout = false;
+                                                $("#E" + Eunits[enemyindex].index).removeClass("Invisible");
+                                                $("#TEXT").append("The wraith phased back in.")
+                                            }
+                                            var tempran= Math.floor((Math.random() * 2) + 1);
+                                            if(units[selectedindex].abilityelementalailments===true && tempran===2){
+                                                Eunits[enemyindex].blind=2;
+                                                showailments();
+                                            }
+                                            setTimeout(function(){Damaging(enemyindex, damage)},500);
+                                            
+                                            $("#battlebackground").append("<div class='Effects' style='top: " + units[selectedindex].curtop +"px; left: " + units[selectedindex].curleft +"px'><img src='../Pictures/Effects/EffectFire.gif' /></div>");
+                                            $(".Effects").animate({
+                                                left: Eunits[enemyindex].curleft + "px",
+                                                top: Eunits[enemyindex].curtop + "px"
+                                            },500).fadeOut(500);
+                                            keepgoing-=1;
+                                            Fire.play();
+                                        },i*1000)
+                                        
+                                    }
+                            
+                                    units[selectedindex].usedaction = true;
+                                    setTimeout(function(){
+                                        inanimation=false;
+                                    },1000*blows)
+//                            //effects
                             setTimeout(function(){
                                 $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
                                 $("#" + selectedindex).append("<img style='margin-left:20px;margin-top:-160px' class='effect' src='../Pictures/Effects/Wizard_effect.gif' />")
@@ -9219,18 +9235,7 @@ function clearspaces(e){
                                 $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
                                 $(".effect").remove();
                             },1000)
-
-                            while(keepgoing>0){
-                                $("#battlebackground").append("<div class='Effects' style='top: " + units[selectedindex].curtop +"px; left: " + units[selectedindex].curleft +"px'><img src='../Pictures/Effects/EffectFire.gif' /></div>");
-                                $(".Effects").animate({
-                                    left: Eunits[enemyindex].curleft + "px",
-                                    top: Eunits[enemyindex].curtop + "px"
-                                },500*keepgoing).fadeOut(500 *keepgoing);
-                                keepgoing-=1;
-                                Fire.play();
-                            }
-                            units[selectedindex].charge = 0;
-
+                            units[selectedindex].charge=0;
                         }
                         //gust
                         if ($('#wizardchoice option:selected').text() === "Gust(1)"  || e.options[e.selectedIndex].value==="Gust(1)") {
@@ -9385,8 +9390,7 @@ function clearspaces(e){
                             units[selectedindex].usedaction = true;
                             $(".manabar").remove();
                             $("#" + selectedindex).append('<div class="manabar" id ="EB' + units[selectedindex].index + '"style="width: ' + (sorcerermana) + '%"></div>');
-                        }
-                        
+                        }   
                         //Ultimate
                         if ($('#sorcererchoice option:selected').text() === "Ultimate"  || e.options[e.selectedIndex].value==="Ultimate") {
 
@@ -9455,11 +9459,6 @@ function clearspaces(e){
                                     Eunits[Eslots[i]].phasedout = false;
                                     $("#E" + Eunits[Eslots[i]].index).removeClass("Invisible");
                                     $("#TEXT").append("The wraith phased back in.")
-                                }
-                                var tempran= Math.floor((Math.random() * 2) + 1);
-                                if(units[selectedindex].abilityelementalailments===true && tempran===2){
-                                    Eunits[Eslots[i]].sleep=1;
-                                    showailments();
                                 }
                                 Damaging(Eslots[i], damage);
                             }
@@ -9697,12 +9696,11 @@ function clearspaces(e){
                             units[selectedindex].usedaction = true;
                             stormcheck();
                         }
-                        if($('#enchantresschoice option:selected').text()==="Ice_Fall(70)") {
+                        if($('#enchantresschoice option:selected').text()==="Ice_Fall(50)") {
                             if(units[selectedindex].mana<70){
-                                message("She requires at least 70 power to use Ice Fall");
+                                message("She requires at least 50 power to use Ice Fall");
                                 return;
                             }
-                            console.log("got hereee")
                             units[selectedindex].mana-=70;
                             $("#ORB" + selectedindex).remove();
                             $('#' + selectedindex).append('<img style="position: absolute; margin-top:40px; margin-left:-30px; width:48px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORB' + selectedindex + '" style="color: yellow; text-align: center; position: absolute; font-size:17px; margin-top:-27px; margin-left:50px; width:10px; height:10px ">' + units[selectedindex].mana +'</div>');
@@ -9845,7 +9843,7 @@ showailments();
                     if(e.options[e.selectedIndex].value==="Frostlord") {
                         $("#TEXT").empty();
                         if (frostlordrest > 0) {
-                            $("#TEXT").append("Frostlord still have to rest for another " + frostlordrest + " days.")
+                            $("#TEXT").append("Frostlord still have to rest for another " + frostlordrest + " turns.")
                             return;
                         }
 
@@ -9856,7 +9854,7 @@ showailments();
                         $("#battlebackground").append("<img class='totalbackground' src='../Pictures/Effects/Blizzard.gif' />");
                         Hurricane.play();
                         $(".totalbackground").fadeOut(4000);
-                            $("#TEXT").append("The Frostlord did ice damage to all enemies, and must now rest for 6 days.");
+                            $("#TEXT").append("The Frostlord did ice damage to all enemies, and must now rest for 6 Turns.");
                             frostlordrest = 6;
 
 
@@ -9879,7 +9877,7 @@ showailments();
                     if(e.options[e.selectedIndex].value==="Demon") {
                         $("#TEXT").empty();
                         if(demonrest>0){
-                            $("#TEXT").append("The Demon still has to rest for another " + demonrest + " days.")
+                            $("#TEXT").append("The Demon still has to rest for another " + demonrest + " Turns.")
                             return;
                         }
 
@@ -9890,7 +9888,7 @@ showailments();
                         $("#battlebackground").append("<img class='totalbackground' src='../Pictures/Enemies/Demon.gif' />");
 
                         $(".totalbackground").fadeOut(4000);
-                            $("#TEXT").append("The Demon did fire damage to all enemies, and must now rest for 8 days.");
+                            $("#TEXT").append("The Demon did fire damage to all enemies, and must now rest for 8 turns.");
                             demonrest=8;
                         for(var i = 1;i<6;i++){
                             if(Eunits[Eslots[i]].alive===true){
@@ -9944,9 +9942,15 @@ showailments();
                                 break;
                         }
                        updateHeader(); 
+                        success.play()
+                        setTimeout(function(){
+                            success.pause()
+                        },3000)
+                        
                         capturedAll(Eunits[enemyindex].name);
                     } else{
                         $("#TEXT").append(units[selectedindex].name + " has failed to capture the " + Eunits[enemyindex].name)
+                        fail.play()
                     }
                  units[selectedindex].usedaction = true;
                 }
@@ -10195,10 +10199,10 @@ showailments();
                             return;
                         }
                         units[selectedindex].mana-=100;
-                        setTimeout(function(){
+
                                 $("#ORB" + selectedindex).remove();
                                $('#' + selectedindex).append('<img style="position: absolute; margin-top:40px; margin-left:-30px; width:48px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORB' + selectedindex + '" style="color: yellow; position: absolute; font-size:17px; margin-top:-27px; margin-left:50px; width:10px; height:10px ">' + units[selectedindex].mana +'</div>');
-                        },100)
+
 
                         var temp3=this.id;
                         for (var j = 0; j < index; j++) {
@@ -10344,21 +10348,22 @@ showailments();
                         $("#TEXT").append("<p>The Enchantress learned 'STORM'. It summons a storm cloud that helps for the rest of the battle. Costs 30 mana</p>");
                         break;
                     case 3:
+                        units[curindex].abilityiceFall=true;
+                        $("#TEXT").append("<p>The Enchantress learned 'Ice Fall'. Summons an ice sickle to fall on a random enemy every turn. Costs 50 mana.</p>");
+                        break;
+                    case 4:
                         units[curindex].abilitytorment=true;
                         $("#TEXT").append("<p>The Enchantress learned 'TORMENT'. Use to give an enemy sleep, poison, and enfeeble for 2 turns. Costs 50 mana.</p>");
                         break;
-                    case 4:
-                        units[curindex].abilityiceFall=true;
-                        $("#TEXT").append("<p>The Enchantress learned 'Ice Fall'. Summons an ice sickle to fall on a random enemy every turn.</p>");
-                        break;
                     case 5:
+                        units[curindex].abilityfireCircle=true;
+                        $("#TEXT").append("<p>The Enchantress learned 'Fire Circle'. Use it on an ally to give a fire circle that will damage enemies around it every turn.Costs 50 mana.</p>");
+                        break;
+                    case 6:
                         units[curindex].abilitybestow=true;
                         $("#TEXT").append("<p>The Enchantress learned 'Bestow'. Uses to double the attack, and make invincible an ally for a turn. Costs 50 mana</p>");
                         break;
-                    case 6:
-                        units[curindex].abilityreplenish=true;
-                        $("#TEXT").append("<p>The Enchantress learned 'Replenish'. Use it on an ally to restore arrows, charge, energy, or power. Costs 100 mana</p>");
-                        break;
+
                 }
             }
             if(units[curindex].type==="Healer"){
@@ -10418,7 +10423,7 @@ showailments();
                         break;
                     case 3:
                         units[curindex].abilitymissile=true;
-                        $("#TEXT").append("<p>The Wizard learned 'MISSILE'. Deals fire, magic damage times the current charge to any enemy.</p>");
+                        $("#TEXT").append("<p>The Wizard learned 'MISSILE'. Deals fire, magic damage times the current charge to any enemy in a straight line.</p>");
                         break;
                     case 4:
                         units[curindex].abilityelementalailments=true;
@@ -10563,7 +10568,6 @@ showailments();
         }
     }
     function gameover(){
-        console.log("gameover")
         gameoverset=true;
             $(".areas").remove();
                 $('#Pass').remove();
@@ -10616,7 +10620,7 @@ function clickactionbuttons(){
             if(e.options[e.selectedIndex].value==="Angel") {
                 $("#TEXT").empty();
                 if(angelrest>0){
-                    $("#TEXT").append("The angel still has to rest for another " + angelrest + " days.")
+                    $("#TEXT").append("The angel still has to rest for another " + angelrest + " turns.")
                     return;
                 }
 
@@ -10626,7 +10630,7 @@ function clickactionbuttons(){
                 }
                 $("#battlebackground").append("<img class='totalbackground' src='../Pictures/Enemies/Angel.gif' />");
                 $(".totalbackground").fadeOut(4000);
-                    $("#TEXT").append("The Angel did healed all your allies, and must now rest for 8 days.");
+                    $("#TEXT").append("The Angel did healed all your allies, and must now rest for 8 turns.");
                     angelrest=8;
                 for(var i = 1;i<4;i++){
                     if(units[slots[i]].alive===true){
@@ -10640,7 +10644,7 @@ function clickactionbuttons(){
             if(e.options[e.selectedIndex].value==="Djinn") {
                 $("#TEXT").empty();
                 if(djinnrest>0){
-                    $("#TEXT").append("The djinn still has to rest for another " + djinnrest + " days.")
+                    $("#TEXT").append("The djinn still has to rest for another " + djinnrest + " turns.")
                     return;
                 }
                 $(".button").remove();
@@ -10702,7 +10706,7 @@ function clickactionbuttons(){
                 $("#TEXT").append("<p>" + units[selectedindex].name + " has already used an action this turn</p>");
                 return;
             }
-            $("#TEXT").append("<p>" + units[selectedindex].name + " escaped and will return to the capitol in " + (1+difflevel) + " days.\n</p>");
+            $("#TEXT").append("<p>" + units[selectedindex].name + " escaped and will return to the nexus in " + (1+difflevel) + " turns.\n</p>");
             units[selectedindex].enroute=1+difflevel;
             $("#" + selectedindex).remove();
             units[selectedindex].group=0;
@@ -10848,6 +10852,10 @@ function clickactionbuttons(){
 function passturnbutton(){
         $('.actionbutton').click(function () {
             enemyturn($(this).attr('id'));
+            
+                if (typeof indiv_passTurn == 'function' && $(this).attr('id')=="PassTurn"){
+                     indiv_passTurn();
+                }
         })//end of action button
     }
                                 var damagenum=0;
@@ -10864,7 +10872,7 @@ function enemyturn(selectedactions){
 
     selectedaction = selectedactions;
     if (selectedaction === "PassTurn") {
-    selectedindex=-1;
+        selectedindex=-1;
         //reset allies
         $("#TEXT").empty();
         for (var i = 0; i < index; i++) {
@@ -10942,6 +10950,7 @@ function enemyturn(selectedactions){
             curenemynum=5
         }
         //enemies turns/////////////////////////////////////////////////////
+        firecheck()
         for (var y = 1; y < curenemynum+1; y++) {
 
             Eunits[Eslots[y]].moved=false;
@@ -11102,422 +11111,185 @@ function enemyturn(selectedactions){
                         }
                     }
                     findenemy();
-
-                    function warriorwhotoattack(type) {
-
-                        if ((enemyonbottom === type) && (Eunits[Eslots[y]].usedaction === false)) {
-                            if (Eunits[Eslots[y]].moved===true) {
-                                attackthisone = enemyonbottomindex;
-                                var damage = Eunits[Eslots[y]].attack - units[attackthisone].defense - units[attackthisone].defensetempboost;
-                                if (damage < 0) {
-                                    damage = 0
-                                }
-                                $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                                Damaging(damage, attackthisone)
-                                $(".slashEffects").fadeOut(2000);
-                                countering(attackthisone,y)
-                                Sword.play();
-                                if (units[attackthisone].health <= 0) {
-                                    Dies(enemyonbottom, attackthisone);
-                                    units[attackthisone].curleft = 10000;
-                                    units[attackthisone].curtop = 10000;
-                                }
-                                Eunits[Eslots[y]].usedaction = true;
-
-                            } else {
-                                attackthisone = enemyonbottomindex;
-                                var damage = 2*(Eunits[Eslots[y]].attack) - units[attackthisone].defense- units[attackthisone].defensetempboost;
-                                if (damage < 0) {
-                                    damage = 0
-                                }
-                                Eunits[Eslots[y]].usedspecial=true;
-                                $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                                Damaging(damage, attackthisone)
-                                $(".slashEffects").fadeOut(2000);
-                                if (units[attackthisone].health <= 0) {
-                                    Dies(enemyonbottom, attackthisone);
-                                    units[attackthisone].curleft = 10000;
-                                    units[attackthisone].curtop = 10000;
-                                }
-                                Eunits[Eslots[y]].usedaction = true;
-                            }
+                    
+                    function lowestD(){
+                        findenemy();
+                        var lowest = -1
+                        units[lowest].defense=100;
+                        if(enemyonrightindex != -1 || enemyonright!="Invisible"){
+                            lowest = enemyonrightindex
                         }
-                        if ((enemyonright === type) && (Eunits[Eslots[y]].usedaction === false)) {
-                            if (Eunits[Eslots[y]].moved === true) {
-                                attackthisone = enemyonrightindex;
+                        if(enemyontopindex != -1 && units[enemyontopindex].defense<units[lowest].defense && enemyontop!="Invisible"){
+                            lowest = enemyontopindex
+                        }
+                        if(enemyonleftindex != -1 && units[enemyonleftindex].defense<units[lowest].defense && enemyonleft!="Invisible"){
+                            lowest = enemyonleftindex
+                        }
+                        if(enemyonbottomindex != -1 && units[enemyonbottomindex].defense<units[lowest].defense && enemyonbottom!="Invisible"){
+                            lowest = enemyonbottomindex
+                        }
+                        return lowest;
+                    }
+                    function lowestR(){
+                        findenemy();
+                        var lowest = -1
+                        units[lowest].resistance=100;
+                        if(enemyonrightindex != -1 || enemyonright!="Invisible"){
+                            lowest = enemyonrightindex
+                        }
+                        if(enemyontopindex != -1 && units[enemyontopindex].resistance<units[lowest].resistance && enemyontop!="Invisible"){
+                            lowest = enemyontopindex
+                        }
+                        if(enemyonleftindex != -1 && units[enemyonleftindex].resistance<units[lowest].resistance && enemyonleft!="Invisible"){
+                            lowest = enemyonleftindex
+                        }
+                        if(enemyonbottomindex != -1 && units[enemyonbottomindex].resistance<units[lowest].resistance && enemyonbottom!="Invisible"){
+                            lowest = enemyonbottomindex
+                        }
+                        return lowest;
+                    }
+                    
+                    function closePattack() {
+                            var attackthisone = lowestD();
+                        if(Eunits[Eslots[y]].blind==0){
+                            if(attackthisone>-1 && Eunits[Eslots[y]].usedaction == false){
                                 var damage = Eunits[Eslots[y]].attack - units[attackthisone].defense- units[attackthisone].defensetempboost;
+                                //warrior
+                                if(Eunits[Eslots[y]].type=="Warrior" && Eunits[Eslots[y]].moved==false){
+                                    damage=damage*2;
+                                }
                                 if (damage < 0) {
                                     damage = 0
                                 }
-                                Sword.play();
+                                
+                                //sound
+                                if(Eunits[Eslots[y]].type=="Bear" || Eunits[Eslots[y]].type=="Wolf"){
+                                    Dogbite.play();
+                                }else if(Eunits[Eslots[y]].type=="Vampire"){
+                                    Vampirebite.play();
+                                }else{
+                                    Sword.play();
+                                }
+                                
+                                //bear
+                                if(Eunits[Eslots[y]].type=="Bear"){
+                                    var temprand= Math.floor((Math.random() * 2) + 1);
+                                    if(temprand===2 && units[attackthisone].abilityimmunity!=true && units[units[attackthisone].protectedby].abilityimmunity!=true){
+                                        units[attackthisone].blind=2;
+                                        $("#TEXT").append(units[attackthisone].name + " has been blinded for " + units[attackthisone].blind + " turns.")
+                                    }
+                                }
+                                //vampire
+                                if(Eunits[Eslots[y]].type=="Vampire"){
+                                    $("#TEXT").append("<p>" + Eunits[Eslots[y]].name + " gained " + damage + " life from the attack.</p>");
+                                    Eunits[Eslots[y]].health += damage;
+                                    if(Eunits[Eslots[y]].health>Eunits[Eslots[y]].maxhealth){Eunits[Eslots[y]].health=Eunits[Eslots[y]].maxhealth}
+                                    $("#EHB" + Eunits[Eslots[y]].index).remove();
+                                    $("#E"+Eunits[Eslots[y]].index).append('<div class="healthbar" id ="EHB'+ Eunits[Eslots[y]].index + '"style="width: ' + (Eunits[Eslots[y]].health/Eunits[Eslots[y]].maxhealth)*100 + '%"></div>');
+                                }
+                                
                                 $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
                                 Damaging(damage, attackthisone)
                                 $(".slashEffects").fadeOut(2000);
                                 countering(attackthisone,y)
-                                if (units[attackthisone].health <= 0) {
-                                    Dies(enemyonright, attackthisone);
-                                    units[attackthisone].curleft = 10000;
-                                    units[attackthisone].curtop = 10000;
-                                }
-                                Eunits[Eslots[y]].usedaction = true;
-                            }else {
-                                attackthisone = enemyonrightindex;
-                                var damage = 2*(Eunits[Eslots[y]].attack) - units[attackthisone].defense- units[attackthisone].defensetempboost;
-                                if (damage < 0) {
-                                    damage = 0
-                                }
-                                Eunits[Eslots[y]].usedspecial=true;
-                                $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                                Damaging(damage, attackthisone)
-                                $(".slashEffects").fadeOut(2000);
-                                if (units[attackthisone].health <= 0) {
-                                    Dies(enemyonbottom, attackthisone);
-                                    units[attackthisone].curleft = 10000;
-                                    units[attackthisone].curtop = 10000;
-                                }
-                                Eunits[Eslots[y]].usedaction = true;
-                            }
-                        }
-                        if ((enemyonleft === type) && (Eunits[Eslots[y]].usedaction === false)) {
-                            if (Eunits[Eslots[y]].moved === true) {
-                                attackthisone = enemyonleftindex;
-                                var damage = Eunits[Eslots[y]].attack - units[attackthisone].defense- units[attackthisone].defensetempboost;
-                                if (damage < 0) {
-                                    damage = 0
-                                }
-                                Sword.play();
-                                $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                                Damaging(damage, attackthisone)
-                                $(".slashEffects").fadeOut(2000);
-                                countering(attackthisone,y)
-                                if (units[attackthisone].health <= 0) {
-                                    Dies(enemyonleft, attackthisone)
-                                    units[attackthisone].curleft = 10000;
-                                    units[attackthisone].curtop = 10000;
-                                }
-                                Eunits[Eslots[y]].usedaction = true;
-                            } else {
-                                attackthisone = enemyonleftindex;
-                                var damage = 2*(Eunits[Eslots[y]].attack) - units[attackthisone].defense- units[attackthisone].defensetempboost;
-                                if (damage < 0) {
-                                    damage = 0
-                                }
-                                Eunits[Eslots[y]].usedspecial=true;
-                                $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                                Damaging(damage, attackthisone)
-                                $(".slashEffects").fadeOut(2000);
-                                if (units[attackthisone].health <= 0) {
-                                    Dies(enemyonbottom, attackthisone);
-                                    units[attackthisone].curleft = 10000;
-                                    units[attackthisone].curtop = 10000;
-                                }
-                                Eunits[Eslots[y]].usedaction = true;
-                            }
-                        }
-                        if ((enemyontop === type) && (Eunits[Eslots[y]].usedaction === false)) {
-                            if (Eunits[Eslots[y]].moved === true) {
-                                attackthisone = enemyontopindex;
-                                var damage = Eunits[Eslots[y]].attack - units[attackthisone].defense- units[attackthisone].defensetempboost;
-                                if (damage < 0) {
-                                    damage = 0
-                                }
-                                Sword.play();
-                                $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                                Damaging(damage, attackthisone)
-                                $(".slashEffects").fadeOut(2000);
-                                countering(attackthisone,y)
-                                if (units[attackthisone].health <= 0) {
-                                    Dies(enemyontop, attackthisone);
-                                    units[attackthisone].curleft = 10000;
-                                    units[attackthisone].curtop = 10000;
-                                }
-                                Eunits[Eslots[y]].usedaction = true;
-                            } else {
-                                attackthisone = enemyontopindex;
-                                var damage = 2*(Eunits[Eslots[y]].attack) - units[attackthisone].defense;
-                                if (damage < 0) {
-                                    damage = 0
-                                }
-                                Eunits[Eslots[y]].usedspecial=true;
-                                $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                                Damaging(damage, attackthisone)
-                                $(".slashEffects").fadeOut(2000);
-                                if (units[attackthisone].health <= 0) {
-                                    Dies(enemyonbottom, attackthisone);
-                                    units[attackthisone].curleft = 10000;
-                                    units[attackthisone].curtop = 10000;
-                                }
-                                units[Eslots[y]].usedaction = true;
-                            }
-                        }
-                    }//end of who to attack function
-                    function goblinwhotoattack(type) {
-                        if ((enemyonbottom === type) && (Eunits[Eslots[y]].usedaction === false)) {
-                            attackthisone = enemyonbottomindex;
-                            var damage = Eunits[Eslots[y]].attack - units[attackthisone].defense- units[attackthisone].defensetempboost;
-                            if (damage < 0) {
-                                damage = 0
-                            }
-                            Sword.play();
-                            $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                            Damaging(damage, attackthisone)
-                            $(".slashEffects").fadeOut(2000);
-                            countering(attackthisone,y)
-                            Eunits[Eslots[y]].usedaction = true;
-                        }
-                        if ((enemyonright === type) && (Eunits[Eslots[y]].usedaction === false)) {
-                            attackthisone = enemyonrightindex;
-                            var damage = Eunits[Eslots[y]].attack - units[attackthisone].defense- units[attackthisone].defensetempboost;
-                            if (damage < 0) {
-                                damage = 0
-                            }
-                            Sword.play();
-                            $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                            Damaging(damage, attackthisone)
-                            $(".slashEffects").fadeOut(2000);
-                            countering(attackthisone,y)
-                            if (units[attackthisone].health <= 0) {
-                                Dies(enemyonright, attackthisone);
-                                units[attackthisone].curleft = 10000;
-                                units[attackthisone].curtop = 10000;
-                            }
-                            Eunits[Eslots[y]].usedaction = true;
-                        }
-                        if ((enemyonleft === type) && (Eunits[Eslots[y]].usedaction === false)) {
-                            attackthisone = enemyonleftindex;
-                            var damage = Eunits[Eslots[y]].attack - units[attackthisone].defense- units[attackthisone].defensetempboost;
-                            if (damage < 0) {
-                                damage = 0
-                            }
-                            Sword.play();
-                            $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                            Damaging(damage, attackthisone)
-                            $(".slashEffects").fadeOut(2000);
-                            countering(attackthisone,y)
-                            if (units[attackthisone].health <= 0) {
-                                Dies(enemyonleft, attackthisone)
-                                units[attackthisone].curleft = 10000;
-                                units[attackthisone].curtop = 10000;
-                            }
-                            Eunits[Eslots[y]].usedaction = true;
-                        }
-                        if ((enemyontop === type) && (Eunits[Eslots[y]].usedaction === false)) {
-                            attackthisone = enemyontopindex;
-                            var damage = Eunits[Eslots[y]].attack - units[attackthisone].defense- units[attackthisone].defensetempboost;
-                            if (damage < 0) {
-                                damage = 0
-                            }
-                            Sword.play();
-                            $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                            Damaging(damage, attackthisone)
-                            $(".slashEffects").fadeOut(2000);
-                            countering(attackthisone,y)
-                            if (units[attackthisone].health <= 0) {
-                                Dies(enemyontop, attackthisone);
-                                units[attackthisone].curleft = 10000;
-                                units[attackthisone].curtop = 10000;
-                            }
-                            Eunits[Eslots[y]].usedaction = true;
-                        }
-
-                    }//end of who to attack function
-                    function bearwhotoattack(type) {
-                        var temprand= Math.floor((Math.random() * 2) + 1);
-                        if ((enemyonbottom === type) && (Eunits[Eslots[y]].usedaction === false)) {
-                            attackthisone = enemyonbottomindex;
-                            var damage = Eunits[Eslots[y]].attack - units[attackthisone].defense- units[attackthisone].defensetempboost;
-                            if (damage < 0) {
-                                damage = 0
-                            }
-                            Dogbite.play();
-                            $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                            Damaging(damage, attackthisone)
-                            $(".slashEffects").fadeOut(2000);
-                            countering(attackthisone,y)
-                            Eunits[Eslots[y]].usedaction = true;
-                            if(temprand===2 && units[attackthisone].abilityimmunity!=true  && units[units[attackthisone].protectedby].abilityimmunity!=true && units[attackthisone].accessory!="Ribbon"){
-                                units[attackthisone].blind=2;
-                                $("#TEXT").append(units[attackthisone].name + " has been blinded for " + units[attackthisone].blind + " turns.")
-                            }
-                        }
-                        if ((enemyonright === type) && (Eunits[Eslots[y]].usedaction === false)) {
-                            attackthisone = enemyonrightindex;
-                            var damage = Eunits[Eslots[y]].attack - units[attackthisone].defense- units[attackthisone].defensetempboost;
-                            if (damage < 0) {
-                                damage = 0
-                            }
-                            Dogbite.play();
-
-                            $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                            Damaging(damage, attackthisone)
-                            $(".slashEffects").fadeOut(2000);
-                            countering(attackthisone,y)
-                            if (units[attackthisone].health <= 0) {
-                                Dies(enemyonright, attackthisone);
-                                units[attackthisone].curleft = 10000;
-                                units[attackthisone].curtop = 10000;
-                            }
-                            Eunits[Eslots[y]].usedaction = true;
-                            if(temprand===2 && units[attackthisone].abilityimmunity!=true  && units[units[attackthisone].protectedby].abilityimmunity!=true && units[attackthisone].accessory!="Ribbon"){
-                                units[attackthisone].blind=2;
-                                $("#TEXT").append(units[attackthisone].name + " has been blinded for " + units[attackthisone].blind + " turns.")
-                            }
-                        }
-                        if ((enemyonleft === type) && (Eunits[Eslots[y]].usedaction === false)) {
-                            attackthisone = enemyonleftindex;
-                            var damage = Eunits[Eslots[y]].attack - units[attackthisone].defense- units[attackthisone].defensetempboost;
-                            if (damage < 0) {
-                                damage = 0
-                            }
-                            Dogbite.play();
-                            $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                            Damaging(damage, attackthisone)
-                            $(".slashEffects").fadeOut(2000);
-                            countering(attackthisone,y)
-                            if (units[attackthisone].health <= 0) {
-                                Dies(enemyonleft, attackthisone)
-                                units[attackthisone].curleft = 10000;
-                                units[attackthisone].curtop = 10000;
-                            }
-                            Eunits[Eslots[y]].usedaction = true;
-                            if(temprand===2 && units[attackthisone].abilityimmunity!=true  && units[units[attackthisone].protectedby].abilityimmunity!=true && units[attackthisone].accessory!="Ribbon"){
-                                units[attackthisone].blind=2;
-                                $("#TEXT").append(units[attackthisone].name + " has been blinded for " + units[attackthisone].blind + " turns.")
-                            }
-                        }
-                        if ((enemyontop === type) && (Eunits[Eslots[y]].usedaction === false)) {
-                            attackthisone = enemyontopindex;
-                            var damage = Eunits[Eslots[y]].attack - Eunits[attackthisone].defense- units[attackthisone].defensetempboost;
-                            if (damage < 0) {
-                                damage = 0
-                            }
-                            Dogbite.play();
-                            $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                            Damaging(damage, attackthisone)
-                            $(".slashEffects").fadeOut(2000);
-                            countering(attackthisone,y)
-                            if (units[attackthisone].health <= 0) {
-                                Dies(enemyontop, attackthisone);
-                                units[attackthisone].curleft = 10000;
-                                units[attackthisone].curtop = 10000;
-                            }
-                            Eunits[Eslots[y]].usedaction = true;
-                            if(temprand===2 && units[attackthisone].abilityimmunity!=true && units[units[attackthisone].protectedby].abilityimmunity!=true && units[attackthisone].accessory!="Ribbon"){
-                                units[attackthisone].blind=2;
-                                $("#TEXT").append(units[attackthisone].name + " has been blinded for " + units[attackthisone].blind + " turns.")
-                            }
-                        }
-                    }//end of who to attack function
-                    function vampirewhotoattack(type) {
-                        if ((enemyonbottom === type) && (Eunits[Eslots[y]].usedaction === false)) {
-                            attackthisone = enemyonbottomindex;
-                            var damage = Eunits[Eslots[y]].attack - units[attackthisone].defense- units[attackthisone].defensetempboost;
-                            if (damage < 0) {
-                                damage = 0
-                            }
-                            $("#TEXT").append("<p>" + Eunits[Eslots[y]].name + " gained " + damage + " life from the attack.</p>");
-                            Eunits[Eslots[y]].health += damage;
-                            if(Eunits[Eslots[y]].health>Eunits[Eslots[y]].maxhealth){Eunits[Eslots[y]].health=Eunits[Eslots[y]].maxhealth}
-                            $("#EHB" + Eunits[Eslots[y]].index).remove();
-                            $("#E"+Eunits[Eslots[y]].index).append('<div class="healthbar" id ="EHB'+ Eunits[Eslots[y]].index + '"style="width: ' + (Eunits[Eslots[y]].health/Eunits[Eslots[y]].maxhealth)*100 + '%"></div>');
-                            Vampirebite.play();
-                            $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                            Damaging(damage, attackthisone)
-                            $(".slashEffects").fadeOut(2000);
-                            countering(attackthisone,y)
-                            if (units[attackthisone].health <= 0) {
-                                Dies(enemyonbottom, attackthisone);
-                                units[attackthisone].curleft = 10000;
-                                units[attackthisone].curtop = 10000;
-                            }
-                            Eunits[Eslots[y]].usedaction = true;
-                        }
-                        if (enemyonright === type && (Eunits[Eslots[y]].usedaction === false)) {
-                            attackthisone = enemyonrightindex;
-                            var damage = Eunits[Eslots[y]].attack - units[attackthisone].defense- units[attackthisone].defensetempboost;
-                            if (damage < 0) {
-                                damage = 0
-                            }
-                            ;
-                            $("#TEXT").append("<p>" + Eunits[Eslots[y]].name + " gained " + damage + " life from the attack.</p>");
-                            Eunits[Eslots[y]].health += damage;
-                            if(Eunits[Eslots[y]].health>Eunits[Eslots[y]].maxhealth){Eunits[Eslots[y]].health=Eunits[Eslots[y]].maxhealth}
-                            $("#EHB" + Eunits[Eslots[y]].index).remove();
-                            $("#E"+Eunits[Eslots[y]].index).append('<div class="healthbar" id ="EHB'+ Eunits[Eslots[y]].index + '"style="width: ' + (Eunits[Eslots[y]].health/Eunits[Eslots[y]].maxhealth)*100 + '%"></div>');
-                            Vampirebite.play();
-                            $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                            Damaging(damage, attackthisone)
-                            $(".slashEffects").fadeOut(2000);
-                            countering(attackthisone,y)
-                            if (units[attackthisone].health <= 0) {
-                                Dies(enemyonright, attackthisone);
-                                units[attackthisone].curleft = 10000;
-                                units[attackthisone].curtop = 10000;
-                            }
-                            Eunits[Eslots[y]].usedaction = true;
-                        }
-                        if (enemyonleft === type && (Eunits[Eslots[y]].usedaction === false)) {
-                            attackthisone = enemyonleftindex;
-                            var damage = Eunits[Eslots[y]].attack - units[attackthisone].defense- units[attackthisone].defensetempboost;
-                            if (damage < 0) {
-                                damage = 0
-                            }
-                            ;
-                            $("#TEXT").append("<p>" + Eunits[Eslots[y]].name + " gained " + damage + " life from the attack.</p>");
-                            Eunits[Eslots[y]].health += damage;
-                            if(Eunits[Eslots[y]].health>Eunits[Eslots[y]].maxhealth){Eunits[Eslots[y]].health=Eunits[Eslots[y]].maxhealth}
-                            $("#EHB" + Eunits[Eslots[y]].index).remove();
-                            $("#E"+Eunits[Eslots[y]].index).append('<div class="healthbar" id ="EHB'+ Eunits[Eslots[y]].index + '"style="width: ' + (Eunits[Eslots[y]].health/Eunits[Eslots[y]].maxhealth)*100 + '%"></div>');
-                            Vampirebite.play();
-                            $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                            Damaging(damage, attackthisone)
-                            $(".slashEffects").fadeOut(2000);
-                            countering(attackthisone,y)
-                            if (units[attackthisone].health <= 0) {
-                                Dies(enemyonleft, attackthisone)
-                                units[attackthisone].curleft = 10000;
-                                units[attackthisone].curtop = 10000;
-                            }
-                            Eunits[Eslots[y]].usedaction = true;
-                        }
-                        if (enemyontop === type && (Eunits[Eslots[y]].usedaction === false)) {
-                            attackthisone = enemyontopindex;
-                            var damage = Eunits[Eslots[y]].attack - Eunits[attackthisone].defense- units[attackthisone].defensetempboost;
-                            if (damage < 0) {
-                                damage = 0
-                            }
-                            $("#TEXT").append("<p>" + Eunits[Eslots[y]].name + " gained " + damage + " life from the attack.</p>");
-                            Eunits[Eslots[y]].health += damage;
-                            if(Eunits[Eslots[y]].health>Eunits[Eslots[y]].maxhealth){Eunits[Eslots[y]].health=Eunits[Eslots[y]].maxhealth}
-                            $("#EHB" + Eunits[Eslots[y]].index).remove();
-                            $("#E"+Eunits[Eslots[y]].index).append('<div class="healthbar" id ="EHB'+ Eunits[Eslots[y]].index + '"style="width: ' + (Eunits[Eslots[y]].health/Eunits[Eslots[y]].maxhealth)*100 + '%"></div>');
-                            Vampirebite.play();
-                            $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                            Damaging(damage, attackthisone)
-                            $(".slashEffects").fadeOut(2000);
-                            countering(attackthisone,y)
-                            if (units[attackthisone].health <= 0) {
-                                Dies(enemyontop, attackthisone);
-                                units[attackthisone].curleft = 10000;
-                                units[attackthisone].curtop = 10000;
-                            }
-                            Eunits[Eslots[y]].usedaction = true;
-                        }
-                    }//end of who to attack function
-                    function rangedwhotoattack(type) {
-                        for (var x = 1; x < 4; x++) {
-                            if (units[slots[x]].type === type && Eunits[Eslots[y]].usedaction === false && units[slots[x]].alive===true) {
-                                var damage = Eunits[Eslots[y]].attack - units[slots[x]].defense- units[attackthisone].defensetempboost;
-                                if (damage < 0) {
-                                    damage = 0
-                                }
-                                Arrow.play();
-                             shootarrow(slots[x],Eslots[y]);
-                                Damaging(damage, slots[x])
                                 Eunits[Eslots[y]].usedaction = true;
                             }
                         }
                     }
+                    function closeMattack() {
+                            var attackthisone = lowestR();
+                        if(Eunits[Eslots[y]].silence==0){
+                            if(attackthisone>-1 && Eunits[Eslots[y]].usedaction == false){
+                                var damage = Eunits[Eslots[y]].attack - units[attackthisone].resistance- units[attackthisone].defensetempboost;
+                                if (damage < 0) {
+                                    damage = 0
+                                }
+                                    Sword.play();
+                                $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
+                                Damaging(damage, attackthisone)
+                                $(".slashEffects").fadeOut(2000);
+                                countering(attackthisone,y)
+                                Eunits[Eslots[y]].usedaction = true;
+                            }
+                        }
+                    }
+                    
+                    function rangedPattack(){
+                        var lowest=-1;
+                        var lowestD = 100
+                        if(Eunits[Eslots[y]].blind==0){
+                            for(var i = 1;i<4;i++){
+                                if(units[slots[i]] != -1 && units[slots[i]].type!="Invisible" && units[slots[i]].defense<lowestD && units[slots[i]].health>0){
+                                    lowest = slots[i];
+                                    lowestD=units[slots[i]].defense;
+                                }
+                            }
+                            if(lowest>-1){
+                                var damage = Eunits[Eslots[y]].attack - units[lowest].defense- units[lowest].defensetempboost;
+                                if (damage < 0) {
+                                    damage = 0
+                                }
+                                Arrow.play();
+                                shootarrow(lowest,Eslots[y]);
+                                Damaging(damage, lowest)
+                                Eunits[Eslots[y]].usedaction = true;
+                            }
+                        }   
+                    }
+                    function rangedMattack(){
+                        var lowest=-1;
+                        var lowestR = 100
+                       if(Eunits[Eslots[y]].charge==Eunits[Eslots[y]].maxcharge){
+                            if(Eunits[Eslots[y]].silenced==0){
+                                for(var i = 1;i<4;i++){
+                                    if(units[slots[i]] != -1 && units[slots[i]].type!="Invisible" && units[slots[i]].resistance<lowestR && units[slots[i]].health>0){
+                                        lowest = slots[i];
+                                        lowestR=units[slots[i]].resistance;
+                                    }
+                                }
+                                if(lowest>-1){
+                                    var damage = Eunits[Eslots[y]].attack - units[lowest].resistance- units[lowest].defensetempboost;
+                                    if (damage < 0) {
+                                        damage = 0
+                                    }
+                                    if(Eunits[Eslots[y]].type == "Wizard" || Eunits[Eslots[y]].type == "Lightning Elemental"){
+                                        Lightning.play();
+                                        $("#battlebackground").append("<div class='staticEffects' style='margin-top: " + (units[lowest].curtop-750) +"px; margin-left: " + (units[lowest].curleft-100) +"px'><img src='../Pictures/Effects/EffectLightning.gif' /></div>");
+                                    $(".staticEffects").fadeOut(2000);
+                                    }
+                                    if(Eunits[Eslots[y]].type=="Fire Elemental"){
+                                        Fire.play();
+                                         $("#battlebackground").append("<div class='Effects' style='top: " +(Eunits[Eslots[y]].curtop) +"px; left: " + (Eunits[Eslots[y]].curleft) +"px'><img src='../Pictures/Effects/EffectFire.gif' /></div>");
+                                        $(".Effects").animate({
+                                            left: units[lowest].curleft + "px",
+                                                top: units[lowest].curtop + "px"
+                                        },500).fadeOut(500);
+                                    }
+                                    if(Eunits[Eslots[y]].type=="Wisp" || Eunits[Eslots[y]].type=="Frostwraith"){
+                                            Iceattack.play();
+                                            $("#battlebackground").append("<div class='Effects' style='top: " + Eunits[Eslots[y]].curtop +"px;left: " + Eunits[Eslots[y]].curleft +"px'><img src='../Pictures/Effects/EffectIce.gif' /></div>");
+                                            $(".Effects").animate({
+                                                left: units[lowest].curleft + "px",
+                                                top: units[lowest].curtop + "px"
+                                            },500).fadeOut(500);
+                                    }
+
+                                    Damaging(damage, lowest);
+                                    Eunits[Eslots[y]].charge -= Eunits[Eslots[y]].maxcharge;
+                                    //minus one to offset charging
+                                    Eunits[Eslots[y]].charge -= 1;
+                                    charging();
+                                    Eunits[Eslots[y]].usedaction = true;
+                                }
+                            } 
+                       }
+                        if (Eunits[Eslots[y]].usedaction === false) {
+                            charging();
+                        }
+  
+                    }
+                    
+
                     function spitterwhotoattack(type) {
                         for (var x = 1; x < slots.length; x++) {
                             if (units[slots[x]].type === type && Eunits[Eslots[y]].usedaction === false && units[slots[x]].alive===true && (units[slots[x]].curleft===Eunits[Eslots[y]].curleft || units[slots[x]].curtop===Eunits[Eslots[y]].curtop)) {
@@ -11550,13 +11322,50 @@ function enemyturn(selectedactions){
                                         $("#" + slots[x]).animate({
                                             top:units[slots[x]].curtop
                                         })
-                                        Hook.play();
+                                        if(Eunits[Eslots[y]].type=="Spider"){
+                                            Hook.play();
+                                            if (units[slots[x]].abilityimmunity != true  && units[units[slots[x]].protectedby].abilityimmunity!=true) {
+                                                units[slots[x]].poison += 3;
+                                                $("#TEXT").append(units[slots[x]].name + " has been poisoned.");
+                                                Paralyzesound.play();
+                                            } else{
+                                                $("#TEXT").append(units[slots[x]].name + " can't be poisoned.")
+                                            }
+                                        Eunits[Eslots[y]].usedaction = true;
+                                        $("#" + slots[x]).append("<div class='slashEffects' style='margin-left:10px'><img src='../Pictures/Effects/Web.gif' /></div>");
+                                        $(".slashEffects").fadeOut(2000);
+                                        }
                                     }
                                 }
 
                             }
                         }
                         findenemy();
+                        if(Eunits[Eslots[y]].type=="Vacuum"){
+                            goblinwhotoattack("Civilian");
+                            goblinwhotoattack("Sparrow");
+                            goblinwhotoattack("Wolf");
+                            goblinwhotoattack("Bear");
+                            goblinwhotoattack("Spider");
+                            goblinwhotoattack("Turtle");
+                            
+                            goblinwhotoattack("Wizard");
+                            goblinwhotoattack("Sorcerer");
+                            goblinwhotoattack("Enchantress");
+                            goblinwhotoattack("Healer");
+                            goblinwhotoattack("Templar");
+                            goblinwhotoattack("Archer");
+                            goblinwhotoattack("Rouge");
+                            goblinwhotoattack("Mimic");
+                            goblinwhotoattack("Mage");
+                            goblinwhotoattack("Thief");
+                            goblinwhotoattack("Soldier");
+                            goblinwhotoattack("Knight");
+                            goblinwhotoattack("Djinn");
+                            goblinwhotoattack("Guard");
+                            goblinwhotoattack("Golem");
+                        }
+                        
 
                         //poisoning
                         if(Eunits[Eslots[y]].type=="Spider"){
@@ -11604,78 +11413,7 @@ function enemyturn(selectedactions){
                                 }
                                 Eunits[Eslots[y]].usedaction = true;
                             }
-                            $("#" + attackthisone).append("<div class='slashEffects' style='margin-left:10px'><img src='../Pictures/Effects/Web.gif' /></div>");
-                            $(".slashEffects").fadeOut(2000);
-                        }
-                        //attacking
-                        if(Eunits[Eslots[y]].type=="Vacuum"){
-                            if ((enemyonbottom === type) && (Eunits[Eslots[y]].usedaction === false)) {
-                                attackthisone = enemyonbottomindex;
-                                var damage = Eunits[Eslots[y]].attack - units[attackthisone].defense- units[attackthisone].defensetempboost;
-                                if (damage < 0) {
-                                    damage = 0
-                                }
-                                Sword.play();
-                                $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                                Damaging(damage, attackthisone)
-                                $(".slashEffects").fadeOut(2000);
-                                countering(attackthisone,y)
-                                Eunits[Eslots[y]].usedaction = true;
-                            }
-                            if ((enemyonright === type) && (Eunits[Eslots[y]].usedaction === false)) {
-                                attackthisone = enemyonrightindex;
-                                var damage = Eunits[Eslots[y]].attack - units[attackthisone].defense- units[attackthisone].defensetempboost;
-                                if (damage < 0) {
-                                    damage = 0
-                                }
-                                Sword.play();
-                                $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                                Damaging(damage, attackthisone)
-                                $(".slashEffects").fadeOut(2000);
-                                countering(attackthisone,y)
-                                if (units[attackthisone].health <= 0) {
-                                    Dies(enemyonright, attackthisone);
-                                    units[attackthisone].curleft = 10000;
-                                    units[attackthisone].curtop = 10000;
-                                }
-                                Eunits[Eslots[y]].usedaction = true;
-                            }
-                            if ((enemyonleft === type) && (Eunits[Eslots[y]].usedaction === false)) {
-                                attackthisone = enemyonleftindex;
-                                var damage = Eunits[Eslots[y]].attack - units[attackthisone].defense- units[attackthisone].defensetempboost;
-                                if (damage < 0) {
-                                    damage = 0
-                                }
-                                Sword.play();
-                                $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                                Damaging(damage, attackthisone)
-                                $(".slashEffects").fadeOut(2000);
-                                countering(attackthisone,y)
-                                if (units[attackthisone].health <= 0) {
-                                    Dies(enemyonleft, attackthisone)
-                                    units[attackthisone].curleft = 10000;
-                                    units[attackthisone].curtop = 10000;
-                                }
-                                Eunits[Eslots[y]].usedaction = true;
-                            }
-                            if ((enemyontop === type) && (Eunits[Eslots[y]].usedaction === false)) {
-                                attackthisone = enemyontopindex;
-                                var damage = Eunits[Eslots[y]].attack - units[attackthisone].defense- units[attackthisone].defensetempboost;
-                                if (damage < 0) {
-                                    damage = 0
-                                }
-                                Sword.play();
-                                $("#" + attackthisone).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
-                                Damaging(damage, attackthisone)
-                                $(".slashEffects").fadeOut(2000);
-                                countering(attackthisone,y)
-                                if (units[attackthisone].health <= 0) {
-                                    Dies(enemyontop, attackthisone);
-                                    units[attackthisone].curleft = 10000;
-                                    units[attackthisone].curtop = 10000;
-                                }
-                                Eunits[Eslots[y]].usedaction = true;
-                            }
+
                         }
 
                     }//end of who to attack function
@@ -11923,34 +11661,6 @@ function enemyturn(selectedactions){
                             }
                         }
                     }
-
-                    function frostwraithwhotoattack(type) {
-                        for (var x = 1; x < slots.length; x++) {
-                            if (units[slots[x]].alive===true && units[slots[x]].type === type && (Eunits[Eslots[y]].usedaction === false)) {
-                                var res=1;
-                                if(units[slots[x]].accessory==="Elementward_Ring"){
-                                    res=.5;
-                                }
-                                var damage = parseInt((Eunits[Eslots[y]].attack - units[slots[x]].resistance- units[attackthisone].defensetempboost) * res);
-                                if (damage < 0) {
-                                    damage = 0
-                                }
-                                Iceattack.play();
-                                Damaging(damage, slots[x]);
-                                if (units[slots[x]].health <= 0) {
-                                    Dies(type, slots[x]);
-                                    units[slots[x]].curleft = 10000;
-                                    units[slots[x]].curtop = 10000;
-                                    units[slots[x]].type = "Dead";
-                                }
-                                Eunits[Eslots[y]].charge -= 1;
-                                //minus one to offset charging
-                                Eunits[Eslots[y]].charge -= 1;
-                                charging();
-                                Eunits[Eslots[y]].usedaction = true;
-                            }
-                        }
-                    }
                     function flamewraithwhotoattack() {
                         if ((Eunits[Eslots[y]].usedaction === false)) {
                             if(enemyonbottomindex!=-1){
@@ -12019,85 +11729,6 @@ function enemyturn(selectedactions){
 
                         }
                     }//end of who to attack function
-
-                    function lightningwhotoattack(type) {
-                        for (var x = 1; x < slots.length; x++) {
-                            if (units[slots[x]].alive===true && units[slots[x]].type === type && (Eunits[Eslots[y]].usedaction === false)) {
-                                var damage = Eunits[Eslots[y]].attack - units[slots[x]].resistance- units[attackthisone].defensetempboost;
-                                if (damage < 0) {
-                                    damage = 0
-                                }
-                                var res=1;
-                                if(units[slots[x]].accessory==="Elementward_Ring"){
-                                    res=.5;
-                                }
-                                damage = parseInt((damage) * res);
-                                Lightning.play();
-
-                                Damaging(damage, slots[x]);
-                                $("#battlebackground").append("<div class='staticEffects' style='margin-top: " + (units[slots[x]].curtop-750) +"px; margin-left: " + (units[slots[x]].curleft-100) +"px'><img src='../Pictures/Effects/EffectLightning.gif' /></div>");
-
-                                $(".staticEffects").fadeOut(2000);
-
-                                if (units[slots[x]].health <= 0) {
-                                    Dies(type, slots[x]);
-                                    units[slots[x]].curleft = 10000;
-                                    units[slots[x]].curtop = 10000;
-                                    units[slots[x]].type = "Dead";
-                                }
-                                Eunits[Eslots[y]].charge -= Eunits[Eslots[y]].maxcharge;
-                                Eunits[Eslots[y]].charge -= 1;
-                                charging();
-                                Eunits[Eslots[y]].usedaction = true;
-                            }
-                        }
-                    }
-                    function firewhotoattack(type, name) {
-                        for (var x = 1; x < 4; x++) {
-                            if (units[slots[x]].alive===true && units[slots[x]].type === type && (Eunits[Eslots[y]].usedaction === false)) {
-                                var damage = Eunits[Eslots[y]].attack - units[slots[x]].resistance- units[attackthisone].defensetempboost;
-                                if (damage < 0) {
-                                    damage = 0
-                                }
-                                var res=1;
-                                if(units[slots[x]].accessory==="Elementward_Ring"){
-                                    res=.5;
-                                }
-                                damage = parseInt((damage) * res);
-                                
-                                if(name == "Wizard"){
-                                    Lightning.play();
-                                    $("#battlebackground").append("<div class='staticEffects' style='margin-top: " + (units[slots[x]].curtop-750) +"px; margin-left: " + (units[slots[x]].curleft-100) +"px'><img src='../Pictures/Effects/EffectLightning.gif' /></div>");
-                                $(".staticEffects").fadeOut(2000);
-                                }else{
-                                    Fire.play();
-                                     $("#battlebackground").append("<div class='Effects' style='margin-top: " + Eunits[Eslots[y]].curtop +"px; margin-left: " + Eunits[Eslots[y]].curleft +"px'><img src='../Pictures/Effects/EffectFire.gif' /></div>");
-                                     $(".Effects").animate({
-                                    left: -(Eunits[Eslots[y]].curleft-units[slots[x]].curleft) + "px",
-                                    top: -(Eunits[Eslots[y]].curtop-units[slots[x]].curtop) + "px"
-                                },500).fadeOut(500);
-                                }
-                                Damaging(damage, slots[x]);
-
-                               
-                                
-                                
-                               
-
-                                if (units[slots[x]].health <= 0) {
-                                    Dies(type, slots[x]);
-                                    units[slots[x]].curleft = 10000;
-                                    units[slots[x]].curtop = 10000;
-                                    units[slots[x]].type = "Dead";
-                                }
-                                Eunits[Eslots[y]].charge -= Eunits[Eslots[y]].maxcharge;
-                                //minus one to offset charging
-                                Eunits[Eslots[y]].charge -= 1;
-                                charging();
-                                Eunits[Eslots[y]].usedaction = true;
-                            }
-                        }
-                    }
                     function icewhotoattack(type) {
                         if ((enemyonbottom === type) && (Eunits[Eslots[y]].usedaction === false)) {
                             attackthisone = enemyonbottomindex;
@@ -12113,10 +11744,10 @@ function enemyturn(selectedactions){
                             damage = parseInt((damage) * res);
                             Iceattack.play();
 
-                            $("#battlebackground").append("<div class='Effects' style='margin-top: " + Eunits[Eslots[y]].curtop +"px; margin-left: " + Eunits[Eslots[y]].curleft +"px'><img src='../Pictures/Effects/EffectIce.gif' /></div>");
+                            $("#battlebackground").append("<div class='Effects' style='top: " + Eunits[Eslots[y]].curtop +"px;left: " + Eunits[Eslots[y]].curleft +"px'><img src='../Pictures/Effects/EffectIce.gif' /></div>");
                             $(".Effects").animate({
-                                left: -(Eunits[Eslots[y]].curleft-units[attackthisone].curleft) + "px",
-                                top: -(Eunits[Eslots[y]].curtop-units[attackthisone].curtop) + "px"
+                                left: units[attackthisone].curleft + "px",
+                                top: units[attackthisone].curtop + "px"
                             },500).fadeOut(500);
                             Damaging(damage, attackthisone);
 
@@ -12137,16 +11768,12 @@ function enemyturn(selectedactions){
                             if (damage < 0) {
                                 damage = 0
                             }
-                            var res=1;
-                            if(units[attackthisone].accessory==="Elementward_Ring"){
-                                res=.5;
-                            }
-                            damage = parseInt((damage) * res);
+                            damage = parseInt((damage));
                             Iceattack.play();
-                            $("#battlebackground").append("<div class='Effects' style='margin-top: " + Eunits[Eslots[y]].curtop +"px; margin-left: " + Eunits[Eslots[y]].curleft +"px'><img src='../Pictures/Effects/EffectIce.gif' /></div>");
+                            $("#battlebackground").append("<div class='Effects' style='top: " + Eunits[Eslots[y]].curtop +"px;left: " + Eunits[Eslots[y]].curleft +"px'><img src='../Pictures/Effects/EffectIce.gif' /></div>");
                             $(".Effects").animate({
-                                left: -(Eunits[Eslots[y]].curleft-units[attackthisone].curleft) + "px",
-                                top: -(Eunits[Eslots[y]].curtop-units[attackthisone].curtop) + "px"
+                                left: units[attackthisone].curleft + "px",
+                                top: units[attackthisone].curtop + "px"
                             },500).fadeOut(500);
                             Damaging(damage, attackthisone);
                             if (units[attackthisone].health <= 0) {
@@ -12169,10 +11796,10 @@ function enemyturn(selectedactions){
                             }
                             damage = parseInt((damage) * res);
                             Iceattack.play();
-                            $("#battlebackground").append("<div class='Effects' style='margin-top: " + Eunits[Eslots[y]].curtop +"px; margin-left: " + Eunits[Eslots[y]].curleft +"px'><img src='../Pictures/Effects/EffectIce.gif' /></div>");
+                            $("#battlebackground").append("<div class='Effects' style='top: " + Eunits[Eslots[y]].curtop +"px;left: " + Eunits[Eslots[y]].curleft +"px'><img src='../Pictures/Effects/EffectIce.gif' /></div>");
                             $(".Effects").animate({
-                                left: -(Eunits[Eslots[y]].curleft-units[attackthisone].curleft) + "px",
-                                top: -(Eunits[Eslots[y]].curtop-units[attackthisone].curtop) + "px"
+                                left: units[attackthisone].curleft + "px",
+                                top: units[attackthisone].curtop + "px"
                             },500).fadeOut(500);
                             Damaging(damage, attackthisone);
                             if (units[attackthisone].health <= 0) {
@@ -12195,10 +11822,10 @@ function enemyturn(selectedactions){
                             }
                             damage = parseInt((damage) * res);
                             Iceattack.play();
-                            $("#battlebackground").append("<div class='Effects' style='margin-top: " + Eunits[Eslots[y]].curtop +"px; margin-left: " + Eunits[Eslots[y]].curleft +"px'><img src='../Pictures/Effects/EffectIce.gif' /></div>");
+                            $("#battlebackground").append("<div class='Effects' style='top: " + Eunits[Eslots[y]].curtop +"px;left: " + Eunits[Eslots[y]].curleft +"px'><img src='../Pictures/Effects/EffectIce.gif' /></div>");
                             $(".Effects").animate({
-                                left: -(Eunits[Eslots[y]].curleft-units[attackthisone].curleft) + "px",
-                                top: -(Eunits[Eslots[y]].curtop-units[attackthisone].curtop) + "px"
+                                left: units[attackthisone].curleft + "px",
+                                top: units[attackthisone].curtop + "px"
                             },500).fadeOut(500);
                             Damaging(damage, attackthisone);
                             if (units[attackthisone].health <= 0) {
@@ -12223,10 +11850,10 @@ function enemyturn(selectedactions){
                             damage = parseInt((damage) * res);
                             Iceattack.play();
 
-                            $("#battlebackground").append("<div class='Effects' style='margin-top: " + Eunits[Eslots[y]].curtop +"px; margin-left: " + Eunits[Eslots[y]].curleft +"px'><img src='../Pictures/Effects/EffectIce.gif' /></div>");
+                            $("#battlebackground").append("<div class='Effects' style='top: " + Eunits[Eslots[y]].curtop +"px;left: " + Eunits[Eslots[y]].curleft +"px'><img src='../Pictures/Effects/EffectIce.gif' /></div>");
                             $(".Effects").animate({
-                                left: -(Eunits[Eslots[y]].curleft-units[attackthisone].curleft) + "px",
-                                top: -(Eunits[Eslots[y]].curtop-units[attackthisone].curtop) + "px"
+                                left: units[attackthisone].curleft + "px",
+                                top: units[attackthisone].curtop + "px"
                             },500).fadeOut(500);
                             Damaging(damage, attackthisone);
 
@@ -12250,10 +11877,10 @@ function enemyturn(selectedactions){
                             }
                             damage = parseInt((damage) * res);
                             Iceattack.play();
-                            $("#battlebackground").append("<div class='Effects' style='margin-top: " + Eunits[Eslots[y]].curtop +"px; margin-left: " + Eunits[Eslots[y]].curleft +"px'><img src='../Pictures/Effects/EffectIce.gif' /></div>");
+                            $("#battlebackground").append("<div class='Effects' style='top: " + Eunits[Eslots[y]].curtop +"px;left: " + Eunits[Eslots[y]].curleft +"px'><img src='../Pictures/Effects/EffectIce.gif' /></div>");
                             $(".Effects").animate({
-                                left: -(Eunits[Eslots[y]].curleft-units[attackthisone].curleft) + "px",
-                                top: -(Eunits[Eslots[y]].curtop-units[attackthisone].curtop) + "px"
+                                left: units[attackthisone].curleft + "px",
+                                top: units[attackthisone].curtop + "px"
                             },500).fadeOut(500);
                             Damaging(damage, attackthisone);
                             if (units[attackthisone].health <= 0) {
@@ -12276,10 +11903,10 @@ function enemyturn(selectedactions){
                             }
                             damage = parseInt((damage) * res);
                             Iceattack.play();
-                            $("#battlebackground").append("<div class='Effects' style='margin-top: " + Eunits[Eslots[y]].curtop +"px; margin-left: " + Eunits[Eslots[y]].curleft +"px'><img src='../Pictures/Effects/EffectIce.gif' /></div>");
+                            $("#battlebackground").append("<div class='Effects' style='top: " + Eunits[Eslots[y]].curtop +"px;left: " + Eunits[Eslots[y]].curleft +"px'><img src='../Pictures/Effects/EffectIce.gif' /></div>");
                             $(".Effects").animate({
-                                left: -(Eunits[Eslots[y]].curleft-units[attackthisone].curleft) + "px",
-                                top: -(Eunits[Eslots[y]].curtop-units[attackthisone].curtop) + "px"
+                                left: units[attackthisone].curleft + "px",
+                                top: units[attackthisone].curtop + "px"
                             },500).fadeOut(500);
                             Damaging(damage, attackthisone);
                             if (units[attackthisone].health <= 0) {
@@ -12301,10 +11928,10 @@ function enemyturn(selectedactions){
                                 res=.5;
                             }
                             damage = parseInt((damage) * res);
-                            $("#battlebackground").append("<div class='Effects' style='margin-top: " + Eunits[Eslots[y]].curtop +"px; margin-left: " + Eunits[Eslots[y]].curleft +"px'><img src='../Pictures/Effects/EffectIce.gif' /></div>");
+                            $("#battlebackground").append("<div class='Effects' style='top: " + Eunits[Eslots[y]].curtop +"px;left: " + Eunits[Eslots[y]].curleft +"px'><img src='../Pictures/Effects/EffectIce.gif' /></div>");
                             $(".Effects").animate({
-                                left: -(Eunits[Eslots[y]].curleft-units[attackthisone].curleft) + "px",
-                                top: -(Eunits[Eslots[y]].curtop-units[attackthisone].curtop) + "px"
+                                left: units[attackthisone].curleft + "px",
+                                top: units[attackthisone].curtop + "px"
                             },500).fadeOut(500);
                             Damaging(damage, attackthisone);
                             Iceattack.play();
@@ -12315,45 +11942,6 @@ function enemyturn(selectedactions){
                             }
                             Eunits[Eslots[y]].usedaction = true;
                             EUnits[Eslots[y]].charge -= 2;
-                        }
-                    }
-                    
-                    function wispwhotoattack(type) {
-                        for (var x = 1; x < slots.length; x++) {
-                            if (units[slots[x]].alive===true && units[slots[x]].type === type && (Eunits[Eslots[y]].usedaction === false)) {
-                                var damage = Eunits[Eslots[y]].attack - units[slots[x]].resistance- units[attackthisone].defensetempboost;
-                                if (damage < 0) {
-                                    damage = 0
-                                }
-                                var res=1;
-                                if(units[attackthisone].accessory==="Elementward_Ring"){
-                                    res=.5;
-                                }
-                                damage = parseInt((damage) * res);
-                                Iceattack.play();
-                                $("#battlebackground").append("<div class='Effects' style='margin-top: " + Eunits[Eslots[y]].curtop +"px; margin-left: " + Eunits[Eslots[y]].curleft +"px'><img src='../Pictures/Effects/EffectIce.gif' /></div>");
-                                $(".Effects").animate({
-                                    left: -(Eunits[Eslots[y]].curleft-units[slots[x]].curleft) + "px",
-                                    top: -(Eunits[Eslots[y]].curtop-units[slots[x]].curtop) + "px"
-                                },500).fadeOut(500);
-                                Damaging(damage, slots[x]);
-                                if (units[slots[x]].health <= 0) {
-                                    Dies(type, slots[x]);
-                                    units[slots[x]].curleft = 10000;
-                                    units[slots[x]].curtop = 10000;
-                                    units[slots[x]].type = "Dead";
-                                }
-                                Eunits[Eslots[y]].charge -= 1;
-                                //minus one to offset charging
-                                Eunits[Eslots[y]].charge -= 1;
-                                charging();
-                                Eunits[Eslots[y]].usedaction = true;
-                                var randnum= Math.floor((Math.random() * 2) + 1);
-                                if(randnum===2 && units[slots[x]].abilityimmunity!=true  && units[units[slots[x]].protectedby].abilityimmunity!=true && units[slots[x]].accessory!="Ribbon"){
-                                    $("#TEXT").append(units[slots[x]].name + " has been put to sleep.")
-                                    units[slots[x]].sleep+=1;
-                                }
-                            }
                         }
                     }
 
@@ -12565,6 +12153,7 @@ function enemyturn(selectedactions){
                         } else{
                             Eunits[Eslots[y]].immobilized-=1
                         }
+                        
                     }
                     function scaredmove(){
                         //move away from enemies
@@ -12828,56 +12417,12 @@ function enemyturn(selectedactions){
 
                     moved=false;
                     if ((Eunits[Eslots[y]].type === "Warrior")) {
-                        if(Eunits[Eslots[y]].blind>0 || Eunits[Eslots[y]].terrify>0){
-                        } else {
-                            warriorwhotoattack("Civilian");
-                            warriorwhotoattack("Wizard");
-                            warriorwhotoattack("Sorcerer");
-                            warriorwhotoattack("Enchantress");
-                            warriorwhotoattack("Healer");
-                            warriorwhotoattack("Templar");
-                            warriorwhotoattack("Archer");
-                            warriorwhotoattack("Rouge");
-                            warriorwhotoattack("Mimic");
-                            warriorwhotoattack("Mage");
-                            warriorwhotoattack("Thief");
-                            warriorwhotoattack("Soldier");
-                            warriorwhotoattack("Knight");
-                            warriorwhotoattack("Djinn");
-                            warriorwhotoattack("Guard");
-                            warriorwhotoattack("Golem");
-                        }
-
-                        if(Eunits[Eslots[y]].terrify>0){
-                            scaredmove();
-                            Eunits[Eslots[y]].terrify-=1;
-                        } else{
+                            closePattack()
                             aggressivemove();
-                        }
-
-
-                        findenemy();
-
-                        if(Eunits[Eslots[y]].blind>0){
-                        } else {
-                            warriorwhotoattack("Civilian");
-                            warriorwhotoattack("Wizard");
-                            warriorwhotoattack("Sorcerer");
-                            warriorwhotoattack("Enchantress");
-                            warriorwhotoattack("Healer");
-                            warriorwhotoattack("Templar");
-                            warriorwhotoattack("Archer");
-                            warriorwhotoattack("Rouge");
-                            warriorwhotoattack("Mage");
-                            warriorwhotoattack("Thief");
-                            warriorwhotoattack("Soldier");
-                            warriorwhotoattack("Knight");
-                            warriorwhotoattack("Djinn");
-                            warriorwhotoattack("Guard");
-                            warriorwhotoattack("Golem");
-                        }
+                            findenemy();
+                            closePattack()
                     }
-                    if ((Eunits[Eslots[y]].type === "Goblin") || Eunits[Eslots[y]].type === "Wolf" || Eunits[Eslots[y]].type === "Djinn" || Eunits[Eslots[y]].type === "Zombie" || Eunits[Eslots[y]].type === "Golem" || Eunits[Eslots[y]].type === "Clunker" || Eunits[Eslots[y]].type === "Magnet" || Eunits[Eslots[y]].type === "Sounddepressor" || Eunits[Eslots[y]].type === "Turtle" || Eunits[Eslots[y]].type === "Soldier" || Eunits[Eslots[y]].type === "Guard") {
+                    if ((Eunits[Eslots[y]].type === "Goblin") || Eunits[Eslots[y]].type === "Wolf" || Eunits[Eslots[y]].type === "Djinn" || Eunits[Eslots[y]].type === "Zombie" || Eunits[Eslots[y]].type === "Golem" || Eunits[Eslots[y]].type === "Clunker" || Eunits[Eslots[y]].type === "Magnet" || Eunits[Eslots[y]].type === "Sounddepressor" || Eunits[Eslots[y]].type === "Turtle" || Eunits[Eslots[y]].type === "Soldier" || Eunits[Eslots[y]].type === "Guard" || Eunits[Eslots[y]].type === "Bear") {
                         
                         if(Eunits[Eslots[y]].type === "Guard" && Eunits[Eslots[y]].blind==0){
                             guardprotect("Wizard");
@@ -12886,201 +12431,33 @@ function enemyturn(selectedactions){
                             guardprotect("Mage");
                             guardprotect("Soldier");
                         }
-
-                        if(Eunits[Eslots[y]].blind>0){
-                        } else{
-                            goblinwhotoattack("Civilian");
-                            goblinwhotoattack("Sparrow");
-                            goblinwhotoattack("Wolf");
-                            goblinwhotoattack("Bear");
-                            goblinwhotoattack("Spider");
-                            goblinwhotoattack("Turtle");
-                            
-                            goblinwhotoattack("Wizard");
-                            goblinwhotoattack("Sorcerer");
-                            goblinwhotoattack("Enchantress");
-                            goblinwhotoattack("Healer");
-                            goblinwhotoattack("Templar");
-                            goblinwhotoattack("Archer");
-                            goblinwhotoattack("Rouge");
-                            goblinwhotoattack("Mimic");
-                            goblinwhotoattack("Mage");
-                            goblinwhotoattack("Thief");
-                            goblinwhotoattack("Soldier");
-                            goblinwhotoattack("Knight");
-                            goblinwhotoattack("Djinn");
-                            goblinwhotoattack("Guard");
-                            goblinwhotoattack("Golem");
-                        }
-
-                        if(Eunits[Eslots[y]].terrify){
-                            scaredmove();
-                            Eunits[Eslots[y]].terrify-=1;
-                        } else{
+                            closePattack()
                             aggressivemove();
-                        }
-
-                        findenemy();
-
-                        if(Eunits[Eslots[y]].blind>0){
-                        } else{
-                            goblinwhotoattack("Civilian");
-                            goblinwhotoattack("Sparrow");
-                            goblinwhotoattack("Wolf");
-                            goblinwhotoattack("Bear");
-                            goblinwhotoattack("Spider");
-                            goblinwhotoattack("Turtle");
-                            
-                            goblinwhotoattack("Wizard");
-                            goblinwhotoattack("Sorcerer");
-                            goblinwhotoattack("Enchantress");
-                            goblinwhotoattack("Healer");
-                            goblinwhotoattack("Templar");
-                            goblinwhotoattack("Archer");
-                            goblinwhotoattack("Rouge");
-                            goblinwhotoattack("Mimic");
-                            goblinwhotoattack("Mage");
-                            goblinwhotoattack("Thief");
-                            goblinwhotoattack("Soldier");
-                            goblinwhotoattack("Knight");
-                            goblinwhotoattack("Djinn");
-                            goblinwhotoattack("Guard");
-                            goblinwhotoattack("Golem");
-                        }
-
-
-                    }
-                    if (Eunits[Eslots[y]].type === "Bear") {
-
-                        if(Eunits[Eslots[y]].blind>0 || Eunits[Eslots[y]].terrify>0){
-                        } else{
-                            bearwhotoattack("Wizard");
-                            bearwhotoattack("Sorcerer");
-                            bearwhotoattack("Enchantress");
-                            bearwhotoattack("Healer");
-                            bearwhotoattack("Templar");
-                            bearwhotoattack("Archer");
-                            bearwhotoattack("Rouge");
-                            bearwhotoattack("Mimic");
-                            bearwhotoattack("Mage");
-                            bearwhotoattack("Thief");
-                            bearwhotoattack("Soldier");
-                            bearwhotoattack("Knight");
-                            bearwhotoattack("Djinn");
-                            bearwhotoattack("Guard");
-                            bearwhotoattack("Golem");
-                        }
-
-                        if(Eunits[Eslots[y]].terrify>0){
-                            scaredmove();
-                            Eunits[Eslots[y]].terrify-=1;
-                        } else{
-                            aggressivemove();
-                        }
-
-                        findenemy();
-
-                        if(Eunits[Eslots[y]].blind>0){
-                        } else{
-                            bearwhotoattack("Wizard");
-                            bearwhotoattack("Sorcerer");
-                            bearwhotoattack("Enchantress");
-                            bearwhotoattack("Healer");
-                            bearwhotoattack("Templar");
-                            bearwhotoattack("Archer");
-                            bearwhotoattack("Rouge");
-                            bearwhotoattack("Mimic");
-                            bearwhotoattack("Mage");
-                            bearwhotoattack("Thief");
-                            bearwhotoattack("Soldier");
-                            bearwhotoattack("Knight");
-                            bearwhotoattack("Djinn");
-                            bearwhotoattack("Guard");
-                            bearwhotoattack("Golem");
-                        }
-
-
+                            findenemy();
+                            closePattack()
                     }
                     if (Eunits[Eslots[y]].type === "Gremlin" || Eunits[Eslots[y]].type === "Hellhound") {
 
-                        if(Eunits[Eslots[y]].blind>0 || Eunits[Eslots[y]].terrify>0){
-                        } else{
-                            goblinwhotoattack("Civilian");
-                            goblinwhotoattack("Wizard");
-                            goblinwhotoattack("Sorcerer");
-                            goblinwhotoattack("Enchantress");
-                            goblinwhotoattack("Healer");
-                            goblinwhotoattack("Templar");
-                            goblinwhotoattack("Archer");
-                            goblinwhotoattack("Rouge");
-                            bearwhotoattack("Mimic");
-                            goblinwhotoattack("Mage");
-                            goblinwhotoattack("Thief");
-                            goblinwhotoattack("Soldier");
-                            goblinwhotoattack("Knight");
-                            goblinwhotoattack("Djinn");
-                            goblinwhotoattack("Guard");
-                            goblinwhotoattack("Golem");
-                        }
-
-                        if(Eunits[Eslots[y]].terrify>0){
-                            scaredmove();
-                            Eunits[Eslots[y]].terrify-=1;
-                        } else{
+                            if(Eunits[Eslots[y]].type === "Hellhound"){
+                                closeMattack()
+                            }else{
+                                closePattack()
+                            }
                             aggressivemove();
-                        }
-
-                        findenemy();
-
-                        if(Eunits[Eslots[y]].blind>0){
-                        } else{
-                            goblinwhotoattack("Civilian");
-                            goblinwhotoattack("Wizard");
-                            goblinwhotoattack("Sorcerer");
-                            goblinwhotoattack("Enchantress");
-                            goblinwhotoattack("Healer");
-                            goblinwhotoattack("Templar");
-                            goblinwhotoattack("Archer");
-                            goblinwhotoattack("Rouge");
-                            bearwhotoattack("Mimic");
-                            goblinwhotoattack("Mage");
-                            goblinwhotoattack("Thief");
-                            goblinwhotoattack("Soldier");
-                            goblinwhotoattack("Knight");
-                            goblinwhotoattack("Djinn");
-                            goblinwhotoattack("Guard");
-                            goblinwhotoattack("Golem");
-                        }
-
-                        Eunits[Eslots[y]].moved=false;
-                        if(Eunits[Eslots[y]].terrify>0){
-                            scaredmove();
-                        } else{
+                            Eunits[Eslots[y]].moved = false
+                            findenemy();
+                            if(Eunits[Eslots[y]].type === "Hellhound"){
+                                closeMattack()
+                            }else{
+                                closePattack()
+                            }
                             aggressivemove();
-                        }
-
                         findenemy();
-
-                        if(Eunits[Eslots[y]].blind>0){
-                        } else{
-                            goblinwhotoattack("Civilian");
-                            goblinwhotoattack("Wizard");
-                            goblinwhotoattack("Sorcerer");
-                            goblinwhotoattack("Enchantress");
-                            goblinwhotoattack("Healer");
-                            goblinwhotoattack("Templar");
-                            goblinwhotoattack("Archer");
-                            goblinwhotoattack("Rouge");
-                            goblinwhotoattack("Mage");
-                            goblinwhotoattack("Thief");
-                            goblinwhotoattack("Soldier");
-                            goblinwhotoattack("Knight");
-                            goblinwhotoattack("Djinn");
-                            goblinwhotoattack("Guard");
-                            goblinwhotoattack("Golem");
-                        }
-
-
+                            if(Eunits[Eslots[y]].type === "Hellhound"){
+                                closeMattack()
+                            }else{
+                                closePattack()
+                            }
                     }
                     if ((Eunits[Eslots[y]].type === "Spider" || Eunits[Eslots[y]].type === "Vacuum")) {
                         //Move left
@@ -13141,134 +12518,21 @@ function enemyturn(selectedactions){
                         $("#TEXT").append("The werewolf heals to " + Eunits[Eslots[y]].health);
                         $("#EHB" + Eunits[Eslots[y]].index).remove();
                         $("#E"+Eunits[Eslots[y]].index).append('<div class="healthbar" id ="EHB'+ Eunits[Eslots[y]].index + '"style="width: ' + (Eunits[Eslots[y]].health/Eunits[Eslots[y]].maxhealth)*100 + '%"></div>');
-
-                        if(Eunits[Eslots[y]].blind>0 || Eunits[Eslots[y]].terrify>0){
-                        } else{
-                            goblinwhotoattack("Civilian");
-                            goblinwhotoattack("Wizard");
-                            goblinwhotoattack("Sorcerer");
-                            goblinwhotoattack("Enchantress");
-                            goblinwhotoattack("Healer");
-                            goblinwhotoattack("Templar");
-                            goblinwhotoattack("Archer");
-                            goblinwhotoattack("Rouge");
-                            goblinwhotoattack("Mimic");
-                            goblinwhotoattack("Mage");
-                            goblinwhotoattack("Thief");
-                            goblinwhotoattack("Soldier");
-                            goblinwhotoattack("Knight");
-                            goblinwhotoattack("Djinn");
-                            goblinwhotoattack("Guard");
-                            goblinwhotoattack("Golem");
-                        }
-
-
-                        if(Eunits[Eslots[y]].terrify>0){
-                            scaredmove();
-                            Eunits[Eslots[y]].terrify-=1;
-                        } else{
+                            closePattack()
                             aggressivemove();
-                        }
-
                         findenemy();
-                        if(Eunits[Eslots[y]].blind>0){
-                        } else{
-                            goblinwhotoattack("Civilian");
-                            goblinwhotoattack("Wizard");
-                            goblinwhotoattack("Sorcerer");
-                            goblinwhotoattack("Enchantress");
-                            goblinwhotoattack("Healer");
-                            goblinwhotoattack("Templar");
-                            goblinwhotoattack("Archer");
-                            goblinwhotoattack("Rouge");
-                            goblinwhotoattack("Mimic");
-                            goblinwhotoattack("Mage");
-                            goblinwhotoattack("Thief");
-                            goblinwhotoattack("Soldier");
-                            goblinwhotoattack("Knight");
-                            goblinwhotoattack("Djinn");
-                            goblinwhotoattack("Guard");
-                            goblinwhotoattack("Golem");
-                        }
-
-
-
+                            closePattack()
                     }
                     if ((Eunits[Eslots[y]].type === "Vampire")) {
-                        if(Eunits[Eslots[y]].blind>0 || Eunits[Eslots[y]].terrify>0){
-                        } else {
-                            vampirewhotoattack("Civilian");
-                            vampirewhotoattack("Wizard");
-                            vampirewhotoattack("Sorcerer");
-                            vampirewhotoattack("Enchantress");
-                            vampirewhotoattack("Healer");
-                            vampirewhotoattack("Templar");
-                            vampirewhotoattack("Archer");
-                            vampirewhotoattack("Rouge");
-                            vampirewhotoattack("Mimic");
-                            vampirewhotoattack("Mage");
-                            vampirewhotoattack("Thief");
-                            vampirewhotoattack("Soldier");
-                            vampirewhotoattack("Knight");
-                            vampirewhotoattack("Djinn");
-                            vampirewhotoattack("Guard");
-                            vampirewhotoattack("Golem");
-                        }
-                        if(Eunits[Eslots[y]].terrify>0){
-                            scaredmove();
-                            Eunits[Eslots[y]].terrify-=1;
-                        } else{
+                                closePattack()
                             aggressivemove();
-                        }
-
                         findenemy();
-                        if(Eunits[Eslots[y]].blind>0){
-                        } else {
-                            vampirewhotoattack("Civilian");
-                            vampirewhotoattack("Wizard");
-                            vampirewhotoattack("Sorcerer");
-                            vampirewhotoattack("Enchantress");
-                            vampirewhotoattack("Healer");
-                            vampirewhotoattack("Templar");
-                            vampirewhotoattack("Archer");
-                            vampirewhotoattack("Rouge");
-                            vampirewhotoattack("Mimic");
-                            vampirewhotoattack("Mage");
-                            vampirewhotoattack("Thief");
-                            vampirewhotoattack("Soldier");
-                            vampirewhotoattack("Knight");
-                            vampirewhotoattack("Djinn");
-                            vampirewhotoattack("Guard");
-                            vampirewhotoattack("Golem");
-                        }
+                            closePattack()
 
                     }
                     if ((Eunits[Eslots[y]].type === "Sparrow") || Eunits[Eslots[y]].type === "Bee" || Eunits[Eslots[y]].type === "Bat" || Eunits[Eslots[y]].type === "Angel")  {
 
-                        if(Eunits[Eslots[y]].blind>0 || Eunits[Eslots[y]].terrify>0){
-                        } else{
-                            goblinwhotoattack("Civilian");
-                            goblinwhotoattack("Wizard");
-                            goblinwhotoattack("Sorcerer");
-                            goblinwhotoattack("Enchantress");
-                            goblinwhotoattack("Healer");
-                            goblinwhotoattack("Templar");
-                            goblinwhotoattack("Archer");
-                            goblinwhotoattack("Rouge");
-                            goblinwhotoattack("Mimic");
-                            goblinwhotoattack("Mage");
-                            goblinwhotoattack("Thief");
-                            goblinwhotoattack("Soldier");
-                            goblinwhotoattack("Knight");
-                            goblinwhotoattack("Djinn");
-                            goblinwhotoattack("Guard");
-                            goblinwhotoattack("Golem");
-                        }
-
-                        if(Eunits[Eslots[y]].terrify>0){
-                            scaredmove();
-                            Eunits[Eslots[y]].terrify-=1;
-                        } else{
+                            closePattack()
                             if(Eunits[Eslots[y]].immobilized===0){
                                 flymove("Nothing");
                                 flymove("Civilian");
@@ -13290,32 +12554,8 @@ function enemyturn(selectedactions){
                             }else{
                                 Eunits[Eslots[y]].immobilized-=1
                             }
-
-                        }
-
-
                         findenemy();
-
-                        if(Eunits[Eslots[y]].blind>0){
-                        } else{
-                            goblinwhotoattack("Civilian");
-                            goblinwhotoattack("Wizard");
-                            goblinwhotoattack("Sorcerer");
-                            goblinwhotoattack("Enchantress");
-                            goblinwhotoattack("Healer");
-                            goblinwhotoattack("Templar");
-                            goblinwhotoattack("Archer");
-                            goblinwhotoattack("Rouge");
-                            goblinwhotoattack("Mimic");
-                            goblinwhotoattack("Mage");
-                            goblinwhotoattack("Thief");
-                            goblinwhotoattack("Soldier");
-                            goblinwhotoattack("Knight");
-                            goblinwhotoattack("Djinn");
-                            goblinwhotoattack("Guard");
-                            goblinwhotoattack("Golem");
-                        }
-
+                            closePattack()
                         if(Eunits[Eslots[y]].type==="Angel"){
                             if (Eunits[Eslots[y]].charge >= 3) {
                                 if(Eunits[Eslots[y]].silenced>0){
@@ -13342,21 +12582,7 @@ function enemyturn(selectedactions){
 
                         if(Eunits[Eslots[y]].blind>0 || Eunits[Eslots[y]].terrify>0){
                         } else{
-                            goblinwhotoattack("Civilian");
-                            goblinwhotoattack("Wizard");
-                            goblinwhotoattack("Sorcerer");
-                            goblinwhotoattack("Enchantress");
-                            goblinwhotoattack("Healer");
-                            goblinwhotoattack("Templar");
-                            goblinwhotoattack("Archer");
-                            goblinwhotoattack("Rouge");
-                            goblinwhotoattack("Mage");
-                            goblinwhotoattack("Thief");
-                            goblinwhotoattack("Soldier");
-                            goblinwhotoattack("Knight");
-                            goblinwhotoattack("Djinn");
-                            goblinwhotoattack("Guard");
-                            goblinwhotoattack("Golem");
+                            closePattack()
                         }
 
                         if(Eunits[Eslots[y]].terrify>0){
@@ -13391,43 +12617,7 @@ function enemyturn(selectedactions){
 
                         if(Eunits[Eslots[y]].blind>0){
                         } else{
-                            goblinwhotoattack("Civilian");
-                            goblinwhotoattack("Wizard");
-                            goblinwhotoattack("Sorcerer");
-                            goblinwhotoattack("Enchantress");
-                            goblinwhotoattack("Healer");
-                            goblinwhotoattack("Templar");
-                            goblinwhotoattack("Archer");
-                            goblinwhotoattack("Rouge");
-                            goblinwhotoattack("Mage");
-                            goblinwhotoattack("Thief");
-                            goblinwhotoattack("Soldier");
-                            goblinwhotoattack("Knight");
-                            goblinwhotoattack("Djinn");
-                            goblinwhotoattack("Guard");
-                            goblinwhotoattack("Golem");
-                        }
-
-                        if(Eunits[Eslots[y]].type==="Angel"){
-                            if (Eunits[Eslots[y]].charge >= 3) {
-                                if(Eunits[Eslots[y]].silenced>0){
-                                    Eunits[Eslots[y]].silenced-=1;
-                                } else {
-                                    Eunits[Eslots[y]].health+=50;
-                                    Eunits[Eslots[y]].charge=0;
-                                    //minus one to offset charging
-                                    Eunits[Eslots[y]].charge -= 1;
-                                    charging();
-                                    if(Eunits[Eslots[y]].health>Eunits[Eslots[y]].maxhealth){
-                                        Eunits[Eslots[y]].health=Eunits[Eslots[y]].maxhealth}
-
-                                    $("#TEXT").append("The Angel heals to " + Eunits[Eslots[y]].health);
-                                    $("#EHB" + Eunits[Eslots[y]].index).remove();
-                                    $("#E"+Eunits[Eslots[y]].index).append('<div class="healthbar" id ="EHB'+ Eunits[Eslots[y]].index + '"style="width: ' + (Eunits[Eslots[y]].health/Eunits[Eslots[y]].maxhealth)*100 + '%"></div>');
-                                    Eunits[Eslots[y]].usedaction=true;
-                                }
-                            }
-                            charging();
+                            closePattack()
                         }
                     }
 
@@ -13552,22 +12742,7 @@ function enemyturn(selectedactions){
 
                         if(Eunits[Eslots[y]].blind>0 || Eunits[Eslots[y]].terrify>0){
                         } else{
-                            goblinwhotoattack("Civilian");
-                            goblinwhotoattack("Wizard");
-                            goblinwhotoattack("Sorcerer");
-                            goblinwhotoattack("Enchantress");
-                            goblinwhotoattack("Healer");
-                            goblinwhotoattack("Templar");
-                            goblinwhotoattack("Archer");
-                            goblinwhotoattack("Rouge");
-                            goblinwhotoattack("Mimic");
-                            goblinwhotoattack("Mage");
-                            goblinwhotoattack("Thief");
-                            goblinwhotoattack("Soldier");
-                            goblinwhotoattack("Knight");
-                            goblinwhotoattack("Djinn");
-                            goblinwhotoattack("Guard");
-                            goblinwhotoattack("Golem");
+                            closePattack()
                         }
 
                         if(Eunits[Eslots[y]].terrify>0){
@@ -13581,22 +12756,7 @@ function enemyturn(selectedactions){
 
                         if(Eunits[Eslots[y]].blind>0){
                         } else{
-                            goblinwhotoattack("Civilian");
-                            goblinwhotoattack("Wizard");
-                            goblinwhotoattack("Sorcerer");
-                            goblinwhotoattack("Enchantress");
-                            goblinwhotoattack("Healer");
-                            goblinwhotoattack("Templar");
-                            goblinwhotoattack("Archer");
-                            goblinwhotoattack("Rouge");
-                            goblinwhotoattack("Mimic");
-                            goblinwhotoattack("Mage");
-                            goblinwhotoattack("Thief");
-                            goblinwhotoattack("Soldier");
-                            goblinwhotoattack("Knight");
-                            goblinwhotoattack("Djinn");
-                            goblinwhotoattack("Guard");
-                            goblinwhotoattack("Golem");
+                            closePattack()
                         }
 
                         if (Eunits[Eslots[y]].charge >= 3) {
@@ -13663,39 +12823,12 @@ function enemyturn(selectedactions){
                     }
 
                     if ((Eunits[Eslots[y]].type === "Assassin" || Eunits[Eslots[y]].type === "Archer")) {
-                        //Move left
                         var moved = false;
-                        Eunits[Eslots[y]].usedsleep+=1;
-                        //move away from enemies
                         scaredmove();
                         //attack enemies
-                        if(Eunits[Eslots[y]].blind>0){
-                        } else {
-                            rangedwhotoattack("Civilian");
-                            rangedwhotoattack("Sparrow");
-                            rangedwhotoattack("Wolf");
-                            rangedwhotoattack("Bear");
-                            rangedwhotoattack("Spider");
-                            rangedwhotoattack("Turtle");
-                            
-                            rangedwhotoattack("Nothing");
-                            rangedwhotoattack("Wizard");
-                            rangedwhotoattack("Sorcerer");
-                            rangedwhotoattack("Enchantress");
-                            rangedwhotoattack("Healer");
-                            rangedwhotoattack("Templar");
-                            rangedwhotoattack("Archer");
-                            rangedwhotoattack("Rouge");
-                            rangedwhotoattack("Mimic");
-                            rangedwhotoattack("Mage");
-                            rangedwhotoattack("Thief");
-                            rangedwhotoattack("Soldier");
-                            rangedwhotoattack("Knight");
-                            rangedwhotoattack("Djinn");
-                            rangedwhotoattack("Guard");
-                            rangedwhotoattack("Golem");
-                        }
+                            rangedPattack()
                     }
+                    
                       if ((Eunits[Eslots[y]].type === "Eye")) {
                         //Move left
                         var moved = false;
@@ -13713,7 +12846,6 @@ function enemyturn(selectedactions){
                                     keepgoing=false
                                 }
                             }
-                            console.log("got here")
                             var mode = Math.floor((Math.random() * 7) + 1);
                             if(mode==1){
                                 $("#battlebackground").append("<div id='claw' style = 'width:700px;height:700px; position:absolute;z-index:10;margin-top:-1300px'><img style = 'width:700px;height:700px' src='../Pictures/Effects/claw-left.gif' /></div>");
@@ -13962,43 +13094,9 @@ function enemyturn(selectedactions){
                     }
 
                     //Elementals
-                    if ((Eunits[Eslots[y]].type === "Fire Elemental" || Eunits[Eslots[y]].type ==="Wizard")) {
-                        var name = Eunits[Eslots[y]].type
+                    if ((Eunits[Eslots[y]].type === "Fire Elemental" || Eunits[Eslots[y]].type ==="Wizard" || Eunits[Eslots[y]].type === "Lightning Elemental")) {
                         scaredmove()
-
-                        findenemy();
-                        if (Eunits[Eslots[y]].charge >= Eunits[Eslots[y]].maxcharge) {
-                            if(Eunits[Eslots[y]].silenced>0){
-                            } else {
-                                firewhotoattack("Civilian");
-                                 firewhotoattack("Turtle");
-                                firewhotoattack("Sparrow");
-                                firewhotoattack("Wolf");
-                                firewhotoattack("Bear");
-                                firewhotoattack("Spider");
-                                
-                                firewhotoattack("Nothing",name);
-                                firewhotoattack("Knight",name);
-                                firewhotoattack("Soldier",name);
-                                firewhotoattack("Archer",name);
-                                firewhotoattack("Rouge",name);
-                                firewhotoattack("Mimic",name);
-                                firewhotoattack("Mage",name);
-                                firewhotoattack("Thief",name);
-                                firewhotoattack("Enchantress",name);
-                                firewhotoattack("Healer",name);
-                                firewhotoattack("Wizard",name);
-                                firewhotoattack("Sorcerer",name);
-                                firewhotoattack("Templar",name);
-                                firewhotoattack("Djinn",name);
-                                firewhotoattack("Guard",name);
-                                firewhotoattack("Golem",name);
-                            }
-                        }
-                        if (Eunits[Eslots[y]].usedaction === false) {
-                            charging();
-                        }
-
+                        rangedMattack()
                     }
                     if ((Eunits[Eslots[y]].type === "Ice Elemental")) {
                         if (Eunits[Eslots[y]].charge >= 2) {
@@ -14057,73 +13155,10 @@ function enemyturn(selectedactions){
                         }
 
                     }
-                    if ((Eunits[Eslots[y]].type === "Lightning Elemental")) {
-                        //Move left
-                        var moved = false;
-
-                        scaredmove();
-                        //attack enemies
-
-                        if (Eunits[Eslots[y]].charge >= Eunits[Eslots[y]].maxcharge) {
-                            if(Eunits[Eslots[y]].silenced>0){
-                            } else {
-                                lightningwhotoattack("Civilian");
-                                lightningwhotoattack("Knight");
-                                lightningwhotoattack("Soldier");
-                                lightningwhotoattack("Archer");
-                                lightningwhotoattack("Rouge");
-                                lightningwhotoattack("Mimic");
-                                lightningwhotoattack("Mage");
-                                lightningwhotoattack("Thief");
-                                lightningwhotoattack("Enchantress");
-                                lightningwhotoattack("Healer");
-                                lightningwhotoattack("Wizard");
-                                lightningwhotoattack("Sorcerer");
-                                lightningwhotoattack("Templar");
-                                lightningwhotoattack("Djinn");
-                                lightningwhotoattack("Guard");
-                                lightningwhotoattack("Golem");
-                            }
-                        } else {
-                          charging();
-
-                        }
-                    }
                     if ((Eunits[Eslots[y]].type === "Wisp")) {
-                        //Move left
-                        var moved = false;
-                        if(Eunits[Eslots[y]].terrify>0){
-                            scaredmove();
-                            Eunits[Eslots[y]].terrify-=1;
-                        } else{
-                            randommove();
-                        }
-
-                        //attack enemies
-
-                        if (Eunits[Eslots[y]].charge >= 1) {
-                            if(Eunits[Eslots[y]].silenced>0){
-                            } else {
-                                wispwhotoattack("Civilian");
-                                wispwhotoattack("Knight");
-                                wispwhotoattack("Soldier");
-                                wispwhotoattack("Archer");
-                                wispwhotoattack("Rouge");
-                                wispwhotoattack("Mimic");
-                                wispwhotoattack("Mage");
-                                wispwhotoattack("Thief");
-                                wispwhotoattack("Enchantress");
-                                wispwhotoattack("Healer");
-                                wispwhotoattack("Wizard");
-                                wispwhotoattack("Sorcerer");
-                                wispwhotoattack("Templar");
-                                wispwhotoattack("Djinn");
-                                wispwhotoattack("Guard");
-                                wispwhotoattack("Golem");
-                            }
-                        } else {
-                            charging();
-                        }
+                                rangedMattack()
+                                randommove();
+                                
                     }
 
                     //robots
@@ -14174,92 +13209,22 @@ function enemyturn(selectedactions){
 
                     //wraiths
                     if ((Eunits[Eslots[y]].type === "Frostwraith")) {
-                        //Move left
-                        var moved = false;
-
+                        rangedMattack()
                         if(Eunits[Eslots[y]].phasedout===false){
                             Eunits[Eslots[y]].phasedout=true;
                             $("#E" + Eunits[Eslots[y]].index).addClass("Invisible")
                             $("#TEXT").append("This wraith just phased out.")
                         }
-
-                        //physical
-                        if(Eunits[Eslots[y]].blind>0 || Eunits[Eslots[y]].terrify>0){
-                        } else{
-                            goblinwhotoattack("Civilian")
-                            goblinwhotoattack("Wizard");
-                            goblinwhotoattack("Sorcerer");
-                            goblinwhotoattack("Enchantress");
-                            goblinwhotoattack("Healer");
-                            goblinwhotoattack("Templar");
-                            goblinwhotoattack("Archer");
-                            goblinwhotoattack("Rouge");
-                             goblinwhotoattack("Mimic");
-                            goblinwhotoattack("Mage");
-                            goblinwhotoattack("Thief");
-                            goblinwhotoattack("Soldier");
-                            goblinwhotoattack("Knight");
-                            goblinwhotoattack("Djinn");
-                            goblinwhotoattack("Guard");
-                            goblinwhotoattack("Golem");
-                        }
-
-                        if(Eunits[Eslots[y]].terrify>0){
-                            scaredmove();
-                            Eunits[Eslots[y]].terrify-=1;
-                        } else{
+                            closePattack()
+                        
                             aggressivemove();
-                        }
-                        //attack enemies
 
-                        findenemy();
+                                    findenemy();
 
-                        //physical
-                        if(Eunits[Eslots[y]].blind>0 && Eunits[Eslots[y]].usedaction===false){
-                        } else{
-                            goblinwhotoattack("Civilian")
-                            goblinwhotoattack("Wizard");
-                            goblinwhotoattack("Sorcerer");
-                            goblinwhotoattack("Enchantress");
-                            goblinwhotoattack("Healer");
-                            goblinwhotoattack("Templar");
-                            goblinwhotoattack("Archer");
-                            goblinwhotoattack("Rouge");
-                            goblinwhotoattack("Mimic");
-                            goblinwhotoattack("Mage");
-                            goblinwhotoattack("Thief");
-                            goblinwhotoattack("Soldier");
-                            goblinwhotoattack("Knight");
-                            goblinwhotoattack("Djinn");
-                            goblinwhotoattack("Guard");
-                            goblinwhotoattack("Golem");
-                        }
-                        //ice attack
-                        if(Eunits[Eslots[y]].usedaction===false){
-                            if (Eunits[Eslots[y]].charge >= 1) {
-                                if(Eunits[Eslots[y]].silenced>0){
-                                } else {
-                                    frostwraithwhotoattack("Civilian")
-                                    frostwraithwhotoattack("Knight");
-                                    frostwraithwhotoattack("Soldier");
-                                    frostwraithwhotoattack("Archer");
-                                    frostwraithwhotoattack("Rouge");
-                                    frostwraithwhotoattack("Mimic");
-                                    frostwraithwhotoattack("Mage");
-                                    frostwraithwhotoattack("Thief");
-                                    frostwraithwhotoattack("Enchantress");
-                                    frostwraithwhotoattack("Healer");
-                                    frostwraithwhotoattack("Wizard");
-                                    frostwraithwhotoattack("Sorcerer");
-                                    frostwraithwhotoattack("Templar");
-                                    frostwraithwhotoattack("Djinn");
-                                    frostwraithwhotoattack("Guard");
-                                    frostwraithwhotoattack("Golem");
-                                }
-                            } else {
-                                charging();
-                            }
-                        }
+                                    closePattack()
+
+                                    
+
 
                     }
                     if ((Eunits[Eslots[y]].type === "Flamewraith")) {
@@ -14651,7 +13616,6 @@ function enemyturn(selectedactions){
                         if(typeof(units[slots[a]].counterindex) != 'undefined'){
                             counterarray = units[slots[a]].counterindex;
                             units[slots[a]].counterindex=[]
-                            console.log("counterarray",counterarray)
                             if(counterarray.length>0){
                                     inanimation=true;
                                     setTimeout(function(){
@@ -14661,7 +13625,6 @@ function enemyturn(selectedactions){
                             }
                         }
                     }
-        
             function checkdeath(){
             for(var i = 1;i<6;i++){
                 if (Eunits[Eslots[i]].health <= 0) {
@@ -14688,12 +13651,16 @@ function enemyturn(selectedactions){
                 }
             }
         }
-        checkdeath()
+            checkdeath()
+            setTimeout(function(){
+                checkdeath()
+            },1100)
 
-        $('*').usedaction=false;
-        $('*').removeClass("selected");
+            $('*').usedaction=false;
+            $('*').removeClass("selected");
 
-        showailments();
+            showailments();
+
     }//end of passturn button
     for(var i = 1;i<4;i++){
         if(units[slots[i]].abilityinvisible===true){
@@ -14707,6 +13674,7 @@ function enemyturn(selectedactions){
             units[slots[i]].defensetempboost= 30;
         }
     }
+    
     setTimeout(function(){
        showailments() 
     },500)
@@ -14749,36 +13717,26 @@ function stormcheck(){
                 }
             }
         }
-        //fire circle
-            for(var i = 1;i<4;i++){
-                if(units[slots[i]].fireCircle===true){
-                    for(var w = 1; w<6;w++){
-                        if((units[slots[i]].curleft==Eunits[Eslots[w]].curleft && units[slots[i]].curtop+100==Eunits[Eslots[w]].curtop) || (units[slots[i]].curleft==Eunits[Eslots[w]].curleft && units[slots[i]].curtop-100==Eunits[Eslots[w]].curtop) || (units[slots[i]].curtop==Eunits[Eslots[w]].curtop && units[slots[i]].curleft+100==Eunits[Eslots[w]].curleft) || (units[slots[i]].curtop==Eunits[Eslots[w]].curtop && units[slots[i]].curleft-100==Eunits[Eslots[w]].curleft)){
-                            var damage = (30 - Eunits[Eslots[w]].resistance)*Eunits[Eslots[w]].fire;
-                            damaging(w,"fire")
-                        }
-                    }
-                    
-                }
-            }
+    //fire circle   
+    setTimeout(function(){
+         firecheck()
+    },1000)
     //ice fall
         if(iceActive){
                 var randnum = Math.floor((Math.random() * 5)+1);
-                if(Eunits[Eslots[randnum]].location<0){
+                if(Eslots[randnum]==-1){
                     return
                 }
                 var damage = (50 - Eunits[Eslots[randnum]].resistance)*Eunits[Eslots[randnum]].ice;
                 elementalNum=Eunits[Eslots[randnum]].ice;
-                Eunits[Eslots[randnum]].health -= damage;
-            
                 $("#battlebackground").append("<div class='slashEffects' style='margin-top: " + (Eunits[Eslots[randnum]].curtop-750) +"px; margin-left: " + (Eunits[Eslots[randnum]].curleft-0) +"px'><img src='../Pictures/Effects/Ice-drop.gif' /></div>");
                 $(".slashEffects").animate({
                     top:"+=300px",
                 },1000,"linear")
 
                 setTimeout(function(){
-                    //backhere
                         damaging(randnum,"ice")
+                        Iceattack.play()
                 },1000)
         }
         function damaging(index,element){
@@ -14806,7 +13764,6 @@ function stormcheck(){
                     $("#E" + Eunits[Eslots[index]].index).removeClass("Invisible");
                     $("#TEXT").append("The wraith phased back in.")
             }
-            Iceattack.play()
             var elementalchange = "normalDamage";
             if(elementalNum>1){
                 elementalchange = "BigDamage";
@@ -14820,6 +13777,7 @@ function stormcheck(){
             }, 1000);
             $(".slashEffects").remove();
             $("#TEXT").append("<p>The " + name +" did " + damage + " damage to " + Eunits[Eslots[index]].name + "\n</p>");
+            Eunits[Eslots[index]].health-=damage;
             $("#EHB" + Eslots[index]).remove();
             $("#E" + Eslots[index]).append('<div class="healthbar" id ="EHB'+ Eunits[Eslots[index]].index + '"style="width: ' + (Eunits[Eslots[index]].health/Eunits[Eslots[index]].maxhealth)*100 + '%"></div>');
             setTimeout(function(){
@@ -14828,6 +13786,69 @@ function stormcheck(){
         }
     
     }
+function firecheck(){
+            //fire circle
+            for(var i = 1;i<4;i++){
+                if(units[slots[i]].fireCircle===true){
+                    for(var w = 1; w<6;w++){
+                        if((units[slots[i]].curleft==Eunits[Eslots[w]].curleft && units[slots[i]].curtop+100==Eunits[Eslots[w]].curtop) || (units[slots[i]].curleft==Eunits[Eslots[w]].curleft && units[slots[i]].curtop-100==Eunits[Eslots[w]].curtop) || (units[slots[i]].curtop==Eunits[Eslots[w]].curtop && units[slots[i]].curleft+100==Eunits[Eslots[w]].curleft) || (units[slots[i]].curtop==Eunits[Eslots[w]].curtop && units[slots[i]].curleft-100==Eunits[Eslots[w]].curleft)){
+                            var damage = (50 - Eunits[Eslots[w]].resistance)*Eunits[Eslots[w]].fire;
+                            damaging(w,"fire")
+                            Fire.play()
+                        }
+                    }
+                    
+                }
+            }
+    var elementalNum;
+            function damaging(index,element){
+            var wraithtype;
+            var name;
+            if(element=="ice"){
+                wraithtype="Flamewraith"
+                name="ice sickle"
+            }
+            if(element=="fire"){
+                wraithtype="Frostwraith"
+                name="fire circle"
+            }
+            if(element=="lightning"){
+                wraithtype="Waterwraith"
+                name="cloud"
+            }
+            
+            if (Eunits[Eslots[index]].phasedout === true) {
+                if (Eunits[Eslots[index]].type === wraithtype) {
+                } else {
+                    damage = 0;
+                }
+                    Eunits[Eslots[index]].phasedout = false;
+                    $("#E" + Eunits[Eslots[index]].index).removeClass("Invisible");
+                    $("#TEXT").append("The wraith phased back in.")
+            }
+            var elementalchange = "normalDamage";
+            if(elementalNum>1){
+                elementalchange = "BigDamage";
+            }
+            if(elementalNum<1){
+                elementalchange = "SmallDamage";
+            }
+           $("#battlebackground").append('<p class="damage ' + elementalchange +'" style="margin-top:' + (Eunits[Eslots[index]].curtop-500) +'px; margin-left:' + (Eunits[Eslots[index]].curleft) +'px;">' + damage + '</p>');
+            $('.damage').animate({
+                top: (450)+'px'
+            }, 1000);
+            $(".slashEffects").remove();
+            $("#TEXT").append("<p>The " + name +" did " + damage + " damage to " + Eunits[Eslots[index]].name + "\n</p>");
+            Eunits[Eslots[index]].health-=damage;
+            $("#EHB" + Eslots[index]).remove();
+            $("#E" + Eslots[index]).append('<div class="healthbar" id ="EHB'+ Eunits[Eslots[index]].index + '"style="width: ' + (Eunits[Eslots[index]].health/Eunits[Eslots[index]].maxhealth)*100 + '%"></div>');
+            
+                
+            setTimeout(function(){
+                $(".damage").remove()
+            },1000)
+        }
+}
 function showailments(){
     $(".ailment").remove();
     $(".ailments").remove();
@@ -14894,46 +13915,7 @@ function text(words,left,top){
     
 }
 
-  
-function TEMPstartcombat(){
 
-                 Eunits[newEindex()]=new Waterwraith(curEindex, 1,2);
-//               Eunits[newEindex()]=new Waterwraith(curEindex, 1,2);
-//                Eunits[newEindex()]=new Waterwraith(curEindex, 1,2);
-//                Eunits[newEindex()]=new Waterwraith(curEindex, 1,2);
-//                Eunits[newEindex()]=new Waterwraith(curEindex, 1,2);
-
-                Egroups[Egroupindex]=new Enewgroup(1,70,1000,"Warrior");
-                units[index]=new Enchantress(index,"Enchantress");
-                units[index]=new Guard(index,"Guard");
-                units[index]=new Soldier(index,"Soldier2");
-
-
-                units[0].slot=1;
-                units[1].slot=2;
-                units[2].slot=3;
-                units[0].group=1;
-                units[1].group=1;
-                units[2].group=1;
-
-    units[0].abilityfireCircle=true;
-        units[0].ultimate=true;
-    units[0].flight=true;
-        units[1].flight=true;
-    
-    units[0].mana=1000;
-    units[1].abilitywail=true;
-     units[2].abilitymedkit=true;
-         units[2].medkit=true;
-    units[2].health=80;
-    
-        mana=100
-
-                groups[groupindex]= new newgroup(1);
-
-                startcombat();
-   
-    }
 function saving(level){
     localStorage.setItem("level", level);
     if(parseInt( localStorage.getItem("diff"))>0){

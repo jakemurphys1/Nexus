@@ -86,7 +86,7 @@ function queue(){
             enterChar("Mage2",500,300);
             enterChar("Wizard1",400,400);
             movevert("Wizard1",-1)
-            delay(5000)
+            delay(1000)
         break
         case 2:
             dialog("The horde is beyond the walls.","Wizard1")
@@ -115,8 +115,6 @@ function queue(){
         break
     }
 }
-
-//window.location.href = './beforeairship.html'
 
 $(window).load(function(){
     opening("Chapter 5:","Seige")

@@ -77,9 +77,10 @@ function queue(){
                                 width: 0 + "px",
                             },2000);
                        $("#Sandra-R").animate({
-                                left:"+=100px",
+                                left:"+=80px",
                                 top:"+=30px",
                         },2000);
+            doeffect("success.wav")
             delay(2000);
         break
          case 11:
