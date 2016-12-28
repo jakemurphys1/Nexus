@@ -623,7 +623,7 @@ function enemyconquer(){
         this.slot2=-1;
         this.slot3=-1;
         var leftpos = Number($("#space2").css("left").replace("px","")) + 8;
-        var toppos = Number($("#space2").css("top").replace("px","")) + 280;
+        var toppos = Number($("#space2").css("top").replace("px","")) + 270;
         $('#background').append('<img src="../Pictures/soldiericon.png" class="icon" id="M' + groupindex +'" style="left: ' + (leftpos-15) +'px; top:' + (toppos-10) + 'px" />');
         groupindex+=1;
     }
@@ -632,9 +632,6 @@ function liberate(){
 }
 $(window).load(function(){
     changesong("01/Battle.wav")
-    setTimeout(function(){
-        $("#extender img").attr("src","pics/bridge_up.gif")
-    },3500)
     saving("14");
     
         containaccessories();
@@ -652,7 +649,10 @@ $(window).load(function(){
     
     
     $("#M1").animate({
-        top:"-=75px",
+        top:"-=50px",
+    },3500,"linear")
+        $(".platform").animate({
+        top:"-=50px",
     },3500,"linear")
 
 });

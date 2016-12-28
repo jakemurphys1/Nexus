@@ -3271,16 +3271,16 @@ function winbattle(){
 
 function TEMPstartcombat(){
 
-                 Eunits[newEindex()]=new ESoldier(curEindex, 1,2);
-               Eunits[newEindex()]=new Frostwraith(curEindex, 1,2);
-       //         Eunits[newEindex()]=new ESoldier(curEindex, 1,2);
+                 Eunits[newEindex()]=new Sparrow(curEindex, 1,2);
+               Eunits[newEindex()]=new Sparrow(curEindex, 1,2);
+                Eunits[newEindex()]=new ESoldier(curEindex, 1,2);
 //                Eunits[newEindex()]=new Bee(curEindex, 1,2);
 //                Eunits[newEindex()]=new Bee(curEindex, 1,2);
 
                 Egroups[Egroupindex]=new Enewgroup(1,70,1000,"Warrior");
-                units[index]=new Enchantress(index,"Enchantress");
-                units[index]=new Wizard(index,"Wizard1");
+                units[index]=new Soldier(index,"Soldier2");
                 units[index]=new Guard(index,"Guard");
+                units[index]=new Knight(index,"Knight-C");
 
 
                 units[0].slot=1;
@@ -3291,7 +3291,7 @@ function TEMPstartcombat(){
                 units[2].group=1;
 
 
-        units[0].abilityfireCircle=true;
+        units[0].abilitycounter=true;
     units[0].abilityiceFall=true;
     units[0].abilitystorm=true;
     units[0].flight=true;
@@ -3300,12 +3300,13 @@ function TEMPstartcombat(){
     units[0].mana=1000;
     units[1].abilitymissile=true;
      units[2].abilitymedkit=true;
-         units[2].medkit=true;
+         units[2].abilityswirl=true;
     units[2].health=80;
     
         mana=100
         
         Eunits[0].attack=0;
+ //   Eunits[0].health=1;
 
                 groups[groupindex]= new newgroup(1);
 

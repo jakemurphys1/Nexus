@@ -381,7 +381,7 @@ function liberate(curloc){
 //towns and castles
 function set_area_background(i){
         var backgroundpic="";
-                        backgroundpic="../Pictures/backgroundpics/desertbackground.png";
+                        backgroundpic="../Pictures/backgroundpics/grassbackground.png";
     return backgroundpic;
 }
 

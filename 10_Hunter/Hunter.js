@@ -679,7 +679,7 @@ function liberate(curloc){
                 baddielocation=38;
                 break;
         }
-        if (day<=10 && day>=1){
+        if (day<10 && day>=1){
             switch(temp){
                 case 1:
                 case 2:

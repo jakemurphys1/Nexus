@@ -16,13 +16,15 @@ function changesong(song){
                    
 }
 var effect = new Audio();
-function doeffect(sound,startpoint){
+function doeffect(sound,startpoint,volume){
          
               effect.src="../sounds/" + sound;
               effect.volume=1;
+    if(volume){
+        effect.volume=volume;
+    }
               effect.play();
      if(startpoint){
-        console.log("here")
         effect.currentTime = startpoint;
     }
     

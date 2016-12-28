@@ -91,7 +91,7 @@ function newunit(){
         switch(temp){
             case 1:
                 tempclass="Mage";
-                  tempname="Sandra";
+                  tempname="Mage2";
                 break;
             case 2:
                 tempclass="Wizard";
@@ -107,11 +107,11 @@ function newunit(){
                 break;
             case 5:
                 tempclass="Soldier";
-                  tempname="Edgar";
+                  tempname="Soldier2";
                 break;
             case 6:
                 tempclass="Knight";
-                  tempname="Knight";
+                  tempname="Knight2";
                 break;
             case 7:
                 tempclass="Rouge";

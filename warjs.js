@@ -273,7 +273,7 @@ function changesong(song){
 
     function Ingredient(name){
         this.name=name;
-        this.quantity=0;
+        this.quantity=10;
     }
 
 var barrackbutton;
@@ -503,7 +503,7 @@ var barrackbutton;
         $("#TEXT").append("<p style='text-align:center'>Brewery</p>");
         $("#TEXT").append("<p style='margin-left:5%'>Brew Potion:</p>");
         $("#TEXT").append("<p style='margin-left:55%; margin-top:-45px'>Ingredients:</p>");
-        $("#TEXT").append("<div id='Ingredients' style = 'background-color: gray; text-align: center; border: black solid; width:auto; position:absolute; margin-left:150px; height:auto'></div>");
+        $("#TEXT").append("<div class='row'><div class='col-xs-6' id='potionchoice'></div><div class='col-xs-6' id='Ingredients' style = 'background-color: gray; text-align: center; border: black solid; height:auto'></div></div>");
 
         //populate ingredients
         for(var key in ingredient){
@@ -514,45 +514,45 @@ var barrackbutton;
         
         //populate recipes
          if(replicaterecipe===true){
-             $("#TEXT").append("<p class='brewpotions' id='Replicate'>Replicate<br> 5 Essence</p>");
+             $("#potionchoice").append("<p class='brewpotions' id='Replicate'>Replicate<br> 5 Essence</p>");
              if(ingredient["Essence"].quantity>=5){
                  $("#Replicate").addClass("highlight")
              }
         }
         if(reviverecipe===true){
-            $("#TEXT").append("<p class='brewpotions' id='Revive'>Revive(" + revivepotion +")<br> 4 flowers <br> 4 extract</p>");
+            $("#potionchoice").append("<p class='brewpotions' id='Revive'>Revive(" + revivepotion +")<br> 4 flowers <br> 4 extract</p>");
             if(ingredient["Flowers"].quantity>=4 && ingredient["Extract"].quantity>=4){
                  $("#Revive").addClass("highlight")
              }
         }  
         if(recoverrecipe===true){
-            $("#TEXT").append("<p class='brewpotions' id='Recover'>Recover(" + recoverpotion +") <br> 2 flower <BR> 2 berries.</p>");
+            $("#potionchoice").append("<p class='brewpotions' id='Recover'>Recover(" + recoverpotion +") <br> 2 flower <BR> 2 berries.</p>");
             if(ingredient["Flowers"].quantity>=2 && ingredient["Berries"].quantity>=2){
                  $("#Recover").addClass("highlight")
              }
         }
    
         if(teleportrecipe===true){
-            $("#TEXT").append("<p class='brewpotions' id='Teleport'>teleport(" + teleportpotion +")<br> 2 powder <br> 2 sap.</p>");
+            $("#potionchoice").append("<p class='brewpotions' id='Teleport'>teleport(" + teleportpotion +")<br> 2 powder <br> 2 sap.</p>");
             if(ingredient["Powder"].quantity>=2 && ingredient["Sap"].quantity>=2){
                  $("#Teleport").addClass("highlight")
              }
         }
        
          if(strengthrecipe===true){
-            $("#TEXT").append("<p class='brewpotions' id='Strength'>Str. Boost(" + strengthpotion +") <br> 3 mushrooms <BR> 3 berries.</p>");
+            $("#potionchoice").append("<p class='brewpotions' id='Strength'>Str. Boost(" + strengthpotion +") <br> 3 mushrooms <BR> 3 berries.</p>");
                 if(ingredient["Mushrooms"].quantity>=3 && ingredient["Berries"].quantity>=3){
                  $("#Strength").addClass("highlight")
              }
         }
         if(defenserecipe===true){
-            $("#TEXT").append("<p class='brewpotions' id='Defense'>Def. Boost(" + defensepotion +")<br> 3root <br> 3 honey</p>");
+            $("#potionchoice").append("<p class='brewpotions' id='Defense'>Def. Boost(" + defensepotion +")<br> 3root <br> 3 honey</p>");
             if(ingredient["Roots"].quantity>=3 && ingredient["Honey"].quantity>=3){
                  $("#Defense").addClass("highlight")
              }
         }
         if(resistancerecipe===true){
-            $("#TEXT").append("<p class='brewpotions' id='Resistance'>Resist.boost(" + resistancepotion +")<br> 3 herb <br> 3 honey</p>");
+            $("#potionchoice").append("<p class='brewpotions' id='Resistance'>Resist.boost(" + resistancepotion +")<br> 3 herb <br> 3 honey</p>");
             if(ingredient["Herbs"].quantity>=3 && ingredient["Honey"].quantity>=3){
                  $("#Resistance").addClass("highlight")
              }
@@ -561,13 +561,13 @@ var barrackbutton;
             //$("#TEXT").append("<p class='brewpotions' id='standin1'>Standin1:(" + standin1potion +") <br> 1 mushroom <BR> 6 bone marrow</p>");
         }
         if(healthrecipe===true){
-            $("#TEXT").append("<p class='brewpotions' id='Health'>Health(" + healthpotion +")<br> 3 Mushroom <br> 3 Sap</p>");
+            $("#potionchoice").append("<p class='brewpotions' id='Health'>Health(" + healthpotion +")<br> 3 Mushroom <br> 3 Sap</p>");
                 if(ingredient["Mushrooms"].quantity>=3 && ingredient["Sap"].quantity>=3){
                  $("#Health").addClass("highlight")
              }
         }
         if(leveluprecipe===true){
-            $("#TEXT").append("<p class='brewpotions' id='Levelup'>Levelup(" + leveluppotion +")<br> 3 root <br> 3 herb</p>");
+            $("#potionchoice").append("<p class='brewpotions' id='Levelup'>Levelup(" + leveluppotion +")<br> 3 root <br> 3 herb</p>");
                 if(ingredient["Roots"].quantity>=3 && ingredient["Herbs"].quantity>=3){
                  $("#Levelup").addClass("highlight")
              }
@@ -7433,9 +7433,10 @@ function clearspaces(e){
     function attackbadguy(){
         $('.Eunit').mousedown(function(e){
             $("#TEXT").empty();
-            if (battleon===false){
+            if (battleon===false || inanimation){
                 return;
             }
+            
             if(e.button === 2) {
                 //determine enemy's number
                 for (var i = 0; i < Eindex; i++) {
@@ -7526,13 +7527,18 @@ function clearspaces(e){
 
                             
                         } else {
-                            $("#ORBE" + enemyindex).remove();
-                            $("#E" + enemyindex + " .ORBIMG").remove();
-                            $("#E" + enemyindex + " .ailment").remove();
-                            $("#E" + enemyindex + " img").attr("src",Eunits[enemyindex].dying);
-                            setTimeout(function(){
-                                $("#E" + enemyindex).remove();
-                            },1500)
+
+                            if(Eunits[enemyindex].alive == true){
+                                $("#ORBE" + enemyindex).remove();
+                                $("#E" + enemyindex + " .ORBIMG").remove();
+                                $("#E" + enemyindex + " .ailment").remove();
+                                $("#E" + enemyindex + " img").attr("src",Eunits[enemyindex].dying);
+                                setTimeout(function(){
+                                    $("#E" + enemyindex).remove();
+                                },1500)
+                            }
+
+                            Eunits[enemyindex].alive = false;
                         }
                         
                         if(units[selectedindex].type==="Enchantress" && Eunits[enemyindex].alive === false){
@@ -7540,9 +7546,6 @@ function clearspaces(e){
                             $("#TEXT").append("You recieved 30 mana for killing that enemy.")
                         }
                         Eunits[enemyindex].alive = false;
-                        if(Eunits[enemyindex].health>-1000000){
-                            $("#TEXT").append("<p>" + Eunits[enemyindex].name + " has been killed</p>");
-                        }
                         
                         if ((Eslots[1] === -1 || Eunits[Eslots[1]].alive === false) && (Eslots[2] === -1 || Eunits[Eslots[2]].alive === false) && (Eslots[3] === -1 || Eunits[Eslots[3]].alive === false) && (Eslots[4] === -1 || Eunits[Eslots[4]].alive === false) && (Eslots[5] === -1 || Eunits[Eslots[5]].alive === false)) {
                             youwin();
@@ -7599,6 +7602,10 @@ function clearspaces(e){
                     }
                 }
                 function shootarrow(enemyindex,selectedindex){
+                    inanimation=true
+                    setTimeout(function(){
+                      inanimation=false  
+                    },1000)
                     //effects
                     var tempAngle = Math.atan((units[selectedindex].curleft-Eunits[enemyindex].curleft)/(Eunits[enemyindex].curtop-units[selectedindex].curtop))/(Math.PI/180);
                   //  if(units[selectedindex].curleft>Eunits[enemyindex].curleft){
@@ -7620,6 +7627,7 @@ function clearspaces(e){
                     setTimeout(function(){
                         inanimation=false;
                     },1000)
+                    var selectednow = selectedindex
                     if(Eunits[enemyindex].curleft<units[selectedindex].curleft){
                         setTimeout(function(){
                             $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].attackleft) 
@@ -7673,9 +7681,9 @@ function clearspaces(e){
                             $("#E" + enemyindex).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
                             $(".slashEffects").fadeOut(2000);
                             Sword.play();
-                            $("#" + selectedindex).animate({
-                                top: units[selectedindex].curtop + "px",
-                                left: units[selectedindex].curleft + "px",
+                            $("#" + selectednow).animate({
+                                top: units[selectednow].curtop + "px",
+                                left: units[selectednow].curleft + "px",
                             },500)
                         },500)
                 }
@@ -8439,15 +8447,18 @@ function clearspaces(e){
                                 message("The Knight doesn't have enough stamina to use swirl. Pass the turn without using him to refill his stamina.");
                                 return;
                             }
+                            inanimation=true;
+                            var selectednow=selectedindex
                                 units[selectedindex].energy-=30;
                                 $("#EB" + units[selectedindex].index).remove();
                                 $("#" + selectedindex).append('<div class="energybar" id ="EB'+ units[selectedindex].index + '"style="width: ' + units[selectedindex].energy + '%"></div>');
                                 setTimeout(function(){
-                                    $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].swirl) 
+                                    $("#" + selectednow + " .dirpic").attr("src", units[selectednow].swirl) 
                                 },100)
                                 swing.play()
                                 setTimeout(function(){
-                                    $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].image)
+                                    $("#" + selectednow + " .dirpic").attr("src", units[selectednow].image)
+                                    inanimation=false;
                                 },1300) 
                                 setTimeout(function(){
                                     for (var z = 1; z < 6; z++) {
@@ -8456,24 +8467,24 @@ function clearspaces(e){
                                         }
                                         defense=0;
                                         if(Eunits[Eslots[z]].enfeeble===0){defense=Eunits[Eslots[z]].defense}
-                                        damage = (units[selectedindex].attack - defense + units[selectedindex].attacktempboost);
+                                        damage = (units[selectednow].attack - defense + units[selectednow].attacktempboost);
                                         if (damage < 0) {
                                             damage = 0
                                         }
-                                        if (units[selectedindex].curtop - 100 === Eunits[Eslots[z]].curtop && units[selectedindex].curleft === Eunits[Eslots[z]].curleft) {
-                                            units[selectedindex].usedaction = true;
+                                        if (units[selectednow].curtop - 100 === Eunits[Eslots[z]].curtop && units[selectednow].curleft === Eunits[Eslots[z]].curleft) {
+                                            units[selectednow].usedaction = true;
                                             Damaging(Eslots[z], damage);
                                         }
-                                        if (units[selectedindex].curtop + 100 === Eunits[Eslots[z]].curtop && units[selectedindex].curleft === Eunits[Eslots[z]].curleft) {
-                                            units[selectedindex].usedaction = true;
+                                        if (units[selectednow].curtop + 100 === Eunits[Eslots[z]].curtop && units[selectednow].curleft === Eunits[Eslots[z]].curleft) {
+                                            units[selectednow].usedaction = true;
                                             Damaging(Eslots[z], damage);
                                         }
-                                        if (units[selectedindex].curleft - 100 === Eunits[Eslots[z]].curleft && units[selectedindex].curtop === Eunits[Eslots[z]].curtop) {
-                                            units[selectedindex].usedaction = true;
+                                        if (units[selectednow].curleft - 100 === Eunits[Eslots[z]].curleft && units[selectednow].curtop === Eunits[Eslots[z]].curtop) {
+                                            units[selectednow].usedaction = true;
                                             Damaging(Eslots[z], damage);
                                         }
-                                        if (units[selectedindex].curleft + 100 === Eunits[Eslots[z]].curleft && units[selectedindex].curtop === Eunits[Eslots[z]].curtop) {
-                                            units[selectedindex].usedaction = true;
+                                        if (units[selectednow].curleft + 100 === Eunits[Eslots[z]].curleft && units[selectednow].curtop === Eunits[Eslots[z]].curtop) {
+                                            units[selectednow].usedaction = true;
                                             Damaging(Eslots[z], damage);
                                         }
                                     }
@@ -8835,12 +8846,13 @@ function clearspaces(e){
                                 }
 
                                 //effects
+                                var selectednow = selectedindex
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
-                                $("#" + selectedindex).append("<img style='margin-left:-16px;margin-top:-170px' class='effect' src='../Pictures/Effects/Mage_effect.gif' />")
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].casting)
+                                $("#" + selectednow).append("<img style='margin-left:-16px;margin-top:-170px' class='effect' src='../Pictures/Effects/Mage_effect.gif' />")
                             },100)
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].image)
                                 $(".effect").remove();
                             },1000)
                                 $("#battlebackground").append("<div class='Effects' style='top: " + units[selectedindex].curtop +"px; left: " + units[selectedindex].curleft +"px'><img src='../Pictures/Effects/EffectFire.gif' /></div>");
@@ -8872,12 +8884,14 @@ function clearspaces(e){
                                 || (units[selectedindex].curleft - 200 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop) 
                                 || (units[selectedindex].curleft + 200 === Eunits[enemyindex].curleft && units[selectedindex].curtop === Eunits[enemyindex].curtop)) {
                                 Zap.play();
+                                //effects
+                                var selectednow = selectedindex
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
-                                $("#" + selectedindex).append("<img style='margin-left:-16px;margin-top:-170px' class='effect' src='../Pictures/Effects/Mage_effect.gif' />")
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].casting)
+                                $("#" + selectednow).append("<img style='margin-left:-16px;margin-top:-170px' class='effect' src='../Pictures/Effects/Mage_effect.gif' />")
                             },100)
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].image)
                                 $(".effect").remove();
                             },1000)
                                 if(units[selectedindex].usedaction === true && units[selectedindex].abilitydoubletap===true){
@@ -9059,12 +9073,14 @@ function clearspaces(e){
                             }, 500);
                             $(".staticEffects").fadeOut(2000);
                             Iceattack.play();
+                                //effects
+                                var selectednow = selectedindex
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
-                                $("#" + selectedindex).append("<img style='margin-left:-16px;margin-top:-170px' class='effect' src='../Pictures/Effects/Mage_effect.gif' />")
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].casting)
+                                $("#" + selectednow).append("<img style='margin-left:-16px;margin-top:-170px' class='effect' src='../Pictures/Effects/Mage_effect.gif' />")
                             },100)
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].image)
                                 $(".effect").remove();
                             },1000)
 
@@ -9084,14 +9100,16 @@ function clearspaces(e){
                             var temprand= Math.floor((Math.random() * Eunits[enemyindex].maxhealth) + 1);
                             if(Eunits[enemyindex].health<temprand){
                                 Death.play();
-                                setTimeout(function(){
-                                    $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
-                                    $("#" + selectedindex).append("<img style='margin-left:-16px;margin-top:-170px' class='effect' src='../Pictures/Effects/Mage_effect.gif' />")
-                                },100)
-                                setTimeout(function(){
-                                    $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
-                                    $(".effect").remove();
-                                },1000)
+                                //effects
+                                var selectednow = selectedindex
+                            setTimeout(function(){
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].casting)
+                                $("#" + selectednow).append("<img style='margin-left:-16px;margin-top:-170px' class='effect' src='../Pictures/Effects/Mage_effect.gif' />")
+                            },100)
+                            setTimeout(function(){
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].image)
+                                $(".effect").remove();
+                            },1000)
                                 $("#battlebackground").append("<div class='slashEffects' style='margin-top: " + (Eunits[enemyindex].curtop-450) +"px; margin-left: " + (Eunits[enemyindex].curleft-0) +"px'><img src='../Pictures/Effects/Death.gif' /></div>");
                                 $(".slashEffects").fadeOut(2000);
                                 if(units[selectedindex].usedaction === true && units[selectedindex].abilitydoubletap===true){
@@ -9152,12 +9170,13 @@ function clearspaces(e){
                                 showailments();
                             }
                             //effects
+                            var selectednow = selectedindex
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
-                                $("#" + selectedindex).append("<img style='margin-left:20px;margin-top:-160px' class='effect' src='../Pictures/Effects/Wizard_effect.gif' />")
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].casting)
+                                $("#" + selectednow).append("<img style='margin-left:20px;margin-top:-160px' class='effect' src='../Pictures/Effects/Wizard_effect.gif' />")
                             },100)
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].image)
                                 $(".effect").remove();
                             },1000)
                             
@@ -9226,13 +9245,14 @@ function clearspaces(e){
                                     setTimeout(function(){
                                         inanimation=false;
                                     },1000*blows)
-//                            //effects
+                            //effects
+                            var selectednow = selectedindex
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
-                                $("#" + selectedindex).append("<img style='margin-left:20px;margin-top:-160px' class='effect' src='../Pictures/Effects/Wizard_effect.gif' />")
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].casting)
+                                $("#" + selectednow).append("<img style='margin-left:20px;margin-top:-160px' class='effect' src='../Pictures/Effects/Wizard_effect.gif' />")
                             },100)
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].image)
                                 $(".effect").remove();
                             },1000)
                             units[selectedindex].charge=0;
@@ -9268,12 +9288,14 @@ function clearspaces(e){
                                 Eunits[enemyindex].sleep=1;
                                 showailments();
                             }
+                            //effects
+                            var selectednow = selectedindex
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
-                                $("#" + selectedindex).append("<img style='margin-left:20px;margin-top:-160px' class='effect' src='../Pictures/Effects/Wizard_effect.gif' />")
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].casting)
+                                $("#" + selectednow).append("<img style='margin-left:20px;margin-top:-160px' class='effect' src='../Pictures/Effects/Wizard_effect.gif' />")
                             },100)
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].image)
                                 $(".effect").remove();
                             },1000)
                             
@@ -9308,12 +9330,13 @@ function clearspaces(e){
                                 units[selectedindex].usedaction = true;
                                 Absorb.play();
                             //effects
+                            var selectednow = selectedindex
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
-                                $("#" + selectedindex).append("<img style='margin-left:20px;margin-top:-160px' class='effect' src='../Pictures/Effects/Wizard_effect.gif' />")
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].casting)
+                                $("#" + selectednow).append("<img style='margin-left:20px;margin-top:-160px' class='effect' src='../Pictures/Effects/Wizard_effect.gif' />")
                             },100)
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].image)
                                 $(".effect").remove();
                             },1000)
 
@@ -9464,11 +9487,12 @@ function clearspaces(e){
                             }
                             $("#battlebackground").append("<img class='totalbackground' src='../Pictures/Effects/Blizzard.gif' />");
                             Hurricane.play();
+                            var selectednow = selectedindex
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].casting)
                             },100)
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].image)
                             },1000)
                             $(".totalbackground").fadeOut(2000);
                             sorcerermana -= 20;
@@ -9500,11 +9524,12 @@ function clearspaces(e){
                             }
                             $("#TEXT").append("<p>" + units[selectedindex].name + " did " + damage + " damage to " + Eunits[enemyindex].name + "\n</p>");
                             Lightning.play();
+                            var selectednow = selectedindex
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].casting)
                             },100)
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].image)
                             },1000)
                             sorcerermana-=30;
                             units[selectedindex].usedaction = true;
@@ -9561,11 +9586,12 @@ function clearspaces(e){
                             setTimeout(function(){
                             Sword.play()      
                             },500)
+                            var selectednow = selectedindex
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].casting)
                             },100)
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].image)
                             },1000)
 
                             $(".Effects").animate({
@@ -9592,11 +9618,12 @@ function clearspaces(e){
                             
                             Eunits[enemyindex].health=0;
                             //effects
+                            var selectednow = selectedindex
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].casting)
                             },100)
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].image)
                             },1000)
                             
                             $("#battlebackground").append("<div class='slashEffects' style='margin-top: " + (Eunits[enemyindex].curtop-450) +"px; margin-left: " + (Eunits[enemyindex].curleft-0) +"px'><img src='../Pictures/Effects/Death.gif' /></div>");
@@ -9612,7 +9639,7 @@ function clearspaces(e){
                         $("#TEXT").append("This unit is silenced for " + units[selectedindex].silenced + " more turns.")
                     }
                 }
-                //Guards
+                //enchantress
                 if (selectedaction === "enchantressUse" || selectedaction === "mimicAttack") {
                     if (units[selectedindex].silenced === 0) {
                         var e = document.getElementById("enchantresschoice");
@@ -9706,7 +9733,7 @@ function clearspaces(e){
                             $('#' + selectedindex).append('<img style="position: absolute; margin-top:40px; margin-left:-30px; width:48px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORB' + selectedindex + '" style="color: yellow; text-align: center; position: absolute; font-size:17px; margin-top:-27px; margin-left:50px; width:10px; height:10px ">' + units[selectedindex].mana +'</div>');
                             iceActive=true;
                             units[selectedindex].usedaction = true;
-                            stormcheck();
+                            stormcheck(true);
                         }
 
                 } else {
@@ -9715,10 +9742,10 @@ function clearspaces(e){
                     if (units[selectedindex].silenced === 0) {
                         if ($('#enchantresschoice option:selected').text() === "Torment(50)"  || e.options[e.selectedIndex].value==="Absorb)") {
                             var damage = units[selectedindex].power;
-if(units[selectedindex].mana<50){
-    message("You don't have enough mana for that.");
-    return;
-}
+                            if(units[selectedindex].mana<50){
+                                message("You don't have enough mana for that.");
+                                return;
+                            }
                             units[selectedindex].mana-=50;
                             $("#ORB" + selectedindex).remove();
                             $('#' + selectedindex).append('<img style="position: absolute; margin-top:40px; margin-left:-30px; width:48px; height:35px" src="../Pictures/Orb.gif" /><div id = "ORB' + selectedindex + '" style="color: yellow; position: absolute; font-size:17px; margin-top:-27px; margin-left:50px; width:10px; height:10px ">' + units[selectedindex].mana +'</div>');
@@ -9919,7 +9946,6 @@ showailments();
                         },2000);
                         Eunits[enemyindex].health=-1000000;
                         setTimeout(function(){dies(enemyindex);},500);
-                        Cleanse.play();
                         $("#TEXT").append(units[selectedindex].name + " captured the " + Eunits[enemyindex].name)
                         switch(Eunits[enemyindex].name){
                             case "Elk":
@@ -9944,7 +9970,7 @@ showailments();
                        updateHeader(); 
                         success.play()
                         setTimeout(function(){
-                            success.pause()
+                            success.stop()
                         },3000)
                         
                         capturedAll(Eunits[enemyindex].name);
@@ -10069,12 +10095,13 @@ showailments();
 
                             units[selectedindex].usedaction = true;
                             Cleanse.play();
+                            var selectednow= selectedindex
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
-                                $("#" + selectedindex).append("<img style='margin-left:00px;margin-top:-100px' class='effect' src='../Pictures/Effects/Healer_effect.gif' />")
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].casting)
+                                $("#" + selectednow).append("<img style='margin-left:00px;margin-top:-100px' class='effect' src='../Pictures/Effects/Healer_effect.gif' />")
                             },100)
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].image)
                                 $(".effect").remove();
                             },1000)
                             
@@ -10127,12 +10154,13 @@ showailments();
                             Cleanse.play();
                             $("#" + allyindex).append("<div class='healerEffects'><img src='../Pictures/Effects/vigor.gif' /></div>");
                             $(".healerEffects").fadeOut(2000);
+                            var selectednow=selectedindex
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].casting)
-                                $("#" + selectedindex).append("<img style='margin-left:00px;margin-top:-100px' class='effect' src='../Pictures/Effects/Healer_effect.gif' />")
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].casting)
+                                $("#" + selectednow).append("<img style='margin-left:00px;margin-top:-100px' class='effect' src='../Pictures/Effects/Healer_effect.gif' />")
                             },100)
                             setTimeout(function(){
-                                $("#" + selectedindex + " .dirpic").attr("src",units[selectedindex].image)
+                                $("#" + selectednow + " .dirpic").attr("src",units[selectednow].image)
                                 $(".effect").remove();
                             },1000)
                             if(units[selectedindex].abilitymove===true){
@@ -10587,11 +10615,13 @@ showailments();
         if(gameoverset){
             return;
         }
+        gameoverset=true;
       $("#background").append("<p class='epictext' style ='position: absolute; margin-left:200px; margin-top:-300px'>You Win</p>")
     changesong("01/win-theme.mp3")
     setTimeout(function(){
         window.location.href = location;
     },5000)
+    $("#battlebackground").remove();
       
 }
 
@@ -13542,6 +13572,10 @@ function enemyturn(selectedactions){
                         },500)
                         setTimeout(function(){
                             $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].leftpic)
+                            $("#" + selectedindex).animate({
+                                top: units[selectedindex].curtop + "px",
+                                left: units[selectedindex].curleft + "px",
+                            },500)
                         },500) 
                     }
                     if(Eunits[enemyindex].curleft>units[selectedindex].curleft){
@@ -13554,6 +13588,10 @@ function enemyturn(selectedactions){
                         },500)
                         setTimeout(function(){
                             $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].rightpic)
+                            $("#" + selectedindex).animate({
+                                top: units[selectedindex].curtop + "px",
+                                left: units[selectedindex].curleft + "px",
+                            },500)
                         },500)
                     }
                     if(Eunits[enemyindex].curtop<units[selectedindex].curtop){
@@ -13566,11 +13604,15 @@ function enemyturn(selectedactions){
                         },500)
                         setTimeout(function(){
                             $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].backpic)
+                            $("#" + selectedindex).animate({
+                                top: units[selectedindex].curtop + "px",
+                                left: units[selectedindex].curleft + "px",
+                            },500)
                         },500)
                     }
                     if(Eunits[enemyindex].curtop>units[selectedindex].curtop){
                         setTimeout(function(){
-                                                $("#" + selectedindex).css("z-index","auto")
+                        $("#" + selectedindex).css("z-index","auto")
                             $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].attackfront)
                         },100)
                         $("#" + selectedindex).animate({
@@ -13578,6 +13620,10 @@ function enemyturn(selectedactions){
                         },500)
                         setTimeout(function(){
                             $("#" + selectedindex + " .dirpic").attr("src", units[selectedindex].image)
+                            $("#" + selectedindex).animate({
+                                top: units[selectedindex].curtop + "px",
+                                left: units[selectedindex].curleft + "px",
+                            },500)
                         },500)
                     }
                         setTimeout(function(){
@@ -13585,10 +13631,7 @@ function enemyturn(selectedactions){
                             $("#E" + enemyindex).append("<div class='slashEffects'><img src='../Pictures/Effects/EffectSlash.gif' /></div>");
                             $(".slashEffects").fadeOut(2000);
                             Sword.play();
-                            $("#" + selectedindex).animate({
-                                top: units[selectedindex].curtop + "px",
-                                left: units[selectedindex].curleft + "px",
-                            },500)
+
                         },500)
                 }
             function checkcounter(enemyindex,index,loop){
@@ -13625,6 +13668,7 @@ function enemyturn(selectedactions){
                             }
                         }
                     }
+        
             function checkdeath(){
             for(var i = 1;i<6;i++){
                 if (Eunits[Eslots[i]].health <= 0) {
@@ -13638,7 +13682,14 @@ function enemyturn(selectedactions){
                         Eunits[Eslots[i]].curleft = 225;
                         Eunits[Eslots[i]].curtop = 25;
                     } else {
-                        $("#E" + Eslots[i]).effect('explode');
+                            $("#ORBE" + Eslots[i]).remove();
+                            $("#E" + Eslots[i] + " .ORBIMG").remove();
+                            $("#E" + Eslots[i] + " .ailment").remove();
+                            $("#E" + Eslots[i] + " img").attr("src",Eunits[Eslots[i]].dying);
+                            var curenemyindex = Eslots[i]
+                            setTimeout(function(){
+                                $("#E" + curenemyindex).remove();
+                            },1500)
                     }
                     Eunits[Eslots[i]].alive = false;
                     if(Eunits[Eslots[i]].health>-1000000){
@@ -13654,7 +13705,7 @@ function enemyturn(selectedactions){
             checkdeath()
             setTimeout(function(){
                 checkdeath()
-            },1100)
+            },3000)
 
             $('*').usedaction=false;
             $('*').removeClass("selected");
@@ -13681,10 +13732,10 @@ function enemyturn(selectedactions){
     
 }
 
-function stormcheck(){
+function stormcheck(nostorm){
     var elementalNum=1;
         ///Storm stuff
-        if(units[slots[1]].stormactive===true || units[slots[2]].stormactive===true || units[slots[3]].stormactive===true){
+        if(units[slots[1]].stormactive===true || units[slots[2]].stormactive===true || units[slots[3]].stormactive===true && nostorm!=true){
             var randnum = Math.floor((Math.random() * 4)+1);
             $("#battlebackground").append("<div class='Effects' style='margin-top: " + (-95 - (100 *randnum)) + "px; margin-left: -200px'><img src='../Pictures/Effects/Cloud.gif'/></div>");
             $(".Effects").animate({
@@ -13716,6 +13767,7 @@ function stormcheck(){
                     damaging(w,"lightning")
                 }
             }
+            checkdeath();
         }
     //fire circle   
     setTimeout(function(){
@@ -13737,6 +13789,7 @@ function stormcheck(){
                 setTimeout(function(){
                         damaging(randnum,"ice")
                         Iceattack.play()
+                        checkdeath();
                 },1000)
         }
         function damaging(index,element){
@@ -13784,7 +13837,39 @@ function stormcheck(){
                 $(".damage").remove()
             },1000)
         }
-    
+        function checkdeath(){
+            for(var i = 1;i<6;i++){
+                if (Eunits[Eslots[i]].health <= 0) {
+                    if (Eunits[Eslots[i]].type === "Bee" || Eunits[Eslots[i]].type === "Zombie" || Eunits[Eslots[i]].type === "Golem") {
+
+                        $("#E" + Eslots[i]).fadeOut();
+                        $("#E" + Eslots[i]).animate({
+                            left: 225 + "px",
+                            top: 25 + "px"
+                        });
+                        Eunits[Eslots[i]].curleft = 225;
+                        Eunits[Eslots[i]].curtop = 25;
+                    } else {
+                            $("#ORBE" + Eslots[i]).remove();
+                            $("#E" + Eslots[i] + " .ORBIMG").remove();
+                            $("#E" + Eslots[i] + " .ailment").remove();
+                            $("#E" + Eslots[i] + " img").attr("src",Eunits[Eslots[i]].dying);
+                            var enemyindex = Eslots[i]
+                            setTimeout(function(){
+                                $("#E" + enemyindex).remove();
+                            },1500)
+                    }
+                    Eunits[Eslots[i]].alive = false;
+                    if(Eunits[Eslots[i]].health>-1000000){
+                         $("#TEXT").append("<p>" + Eunits[Eslots[i]].name + " has been killed</p>");
+                    } 
+
+                    if ((Eslots[1] === -1 || Eunits[Eslots[1]].alive === false) && (Eslots[2] === -1 || Eunits[Eslots[2]].alive === false) && (Eslots[3] === -1 || Eunits[Eslots[3]].alive === false) && (Eslots[4] === -1 || Eunits[Eslots[4]].alive === false) && (Eslots[5] === -1 || Eunits[Eslots[5]].alive === false)) {
+                        youwin();
+                    }
+                }
+            }
+        }
     }
 function firecheck(){
             //fire circle
