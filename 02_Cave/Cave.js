@@ -29,6 +29,8 @@
 
 var noheal=false;
 var number_of_units=2;
+var missiondetails = "<p>Follow the instructions to learn how to create groups, switch group members, and to defeat enemies.</p>"
+var nobrew=true
 
 function containaccessories(){
     

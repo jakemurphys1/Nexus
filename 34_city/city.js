@@ -28,6 +28,7 @@
         var boostpotion=0;
 
 var number_of_units=12;
+var missiondetails = "<p>Click on the 'Q' boxes to see the available contracts. It will show all the enemies and the rewards to defeating them.</p><p>When a group moves there, it must fight through multiple groups back to back.</p><p>There is also be units roaming in the streets. You don't have to fight them and they won't provide you money.</p><p>You must make a certain amount of money shown at the top. If you reach turn 30 before making that much money, it's gameover.</p>"
 
 var money=0
 
@@ -851,9 +852,10 @@ $(window).load(function(){
    $("#space70").click(function(){
         gotocapitol();
     });
-        //34
+        var details = [];
     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new Vampire(curEindex, Egroupindex,difflevel);
+    
     Egroups[Egroupindex]=new Enewgroup(4,34,800,'Ice Elemental');
     
     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
@@ -864,6 +866,7 @@ $(window).load(function(){
     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(5,34,800,'Fire Elemental');
+    details[34]="A pack of werewolfs are housed up in the building. Been eating our dogs. I think one might have a pet bird."
     
             //35
     Eunits[newEindex()]=new EMage(curEindex, Egroupindex,difflevel);
@@ -878,6 +881,7 @@ $(window).load(function(){
     Eunits[newEindex()]=new EGuard(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new EMage(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(5,35,800,'Fire Elemental');
+    details[35]="A number of mages hsve been expelled from their guild, and started doing some freelance criminal work. They also hired them some guards to help."
     
                 //36
     Eunits[newEindex()]=new Magnet(curEindex, Egroupindex,difflevel);
@@ -890,6 +894,8 @@ $(window).load(function(){
     
     Eunits[newEindex()]=new Cannon(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(5,36,800,'Fire Elemental');
+    
+    details[36]="Local 'Genius' tried to hack some robots in his own home, and now they're out of control. Help the guy out."
     
                     //37
     Eunits[newEindex()]=new Gremlin(curEindex, Egroupindex,difflevel);
@@ -910,6 +916,7 @@ $(window).load(function(){
     Eunits[newEindex()]=new Gremlin(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(5,37,800,'Fire Elemental');
     
+    details[37]="Gremlins... So many Gremlins..."
                     //38
     Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
@@ -925,6 +932,8 @@ $(window).load(function(){
     Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(5,38,800,'Fire Elemental');
     
+    details[38]="We sent some firemen to put out what we thought was a normal fire. At least until it started biting. Fire doesn't normally do that."
+    
                         //39
     Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(4,39,800,'Ice Elemental');
@@ -933,6 +942,8 @@ $(window).load(function(){
     Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(5,39,800,'Fire Elemental');
     
+    details[39]="Home security system keeps everyone out... including it's own residents. Next time they shouldn't buy from traveling salesmen."
+    
     //40
         Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(1,40,500,'Soldier');
@@ -940,6 +951,8 @@ $(window).load(function(){
      Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
         Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(2,40,500,'Wizard');
+    details[40]="Residents leave their house for one week and come back to a house filled with wolves."
+    
     
     //41
     Eunits[newEindex()]=new IceElemental(curEindex, Egroupindex,difflevel);
@@ -948,6 +961,8 @@ $(window).load(function(){
     Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new EWizard(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(5,41,800,'Fire Elemental');
+    
+    details[41]="A wizard has some illegal pets which keeps attacking people."
     
         //42
        Eunits[newEindex()]=new Bee(curEindex, Egroupindex,difflevel);
@@ -964,6 +979,8 @@ $(window).load(function(){
     Eunits[newEindex()]=new Bee(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(4,42,800,'Ice Elemental');
     
+    details[42]="I enjoy honey as much as the next person, but this guy's lease says 'No Pets'. Also, attacking people with bees is frown upon in the city."
+    
             //43
        Eunits[newEindex()]=new Zombie(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new Zombie(curEindex, Egroupindex,difflevel);
@@ -979,6 +996,8 @@ $(window).load(function(){
     Eunits[newEindex()]=new Zombie(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(4,43,800,'Ice Elemental');
     
+    details[43]="Apparently this mortician has a side hobby..."
+    
                 //44
     Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
@@ -993,6 +1012,8 @@ $(window).load(function(){
     Eunits[newEindex()]=new IceElemental(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(4,44,800,'Ice Elemental');
     
+    details[44]="Local icecream shop owner had a brilliant idea to keep his product cold... Had..."
+    
                     //45
     Eunits[newEindex()]=new ESoldier(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new Spider(curEindex, Egroupindex,difflevel);
@@ -1003,6 +1024,7 @@ $(window).load(function(){
     Eunits[newEindex()]=new ESoldier(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(4,45,800,'Ice Elemental');
     
+    details[45]="Silk production is illegal here."
                     //46
     Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(4,46,800,'Ice Elemental');
@@ -1020,6 +1042,8 @@ $(window).load(function(){
     Eunits[newEindex()]=new Cannon(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(4,46,800,'Ice Elemental');
+    
+    details[46]="Not sure how this house got filled with metal-heads, but it needs to be cleaned out."
 
 $(".Eicon").addClass("hidden")
 $(".Qicon").click(function(){
@@ -1035,6 +1059,8 @@ $(".Qicon").click(function(){
                 }
             }
         }
+    $("#TEXT").append("<p>" + details[parseInt(location)] +"</p>")
+    
             getstats()
 })
 });

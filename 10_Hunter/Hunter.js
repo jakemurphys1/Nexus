@@ -28,6 +28,7 @@
         var boostpotion=0;
 
 var number_of_units=6;
+var missiondetails = "<p>Create groups and move them to meet the beast's groups.</p><p>To capture the beasts, enter combat with them, click the 'Capture' button, and then right-click the enemy. The lower it's health, the more likely you will succeed in capturing it. Any unit in the battle can do it regardless of range or location.</p><p>The number of each type of beast that you must capture is displayed at the top. Capturing more has no point.</p><p>You have 50 turns to capture that many beasts, and if you run out of time, it's gameover.</p>"
 
 var wolves=0;
 var bears=0;
@@ -851,8 +852,8 @@ function liberate(curloc){
                         tempnum+=1;
                     }
                     if(spiders<spiderlimit && tempnum<3){
-                          Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
-                            tempstring="Wolf";
+                          Eunits[newEindex()]=new Spider(curEindex, Egroupindex,difflevel);
+                            tempstring="Spider";
                         tempnum+=1;
                     }
                     if(elk<elklimit){
@@ -927,9 +928,6 @@ function indiv_newday(){
         gameover();
     }
 }
-function indiv_gotocapitol(){
-      $("#TEXT").empty().append('<div class="gotobutton" id = "gotobarracks"><p>BARRACKS</p></div><div class="gotobutton" id = "gotobrewery"><p>BREWERY</p></div>');
-}
 
 function capturedAll(){
     if(wolves>=wolflimit && sparrows>=sparrowlimit && spiders>=spiderlimit && bears>=bearlimit && elk>=elklimit && turtles>=turtlelimit){
@@ -947,6 +945,7 @@ function enemyconquer(){
 $(window).load(function(){
     changesong("01/hunting.wav")
 saving("10")
+winbattle("../11/beforeseige.html");
         containaccessories();
  wolflimit = 5+2*difflevel;
  sparrowlimit=5+2*difflevel;

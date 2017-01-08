@@ -21,10 +21,10 @@ function queue(){
             break
         case 3:
         movehor("Archer4",-1)
-        dialog("Since we escape that prison, I guess we haven't really needed it.","Archer4")
+        dialog("Since we escaped that prison, I guess we haven't really needed it.","Archer4")
             break
         case 4:
-       dialog("Not sure why weren't doing it now.","Archer4")
+       dialog("Not sure why we're doing it now.","Archer4")
             break
         case 5:
          dialog("For old time's sake.","Guard-C")
@@ -58,7 +58,7 @@ function queue(){
          dialog("I can't believe it's only been a month since I had the little one.","Archer4")
         break
          case 15:
-         movehor("Guard",100)
+         movehor("Guard-C",100)
          dialog("I think it's time I introduce little Bruce to the ocean.","Guard-C")
         break
           case 16:
@@ -80,8 +80,8 @@ function queue(){
         break
         case 21:
         movevert("Archer4",-1)
-        movevert("Guard",-1)
-              dialog("Hello...","Guard")
+        movevert("Guard-C",-1)
+              dialog("Hello...","Guard-C")
         break
         case 22:
               dialog("I'm looking for a Bernard and an Olivia.","General")

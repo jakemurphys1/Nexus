@@ -30,6 +30,8 @@
         var boostpotion=0;
 
 var noheal=true;
+var noescape=true;
+var missiondetails = "<p>Create groups and move them to defeat each of the enemy groups. Note that they will be moving when you click 'Pass'.</p><p>Once all the enemy groups are defeated, you win.</p><p>You still cannot use the 'heal' ability in the barracks, but you can brew potions that can heal, revive, or boost your troops.</p>"
 
 var number_of_units=8;
 
@@ -945,6 +947,7 @@ function enemyconquer(){
 $(window).load(function(){
     changesong("01/Battle.wav")
     saving("16")
+     winbattle('../17/meeting.html')
         containaccessories();
     
     Eunits[newEindex()]=new ESoldier(curEindex, Egroupindex,difflevel);

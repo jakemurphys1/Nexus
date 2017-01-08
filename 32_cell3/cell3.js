@@ -28,8 +28,8 @@
         var boostpotion=0;
 
 var number_of_units=8;
+var missiondetails = "<p>Create groups and move them to meet the beast's groups before they reach your nexus. If they reach your nexus, it's gameover.</p><p>To capture the beasts, enter combat with them, click the 'Capture' button, and then right-click the enemy. The lower it's health, the more likely you will succeed in capturing it. Any unit in the battle can do it regardless of range or location.</p><p>Once you capture them, you can click on the Beast Nexus on the upper left. It looks like the regular Nexus, but a little darker. You can create groups of beasts the same way you do with humans. They don't, however, level up.</p><p>You can exchange beasts between groups regardless of how far apart they are.</p><p>You have 30 turns to destroy all the enemies above the wall using the beasts, or it's gameover.</p>"
 
-noheal=false;
 var wolves=0;
 var bears=0;
 var spiders=0;
@@ -458,9 +458,9 @@ return "Angel"
 
 //special abilities
     function traincommands(e){
-
+        if(units[selectedindex].isanimal!=true){
             $('.actions').append("<div class = 'actionbutton' style='position:absolute; margin-top:30px; margin-left:265px; width:100px' id = 'Capture'>Capture</div>");
-
+        }
         clickactionbuttons();
     }
 
@@ -728,7 +728,7 @@ function liberate(curloc){
                     break;
             }
         }
-        if (day<20 && day>=10){
+        if (day<20 && day>10){
             switch(temp){
                 case 1:
                 case 2:

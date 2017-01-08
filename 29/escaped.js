@@ -45,13 +45,13 @@ function queue(){
              dialog("Thought you forgot about us.","Knight")
             break
         case 3:
-        dialog("Took some time to find the key..","Thief1")
+        dialog("Took some time to find the key.","Thief1")
             break
         case 4:
        dialog("Now, you need to start answering some questions.","Thief1")
             break
         case 5:
-         dialog("Real Gracious lot here.","Wizard1")
+         dialog("Real gracious lot here.","Wizard1")
         break
          case 6:
         dialog("What do you want with us, and why did you free us?","Thief1")

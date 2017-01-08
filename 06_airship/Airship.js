@@ -1,5 +1,7 @@
 var allynum=0;
 var noexplore=true;
+var nobrew=true;
+            var missiondetails = "<p>The Enemies will land on your ship somewhere near the edges, and will then race towards one of your four engines.</p><p>If an enemy group reaches an engine, it will shut off. Move one of your groups to that location to turn it back on.</p><p>If less then 3 engines are on, it will begin to descend, and if the ship hits the ground, it's gameover.</p><p> Survive 30 turns, and you win.</p>"
 
 var number_of_units=8;
 
@@ -1089,14 +1091,19 @@ function airship(upOrDown, withmissile){
 
 $(window).load(function(){
     changesong("01/Battle.wav")
+
     if(thismode==1){
+
         saving("6")
     }
     if(thismode==2){
         saving("18")
+                    missiondetails = "<p>The Enemies will land on your ship somewhere near the edges, and will then race towards one of your four engines.</p><p>If an enemy group reaches an engine, it will shut off. Move one of your groups to that location to turn it back on.</p><p>If less then 3 engines are on, it will begin to descend, and if the ship hits the ground, it's gameover.</p><p> Survive 30 turns, and you win. The enemies will be tougher this time, and you still won't be able to find ingredients for potions.</p>"
+
     }
     if(thismode==3){
          saving("24")
+         missiondetails = "<p>The Enemies will land on your ship somewhere near the edges, and will then race towards one of your four engines.</p><p>If an enemy group reaches an engine, it will shut off. Move one of your groups to that location to turn it back on.</p><p>If less then 3 engines are on, it will begin to descend, and if the ship hits the ground, it's gameover.</p><p> Survive 30 turns, and you win. The enemies will be tougher this time, and you still won't be able to find ingredients for potions.</p><p>The enemy ship also has missile, so they may be able to destroy your engines.</p>"
     }
     if(parseInt( localStorage.getItem("diff"))>0){
         difflevel=parseInt(localStorage.getItem("diff"));

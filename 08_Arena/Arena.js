@@ -30,8 +30,10 @@
         var boostpotion=0;
 
 var noheal=true;
+var noescape=true;
 
 var number_of_units=7;
+var missiondetails = "<p>All of the enemy groups will remain still. Create groups and move them to defeat each of the enemy groups</p><p>Once all the enemy groups are defeated, you win.</p><p>You cannot use the 'heal' ability in the barracks, but you can brew potions that can heal, revive, or boost your troops.</p><p>You can get ingredients for potions by defeating enemies, stealing from enemies using the thief, or by exploring.</p><p>To use Explore, move a group to a new location and then, at the bottom near the 'Pass' button, click Explore. Locations that have already been explored cannot be done so again.</p><p>To brew potions, click on the Nexus, and then click on 'Brewery'. Potions in which you have the ingredients will be highlighted in yellow. Click them to brew the potion.</p><p>To use a potion, go back to the barracks. Recovery potions can be used by clicking the button displayed on the unit. Boost potions can be used by clicking the potion's button underneath the units and then clicking the unit whose stat you wish to boost. Each unit can only boost each stat type once per battle, and will increase it by 30%.</p>"
 
 function containaccessories(){
     
@@ -442,6 +444,7 @@ function enemyconquer(){
 $(window).load(function(){
         changesong("01/Battle.wav")
         localStorage.setItem("level", "8");
+    winbattle('../09/intrain.html')
     if(parseInt( localStorage.getItem("diff"))>0){
         difflevel=parseInt(localStorage.getItem("diff"));
     }

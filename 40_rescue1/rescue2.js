@@ -27,10 +27,12 @@
         var teleportpotion=0;
         var boostpotion=0;
 
-var number_of_units=6;
+var number_of_units=16;
 
 noheal=false;
 noexplore=true;
+noescape=true;
+var missiondetails = "<p>Move your groups through the hedges, keeping an eye on the enemies. You will be able to see the enemies before they move down, so regroup your groups accordingly.</p><p>Any two groups can exchange members as long as they are within 7 spaces of each other.</p><p>If any civilians die, it's gameover. Once you have all four civilians in the Nexus, you win.</p>"
 
 
 function containaccessories(){
@@ -538,8 +540,7 @@ for(var i =32;i<49;i++){
                 case 6: 
                 case 7:
                     Eunits[newEindex()]=new Spitter(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Spitter(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,800,'Spitter');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,500,'Spitter');
                     break;
                 case 8:
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
@@ -566,7 +567,6 @@ for(var i =32;i<49;i++){
                 break;
                 case 2:
                      Eunits[newEindex()]=new Spitter(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Spitter(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Spitter(curEindex, Egroupindex,difflevel);
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,700,'Spitter');
                 break;
@@ -604,10 +604,9 @@ for(var i =32;i<49;i++){
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,600,'Hellhound');
                     break;
                 case 10:
-                    Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Magnet(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Cannon(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,700,'Cannon');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,600,'Cannon');
                     break;
             }
         }
@@ -626,7 +625,6 @@ for(var i =32;i<49;i++){
                     Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,800,'Bat');
                 break;
                 break;
@@ -637,9 +635,9 @@ for(var i =32;i<49;i++){
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,600,'Ice Elemental');
                 break;
                 case 4:
-                    Eunits[newEindex()]=new IceElemental(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new IceElemental(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,500,'Ice Elemental');
+                    Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,500,'Wisp');
                 break;
                 case 5:
                     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
@@ -661,17 +659,15 @@ for(var i =32;i<49;i++){
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,600,'Warrior');
                     break;
                 case 9:
-                       Eunits[newEindex()]=new Spitter(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Vampire(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Spitter(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,600,'Spitter');
+                    Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,600,'Vampire');
                     break;
                 case 10:
-                       Eunits[newEindex()]=new Spitter(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Vacuum(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
-                       Eunits[newEindex()]=new Spitter(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,800,'Werewolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,500,'Vacuum');
                     break;
             }
         }
@@ -719,14 +715,14 @@ function indiv_gotocapitol(){
 }
 
 function indiv_return(){
-    var civreturned = true;
+    var civreturned = 0;
     for (var i = 12;i<16;i++){
         if(units[i].group!=0){
-            civreturned = false
+            civreturned +=1
         }
     }
     
-    if(civreturned){
+    if(civreturned>=4){
         winbattle("../41/beforeriver.html");
     }
 }
@@ -772,7 +768,6 @@ function enemyconquer(){}
  function tempexchangeunits(temp){
         var location2 = groups[temp].location;
         var location1= groups[curgroupnum].location;
-    console.log(parseInt(location2)-parseInt(location1))
             if(parseInt(location2)-parseInt(location1)>6 || parseInt(location2)-parseInt(location1)<-6){
                         $("#TEXT").empty();
                         $('#TEXT').append("These groups are too far apart to exchange.");
@@ -945,10 +940,12 @@ $(window).load(function(){
     units[14].slot=3
 
         units[15]= new Civilian(15,"fisherman");
-        units[15]= new Civilian(16,"fisherman");
+        units[16]= new Civilian(16,"fisherman");
     groups[groupindex]= new tempnewgroup(groupindex,4);
     units[15].group=6;
     units[15].slot=1
+    units[16].group=6;
+    units[16].slot=2
     
     //click buttons on map
    $("#space70").click(function(){

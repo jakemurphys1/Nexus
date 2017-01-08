@@ -171,8 +171,10 @@ function delay(time){
     },time)
 }
 
-function saving(){
-    localStorage.setItem("level", "10");
+function saving(level){
+    if(window.localStorage) { 
+        localStorage.setItem("level", level); 
+    }
     if(parseInt( localStorage.getItem("diff"))>0){
         difflevel=parseInt(localStorage.getItem("diff"));
     }

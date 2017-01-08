@@ -32,6 +32,8 @@ var number_of_units=11;
 noheal=false;
 noexplore=true;
 
+var missiondetails = "<p>Every turn, the Kraken will comes closer. If it reaches the Nexus, it's gameover.</p><p>Send groups to fight it. While they can't win the battle, every time they injure an eye, the kraken will be delayed one turn. The turns it will be delayed is shown at the top. This means it won't move when you pass the turn.</p><p>If you can delay the kraken for 25 turns, you win.</p>"
+
  var delayKraken=0;
 
 
@@ -57,7 +59,7 @@ function containaccessories(){
         $("#space2").data("move1",'1').data("move2",'3').data("move3",'').data("move4",'').data("left",130).data("top",310).data("location",2).data("fortify",false);
         $("#space1").data("move1",'').data("move2",'2').data("move3",'').data("move4",'').data("left",100).data("top",310).data("location",1).data("fortify",false);
 
-        $("#space70").data("move1",'13').data("move2",'').data("move3",'').data("move4",'').data("left",70).data("top",100).data("location",300).data("fortify",false);
+        $("#space70").data("move1",'13').data("move2",'').data("move3",'').data("move4",'').data("left",480).data("top",300).data("location",70).data("fortify",false);
     }
 function assignlocations() {}
 function newunit(){
@@ -430,7 +432,7 @@ function set_area_background(i){
 }
 function updateHeader(){
      $('.heading').remove();
-        $('#top').html("<h1 class = 'heading'>Turn: " + day + "/30</h1><span style='margin-left:40px'>Kraken delayed: " + delayKraken + "</span>");
+        $('#top').html("<h1 class = 'heading'>Turn: " + day + "/25</h1><span style='margin-left:40px'>Kraken delayed: " + delayKraken + "</span>");
 }
 
 function indiv_newday(){
@@ -443,12 +445,9 @@ function indiv_newday(){
         })
         updateHeader();
     }
-    if(day>=30){
+    if(day>=25){
         winbattle('../29/escaped.html')
     }
-}
-function indiv_gotocapitol(){
-      $("#TEXT").empty().append('<div class="gotobutton" id = "gotobarracks"><p>BARRACKS</p></div>');
 }
 function indiv_return(){}
 

@@ -570,7 +570,7 @@ function indiv_alldead(){
 //towns and castles
 function set_area_background(i){
         var backgroundpic="";
-                        backgroundpic="../Pictures/backgroundpics/desertbackground.png";
+                        backgroundpic="../Pictures/backgroundpics/beachbackground.png";
     return backgroundpic;
 }
 

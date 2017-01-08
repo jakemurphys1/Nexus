@@ -169,7 +169,7 @@ function Docking(){
           
     
   
- //        text("The group of heroes rejoice...",50,450)
+         text("The group of heroes rejoice...",50,450)
 
   setTimeout(function(){
       $("#quickscene").remove();
@@ -184,7 +184,6 @@ function credits(){
         $(".addhere").append("<div class='row'><p>Developed by:</p><p>5X5 Games</p></div>")
         $(".addhere").append("<div class='row'><p>Play Tester:</p><p>Emmanuel Murphy</p></div>")
         $(".addhere").append("<div class='row'><p>Music by:</p><p>Matthew Pablo</p></div>")
-        $(".addhere").append("<div class='row'><p>And:</p><p>Light Elves Music</p></div>")
         $(".addhere").append("<div class='row'><p>Sprites and animation created using:</p><p>www.piskelapp.com</p></div>")
         $(".addhere").append("<div class='row'><p>Backgrounds created using:</p><p>Tiled from www.mapeditor.org</p></div>")
         $(".addhere").append("<div class='row'><p>Sound effects courtesy of:</p><p>www.freesound.org</p></div>")

@@ -1,3 +1,4 @@
+var level
 function queue(){}
 
         function getCookie(cname) {
@@ -22,7 +23,7 @@ function queue(){}
         }
 
 $(window).load(function(){
-var level = parseInt(localStorage.getItem("level"));
+
 var curmusic = new Audio();
     curmusic.src="sounds/music/01/Flying.mp3";
      curmusic.volume=.2;
@@ -55,12 +56,12 @@ var curmusic = new Audio();
     },2000)
     
     $(".menu").append('<p class="new-game">New Game</p>')
-    
-    if(level>0){
-        $(".menu").append('<p class="continue">Continue</p>')
-    }
-    
-    $(".continue").click(function(){
+    setTimeout(function(){
+        level = parseInt(localStorage.getItem("level"));
+        if(level>0){
+            $(".menu").append('<p class="continue">Continue</p>')
+        }
+            $(".continue").click(function(){
         switch(level){
             case 2:
                window.location.href = '02_Cave/Cave.html' 
@@ -147,7 +148,7 @@ var curmusic = new Audio();
                window.location.href = '07/afterairship.html' 
             break;
             case 9:
-               window.location.href = '9/intrain.html' 
+               window.location.href = '09/intrain.html' 
             break;
             case 11:
                window.location.href = '11/beforeseige.html' 
@@ -208,6 +209,10 @@ var curmusic = new Audio();
         }
         
     })
+    },100)
+
+    
+
     
     $(".new-game").click(function(){
         

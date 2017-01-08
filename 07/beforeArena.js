@@ -45,36 +45,39 @@ function queue(){
             dialog("I'm also a thief, so I can get more by stealing.","Thief1")
         break
         case 12:
+            dialog("Also, we won't be able to escape once we enter combat.","Thief1")
+        break
+        case 13:
             dialog("Our ultimate objective is to kill the other team.","Thief1")
         break
-          case 13:
+          case 14:
             dialog("All of them? Won't that trap them in the Nexus!","Archer4")
         break
-          case 14:
+          case 15:
             movehor("Thief1",95,"end")
         break
-          case 15:
+          case 16:
             movevert("Thief1",-90,"end")
         break
-         case 16:
+         case 17:
             dialog("Do you hear that Crowd?","Thief1")
         break
-         case 17:
+         case 18:
             dialog("They aren't here to see us fight...","Thief1")
         break
-         case 18:
+         case 19:
             dialog("They want to see destruction.","Thief1")
         break
-         case 19:
+         case 20:
             dialog("To see one of us thrown into the abyss!","Thief1")
         break
-         case 20:
+         case 21:
             dialog("That cannot, and will not, be us!","Thief1")
         break
-         case 21:
+         case 22:
             dialog("Now move out!","Thief1")
         break
-         case 22:
+         case 23:
             window.location.href = '../08_Arena/Arena.html'
         break
     }

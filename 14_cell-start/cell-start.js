@@ -29,6 +29,7 @@
         var boostpotion=0;
 var noexplore=true;
 var number_of_units=6;
+var noescape=true;
 
 function containaccessories(){
     

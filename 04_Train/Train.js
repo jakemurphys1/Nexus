@@ -29,7 +29,9 @@
         var teleportpotion=0;
         var boostpotion=0;
 noheal=true;
+var nobrew=true;
 var number_of_units=5;
+var missiondetails = "<p>Click on the enemy groups to learn their strengths and weaknesses.</p><p>Create groups by clicking on the Nexus, clicking on 'Barracks', and the double-clicking the units.</p><p>Once created, click the blue group, and then right-click the enemies or the spaces to move the group there.</p><p> Once all five of the enemy groups are defeated, you win.</p>"
 
 function containaccessories(){
     
@@ -387,9 +389,7 @@ function set_area_background(i){
 
 
 function indiv_newday(){
-if(Egroups[1].location<0){
-        winbattle();
-    }
+
 }
 function indiv_gotocapitol(){
       $("#TEXT").empty().append('<div class="gotobutton" id = "gotobarracks"><p>BARRACKS</p></div>');
@@ -454,7 +454,7 @@ $(window).load(function(){
         message("These are sparrows. They will fly instantly to your units. Using units with higher defense, like the soldier or guard, will be important.")
     })
       $("#EM3").click(function(){
-        message("These are fire elementals. They have a high 'Resistance', so magic attacks won't be effective. They are also long-range, so you will probably want some long-range attackers like archers. Notice that they are fire, so if you use elemental attacks, Ice would be best.")
+        message("Fire elementals have a high 'Resistance', so magic attacks won't be effective. They are also long-range, so you will want some long-range attackers like archers. Notice that they are fire, so if you use elemental attacks, Ice would be best.")
     })
        $("#EM4").click(function(){
         message("This is a turtle. This one has a high 'Defense', so physical attacks won't be effective. However, it does have low 'Resistance', so you should use magic. Also, the Rouge's poison arrow can be useful here.")

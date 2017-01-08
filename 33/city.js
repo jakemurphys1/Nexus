@@ -120,6 +120,6 @@ function queue(){
 }
 
 $(window).load(function(){
-    changesong("peaceful.mp3")
+    changesong("01/pleasant.wav")
     saving("33")
 });

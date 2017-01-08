@@ -1,5 +1,3 @@
-   difflevel=3;
-
     var allynum=0;
 
         var angel=false;
@@ -29,6 +27,7 @@
         var teleportpotion=0;
         var boostpotion=0;
 var number_of_units=8;
+var missiondetails = "<p>The enemies will charge towards the walls whose health is shown in green.</p><p> Once they reach it, they will damage it and reduce it's health. If any wall falls, it's gameover.</p><p> Survive 30 turns without allowing any wall to fall, and you win.</p>"
 
 function containaccessories(){
     
@@ -763,9 +762,7 @@ function indiv_newday(){
         winbattle("../13/beforecells.html")
     }
 }
-function indiv_gotocapitol(){
-      $("#TEXT").empty().append('<div class="gotobutton" id = "gotobarracks"><p>BARRACKS</p></div><div class="gotobutton" id = "gotobrewery"><p>BREWERY</p></div>');
-}
+
 
 
 function levelresearch(){

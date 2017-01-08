@@ -29,6 +29,7 @@
         var boostpotion=0;
 var noexplore=true;
 var number_of_units=6;
+var noescape=true;
 
 function containaccessories(){
     
@@ -368,7 +369,6 @@ return "Angel"
                 case 1:
                 case 2:
                     Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'Wisp');
                     break;
                 case 3:
@@ -382,16 +382,15 @@ return "Angel"
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,200,'Spider');
                     break;
                 case 7:
-                    Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new LightningElemental(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Fire Elemental');
                     break;
                 case 8:
-                    Eunits[newEindex()]=new Spitter(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Spitter(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Spitter');
+                    Eunits[newEindex()]=new Gremlin(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Gremlin(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Gremlin(curEindex, Egroupindex,difflevel);
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Gremlin');
                     break;
                 case 9:
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
@@ -420,18 +419,16 @@ return "Angel"
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'Bear');
                     break;
                 case 6:
-                    Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Spitter(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Bear');
                     break;
                 case 7:
                     Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Hellhound');
                     break;
                 case 8:
-                    Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Sparrow');
@@ -464,9 +461,11 @@ return "Angel"
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'Wolf');
                     break;
                 case 5:
-                    Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'Bear');
+                    Eunits[newEindex()]=new Gremlin(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Gremlin(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Gremlin(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Gremlin(curEindex, Egroupindex,difflevel);
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Gremlin');
                     break;
                 case 6:
                     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
@@ -515,17 +514,14 @@ return "Angel"
                     break;
                 case 6:
                     Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Frostlord(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Frostlord');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Wisp');
                     break;
                 case 7:
                     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Magnet(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Sparrow');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Sparrow');
                     break;
                 case 8:
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
@@ -533,9 +529,12 @@ return "Angel"
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Bear');
                     break;
                 case 9:
-                    Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Spider(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Spider');
+                    Eunits[newEindex()]=new Gremlin(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Gremlin(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Gremlin(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Gremlin(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Gremlin(curEindex, Egroupindex,difflevel);
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Gremlin');
                     break;
                 case 10:
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
@@ -560,14 +559,11 @@ return "Angel"
                 case 5:
                      Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new LightningElemental(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'Wisp');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Wisp');
                     break;
                 case 6:
-                    Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Angel(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Angel');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Angel');
                     break;
                 case 7:
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
@@ -607,14 +603,12 @@ return "Angel"
                 case 5:
                      Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new LightningElemental(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'Wisp');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Wisp');
                     break;
                 case 6:
                     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Angel(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Angel');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Angel');
                     break;
                 case 7:
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
@@ -664,8 +658,8 @@ return "Angel"
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Angel');
                     break;
                 case 7:
-                    Eunits[newEindex()]=new Frostlord(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Frostlord');
+                    Eunits[newEindex()]=new Vacuum(curEindex, Egroupindex,difflevel);
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Vacuum');
                     break;
                 case 8:
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
@@ -770,7 +764,7 @@ function enemyconquer(){
           topadd=210
       }
       
-        var leftpos = Number($("#space" + location).css("left").replace("px","")) + 8;
+        var leftpos = Number($("#space" + location).css("left").replace("px","")) + 15;
         var toppos = Number($("#space" + location).css("top").replace("px","")) + topadd;
         $('#background').append('<img src="../Pictures/soldiericon.png" class="icon" id="M' + groupindex +'" style="left: ' + (leftpos-15) +'px; top:' + (toppos-10) + 'px" />');
         groupindex+=1;

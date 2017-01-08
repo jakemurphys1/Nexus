@@ -29,6 +29,8 @@
         var teleportpotion=0;
         var boostpotion=0;
 var number_of_units=8;
+missiondetails = "<p>The enemies will appear in the holes in the wall and will race towards the crystals. If they reach one, they will begin to drag it towards a eddy. If a crystal reaches an eddy, it will be permanently destroyed.</p><p>Create groups to intercept them before they destroy too many crystals.</p><p>The number of crystals that are allowed to be destroyed is displayed at the top, and if more than that is destroyed, it's gameover.</p><p>You units can move instantly between the eddies, which look like colorful swirls near the top, and the nexus. You can also exchange units between any two groups on a nexus or an eddy.</p><p>Survive 30 turns, and you win.</p>"
+
 crystaldestroyed= 0;
 
 function containaccessories(){
@@ -140,8 +142,8 @@ function newunit(){
                   tempname="Edgar";
                 break;
             case 6:
-                tempclass="Knight";
-                  tempname="Knight";
+                tempclass="Knight2";
+                  tempname="Knight2";
                 break;
             case 7:
                 tempclass="Rouge";
@@ -868,6 +870,7 @@ function liberate(curloc){}
                 case 3:
                     Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'Fire Elemental');
+                    break;
                 case 4:
                 case 5:
                     Eunits[newEindex()]=new Goblin(curEindex, Egroupindex,difflevel);
@@ -1058,7 +1061,7 @@ function liberate(curloc){}
 //towns and castles
 function set_area_background(i){
         var backgroundpic="";
-                        backgroundpic="../Pictures/backgroundpics/desertbackground.png";
+                        backgroundpic="../Pictures/backgroundpics/seige2background.png";
     return backgroundpic;
 }
 

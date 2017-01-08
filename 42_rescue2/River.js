@@ -2,6 +2,7 @@
 
     var allynum=0;
 var tempclass;
+var missiondetails = "<p>Enemies will continously rush towards the nexus. If any reach it, it's gameover.</p><p>Places group that only contain one member onto the raft. The raft will slowly move across. Use the members you send across to wipe out the enemies on that side.</p><p>If any civilians die, it's gameover. Once you have all four civilians on the other side and all the enemies on that side have been defeated, you win.</p>"
 
 
 
@@ -605,24 +606,24 @@ function liberate(curloc){
                 baddielocation=7;
                 break;
         }
-        if (day<=10 && day>=1){
+        if (day<10 && day>=1){
             switch(temp){
                 case 1:
                 case 2:
                     Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Bat');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Bat');
                     break;
                 case 3:
                 case 4:
                 case 5:
                     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Werewolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Werewolf');
                     break;
                 case 6:
                     Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Fire Elemental');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Fire Elemental');
                     break;
                 case 7:
                     Eunits[newEindex()]=new Gremlin(curEindex, Egroupindex,difflevel);
@@ -638,41 +639,40 @@ function liberate(curloc){
                     break;
                 case 9:
                     Eunits[newEindex()]=new Frostlord(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'frostlord');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'frostlord');
                     break;
                 case 10:
                     Eunits[newEindex()]=new Vampire(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Vampire(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Vampire');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'Vampire');
                     break;
             }
         }
         if (day<20 && day>=10){
             switch(temp){
                 case 1:
+                case 2:
                     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Werewolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Werewolf');
                     break;
                 case 3:
                     Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'bat');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'bat');
                     break;
                 case 4:
-                    Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Waterwraith(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'waterwraith');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'waterwraith');
                     break;
                 case 5:
-                    Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Magnet(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Magnet');
+                    Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Hellhound');
                     break;
                 case 6:
-                    Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Vacuum(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Sounddepressor(curEindex, Egroupindex,difflevel);
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Sounddepressor');
                     break;
@@ -680,19 +680,15 @@ function liberate(curloc){
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Warrior');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'Warrior');
                     break;
                 case 8:
-                    Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Frostlord(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'frostlord');
+                    Eunits[newEindex()]=new Frostwraith(curEindex, Egroupindex,difflevel);
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'frostwraith');
                     break;
                 case 9:
-                    Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Angel(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'Angel');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,800,'Angel');
                     break;
                 case 10:
                     Eunits[newEindex()]=new LightningElemental(curEindex, Egroupindex,difflevel);
@@ -702,57 +698,48 @@ function liberate(curloc){
                     break;
             }
         }
-        if (day<50 && day>=20){
+        if (day<30 && day>=20){
             switch(temp){
                 case 1:
                 case 2:
                     Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Vampire(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Vampire');
                     break;
                 case 3:
                     Eunits[newEindex()]=new Spitter(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Spitter(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Werewolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Spitter');
                     break;
                 case 4:
                     Eunits[newEindex()]=new IceElemental(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Frostwraith(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new IceElemental(curEindex, Egroupindex,difflevel);
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'Frostwraith');
                     break;
                 case 5:
-                    Eunits[newEindex()]=new LightningElemental(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Waterwraith(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new LightningElemental(curEindex, Egroupindex,difflevel);
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'waterwraith');
                     break;
                 case 6:
                     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Cannon(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,800,'Cannon');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Cannon');
                     break;
                 case 7:
-                    Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Vampire(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'Bat');
+                    Eunits[newEindex()]=new Flamewraith(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Flamewraith(curEindex, Egroupindex,difflevel);
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'Flamewraith');
                     break;
                 case 8:
                     Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
+                    Eunits[newEindex()]=new Vacuum(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Magnet(curEindex, Egroupindex,difflevel);
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Magnet');
                     break;
                 case 9:
                     Eunits[newEindex()]=new Assassin(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Assassin(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'Assassin');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Assassin');
                     break;
                 case 10:
                     Eunits[newEindex()]=new Zombie(curEindex, Egroupindex,difflevel);
@@ -762,6 +749,67 @@ function liberate(curloc){
                     break;
             }
         }
+            if (day<50 && day>=30){
+                switch(temp){
+                    case 1:
+                    case 2:
+                        Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
+                        Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
+                        Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
+                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Bat');
+                        break;
+                    case 3:
+                        Eunits[newEindex()]=new Vacuum(curEindex, Egroupindex,difflevel);
+                        Eunits[newEindex()]=new Magnet(curEindex, Egroupindex,difflevel);
+                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Vacuum');
+                        break;
+                    case 4:
+                        Eunits[newEindex()]=new IceElemental(curEindex, Egroupindex,difflevel);
+                        Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
+                        Eunits[newEindex()]=new IceElemental(curEindex, Egroupindex,difflevel);
+                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'Ice Elemental');
+                        break;
+                    case 5:
+                        Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
+                        Eunits[newEindex()]=new Waterwraith(curEindex, Egroupindex,difflevel);
+                        Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
+                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'waterwraith');
+                        break;
+                    case 6:
+                        Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
+                        Eunits[newEindex()]=new Cannon(curEindex, Egroupindex,difflevel);
+                        Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
+                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,800,'Cannon');
+                        break;
+                    case 7:
+                        Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
+                        Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
+                        Eunits[newEindex()]=new Vampire(curEindex, Egroupindex,difflevel);
+                        Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
+                        Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
+                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'Bat');
+                        break;
+                    case 8:
+                        Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
+                        Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
+                        Eunits[newEindex()]=new Magnet(curEindex, Egroupindex,difflevel);
+                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Magnet');
+                        break;
+                    case 9:
+                        Eunits[newEindex()]=new Assassin(curEindex, Egroupindex,difflevel);
+                        Eunits[newEindex()]=new Assassin(curEindex, Egroupindex,difflevel);
+                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'Assassin');
+                        break;
+                    case 10:
+                        Eunits[newEindex()]=new Bee(curEindex, Egroupindex,difflevel);
+                        Eunits[newEindex()]=new Bee(curEindex, Egroupindex,difflevel);
+                        Eunits[newEindex()]=new Beekeeper(curEindex, Egroupindex,difflevel);
+                        Eunits[newEindex()]=new Bee(curEindex, Egroupindex,difflevel);
+                        Eunits[newEindex()]=new Bee(curEindex, Egroupindex,difflevel);
+                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Beekeeper');
+                        break;
+                }
+            }
         
 
         
@@ -790,7 +838,7 @@ function liberate(curloc){
 //towns and castles
 function set_area_background(i){
         var backgroundpic="";
-                        backgroundpic="../Pictures/backgroundpics/desertbackground.png";
+                        backgroundpic="../Pictures/backgroundpics/grassbackground.png";
     return backgroundpic;
 }
 
@@ -917,27 +965,28 @@ $(window).load(function(){
     changesong("01/Battle.wav")
     saving("42")
     
+         Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
+    Eunits[newEindex()]=new Frostlord(curEindex, Egroupindex,difflevel);
+    Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
+    Egroups[Egroupindex]=new Enewgroup(2,19,1000,'Frostlord');
+    
+    Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
+    Eunits[newEindex()]=new Magnet(curEindex, Egroupindex,difflevel);
+    Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
+    Egroups[Egroupindex]=new Enewgroup(3,20,1000,'Clunker');
+    
     Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new Goblin(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(1,21,1000,'Fire Elemental');
     
-     Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
-    Eunits[newEindex()]=new Frostlord(curEindex, Egroupindex,difflevel);
-    Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
-    Egroups[Egroupindex]=new Enewgroup(2,19,1000,'Frostlord');
-    
-         Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
-    Eunits[newEindex()]=new Magnet(curEindex, Egroupindex,difflevel);
-    Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
-    Egroups[Egroupindex]=new Enewgroup(3,20,1000,'Clunker');
+
     
             Eunits[newEindex()]=new Magnet(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
-    Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(4,23,1000,'Warrior');
     
-                Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
+    Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
     Egroups[Egroupindex]=new Enewgroup(5,24,1000,'Warrior');

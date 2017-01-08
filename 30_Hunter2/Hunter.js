@@ -28,6 +28,7 @@
         var boostpotion=0;
 
 var number_of_units=6;
+var missiondetails = "<p>Create groups and move them to meet the beast's groups.</p><p>To capture the beasts, enter combat with them, click the 'Capture' button, and then right-click the enemy. The lower it's health, the more likely you will succeed in capturing it. Any unit in the battle can do it regardless of range or location.</p><p>The number of each type of beast that you must capture is displayed at the top. Capturing more has no point.</p><p>You have 50 turns to capture that many beasts, and if you run out of time, it's gameover.</p>"
 
 noheal=false;
 var wolves=0;
@@ -716,7 +717,7 @@ function liberate(curloc){
                     break;
             }
         }
-        if (day<20 && day>=10){
+        if (day<20 && day>10){
             switch(temp){
                 case 1:
                 case 2:

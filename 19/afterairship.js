@@ -128,10 +128,10 @@ function queue(){
         dialog("But I've never...","Sandra")
         break
          case 11:
-        dialog("It doesn't communicate like we do.","Archer2")
+        dialog("Eventually, it will be able to communicate with you more directly.","Archer2")
         break
          case 12:
-        dialog("Instead, it shows us the memories of others that have used the Nexus","Archer2")
+        dialog("But because you are new, all it can do is show you the memories of others that have used the nexus. It's up to us to interpret it.","Archer2")
         break
          case 13:
          dialog("What did you see in your dream?","Knight")

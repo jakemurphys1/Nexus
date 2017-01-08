@@ -108,7 +108,7 @@ function queue(){
         break
         case 16:
          movevert("Edgar-R",-1)
-             dialog("There are fisherman down river, they should be able to find you.","Edgar-R")
+             dialog("There are fishermen down river, they should be able to find you.","Edgar-R")
         break
             case 17:
             addobject("warrior",500,-100)

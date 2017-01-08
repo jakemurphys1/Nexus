@@ -57,7 +57,7 @@ function queue(){
            
             break
         case 5:
-         dialog("I think so.","Mage2")
+         dialog("I think so.","Mage-C")
         break
          case 6:
        dialog("Here we go!","Thief2")
