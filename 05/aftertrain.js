@@ -18,6 +18,6 @@ function queue(){
 }
 
 $(window).load(function(){
-    doeffect("train-start.wav",20)
+    doeffect("train-start.mp3",20)
         localStorage.setItem("level", "5");
 });

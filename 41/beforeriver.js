@@ -1,10 +1,10 @@
 
-var qnum=0;
+var qnum=-1;
 
 function queue(){
     qnum+=1;
     switch(qnum){
-        case 1:
+        case 0:
             enterChar("Knight",-100,300);
             enterChar("Archer2",-100,370);
             enterChar("Sorcerer",-100,440);
@@ -25,6 +25,10 @@ function queue(){
             
             enterChar("fisherman3",-400,300);
             enterChar("fisherman4",-400,370);
+            delay(2000)
+            break;
+        case 1:
+
             
             movehor("Knight",700,"end")
             movehor("Archer2",600)
@@ -89,7 +93,7 @@ function queue(){
             delay(1000)
         break
         case 14:
-            window.location.href = '../42_rescue2/river.html'
+            window.location.href = '../42_rescue2/River.html'
         break
     }
 }

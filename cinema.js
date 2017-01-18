@@ -29,9 +29,10 @@ function doeffect(sound,startpoint,volume){
     }
     
 }
-function text(words,left,top){
+function text(words,left,top,location){
+    
         $(".epictext").remove();
-    $("#quickscene").append("<p class='epictext' style ='position: absolute; display:none; margin-left:" +left + "px; margin-top:" + top +"px'>" + words + "</p>")
+    $(location).append("<p class='epictext' style ='position: absolute; display:none; margin-left:" +left + "px; margin-top:" + top +"px'>" + words + "</p>")
     setTimeout(function(){
         $(".epictext").fadeIn(2000);
     },2000)
@@ -57,6 +58,16 @@ function enterChar(name,left,top,end,special){
     if(special){
         $("#cinema").append("<div style='margin-top:" + top + "px; margin-left:" + left + "px' class='Object' id='"+name+"'><img src='../CinePics/characters/" + name +"/"+ name +"_" + special +".gif' /></div>");
     }
+    
+    
+    $(".hidethis").append("<img src='../CinePics/characters/" + name +"/"+ name +"_left.gif' />")
+    $(".hidethis").append("<img src='../CinePics/characters/" + name +"/"+ name +"_right.gif' />")
+    $(".hidethis").append("<img src='../CinePics/characters/" + name +"/"+ name +"_back.gif' />")
+    
+    $(".hidethis").append("<img src='../CinePics/characters/" + name +"/"+ name +"_moving_front.gif' />")
+    $(".hidethis").append("<img src='../CinePics/characters/" + name +"/"+ name +"_moving_left.gif' />")
+    $(".hidethis").append("<img src='../CinePics/characters/" + name +"/"+ name +"_moving_right.gif' />")
+    $(".hidethis").append("<img src='../CinePics/characters/" + name +"/"+ name +"_moving_back.gif' />")
   
         $("#" +name).data("top",0);
      $("#" +name).data("left",0);
@@ -198,6 +209,7 @@ function dialog(saying, person,position){
 }
 
 $(window).load(function(){
+    $("body").append("<div class='hidethis' style='visibility:hidden'></div>")
     queue();
     
 

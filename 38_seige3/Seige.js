@@ -851,7 +851,7 @@ function liberate(curloc){}
                     case 6:
                         Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
                         Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
-                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Hellhound');
+                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'hellhound');
                         break;
                     case 7:
                         Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
@@ -899,7 +899,7 @@ function liberate(curloc){}
                     case 5:
                         Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
                         Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
-                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Warrior');
+                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'warrior');
                         break;
                     case 6:
                         Eunits[newEindex()]=new Spitter(curEindex, Egroupindex,difflevel);
@@ -919,7 +919,7 @@ function liberate(curloc){}
                     case 9:
                         Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
                         Eunits[newEindex()]=new Magnet(curEindex, Egroupindex,difflevel);
-                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Warrior');
+                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'warrior');
                         break;
                     case 10:
                         Eunits[newEindex()]=new Gremlin(curEindex, Egroupindex,difflevel);
@@ -955,7 +955,7 @@ function liberate(curloc){}
                         Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
                         Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
                         Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
-                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Warrior');
+                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'warrior');
                         break;
                     case 6:
                         Eunits[newEindex()]=new Magnet(curEindex, Egroupindex,difflevel);
@@ -977,7 +977,7 @@ function liberate(curloc){}
                     case 9:
                         Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
                         Eunits[newEindex()]=new Assassin(curEindex, Egroupindex,difflevel);
-                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'assassin');
+                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Assassin');
                         break;
                     case 10:
                         Eunits[newEindex()]=new Bee(curEindex, Egroupindex,difflevel);
@@ -1004,7 +1004,7 @@ function liberate(curloc){}
                         Eunits[newEindex()]=new Waterwraith(curEindex, Egroupindex,difflevel);
                         Eunits[newEindex()]=new Flamewraith(curEindex, Egroupindex,difflevel);
                         Eunits[newEindex()]=new Frostwraith(curEindex, Egroupindex,difflevel);
-                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,200,'Flamewraith');
+                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,200,'flamewraith');
                         break;
                     case 4:
                         Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
@@ -1012,7 +1012,7 @@ function liberate(curloc){}
                         Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
                         Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
                         Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
-                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'Hellhound');
+                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'hellhound');
                         break;
                     case 5:
                         Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
@@ -1030,7 +1030,7 @@ function liberate(curloc){}
                         Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
                         Eunits[newEindex()]=new Sounddepressor(curEindex, Egroupindex,difflevel);
                         Eunits[newEindex()]=new Magnet(curEindex, Egroupindex,difflevel);
-                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'sounddepressor');
+                        Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Sounddepressor');
                         break;
                     case 8:
                         Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
@@ -1123,7 +1123,7 @@ function enemyconquer(){
 }
 
 $(window).load(function(){
-    changesong("01/Battle.wav")
+    changesong("01/Battle.mp3")
         containaccessories();
     
 });

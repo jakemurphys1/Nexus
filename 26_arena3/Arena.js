@@ -939,7 +939,7 @@ function indiv_youwin(){
         }
     }
     if(alldefeated){
-        winbattle('../17/meeting.html')
+        winbattle('../27/escape1.html')
     }
 }
 
@@ -1011,9 +1011,9 @@ function killunit(){
 }
 
 $(window).load(function(){
+    $("#hidethis").append("<img src = 'pics/airship-bare.png' />")
     
-    
-    changesong("01/Battle.wav")
+    changesong("01/Battle.mp3")
         containaccessories();
     saving("26")
     

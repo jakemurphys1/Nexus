@@ -2,7 +2,7 @@
 var qnum=-1;
 
 function sun(){
-      $("body").append("<div style='background-color:#0ecfd2;margin-top:0px;margin-left:-0px' id = 'quickscene'>" + "<img style= 'margin-left:35%;margin-top:20%; width:200px' src = 'pics/sun.gif' /></div>")
+      $("body").append("<div style='background-color:#0ecfd2;margin-top:-50px;margin-left:-0px' id = 'quickscene'>" + "<img style= 'margin-left:35%;margin-top:20%; width:200px' src = 'pics/sun.gif' /></div>")
       
       setTimeout(function(){
           $("#quickscene").remove()

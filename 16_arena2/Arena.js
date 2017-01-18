@@ -945,9 +945,8 @@ function enemyconquer(){
 }
 
 $(window).load(function(){
-    changesong("01/Battle.wav")
+    changesong("01/Battle.mp3")
     saving("16")
-     winbattle('../17/meeting.html')
         containaccessories();
     
     Eunits[newEindex()]=new ESoldier(curEindex, Egroupindex,difflevel);

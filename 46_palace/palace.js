@@ -31,6 +31,8 @@
 
 var number_of_units=13;
 
+var missiondetails = "<p>There are 18 crystals scattered around the grounds. Every turn, you will recieve one point of energy per active crystal.</p><p>Enemies will rush towards the crystals. When they land on it, it will deactivate. Move a group to it to reactivate it.</p><p>When you reach the target energy level, the demigod will appear. Form a group that contains the Sorcerer, the Mimic, and the Guard, and send it to attack the demigod. To defeat it, select the mimic and first use brace, then use blood-sacrifice, and then use ultimate on it. Kill it and you win.</p><p>If you reach turn 60 before you kill the demigod, it's gameover.</p>"
+
 var ultimateActive=true;
 var braceActive=true;
 
@@ -1032,7 +1034,7 @@ function liberate(curloc){}
                 case 4:
                 case 5:
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Warrior');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'warrior');
                     break;
                 case 6:
                     Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
@@ -1088,7 +1090,7 @@ function liberate(curloc){}
                 case 6:
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Warrior');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'warrior');
                     break;
                 case 7:
                     Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
@@ -1109,7 +1111,7 @@ function liberate(curloc){}
                 case 10:
                     Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Frostlord(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'frostlord');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Frostlord');
                     break;
             }
         }
@@ -1152,7 +1154,7 @@ function liberate(curloc){}
                     Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Vampire(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Vampire');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'vampire');
                     break;
                 case 9:
                     Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
@@ -1174,7 +1176,7 @@ function liberate(curloc){}
                 case 2:
                     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Werewolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'werewolf');
                     break;
                 case 3:
                     Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
@@ -1192,7 +1194,7 @@ function liberate(curloc){}
                     Eunits[newEindex()]=new Frostwraith(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Frostlord(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Frostwraith(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'frostlord');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Frostlord');
                     break;
                 case 6:
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
@@ -1211,7 +1213,7 @@ function liberate(curloc){}
                     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Vampire(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'Vampire');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'vampire');
                     break;
                 case 9:
                     Eunits[newEindex()]=new Golem(curEindex, Egroupindex,difflevel);
@@ -1234,7 +1236,7 @@ function liberate(curloc){}
                 case 2:
                     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Werewolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'werewolf');
                     break;
                 case 3:
                     Eunits[newEindex()]=new Clunker(curEindex, Egroupindex,difflevel);
@@ -1252,13 +1254,13 @@ function liberate(curloc){}
                     Eunits[newEindex()]=new Frostwraith(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Frostlord(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Frostwraith(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'frostlord');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Frostlord');
                     break;
                 case 6:
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Warrior');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'warrior');
                     break;
                 case 7:
                     Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
@@ -1272,7 +1274,7 @@ function liberate(curloc){}
                     Eunits[newEindex()]=new Vampire(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Vampire(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Vampire(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Vampire');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'vampire');
                     break;
                 case 9:
                     Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
@@ -1312,7 +1314,7 @@ function liberate(curloc){}
                     Eunits[newEindex()]=new Frostwraith(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Frostlord(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Frostwraith(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,800,'frostlord');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,800,'Frostlord');
                     break;
                 case 6:
                     Eunits[newEindex()]=new Spitter(curEindex, Egroupindex,difflevel);
@@ -1490,7 +1492,7 @@ function checkcrystal(){
 }
 
 $(window).load(function(){
-    changesong("01/Final-Battle.wav")
+    changesong("01/Final-Battle.mp3")
     saving("46")
 
     var locationIsland="right"

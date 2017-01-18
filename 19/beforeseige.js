@@ -1,9 +1,15 @@
 
 var qnum=-2;
-
+var round=0
 function castle(withairship){
     endthis=false;
-  $("body").append("<div style='background-color:lightblue;margin-top:0px;margin-left:-0px' id = 'quickscene'>" +
+    var height = 0
+    if(round>0){
+        height=50
+    }
+    round+=1
+    
+  $("body").append("<div style='background-color:lightblue;margin-top:-" + height + "px;margin-left:-0px' id = 'quickscene'>" +
                  "<img src = 'pics/castle.png' /><div class='trees' STYLE='position:absolute; TOP:570px; LEFT:-220px;' ><img style='height:80px' src='pics/wall-enemy.gif'/></div></div>")
           $('.trees').animate({
                         left: "+1080px"

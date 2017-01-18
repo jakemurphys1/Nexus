@@ -50,7 +50,7 @@ function queue(){
             dialog("Now Move out!","Thief1")
         break
          case 13:
-            window.location.href = '../16_Arena2/Arena.html'
+            window.location.href = '../16_arena2/Arena.html'
         break
     }
 }

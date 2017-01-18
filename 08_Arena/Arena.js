@@ -442,9 +442,8 @@ function enemyconquer(){
 }
 
 $(window).load(function(){
-        changesong("01/Battle.wav")
+        changesong("01/Battle.mp3")
         localStorage.setItem("level", "8");
-    winbattle('../09/intrain.html')
     if(parseInt( localStorage.getItem("diff"))>0){
         difflevel=parseInt(localStorage.getItem("diff"));
     }

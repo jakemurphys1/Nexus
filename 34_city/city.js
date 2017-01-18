@@ -357,7 +357,7 @@ return "Angel"
 //special abilities
     function traincommands(e){
 
-            $('.actions').append("<div class = 'actionbutton' style='position:absolute; margin-top:30px; margin-left:265px; width:100px' id = 'Capture'>Capture</div>");
+            $('.actions').append("");
 
         clickactionbuttons();
     }

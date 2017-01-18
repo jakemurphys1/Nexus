@@ -3271,15 +3271,15 @@ function winbattle(){
 
 function TEMPstartcombat(){
 
-                 Eunits[newEindex()]=new Sparrow(curEindex, 1,2);
-               Eunits[newEindex()]=new Sparrow(curEindex, 1,2);
+                 Eunits[newEindex()]=new Waterwraith(curEindex, 1,2);
+//               Eunits[newEindex()]=new Sparrow(curEindex, 1,2);
 //                Eunits[newEindex()]=new Frostwraith(curEindex, 1,2);
 //                Eunits[newEindex()]=new Bee(curEindex, 1,2);
 //                Eunits[newEindex()]=new Bee(curEindex, 1,2);
 
                 Egroups[Egroupindex]=new Enewgroup(1,70,1000,"Warrior");
-                units[index]=new Soldier(index,"Soldier2");
-                units[index]=new Guard(index,"Guard");
+                units[index]=new Mimic(index,"Mimic");
+                units[index]=new Thief(index,"Thief2");
                 units[index]=new Guard(index,"Guard");
 
 

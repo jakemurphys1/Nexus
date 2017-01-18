@@ -1,6 +1,7 @@
 
 var qnum=0;
 var height=2;
+var phase = 0
  var propeller=new Audio();
      
 function airship(upOrDown,enemyexists){
@@ -8,8 +9,12 @@ function airship(upOrDown,enemyexists){
     if(enemyexists){
         enemy="<div id='Eairship' STYLE='position:absolute; TOP:" + height*100 + "px; LEFT:505px;' class='unit' ><img src='../CinePics/enemyship.gif'/></div>"
     }
-    
-  $("body").append("<div style='background-color:lightblue;margin-top:0px;margin-left:-0px' id = 'quickscene'><div id='airship' STYLE='position:absolute; TOP:" + height*100 + "px; LEFT:405px;' class='unit' ><img src='../CinePics/airship.gif'/></div>" + enemy +
+    var curtop = 50
+    if(phase>0){
+        curtop=100
+    }
+    phase+=1;
+  $("body").append("<div style='background-color:lightblue;margin-top:-" + curtop + "px;margin-left:-0px' id = 'quickscene'><div id='airship' STYLE='position:absolute; TOP:" + height*100 + "px; LEFT:405px;' class='unit' ><img src='../CinePics/airship.gif'/></div>" + enemy +
                  "<div class='trees' STYLE='position:absolute; TOP:570px; LEFT:-220px;' ><img style='height:80px' src='../CinePics/trees.png'/></div></div>")
           $('.trees').animate({
                         left: "+1080px"
@@ -184,13 +189,13 @@ function queue(){
         break
           case 29:
             dialog("If they reach a position like this, the engine will shut down.","Knight","left");
-            $("#fan5 img").attr("src","Pics/fan-off.gif")
+            $("#fan5 img").attr("src","pics/fan-off.gif")
         break
            case 30:
              dialog("Simply set a group next to an engine, and the engine will start back up.","Knight","left")
         break
               case 31:
-              $("#fan5 img").attr("src","Pics/fan.gif")
+              $("#fan5 img").attr("src","pics/fan.gif")
              movehor("Knight",-260,"end")
         break
         case 32:

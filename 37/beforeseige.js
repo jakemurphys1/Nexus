@@ -1,5 +1,5 @@
 
-var qnum=-2;
+var qnum=-1;
 
 function castle(withairship){
     endthis=false;
@@ -102,7 +102,6 @@ function queue(){
 
 $(window).load(function(){
     changesong("01/Hurry.mp3")
-    opening("Chapter Sixteen:","Breaking Point")
 
 
         

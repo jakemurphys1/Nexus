@@ -29,8 +29,6 @@
 
 var number_of_units=6;
 var missiondetails = "<p>Create groups and move them to meet the beast's groups.</p><p>To capture the beasts, enter combat with them, click the 'Capture' button, and then right-click the enemy. The lower it's health, the more likely you will succeed in capturing it. Any unit in the battle can do it regardless of range or location.</p><p>The number of each type of beast that you must capture is displayed at the top. Capturing more has no point.</p><p>You have 50 turns to capture that many beasts, and if you run out of time, it's gameover.</p>"
-
-noheal=false;
 var wolves=0;
 var bears=0;
 var spiders=0;
@@ -686,7 +684,7 @@ function liberate(curloc){
                 case 2:
                 case 3:
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,200,'Wolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,200,'wolf');
                     break;
                 case 4:
                 case 5:
@@ -697,7 +695,7 @@ function liberate(curloc){
                 case 7:
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Wolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'wolf');
                     break;
                 case 8:
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
@@ -723,7 +721,7 @@ function liberate(curloc){
                 case 2:
                 case 3:
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,200,'Bear');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,200,'bear');
                     break;
                 case 4:
                 case 5:
@@ -734,7 +732,7 @@ function liberate(curloc){
                 case 7:
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Wolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'wolf');
                     break;
                 case 8:
                     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
@@ -752,7 +750,7 @@ function liberate(curloc){
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Spider(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Spider');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'spider');
                     break;
             }
         }
@@ -762,7 +760,7 @@ function liberate(curloc){
                 case 2:
                 case 3:
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,200,'Bear');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,200,'bear');
                     break;
                 case 4:
                 case 5:
@@ -773,7 +771,7 @@ function liberate(curloc){
                 case 7:
                     Eunits[newEindex()]=new Spider(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Bear');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'bear');
                     break;
                 case 8:
                     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
@@ -810,7 +808,7 @@ function liberate(curloc){
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Spider(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Bear');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'bear');
                     break;
                 case 8:
                     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
@@ -829,7 +827,7 @@ function liberate(curloc){
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Elk(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Bear');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'bear');
                     break;
             }
         }
@@ -838,7 +836,7 @@ function liberate(curloc){
                 var tempstring;
                     if(wolves<wolflimit){
                           Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
-                            tempstring="Wolf";
+                            tempstring="wolf";
                         tempnum+=1;
                     }
                     if(sparrows<sparrowlimit){
@@ -848,12 +846,12 @@ function liberate(curloc){
                     }
                     if(bears<bearlimit){
                           Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
-                            tempstring="Bear";
+                            tempstring="bear";
                         tempnum+=1;
                     }
                     if(spiders<spiderlimit && tempnum<3){
-                          Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
-                            tempstring="Wolf";
+                          Eunits[newEindex()]=new Spider(curEindex, Egroupindex,difflevel);
+                            tempstring="spider";
                         tempnum+=1;
                     }
                     if(elk<elklimit){
@@ -949,7 +947,7 @@ function enemyconquer(){
 
 $(window).load(function(){
     saving("30")
-    changesong("01/hunting.wav")
+    changesong("01/hunting.mp3")
         containaccessories();
  wolflimit = 10+2*difflevel;
  sparrowlimit=10+2*difflevel;

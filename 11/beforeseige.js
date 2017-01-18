@@ -111,7 +111,7 @@ function queue(){
             dialog("Now prepare for battle!","Wizard1")
         break
           case 9:
-           window.location.href = '../12_seige/seige.html'
+           window.location.href = '../12_seige/Seige.html'
         break
     }
 }

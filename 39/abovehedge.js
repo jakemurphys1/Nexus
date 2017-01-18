@@ -5,7 +5,7 @@ function queue(){
     qnum+=1;
     switch(qnum){
         case 1:
-            addobject("Nexus",350,300)
+            addobject("nexus",350,300)
             enterChar("Templar1",450,400);
             enterChar("Wizard1",400,400);
             enterChar("Rouge1",350,400);

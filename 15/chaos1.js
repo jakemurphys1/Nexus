@@ -1,7 +1,10 @@
 
 var qnum=-1;
+       var Lightning = new Audio();
+        Lightning.src = "../sounds/Lightning.wav";
+
 function sun(){
-      $("body").append("<div style='background-color:#0ecfd2;margin-top:0px;margin-left:-0px' id = 'quickscene'>" + "<img style= 'margin-left:35%;margin-top:20%; width:200px' src = 'pics/Sun2.gif' /></div>")
+      $("body").append("<div style='background-color:#0ecfd2;margin-top:0px;margin-left:-0px' id = 'quickscene'>" + "<img style= 'margin-left:35%;margin-top:20%; width:200px' src = 'pics/sun2.gif' /></div>")
       
       setTimeout(function(){
          $("#quickscene").remove();
@@ -98,12 +101,12 @@ function queue(){
         movevert("Edgar-R",300,"end","fast")
         break
           case 15:
-           window.location.href = 'Chaos2.html'
+           window.location.href = 'chaos2.html'
         break
     }
 }
 
 $(window).load(function(){
-changesong("Peaceful.mp3")
+changesong("01/Peaceful.mp3")
 saving("15")
 });

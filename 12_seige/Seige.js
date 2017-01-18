@@ -630,7 +630,7 @@ var wall4 = 100;
                 case 6:
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Warrior');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'warrior');
                     break;
                 case 7:
                     Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
@@ -642,7 +642,7 @@ var wall4 = 100;
                     Eunits[newEindex()]=new Goblin(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Goblin(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Warrior');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'warrior');
                     break;
                 case 9:
                     Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
@@ -654,7 +654,7 @@ var wall4 = 100;
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Spitter(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Warrior');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'warrior');
                     break;
             }
         }
@@ -687,7 +687,7 @@ var wall4 = 100;
                     Eunits[newEindex()]=new Goblin(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Goblin(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Goblin(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Goblin');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'goblin');
                     break;
                 case 8:
                     Eunits[newEindex()]=new Goblin(curEindex, Egroupindex,difflevel);
@@ -695,12 +695,12 @@ var wall4 = 100;
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Goblin(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Goblin(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Goblin');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'goblin');
                     break;
                 case 9:
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Warrior');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'warrior');
                     break;
                 case 10:
                     Eunits[newEindex()]=new Zombie(curEindex, Egroupindex,difflevel);
@@ -773,7 +773,7 @@ function enemyconquer(){
 }
 
 $(window).load(function(){
-    changesong("01/Battle.wav")
+    changesong("01/Battle.mp3")
         containaccessories();
 saving("12")
 });

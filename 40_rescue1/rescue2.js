@@ -545,15 +545,15 @@ for(var i =32;i<49;i++){
                 case 8:
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,600,'Warrior');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,600,'warrior');
                     break;
                 case 9:
                     Eunits[newEindex()]=new Vampire(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,300,'Vampire');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,300,'vampire');
                     break;
                 case 10:
                     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,300,'Werewolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,300,'werewolf');
                     break;
             }
         }
@@ -590,18 +590,18 @@ for(var i =32;i<49;i++){
                 case 7:
                     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Vampire(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,500,'Werewolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,500,'werewolf');
                     break;
                 case 8:
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Magnet(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,600,'Warrior');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,600,'warrior');
                     break;
                 case 9:
                     Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,600,'Hellhound');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,600,'hellhound');
                     break;
                 case 10:
                     Eunits[newEindex()]=new Magnet(curEindex, Egroupindex,difflevel);
@@ -618,7 +618,7 @@ for(var i =32;i<49;i++){
                     Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,700,'Hellhound');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,700,'hellhound');
                 break;
                 case 2:
                      Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
@@ -643,7 +643,7 @@ for(var i =32;i<49;i++){
                     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Sounddepressor(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,600,'Werewolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,600,'werewolf');
                 break;
                 case 6: 
                 case 7:
@@ -656,13 +656,13 @@ for(var i =32;i<49;i++){
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,600,'Warrior');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,600,'warrior');
                     break;
                 case 9:
                     Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Vampire(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Bat(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,600,'Vampire');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,i,600,'vampire');
                     break;
                 case 10:
                     Eunits[newEindex()]=new Vacuum(curEindex, Egroupindex,difflevel);
@@ -716,8 +716,8 @@ function indiv_gotocapitol(){
 
 function indiv_return(){
     var civreturned = 0;
-    for (var i = 12;i<16;i++){
-        if(units[i].group!=0){
+    for (var i = 13;i<17;i++){
+        if(units[i].group==0){
             civreturned +=1
         }
     }
@@ -877,7 +877,7 @@ function enemyconquer(){}
     }
 
 $(window).load(function(){
-    changesong("01/Battle.wav")
+    changesong("01/Battle.mp3")
     saving("40")
         containaccessories();
     

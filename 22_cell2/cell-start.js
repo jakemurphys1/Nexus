@@ -379,7 +379,7 @@ return "Angel"
                     break;
                 case 6:
                     Eunits[newEindex()]=new Spider(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,200,'Spider');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,200,'spider');
                     break;
                 case 7:
                     Eunits[newEindex()]=new LightningElemental(curEindex, Egroupindex,difflevel);
@@ -394,7 +394,7 @@ return "Angel"
                     break;
                 case 9:
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Wolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'wolf');
                     break;
                 case 10:
                     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
@@ -407,7 +407,7 @@ return "Angel"
                 case 1:
                 case 2:
                     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'Werewolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'werewolf');
                     break;
                 case 3:
                 case 4:
@@ -416,17 +416,17 @@ return "Angel"
                     break;
                 case 5:
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'Bear');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'bear');
                     break;
                 case 6:
                     Eunits[newEindex()]=new Spitter(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Bear');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Spitter');
                     break;
                 case 7:
                     Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Hellhound');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'hellhound');
                     break;
                 case 8:
                     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
@@ -436,12 +436,12 @@ return "Angel"
                 case 9:
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Spider(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Spider');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'spider');
                     break;
                 case 10:
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'Werewolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'werewolf');
                     break;
             }
         }
@@ -458,7 +458,7 @@ return "Angel"
                     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
                      Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'Wolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'wolf');
                     break;
                 case 5:
                     Eunits[newEindex()]=new Gremlin(curEindex, Egroupindex,difflevel);
@@ -471,12 +471,12 @@ return "Angel"
                     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Bear');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'bear');
                     break;
                 case 7:
                     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'Werewolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,600,'werewolf');
                     break;
                 case 8:
                     Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
@@ -487,11 +487,11 @@ return "Angel"
                 case 9:
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Spider(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Spider');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'spider');
                     break;
                 case 10:
                     Eunits[newEindex()]=new Vampire(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Vampire');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'vampire');
                     break;
             }
         }
@@ -500,17 +500,17 @@ return "Angel"
                 case 1:
                 case 2:
                     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'Werewolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'werewolf');
                     break;
                 case 3:
                 case 4:
                     Eunits[newEindex()]=new Vampire(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Vampire');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'vampire');
                     break;
                 case 5:
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'Bear');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'bear');
                     break;
                 case 6:
                     Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
@@ -526,7 +526,7 @@ return "Angel"
                 case 8:
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Bear');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'bear');
                     break;
                 case 9:
                     Eunits[newEindex()]=new Gremlin(curEindex, Egroupindex,difflevel);
@@ -540,7 +540,7 @@ return "Angel"
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Spider(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'Wolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,700,'wolf');
                     break;
             }
         }
@@ -549,7 +549,7 @@ return "Angel"
                 case 1:
                 case 2:
                     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'Werewolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'werewolf');
                     break;
                 case 3:
                 case 4:
@@ -593,7 +593,7 @@ return "Angel"
                 case 1:
                 case 2:
                     Eunits[newEindex()]=new Werewolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'Werewolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,300,'werewolf');
                     break;
                 case 3:
                 case 4:
@@ -622,8 +622,8 @@ return "Angel"
                     break;
                 case 9:
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
-                    Eunits[newEindex()]=new Cannon(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Cannon');
+                    Eunits[newEindex()]=new Frostlord(curEindex, Egroupindex,difflevel);
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Frostlord');
                     break;
                 case 10:
                     Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
@@ -670,7 +670,7 @@ return "Angel"
                 case 9:
                     Eunits[newEindex()]=new Vampire(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Vampire(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Vampire');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'vampire');
                     break;
                 case 10:
                     Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
@@ -773,7 +773,7 @@ function liberate(){
     
 }
 $(window).load(function(){
-    changesong("01/Battle.wav")
+    changesong("01/Battle.mp3")
     saving("22")
     
         containaccessories();

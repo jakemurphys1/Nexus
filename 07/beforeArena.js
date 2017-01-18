@@ -21,7 +21,7 @@ function queue(){
             dialog("But you are slaves now, just like the rest of us.","Thief1")
             break
         case 4:
-            dialog("If you want to survive today, we have to work togather!","Thief1")
+            dialog("If you want to survive today, we have to work together!","Thief1")
         break
          case 5:
             dialog("I don't how much you know about the arena, and I don't care.","Thief1")
@@ -84,9 +84,9 @@ function queue(){
 }
 
 $(window).load(function(){
-    doeffect("cheer.wav")
+    doeffect("cheer.mp3")
      setInterval(function(){
-        doeffect("cheer.wav")
+        doeffect("cheer.mp3")
     },30000)
      opening("Chapter Three:","Dreams of Blood")
 });

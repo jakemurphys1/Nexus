@@ -118,5 +118,5 @@ function queue(){
 }
 
 $(window).load(function(){
-    changesong("01/Town.mp3")
+    changesong("01/town.mp3")
 });

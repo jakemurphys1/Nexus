@@ -686,7 +686,7 @@ function liberate(curloc){
                 case 2:
                 case 3:
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,200,'Wolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,200,'wolf');
                     break;
                 case 4:
                 case 5:
@@ -697,7 +697,7 @@ function liberate(curloc){
                 case 7:
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Wolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'wolf');
                     break;
                 case 8:
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
@@ -723,7 +723,7 @@ function liberate(curloc){
                 case 2:
                 case 3:
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,200,'Bear');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,200,'bear');
                     break;
                 case 4:
                 case 5:
@@ -734,7 +734,7 @@ function liberate(curloc){
                 case 7:
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Wolf');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'wolf');
                     break;
                 case 8:
                     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
@@ -762,7 +762,7 @@ function liberate(curloc){
                 case 2:
                 case 3:
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,200,'Bear');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,200,'bear');
                     break;
                 case 4:
                 case 5:
@@ -773,7 +773,7 @@ function liberate(curloc){
                 case 7:
                     Eunits[newEindex()]=new Spider(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Bear');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'bear');
                     break;
                 case 8:
                     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
@@ -810,7 +810,7 @@ function liberate(curloc){
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Spider(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Bear');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'bear');
                     break;
                 case 8:
                     Eunits[newEindex()]=new Sparrow(curEindex, Egroupindex,difflevel);
@@ -829,7 +829,7 @@ function liberate(curloc){
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Elk(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Bear');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'bear');
                     break;
             }
         }
@@ -838,7 +838,7 @@ function liberate(curloc){
                 var tempstring;
                     if(wolves<wolflimit){
                           Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
-                            tempstring="Wolf";
+                            tempstring="wolf";
                         tempnum+=1;
                     }
                     if(sparrows<sparrowlimit){
@@ -848,7 +848,7 @@ function liberate(curloc){
                     }
                     if(bears<bearlimit){
                           Eunits[newEindex()]=new Bear(curEindex, Egroupindex,difflevel);
-                            tempstring="Bear";
+                            tempstring="bear";
                         tempnum+=1;
                     }
                     if(spiders<spiderlimit && tempnum<3){
@@ -943,9 +943,8 @@ function enemyconquer(){
 }
 
 $(window).load(function(){
-    changesong("01/hunting.wav")
+    changesong("01/hunting.mp3")
 saving("10")
-winbattle("../11/beforeseige.html");
         containaccessories();
  wolflimit = 5+2*difflevel;
  sparrowlimit=5+2*difflevel;

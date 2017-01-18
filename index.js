@@ -1,4 +1,6 @@
-var level
+var level;
+
+
 function queue(){}
 
         function getCookie(cname) {
@@ -24,11 +26,14 @@ function queue(){}
 
 $(window).load(function(){
 
-var curmusic = new Audio();
-    curmusic.src="sounds/music/01/Flying.mp3";
-     curmusic.volume=.2;
-    curmusic.loop=true;
-    curmusic.play();
+//var curmusic = new Audio();
+//    curmusic.src="sounds/music/01/Flying.mp3";
+//     curmusic.volume=.2;
+//    curmusic.loop=true;
+//    curmusic.play();
+    
+     var opening = new Audio();
+opening.src = "sounds/music/01/Opening.mp3";
     
         $("#cinema").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:-140px;" ><img style="height:80px" src="CinePics/trees.png"/></div>');
         $("#cinema").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:-60px;" ><img style="height:80px" src="CinePics/trees.png"/></div>');

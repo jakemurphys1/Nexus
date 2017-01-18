@@ -73,7 +73,7 @@ function queue(){
            dialog("All we know, is when that light turns red, we go through that door and fight.","Knight-C")
         break
         case 21:
-           $(".light-off img").attr("src","../Cinepics/Objects/light-on.gif")
+           $(".light-off img").attr("src","../CinePics/Objects/light-on.gif")
            delay(500)
         break
         case 22:

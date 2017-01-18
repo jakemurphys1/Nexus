@@ -328,7 +328,7 @@ function enemyconquer(){
 
 $(window).load(function(){
      
-    changesong("01/Battle.wav")
+    changesong("01/Battle.mp3")
     localStorage.setItem("level", "2");
     if(parseInt( localStorage.getItem("diff"))>0){
         difflevel=parseInt(localStorage.getItem("diff"));

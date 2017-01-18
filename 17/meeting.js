@@ -5,7 +5,7 @@ function airship(upOrDown,enemyexists){
         enemy="<div id='Eairship' STYLE='position:absolute; TOP:100px; LEFT:1005px;' class='unit' ><img src='../CinePics/enemyship.gif'/></div>"
     }
     
-  $("body").append("<div style='background-color:lightblue;margin-top:0px;margin-left:-0px' id = 'quickscene'><div id='airship' STYLE='position:absolute; TOP:" + height*100 + "px; LEFT:405px;' class='unit' ><img src='../CinePics/airship.gif'/></div>" + enemy +
+  $("body").append("<div style='background-color:lightblue;margin-top:-50px;margin-left:-0px' id = 'quickscene'><div id='airship' STYLE='position:absolute; TOP:" + height*100 + "px; LEFT:405px;' class='unit' ><img src='../CinePics/airship.gif'/></div>" + enemy +
                  "<div class='trees' STYLE='position:absolute; TOP:570px; LEFT:-220px;' ><img style='height:80px' src='../CinePics/trees.png'/></div></div>")
     $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:-140px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
         $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:-60px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
@@ -30,12 +30,6 @@ function airship(upOrDown,enemyexists){
                         top: (height*100)+'px'
                     }, 1500);
 
-//    setInterval(function(){
-//         $("#quickscene").append('<div class="trees" STYLE="position:absolute; TOP:570px; LEFT:-300px;" ><img style="height:80px" src="../CinePics/trees.png"/></div>');
-//            $('.trees').animate({
-//                        left: "+1000px"
-//                    }, 3000,"linear"); 
-//    },500)
     if(enemyexists){
         setTimeout(function(){
             $('#airship').animate({
@@ -73,7 +67,7 @@ function queue(){
             airship(5);
         break;
         case 0:
-            enterChar("Fisherman", 650,80,"no","fishing")
+            enterChar("fisherman", 650,80,"no","fishing")
            enterChar("Archer2", 300,660)
            enterChar("Knight", 400,600)
            enterChar("Sorcerer", 500,700)
@@ -98,13 +92,13 @@ function queue(){
             dialog("Sir, may we speak??","Sorcerer")
         break
         case 5:
-             dialog("I'm fishing, go away.","Fisherman")
+             dialog("I'm fishing, go away.","fisherman")
         break
            case 6:
            dialog("It's very important...","Sorcerer")
         break
          case 7:
-              dialog("FISHING!","Fisherman")
+              dialog("FISHING!","fisherman")
         break
         case 8:
               movevert("Sorcerer",70,"end")
@@ -122,14 +116,14 @@ function queue(){
               dialog("Are we on the wrong side of the river?","Sorcerer")
         break
          case 12:
-              dialog("GOT SOMETHING!","Fisherman")
+              dialog("GOT SOMETHING!","fisherman")
         break
         case 13:
-              addobject("Bottle",620,60)
-           $(".Bottle").animate({
+              addobject("bottle",620,60)
+           $(".bottle").animate({
                top:"+=300px"
            },1000, "linear")
-           movevert("Fisherman",1)
+           movevert("fisherman",1)
            doeffect("Splash.wav")
            delay(1000)
         break
@@ -152,11 +146,11 @@ function queue(){
         dialog("May we have this bottle","Sorcerer")
         break
         case 18:
-            dialog("I'm fishing!","Fisherman")
+            dialog("I'm fishing!","fisherman")
         break
         case 19:
-        $("#Fisherman").remove()
-        enterChar("Fisherman", 650,80,"no","fishing")
+        $("#fisherman").remove()
+        enterChar("fisherman", 650,80,"no","fishing")
         
             movehor("Knight",30,"end")
         break
@@ -174,7 +168,7 @@ function queue(){
             dialog("I think so...","Sorcerer")
         break
         case 24:
-        $("#Bottle").remove()
+        $("#bottle").remove()
         doeffect("Cleanse.wav")
             enterChar("Sandra-R", 650,400,"end")
         break
@@ -228,6 +222,6 @@ function queue(){
 }
 
 $(window).load(function(){
-changesong("Peaceful.mp3")
+changesong("01/pleasant.mp3")
 saving("17")
 });

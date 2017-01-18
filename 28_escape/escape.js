@@ -32,7 +32,7 @@ var number_of_units=11;
 noheal=false;
 noexplore=true;
 
-var missiondetails = "<p>Every turn, the Kraken will comes closer. If it reaches the Nexus, it's gameover.</p><p>Send groups to fight it. While they can't win the battle, every time they injure an eye, the kraken will be delayed one turn. The turns it will be delayed is shown at the top. This means it won't move when you pass the turn.</p><p>If you can delay the kraken for 25 turns, you win.</p>"
+var missiondetails = "<p>Every turn, the Kraken will comes closer. If it reaches the Nexus, it's gameover.</p><p>Send groups to fight it. While they can't win the battle, every time they injure an eye, the kraken will be delayed one turn. The turns it will be delayed is shown at the top. This means it won't move when you pass the turn.</p><p>Don't forget to use the 'Level-up' potions in the barracks. You have 10 of them.</p><p>If you can delay the kraken for 25 turns, you win.</p>"
 
  var delayKraken=0;
 
@@ -610,7 +610,7 @@ function enemyconquer(){}
     }
 
 $(window).load(function(){
-    changesong("01/Battle.wav")
+    changesong("01/Battle.mp3")
     saving("28")
         containaccessories();
     leveluppotion=10;

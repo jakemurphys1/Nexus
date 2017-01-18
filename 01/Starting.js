@@ -5,8 +5,8 @@ var qnum=0;
         Fire.volume=.3;
 
 function transform(name){
-    doeffect("transform.wav",0,0.3)
-  $("body").append("<div style='background-color:#dfdcdc;margin-top:0px;margin-left:-0px' id = 'quickscene'><img style='width:30%; height:30%;margin-left:35%;margin-top:25%' src='pics/" + name + "_transform.gif' /></div>")
+    doeffect("transform.mp3",0,0.3)
+  $("body").append("<div style='background-color:#dfdcdc;margin-top:-50px;margin-left:-0px' id = 'quickscene'><img style='width:30%; height:30%;margin-left:35%;margin-top:25%' src='pics/" + name + "_transform.gif' /></div>")
 
 
   setTimeout(function(){
@@ -127,7 +127,7 @@ function queue(){
 $(window).load(function(){
         localStorage.setItem("level", "1");
     opening("Chapter One:","Enter the Nexus")
-        changesong("01/pleasant.wav")
+        changesong("01/pleasant.mp3")
 
     addobject("nexus",540,230)
 });

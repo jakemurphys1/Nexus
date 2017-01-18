@@ -15,7 +15,7 @@ input:focus {
 #battlebackground{
     width:500px;
     height:500px;
-    margin-left:50px;
+    margin-left:10px;
     margin-top:-570px;
     background-color:red;
     position:absolute;
@@ -23,7 +23,7 @@ input:focus {
 #cinemabackground{
     width:830px;
     height:650px;
-    margin-left:50px;
+    margin-left:5px;
     margin-top:-640px;
     background-color:blue;
     position:absolute;
@@ -76,7 +76,7 @@ input:focus {
 #background{
     width:500px;
     height:500px;
-    margin-left:25px;
+    margin-left:5px;
 
 }
 
@@ -86,7 +86,7 @@ input:focus {
     height:70px;
     border:black solid 1px;
     width:825px;
-    margin-left:49px;
+    margin-left:9px;
     font-size:30px;
 }
 
@@ -102,7 +102,7 @@ input:focus {
     background-color: #bb7510;
     width:300px;
     height:580px;
-    margin-left:575px;
+    margin-left:535px;
     margin-top: -500px;
     font-size:20px;
     border:black solid 1px;
@@ -126,7 +126,7 @@ input:focus {
     height:70px;
     width:120px;
     position:absolute;
-    margin-left:430px;
+    margin-left:380px;
     margin-top:-80px;
 }
 
@@ -146,6 +146,7 @@ margin-top:3px;
     position:absolute;
     width:25px;
     height:25px;
+    margin-left:-40px;
 }
 .townareas{
     margin-top:-10px;
@@ -178,7 +179,7 @@ margin-top:3px;
     height:70px;
     background-color: #656565;
     margin-top: -80px;
-    margin-left: 49px;
+    margin-left: 9px;
     border:black solid 1px;
 }
 
@@ -215,7 +216,9 @@ margin-top:3px;
     display:inline-block;
     text-align:center;
     margin-top:10px;
+    margin-left:10px;
 }
+
 
 
 .unit{
@@ -252,7 +255,7 @@ margin-top:3px;
 width:200px;
 height:570px;
 background-color:gray;
-    margin-left:375px;
+    margin-left:335px;
     margin-top:-570px;
     position:absolute;
 }
@@ -320,16 +323,19 @@ background-color:gray;
     position:absolute;
     width:25px;
     height:25px;
+    margin-left:-40px
 }
 .Bicon{
     position:absolute;
     width:25px;
     height:25px;
+    margin-left:-40px
 }
 .Qicon{
     position:absolute;
     width:25px;
     height:20px;
+    margin-left:0px
 }
 
 .Eicon{
@@ -337,7 +343,7 @@ background-color:gray;
     width:40px;
     height:40px;
     margin-top:-15px;
-    margin-left:-15px;
+    margin-left:-50px
 }
 
 .grayicon{

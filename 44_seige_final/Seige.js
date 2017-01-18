@@ -122,7 +122,7 @@ function newunit(){
                 break;
             case 6:
                 tempclass="Knight";
-                  tempname="Knight";
+                  tempname="Knight2";
                 break;
             case 7:
                 tempclass="Rouge";
@@ -414,7 +414,7 @@ function liberate(curloc){}
                 case 4:
                 case 5:
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Warrior');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'warrior');
                     break;
                 case 6:
                     Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
@@ -472,7 +472,7 @@ function liberate(curloc){}
                 case 6:
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Warrior');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'warrior');
                     break;
                 case 7:
                     Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
@@ -496,7 +496,7 @@ function liberate(curloc){}
                     Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Frostlord(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,900,'frostlord');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,900,'Frostlord');
                     break;
             }
         }
@@ -564,7 +564,7 @@ function liberate(curloc){}
                     Egroups[Egroupindex]=new Enewgroup(Egroupindex,1,400,'Bat');
 
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,6,300,'Warrior');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,6,300,'warrior');
 
                     Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new FireElemental(curEindex, Egroupindex,difflevel);
@@ -704,7 +704,7 @@ $("#background").append('    <div class="areas" style =" LEFT:270px ; top:75px">
 }
 function castle(withairship){
     endthis=false;
-  $("body").append("<div style='background-color:lightblue;margin-top:-640px;margin-left:50px' id = 'quickscene'>" +
+  $("body").append("<div style='background-color:lightblue;margin-top:-640px;margin-left:5px' id = 'quickscene'>" +
                  "<img src = 'pics/castle.png' /><div class='trees' STYLE='position:absolute; TOP:570px; LEFT:-220px;' ><img style='height:80px' src='pics/wall-enemy.gif'/></div></div>")
           $('.trees').animate({
                         left: "+1080px"
@@ -803,7 +803,7 @@ function castle(withairship){
     }
 
 $(window).load(function(){
-    changesong("01/Battle.wav")
+    changesong("01/Battle.mp3")
     saving("44")
         containaccessories();
     setTimeout(function(){

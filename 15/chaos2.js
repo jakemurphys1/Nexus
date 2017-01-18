@@ -1,6 +1,11 @@
 
 var qnum=0;
-
+       var Splash = new Audio();
+        Splash.src = "../sounds/Splash.wav";
+       var Sword = new Audio();
+        Sword.src = "../sounds/Sword.wav";
+       var Capture = new Audio();
+        Capture.src = "../sounds/capture.wav";
 
 function queue(){
     qnum+=1;

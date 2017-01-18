@@ -130,7 +130,7 @@ function queue(){
            dialog("...Together","Wizard2")
         break;
          case 16:
-            window.location.href = '../44_seige_final/Seige.html'
+            window.location.href = '../44_seige_final/seige.html'
         break
     }
 }

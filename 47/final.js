@@ -233,9 +233,10 @@ function queue(){
     }
 }
 
+$(".hidethis").append("<img src = 'pics/airship-bare.png'/><img src = 'pics/seige2.png'/><img src = '../Pictures/Enemies/vampire.gif'/><img src = 'pics/seige2.png'/><img src = '../Pictures/Enemies/Necromancer.gif'/><img src = '../Pictures/Enemies/Djinn.gif'/><img src = '../Pictures/Enemies/frostwraith.gif'/><img src = 'pics/sun.gif'/>")
 
 
 $(window).load(function(){
-        changesong("01/credits.wav")
+        changesong("01/credits.mp3")
 
 });

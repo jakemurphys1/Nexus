@@ -578,9 +578,6 @@ function set_area_background(i){
 function indiv_newday(){
            $('.heading').remove();
         $('#top').append("<h1 class = 'heading'>Turn: " + day + "/30</h1>");
-    if(day>30){
-        winbattle("../13/beforecells.html")
-    }
 }
 function indiv_gotocapitol(){
       $("#TEXT").empty().append('<div class="gotobutton" id = "gotobarracks"><p>BARRACKS</p></div><div class="gotobutton" id = "gotobrewery"><p>BREWERY</p></div>');

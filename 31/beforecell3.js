@@ -102,7 +102,7 @@ function queue(){
               dialog("Ok, let's go.","Thief2")
         break
         case 21:
-         window.location.href = '../32_cell3/Cell3.html'
+         window.location.href = '../32_cell3/cell3.html'
         break
     }
 }

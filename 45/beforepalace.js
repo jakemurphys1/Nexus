@@ -20,7 +20,7 @@ function airship(upOrDown,enemyexists){
     },2000)
     }
     
-  $("body").append("<div style='background-color:lightblue;margin-top:0px;margin-left:-0px' id = 'quickscene'><div id='airship' STYLE='position:absolute; TOP:" + height*100 + "px; LEFT:405px; z-index:10' class='unit' ><img src='../CinePics/airship.gif'/></div>" + enemy +
+  $("body").append("<div style='background-color:lightblue;margin-top:-150px;margin-left:-0px' id = 'quickscene'><div id='airship' STYLE='position:absolute; TOP:" + height*100 + "px; LEFT:405px; z-index:10' class='unit' ><img src='../CinePics/airship.gif'/></div>" + enemy +
                  "<div class='trees' STYLE='position:absolute; TOP:570px; LEFT:-220px;' ><img style='height:80px' src='../CinePics/trees.png'/></div></div>")
           $('.trees').animate({
                         left: "+1080px"
@@ -80,6 +80,7 @@ function airship(upOrDown,enemyexists){
 
     
   setTimeout(function(){
+      
             queue();
       $("#quickscene").remove();
 
