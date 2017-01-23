@@ -576,8 +576,6 @@ function set_area_background(i){
 
 
 function indiv_newday(){
-           $('.heading').remove();
-        $('#top').append("<h1 class = 'heading'>Turn: " + day + "/30</h1>");
 }
 function indiv_gotocapitol(){
       $("#TEXT").empty().append('<div class="gotobutton" id = "gotobarracks"><p>BARRACKS</p></div><div class="gotobutton" id = "gotobrewery"><p>BREWERY</p></div>');
@@ -613,7 +611,7 @@ function enemyconquer(){
     }
 
     var beach = new Audio();
-        beach.src = "../sounds/beach.wav";
+        beach.src = "../sounds/beach.mp3";
         beach.volume=.3;
 
 $(window).load(function(){

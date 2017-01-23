@@ -17,20 +17,18 @@ function queue(){
     switch(qnum){
         case 0:
             sun();
-        break
-        case 1:
-           enterChar("Sandra-R", 400,500,"no","relax")
+            enterChar("Sandra-R", 400,500,"no","relax")
            $("#Sandra-R").css("transform","rotate(90deg)")
            $("#Sandra-R").css("-ms-transform","rotate(90deg)")
            $("#Sandra-R").css("-webkit-transform","rotate(90deg)")
            enterChar("Enchantress", 600,100)
-           enterChar("Guard", 650,150)
-           movehor("Guard",-1)
-           enterChar("Rouge1", 550,150)
-           movehor("Rouge1",1)
-           enterChar("Edgar-R", 600,200)
-           movevert("Edgar-R",-1)
-           enterChar("Archer1", 200,500,"end")
+           enterChar("Guard", 650,150,"no","left")
+           enterChar("Rouge1", 550,150,"no","right")
+           enterChar("Edgar-R", 600,200,"no","moving_front")
+           enterChar("Archer1", 200,500)
+        break
+        case 1:
+            delay(0)
         break
         case 2:
             delay(10)
@@ -70,7 +68,7 @@ function queue(){
          case 12:
               addobject("boom",450,50, 300)
               changesong("01/Hurry.mp3")
-              doeffect("Lightning.wav")
+              doeffect("Lightning.mp3")
             
               setTimeout(function(){
                  $("#boom").remove() 

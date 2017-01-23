@@ -632,7 +632,7 @@ function liberate(){
     
 }
 $(window).load(function(){
-    changesong("01/Battle.mp3")
+    changesong("01/NBattle.mp3")
     saving("14");
     
         containaccessories();

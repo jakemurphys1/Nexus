@@ -6,24 +6,20 @@ function queue(){
     qnum+=1;
     switch(qnum){
         case 1:
-            enterChar("Sorcerer",330,650);
-             enterChar("Knight",380,650);
-            enterChar("Archer2",430,650);
+            enterChar("Sorcerer",330,650,"no","moving_back");
+             enterChar("Knight",380,650,"no","moving_back");
+            enterChar("Archer2",430,650,"no","moving_back");
             
-            enterChar("Wizard1",480,730);
-            enterChar("Templar1",330,730);
-            enterChar("Soldier2",380,730);
-            enterChar("Healer1",430,730);
-            enterChar("Rouge2",480,650);
-            enterChar("Sandra",530,730);
+            enterChar("Wizard1",480,730,"no","moving_back");
+            enterChar("Templar1",330,730,"no","moving_back");
+            enterChar("Soldier2",380,730,"no","moving_back");
+            enterChar("Healer1",430,730,"no","moving_back");
+            enterChar("Rouge2",480,650,"no","moving_back");
+            enterChar("Sandra",530,730,"no","moving_back");
             
-              enterChar("Enchantress",330,100);
-            enterChar("Thief1",385,70);
-            enterChar("Guard",430,100);
-            
-            movevert("Enchantress",-1)
-            movevert("Thief1",-1)
-            movevert("Guard",-1)
+              enterChar("Enchantress",330,100,"no","back");
+            enterChar("Thief1",385,70,"no","back");
+            enterChar("Guard",430,100,"no","back");
             
             movevert("Sorcerer",-300)
             movevert("Archer2",-300)
@@ -88,7 +84,7 @@ function queue(){
          dialog("You have to trust us. We need your help.","Knight")
         break
          case 11:
-            doeffect("roar.wav")
+            doeffect("roar.mp3")
             delay(7000)
         break
          case 12:

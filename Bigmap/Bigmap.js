@@ -3271,14 +3271,14 @@ function winbattle(){
 
 function TEMPstartcombat(){
 
-                 Eunits[newEindex()]=new Waterwraith(curEindex, 1,2);
-//               Eunits[newEindex()]=new Sparrow(curEindex, 1,2);
-//                Eunits[newEindex()]=new Frostwraith(curEindex, 1,2);
+                 Eunits[newEindex()]=new Gremlin(curEindex, 1,2);
+               Eunits[newEindex()]=new Goblin(curEindex, 1,2);
+                Eunits[newEindex()]=new FireElemental(curEindex, 1,2);
 //                Eunits[newEindex()]=new Bee(curEindex, 1,2);
 //                Eunits[newEindex()]=new Bee(curEindex, 1,2);
 
                 Egroups[Egroupindex]=new Enewgroup(1,70,1000,"Warrior");
-                units[index]=new Mimic(index,"Mimic");
+                units[index]=new Enchantress(index,"Enchantress");
                 units[index]=new Thief(index,"Thief2");
                 units[index]=new Guard(index,"Guard");
 
@@ -3291,7 +3291,7 @@ function TEMPstartcombat(){
                 units[2].group=1;
 
 
-        units[0].abilitycounter=true;
+        units[0].abilitystorm=true;
    // units[1].abilityexplosion=true;
     units[0].abilitystorm=true;
     units[0].flight=true;

@@ -98,7 +98,7 @@ function queue(){
             movevert("Knight",-1)
             
             setTimeout(function(){
-                doeffect("Lightning.wav")
+                doeffect("Lightning.mp3")
                 $("#fan10").remove()
             },2000)
             delay(3000)

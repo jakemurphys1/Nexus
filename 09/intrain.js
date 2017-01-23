@@ -7,7 +7,7 @@ function queue(){
     switch(qnum){
         case 1:
             enterChar("Sandra-R",440,240,"no","relax")
-            enterChar("Edgar-R",210,240)
+            enterChar("Edgar-R",210,240,"no","back")
             movevert("Edgar-R",-1)
         break
         case 2:

@@ -1,19 +1,19 @@
 
 var qnum=0;
        var Splash = new Audio();
-        Splash.src = "../sounds/Splash.wav";
+        Splash.src = "../sounds/Splash.mp3";
        var Sword = new Audio();
-        Sword.src = "../sounds/Sword.wav";
+        Sword.src = "../sounds/Sword.mp3";
        var Capture = new Audio();
-        Capture.src = "../sounds/capture.wav";
+        Capture.src = "../sounds/capture.mp3";
 
 function queue(){
     qnum+=1;
     switch(qnum){
         case 1:
-           enterChar("Sandra-R", 400,-100)
-           enterChar("Edgar-R", 600,-100)
-           enterChar("Archer1", 300,-100)
+           enterChar("Sandra-R", 400,-100,"no","moving_front")
+           enterChar("Edgar-R", 600,-100,"no","moving_front")
+           enterChar("Archer1", 300,-100,"no","moving_front")
            movevert("Archer1",500,"no","fast")
            movevert("Edgar-R",500,"no","fast")
            movevert("Sandra-R",500,"end","fast")
@@ -44,14 +44,14 @@ function queue(){
            },1000, "linear")
            
            setTimeout(function(){
-               doeffect("Sword.wav")
+               doeffect("Sword.mp3")
                $("#Archer1").animate({
                top:"+=200px"
            },500, "linear")
                
                setTimeout(function(){
                    $("#Archer1").remove()
-                   doeffect("Splash.wav")
+                   doeffect("Splash.mp3")
                    queue()
                },500)
                
@@ -85,7 +85,7 @@ function queue(){
                                 left:"+=80px",
                                 top:"+=30px",
                         },2000);
-            doeffect("success.wav")
+            doeffect("success.mp3")
             delay(2000);
         break
          case 11:
@@ -107,7 +107,7 @@ function queue(){
                
                setTimeout(function(){
                    $("#bottle").remove()
-                   doeffect("Splash.wav")
+                   doeffect("Splash.mp3")
                    queue()
                },500)
         break

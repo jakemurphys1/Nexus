@@ -4,10 +4,9 @@ function queue(){
     qnum+=1;
     switch(qnum){
         case 1:
-            enterChar("Soldier-C",550,420);
-            enterChar("Guard-C",250,300);
-            enterChar("Knight-C",300,300);
-            movevert("Soldier-C",-1)
+            enterChar("Soldier-C",550,420,"no","back");
+            enterChar("Guard-C",250,300,"no","right");
+            enterChar("Knight-C",300,300,"no","left");
             movehor("Guard-C",1);
             movehor("Knight-C",-1);
             delay(3000)
@@ -17,7 +16,7 @@ function queue(){
             dialog("Ugh, where am I?","Soldier-C")
         break
         case 3:
-            movevert("Knight-C",120)
+            movevert("Knight-C",90)
             movevert("Guard-C",150,"end")
         break
          case 4:

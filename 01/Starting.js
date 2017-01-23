@@ -1,12 +1,12 @@
 
 var qnum=0;
    var Fire = new Audio();
-        Fire.src = "../sounds/Fire.wav";
+        Fire.src = "../sounds/Fire.mp3";
         Fire.volume=.3;
 
 function transform(name){
     doeffect("transform.mp3",0,0.3)
-  $("body").append("<div style='background-color:#dfdcdc;margin-top:-50px;margin-left:-0px' id = 'quickscene'><img style='width:30%; height:30%;margin-left:35%;margin-top:25%' src='pics/" + name + "_transform.gif' /></div>")
+  $("body").append("<div style='background-color:#dfdcdc;margin-top:0px;margin-left:-0px' id = 'quickscene'><img style='width:30%; height:30%;margin-left:35%;margin-top:25%' src='pics/" + name + "_transform.gif' /></div>")
 
 
   setTimeout(function(){

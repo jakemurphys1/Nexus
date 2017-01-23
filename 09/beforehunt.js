@@ -14,7 +14,7 @@ function queue(){
             delay(5000)
         break
         case 2:
-            enterChar("Sandra-R",650,460)
+            enterChar("Sandra-R",650,460,"no","moving_back")
             movevert("Sandra-R",-300,"end")
         break
          case 3:
@@ -24,7 +24,7 @@ function queue(){
             movevert("Sandra-R",1,"end")
         break
         case 5:
-            enterChar("Archer1",650,460)
+            enterChar("Archer1",650,460,"no","moving_back")
             movevert("Archer1",-30,"end")
         break
           case 6:
@@ -34,7 +34,7 @@ function queue(){
             movehor("Archer1",1,"end")
         break
         case 8:
-            enterChar("Rouge1",650,460)
+            enterChar("Rouge1",650,460,"no","moving_back")
             movevert("Rouge1",-30,"end")
         break
         case 9:
@@ -47,7 +47,7 @@ function queue(){
             movevert("Rouge1",1,"end")
         break
         case 12:
-            enterChar("Guard",650,460)
+            enterChar("Guard",650,460,"no","moving_back")
             movevert("Guard",-30,"end")
         break
         case 13:
@@ -60,7 +60,7 @@ function queue(){
             queue();
         break
         case 16:
-            enterChar("Edgar-R",650,460)
+            enterChar("Edgar-R",650,460,"no","moving_back")
             movevert("Edgar-R",-200,"end")
         break
           case 17:
@@ -102,7 +102,7 @@ function queue(){
                                 top:"+=130px",
                   },2000);
             delay(2000);
-            doeffect("success.wav")
+            doeffect("success.mp3")
         break
       case 27:
              movehor("Edgar-R",1,"end")

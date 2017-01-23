@@ -39,13 +39,13 @@ function text(words,left,top,location){
     
 }
 function opening(chapter,name){
-  $("body").append("<div style='background-color:black;margin-top:0px;margin-left:-0px' id = 'quickscene'><div id='opener' style = 'text-align:center;margin-top:30%;font-size:30px;display:none'><p style = 'color:white'>" + chapter + "</p><p style = 'color:white;font-size:40px'>" + name +"</p></div></div>")
+  $("body").append("<div class='opener' style='background-color:black;margin-top:0px;margin-left:-0px' id = 'quickscene'><div id='opener' style = 'text-align:center;margin-top:30%;font-size:30px;display:none'><p style = 'color:white'>" + chapter + "</p><p style = 'color:white;font-size:40px'>" + name +"</p></div></div>")
 
     $("#opener").fadeIn(3000);
 
   setTimeout(function(){
       $("#cinema img").removeClass("hidden")
-      $("#quickscene").remove();
+      $(".opener").remove();
       queue();
   },5000)
 }
@@ -60,14 +60,14 @@ function enterChar(name,left,top,end,special){
     }
     
     
-    $(".hidethis").append("<img src='../CinePics/characters/" + name +"/"+ name +"_left.gif' />")
-    $(".hidethis").append("<img src='../CinePics/characters/" + name +"/"+ name +"_right.gif' />")
-    $(".hidethis").append("<img src='../CinePics/characters/" + name +"/"+ name +"_back.gif' />")
+    $(".hidethis").append("<div class='Object'><img src='../CinePics/characters/" + name +"/"+ name +"_left.gif' /></div>")
+    $(".hidethis").append("<div class='Object'><img src='../CinePics/characters/" + name +"/"+ name +"_right.gif' /></div>")
+    $(".hidethis").append("<div class='Object'><img src='../CinePics/characters/" + name +"/"+ name +"_back.gif' /></div>")
     
-    $(".hidethis").append("<img src='../CinePics/characters/" + name +"/"+ name +"_moving_front.gif' />")
-    $(".hidethis").append("<img src='../CinePics/characters/" + name +"/"+ name +"_moving_left.gif' />")
-    $(".hidethis").append("<img src='../CinePics/characters/" + name +"/"+ name +"_moving_right.gif' />")
-    $(".hidethis").append("<img src='../CinePics/characters/" + name +"/"+ name +"_moving_back.gif' />")
+    $(".hidethis").append("<div class='Object'><img src='../CinePics/characters/" + name +"/"+ name +"_moving_front.gif' /></div>")
+    $(".hidethis").append("<div class='Object'><img src='../CinePics/characters/" + name +"/"+ name +"_moving_left.gif' /></div>")
+    $(".hidethis").append("<div class='Object'><img src='../CinePics/characters/" + name +"/"+ name +"_moving_right.gif' /></div>")
+    $(".hidethis").append("<div class='Object'><img src='../CinePics/characters/" + name +"/"+ name +"_moving_back.gif' /></div>")
   
         $("#" +name).data("top",0);
      $("#" +name).data("left",0);

@@ -118,7 +118,7 @@ function queue(){
         break
         case 13:
             movevert("Wizard1",-1)
-            dialog("Already! We can't withstand another assault.","Wizard1")
+            dialog("Already! We can't withstand another assault this soon!","Wizard1")
         break
         case 14:
             dialog("Tell the others to fall back into the keep and barricade it!","Wizard1")

@@ -597,7 +597,7 @@ function liberate(curloc){
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Goblin(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Goblin(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Goblin');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'goblin');
                     break;
                 case 9:
                     Eunits[newEindex()]=new Warrior(curEindex, Egroupindex,difflevel);
@@ -1090,7 +1090,7 @@ function airship(upOrDown, withmissile){
 
 
 $(window).load(function(){
-    changesong("01/Battle.mp3")
+    changesong("01/NBattle.mp3")
 
     if(thismode==1){
 
@@ -1103,7 +1103,7 @@ $(window).load(function(){
     }
     if(thismode==3){
          saving("24")
-         missiondetails = "<p>The Enemies will land on your ship somewhere near the edges, and will then race towards one of your four engines.</p><p>If an enemy group reaches an engine, it will shut off. Move one of your groups to that location to turn it back on.</p><p>If less then 3 engines are on, it will begin to descend, and if the ship hits the ground, it's gameover.</p><p> Survive 30 turns, and you win. The enemies will be tougher this time, and you still won't be able to find ingredients for potions.</p><p>The enemy ship also has missile, so they may be able to destroy your engines.</p>"
+         missiondetails = "<p>The Enemies will land on your ship somewhere near the edges, and will then race towards one of your four engines.</p><p>If an enemy group reaches an engine, it will shut off. Move one of your groups to that location to turn it back on.</p><p>If less then 3 engines are on, it will begin to descend, and if the ship hits the ground, it's gameover.</p><p> Survive 30 turns, and you win. The enemies will be tougher this time, and you still won't be able to find ingredients for potions.</p><p>The enemy ship also has missiles, so they may be able to destroy your engines.</p>"
     }
     if(parseInt( localStorage.getItem("diff"))>0){
         difflevel=parseInt(localStorage.getItem("diff"));

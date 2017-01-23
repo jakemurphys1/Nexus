@@ -20,7 +20,7 @@ function airship(upOrDown,enemyexists){
     },2000)
     }
     
-  $("body").append("<div style='background-color:lightblue;margin-top:-150px;margin-left:-0px' id = 'quickscene'><div id='airship' STYLE='position:absolute; TOP:" + height*100 + "px; LEFT:405px; z-index:10' class='unit' ><img src='../CinePics/airship.gif'/></div>" + enemy +
+  $("body").append("<div style='background-color:lightblue;margin-top:00px;margin-left:-0px' id = 'quickscene'><div id='airship' STYLE='position:absolute; TOP:" + height*100 + "px; LEFT:405px; z-index:10' class='unit' ><img src='../CinePics/airship.gif'/></div>" + enemy +
                  "<div class='trees' STYLE='position:absolute; TOP:570px; LEFT:-220px;' ><img style='height:80px' src='../CinePics/trees.png'/></div></div>")
           $('.trees').animate({
                         left: "+1080px"
@@ -94,26 +94,6 @@ function queue(){
 
             break;
         case 2:
-            addobject("diamond",200,400)
-             enterChar("Knight",400,400);
-            
-            enterChar("Wizard1",250,200);
-            enterChar("Healer1",300,200);
-            enterChar("Sandra",350,200);
-            enterChar("Sorcerer",400,200);
-            enterChar("Archer2",450,200);
-            enterChar("Rouge1",500,200);
-            
-            enterChar("Enchantress",250,300);
-            enterChar("Guard",300,300);
-            enterChar("Soldier2",350,300);
-            enterChar("Mimic",400,300);
-            enterChar("Templar1",450,300);
-            enterChar("Thief1",500,300);
-            
-            
-            
-            movevert("Knight",-1)
             airship(0,false)
             break
         case 3:
@@ -190,12 +170,29 @@ function queue(){
 }
 
 $(window).load(function(){
-                    propeller.src="../sounds/Helicopter.wav";
+                    propeller.src="../sounds/Helicopter.mp3";
                     propeller.volume=.05;
                     propeller.loop=true;
                     propeller.play();
     opening("Final Chapter:","The Palace")
     changesong("01/Descent.mp3")
+    
+                addobject("diamond",200,400)
+             enterChar("Knight",400,400,"no","back");
+            
+            enterChar("Wizard1",250,200);
+            enterChar("Healer1",300,200);
+            enterChar("Sandra",350,200);
+            enterChar("Sorcerer",400,200);
+            enterChar("Archer2",450,200);
+            enterChar("Rouge1",500,200);
+            
+            enterChar("Enchantress",250,300);
+            enterChar("Guard",300,300);
+            enterChar("Soldier2",350,300);
+            enterChar("Mimic",400,300);
+            enterChar("Templar1",450,300);
+            enterChar("Thief1",500,300);
     
    // $("div").removeClass("hidden")
 });

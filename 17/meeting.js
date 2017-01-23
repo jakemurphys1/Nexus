@@ -42,7 +42,6 @@ function airship(upOrDown,enemyexists){
                     }, 1500);
         },3000)
         setTimeout(function(){
-              $("#quickscene").remove();
               queue();
         },5000)
     }else {
@@ -62,18 +61,18 @@ function queue(){
     switch(qnum){
         case -2:
             opening("Chapter Eight:","Strange Meetings")
+            enterChar("fisherman", 650,80,"no","fishing")
+           enterChar("Archer2", 300,660,"no","moving_back")
+           enterChar("Knight", 400,660,"no","moving_back")
+           enterChar("Sorcerer", 500,660,"no","moving_back")
         break;
         case -1:
             airship(5);
         break;
         case 0:
-            enterChar("fisherman", 650,80,"no","fishing")
-           enterChar("Archer2", 300,660)
-           enterChar("Knight", 400,600)
-           enterChar("Sorcerer", 500,700)
-           movevert("Knight",-300)
+           movevert("Knight",-360)
            movevert("Archer2",-360)
-           movevert("Sorcerer",-400,"end")
+           movevert("Sorcerer",-360,"end")
         break
         case 1:
              dialog("According to the stone, the story-teller is right ahead.","Knight")
@@ -124,7 +123,7 @@ function queue(){
                top:"+=300px"
            },1000, "linear")
            movevert("fisherman",1)
-           doeffect("Splash.wav")
+           doeffect("Splash.mp3")
            delay(1000)
         break
         case 14:
@@ -169,7 +168,7 @@ function queue(){
         break
         case 24:
         $("#bottle").remove()
-        doeffect("Cleanse.wav")
+        doeffect("Cleanse.mp3")
             enterChar("Sandra-R", 650,400,"end")
         break
         case 25:

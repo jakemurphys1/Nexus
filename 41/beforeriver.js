@@ -5,26 +5,26 @@ function queue(){
     qnum+=1;
     switch(qnum){
         case 0:
-            enterChar("Knight",-100,300);
-            enterChar("Archer2",-100,370);
-            enterChar("Sorcerer",-100,440);
-            enterChar("Mimic",-100,230);
-            enterChar("fisherman",-100,160);
+            enterChar("Knight",-100,300,"no","moving_right");
+            enterChar("Archer2",-100,370,"no","moving_right");
+            enterChar("Sorcerer",-100,440,"no","moving_right");
+            enterChar("Mimic",-100,230,"no","moving_right");
+            enterChar("fisherman",-100,160,"no","moving_right");
             
-            enterChar("Templar1",-200,300);
-            enterChar("Wizard1",-200,370);
-            enterChar("Rouge1",-200,440);
-            enterChar("Sandra",-200,230);
-            enterChar("Guard",-300,160);
+            enterChar("Templar1",-200,300,"no","moving_right");
+            enterChar("Wizard1",-200,370,"no","moving_right");
+            enterChar("Rouge1",-200,440,"no","moving_right");
+            enterChar("Sandra",-200,230,"no","moving_right");
+            enterChar("Guard",-300,160,"no","moving_right");
             
-            enterChar("Thief1",-300,300);
-            enterChar("Enchantress",-300,370);
-            enterChar("Healer1",-300,440);
-            enterChar("Soldier2",-300,230);
-            enterChar("fisherman2",-300,160);
+            enterChar("Thief1",-300,300,"no","moving_right");
+            enterChar("Enchantress",-300,370,"no","moving_right");
+            enterChar("Healer1",-300,440,"no","moving_right");
+            enterChar("Soldier2",-300,230,"no","moving_right");
+            enterChar("fisherman2",-400,160,"no","moving_right");
             
-            enterChar("fisherman3",-400,300);
-            enterChar("fisherman4",-400,370);
+            enterChar("fisherman3",-400,300,"no","moving_right");
+            enterChar("fisherman4",-400,370,"no","moving_right");
             delay(2000)
             break;
         case 1:
@@ -52,7 +52,7 @@ function queue(){
         break
         case 2:
         movevert("Knight",-1)
-            dialog("The bridge has been destroyed,.","Knight")
+            dialog("The bridge has been destroyed.","Knight")
         break
         case 3:
         movehor("fisherman",50,"end")

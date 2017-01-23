@@ -5,10 +5,8 @@ function queue(){
     switch(qnum){
         case 1:
             enterChar("Soldier-C",550,420);
-            enterChar("Guard-C",250,300);
-            enterChar("Knight-C",300,300);
-            movehor("Guard-C",1);
-            movehor("Knight-C",-1);
+            enterChar("Guard-C",250,300,"no","right");
+            enterChar("Knight-C",300,300,"no","left");
             delay(3000)
             addobject("light-off",423,60,25)
         break
@@ -143,7 +141,7 @@ function queue(){
         case 38:
              addobject("boom",600,200, 300)
               changesong("01/Hurry.mp3")
-              doeffect("Lightning.wav")
+              doeffect("Lightning.mp3")
             $("#cinema #cinema").attr("src","pics/power-beds2.png")
               setTimeout(function(){
                  $("#boom").remove() 
@@ -167,5 +165,6 @@ $(window).load(function(){
     opening("Chapter Ten:","The Thief")
     saving("21")
     changesong("01/Threat.mp3")
+    $(".hidethis").append("<img src='../Pictures/Effects/boom.gif' />")
     
 });

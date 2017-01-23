@@ -2,7 +2,7 @@
 var qnum=-1;
 
 function sun(){
-      $("body").append("<div style='background-color:#0ecfd2;margin-top:-50px;margin-left:-0px' id = 'quickscene'>" + "<img style= 'margin-left:35%;margin-top:20%; width:200px' src = 'pics/sun.gif' /></div>")
+      $("body").append("<div style='background-color:#0ecfd2;margin-top:-0px;margin-left:-0px' id = 'quickscene'>" + "<img style= 'margin-left:35%;margin-top:20%; width:200px' src = 'pics/sun.gif' /></div>")
       
       setTimeout(function(){
           $("#quickscene").remove()
@@ -15,13 +15,13 @@ function queue(){
     switch(qnum){
         case 0:
             opening("Chapter Fourteen:","The City")
+            enterChar("Knight",400,500);
+            enterChar("Sandra",145,500,"no","moving_right");
             break;
         case 1:
-            enterChar("Knight",400,500);
         delay(0000)
             break;
         case 2:       
-            enterChar("Sandra",145,500);
             movehor("Sandra",130,"end")
             break
         case 3:
@@ -120,6 +120,6 @@ function queue(){
 }
 
 $(window).load(function(){
-    changesong("01/pleasant.wav")
+    changesong("01/pleasant.mp3")
     saving("33")
 });

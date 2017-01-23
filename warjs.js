@@ -18,6 +18,7 @@
          }
          return "";
      }
+
      function setCookie(cname, cvalue, exdays) {
          var d = new Date();
          d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -96,90 +97,7 @@
          var fail = new Audio();
          var success = new Audio();
          var missile = new Audio();
-     
 
-         Fire.src = "../sounds/Fire.wav";
-         Fire.volume = .3;
-         Lightning.src = "../sounds/Lightning.wav";
-         Lightning.volume = .2;
-         Heal.src = "../sounds/Heal.wav";
-         Heal.volume = .3;
-         Sword.src = "../sounds/Sword.wav";
-         Sword.volume = .3;
-         Arrow.src = "../sounds/Arrow.wav";
-         Arrow.volume = .3;
-         Paralyzesound.src = "../sounds/Paralyze.mp3";
-         Paralyzesound.volume = .3;
-         Specialsound.src = "../sounds/Special.mp3";
-         Specialsound.volume = .3;
-         Win.src = "../sounds/Win.mp3";
-         Win.volume = .3;
-         Turnsound.src = "../sounds/Turn.mp3";
-         Turnsound.volume = .3;
-         Chargesound.src = "../sounds/Charge.mp3";
-         Chargesound.volume = .1;
-         Absorb.src = "../sounds/absorb.wav";
-         Absorb.volume = .3;
-         Capture.src = "../sounds/capture.wav";
-         Capture.volume = .3;
-         Cleanse.src = "../sounds/Cleanse.wav";
-         Cleanse.volume = .3;
-         Death.src = "../sounds/Death.wav";
-         Death.volume = .3;
-         Dogbite.src = "../sounds/dogbite.wav";
-         Dogbite.volume = .3;
-         Disrupt.src = "../sounds/Disrupt.mp3";
-         Disrupt.volume = .3;
-         Flyby.src = "../sounds/flyby.wav";
-         Flyby.volume = .3;
-         Gust.src = "../sounds/Gust.wav";
-         Gust.volume = .3;
-         Hook.src = "../sounds/Hook.wav";
-         Hook.volume = .3;
-         Hurricane.src = "../sounds/Hurricane.wav";
-         Hurricane.volume = .3;
-         Water.src = "../sounds/Water.mp3";
-         Water.volume = .3;
-         Icescream.src = "../sounds/Icescream.wav";
-         Icescream.volume = .3;
-         Protect.src = "../sounds/protect.wav";
-         Protect.volume = .3;
-         Tar.src = "../sounds/Tar.wav";
-         Tar.volume = .3;
-         Teleport.src = "../sounds/teleport.wav";
-         Teleport.volume = .3;
-         vigor.src = "../sounds/vigor.wav";
-         vigor.volume = .3;
-         Zap.src = "../sounds/zap.wav";
-         Zap.volume = .3;
-         Iceattack.src = "../sounds/Iceattack.wav";
-         Iceattack.volume = .3;
-         Spit.src = "../sounds/Spit.wav";
-         Spit.volume = .3;
-         Vampirebite.src = "../sounds/Vampire.wav";
-         Vampirebite.volume = .3;
-         propeller.src = "../sounds/Helicopter.wav";
-         propeller.volume = .3;
-         powerup.src = "../sounds/powerup.wav";
-         powerup.volume = .3;
-         crash.src = "../sounds/crash.mp3";
-         crash.volume = .3;
-         eating.src = "../sounds/eating.mp3";
-         eating.volume = .6;
-         break_window.src = "../sounds/break_window.wav";
-         break_window.volume = .6;
-         swing.src = "../sounds/swing.wav";
-         swing.volume = .6;
-         hell.src = "../sounds/Hell.wav";
-         hell.volume = 1;
-         dramatic.src = "../sounds/Dramatic.wav";
-         dramatic.volume = 1;
-         fail.src = "../sounds/fail.wav";
-         fail.volume = 1;
-         success.src = "../sounds/success.wav";
-         success.volume = 1;
-         missile.src = "../sounds/missile.wav";
-         missile.volume = 1;
      }
 
      function changesong(song) {
@@ -3319,9 +3237,16 @@
          }
      }
 
+    //var allEffects = {}
      function preload(imgName) {
-         $("#hidethis").append("<img src = '" + imgName + ".gif'")
+         $("#hidethis").append("<div class='slashEffects'><img src = '../Pictures/Effects/" + imgName + ".gif' /></div>")
+//         allEffects[imgName]= new Image()
+//         allEffects[imgName].src = "../Pictures/Effects/" + imgName + ".gif";
      }
+    function preloadChar(imgName){
+        console.log(imgName)
+        $("#hidethis").append("<div class='barrackpic'><img src = '../CinePics/characters/" + imgName + "' /></div>")
+    }
 
      function Soldier(e, type) {
          this.type = "Soldier";
@@ -3384,8 +3309,9 @@
          this.abilitysteadfast = false;
          this.counterindex = [];
          this.picture = "<div class='barrackpic' id='" + e + "'><img src='../CinePics/characters/" + type + "/" + type + "_front.gif' /></div>";
+
          this.image = '../CinePics/characters/' + type + '/' + type + '_front.gif';
-         this.rightpic = '../CinePics/characters/' + type + '/' + type + '_right.gif';
+         this.rightpic ='../CinePics/characters/' + type + '/' + type + '_right.gif';
          this.leftpic = '../CinePics/characters/' + type + '/' + type + '_left.gif';
          this.backpic = '../CinePics/characters/' + type + '/' + type + '_back.gif';
          this.attackfront = '../CinePics/characters/' + type + '/' + type + '_attack_front.gif';
@@ -3395,6 +3321,14 @@
          index += 1;
          preload("EffectSlash")
          preload("heal")
+         preloadChar(type + '/' + type + '_front.gif')
+         preloadChar(type + '/' + type + '_right.gif')
+         preloadChar(type + '/' + type + '_left.gif')
+         preloadChar(type + '/' + type + '_back.gif')
+         preloadChar(type + '/' + type + '_attack_front.gif')
+         preloadChar(type + '/' + type + '_back.gif')
+         preloadChar(type + '/' + type + '_attack_left.gif')
+         preloadChar(type + '/' + type + '_attack_right.gif')
          if (e === -1) {
              this.curleft = 1;
              this.curtop = 424;
@@ -3476,6 +3410,14 @@
          this.attackleft = '../CinePics/characters/' + type + '/' + type + '_attack_left.gif';
          this.attackright = '../CinePics/characters/' + type + '/' + type + '_attack_right.gif';
          this.swirl = '../CinePics/characters/' + type + '/' + type + '_swirl.gif';
+         preloadChar(type + '/' + type + '_front.gif')
+         preloadChar(type + '/' + type + '_right.gif')
+         preloadChar(type + '/' + type + '_left.gif')
+         preloadChar(type + '/' + type + '_back.gif')
+         preloadChar(type + '/' + type + '_attack_front.gif')
+         preloadChar(type + '/' + type + '_back.gif')
+         preloadChar(type + '/' + type + '_attack_left.gif')
+         preloadChar(type + '/' + type + '_attack_right.gif')
          preload("EffectSlash")
          index += 1;
      }
@@ -3549,6 +3491,14 @@
          this.attackback = '../CinePics/characters/' + type + '/' + type + '_back.gif';
          this.attackleft = '../CinePics/characters/' + type + '/' + type + '_attack_left.gif';
          this.attackright = '../CinePics/characters/' + type + '/' + type + '_attack_right.gif';
+        preloadChar(type + '/' + type + '_front.gif')
+         preloadChar(type + '/' + type + '_right.gif')
+         preloadChar(type + '/' + type + '_left.gif')
+         preloadChar(type + '/' + type + '_back.gif')
+         preloadChar(type + '/' + type + '_attack_front.gif')
+         preloadChar(type + '/' + type + '_back.gif')
+         preloadChar(type + '/' + type + '_attack_left.gif')
+         preloadChar(type + '/' + type + '_attack_right.gif')
          preload("EffectSlash")
          index += 1;
      }
@@ -3617,10 +3567,19 @@
          this.leftpic = '../CinePics/characters/' + type + '/' + type + '_left.gif';
          this.backpic = '../CinePics/characters/' + type + '/' + type + '_back.gif';
          this.casting = '../CinePics/characters/' + type + '/' + type + '_casting.gif';
+         this.EffectFire = new Image();
+         this.EffectFire.src = ""
+         console.log(type)
          preload("EffectFire")
          preload("EffectIce")
          preload("Zap")
+                  preloadChar(type + '/' + type + '_front.gif')
          preload("Death")
+        preloadChar(type)
+         preloadChar(type + '/' + type + '_right.gif')
+         preloadChar(type + '/' + type + '_left.gif')
+         preloadChar(type + '/' + type + '_back.gif')
+         preloadChar(type + '/' + type + '_casting.gif')
          index += 1;
      }
 
@@ -3692,6 +3651,11 @@
          preload("EffectLightning")
          preload("Gust")
          preload("EffectFire")
+                  preloadChar(type + '/' + type + '_front.gif')
+         preloadChar(type + '/' + type + '_right.gif')
+         preloadChar(type + '/' + type + '_left.gif')
+         preloadChar(type + '/' + type + '_back.gif')
+         preloadChar(type + '/' + type + '_casting.gif')
          index += 1;
      }
 
@@ -3764,6 +3728,11 @@
          preload("Earth")
          preload("EffectExplode")
          preload("Blizzard")
+                  preloadChar(type + '/' + type + '_front.gif')
+         preloadChar(type + '/' + type + '_right.gif')
+         preloadChar(type + '/' + type + '_left.gif')
+         preloadChar(type + '/' + type + '_back.gif')
+         preloadChar(type + '/' + type + '_casting.gif')
          index += 1;
      }
 
@@ -3836,6 +3805,10 @@
          this.leftpic = '../CinePics/characters/' + type + '/' + type + '_left.gif';
          this.backpic = '../CinePics/characters/' + type + '/' + type + '_back.gif';
          preload("Arrow")
+                  preloadChar(type + '/' + type + '_front.gif')
+         preloadChar(type + '/' + type + '_right.gif')
+         preloadChar(type + '/' + type + '_left.gif')
+         preloadChar(type + '/' + type + '_back.gif')
          index += 1;
      }
 
@@ -3908,6 +3881,10 @@
          this.backpic = '../CinePics/characters/' + type + '/' + type + '_back.gif';
          preload("EffectExplode")
          preload("Arrow")
+                           preloadChar(type + '/' + type + '_front.gif')
+         preloadChar(type + '/' + type + '_right.gif')
+         preloadChar(type + '/' + type + '_left.gif')
+         preloadChar(type + '/' + type + '_back.gif')
          index += 1;
      }
 
@@ -3980,6 +3957,10 @@
          this.backpic = '../CinePics/characters/' + type + '/' + type + '_back.gif';
          preload("Arrow")
          preload("Hook")
+        preloadChar(type + '/' + type + '_front.gif')
+         preloadChar(type + '/' + type + '_right.gif')
+         preloadChar(type + '/' + type + '_left.gif')
+         preloadChar(type + '/' + type + '_back.gif')
          index += 1;
      }
 
@@ -4053,6 +4034,11 @@
          this.attackleft = '../CinePics/characters/' + type + '/' + type + '_left.gif';
          this.attackright = '../CinePics/characters/' + type + '/' + type + '_right.gif';
          preload("EffectSlash")
+                           preloadChar(type + '/' + type + '_front.gif')
+         preloadChar(type + '/' + type + '_right.gif')
+         preloadChar(type + '/' + type + '_left.gif')
+         preloadChar(type + '/' + type + '_back.gif')
+         
          index += 1;
      }
 
@@ -4129,6 +4115,10 @@
          preload("AbsorbEffect")
          preload("Cloud")
          preload("EffectFire")
+                           preloadChar(type + '/' + type + '_front.gif')
+         preloadChar(type + '/' + type + '_right.gif')
+         preloadChar(type + '/' + type + '_left.gif')
+         preloadChar(type + '/' + type + '_back.gif')
          index += 1;
      }
 
@@ -4198,6 +4188,11 @@
          this.casting = '../CinePics/characters/' + type + '/' + type + '_casting.gif';
          preload("heal")
          preload("vigor")
+                           preloadChar(type + '/' + type + '_front.gif')
+         preloadChar(type + '/' + type + '_right.gif')
+         preloadChar(type + '/' + type + '_left.gif')
+         preloadChar(type + '/' + type + '_back.gif')
+         preloadChar(type + '/' + type + '_casting.gif')
          index += 1;
      }
 
@@ -4273,6 +4268,10 @@
          this.rightpic = '../CinePics/characters/' + type + '/' + type + '_right.gif';
          this.leftpic = '../CinePics/characters/' + type + '/' + type + '_left.gif';
          this.backpic = '../CinePics/characters/' + type + '/' + type + '_back.gif';
+                           preloadChar(type + '/' + type + '_front.gif')
+         preloadChar(type + '/' + type + '_right.gif')
+         preloadChar(type + '/' + type + '_left.gif')
+         preloadChar(type + '/' + type + '_back.gif')
          index += 1;
      }
 
@@ -4340,6 +4339,10 @@
          this.rightpic = '../CinePics/characters/fisherman/fisherman_right.gif';
          this.leftpic = '../CinePics/characters/fisherman/fisherman_left.gif';
          this.backpic = '../CinePics/characters/fisherman/fisherman_back.gif';
+                           preloadChar(type + '/' + type + '_front.gif')
+         preloadChar(type + '/' + type + '_right.gif')
+         preloadChar(type + '/' + type + '_left.gif')
+         preloadChar(type + '/' + type + '_back.gif')
          index += 1;
          if (e === -1) {
              this.curleft = 1;
@@ -5810,6 +5813,7 @@
                              }
                              if (Eunits[Eslots[i]].curleft === units[selectedindex].curleft || Eunits[Eslots[i]].curtop === units[selectedindex].curtop) {
                                  var damage = (Eunits[Eslots[i]].attack + Eunits[Eslots[i]].attack * Eunits[Eslots[i]].charge) - units[selectedindex].resistance;
+                                 if(damage<0){damage=0}
                                  Eunits[Eslots[i]].charge = 0;
                                  Damaging(damage, selectedindex);
                                  if (units[selectedindex].health <= 0) {
@@ -10270,7 +10274,7 @@
                  //                $("#" + selectedindex).append('<div class="energybar" id ="EB'+ units[selectedindex].index + '"style="width: ' + units[selectedindex].energy + '%"></div>');
                  //            }
                  if (e.options[e.selectedIndex].text === "Brace" && units[selectedindex].usedaction === false) {
-                     $("#TEXT").html("<p>" + units[selectedindex].name + "use braced. If the next source of damage would kill him, and he currently has more than 1 health, it reduces his health to 1 instead.</p>")
+                     $("#TEXT").html("<p>" + units[selectedindex].name + " used braced. If the next source of damage would kill him, and he currently has more than 1 health, it reduces his health to 1 instead.</p>")
                      Protect.play();
                      units[selectedindex].braced = true
                      selectedaction = "";
@@ -12894,8 +12898,8 @@
              }
              for (var w = 1; w < 6; w++) {
                  if (Eunits[Eslots[w]].curtop === (-75 + randnum * 100) && Eunits[Eslots[w]].alive === true) {
-                     var defense = Eunits[Eslots[Eslots[w]]].resistance;
-                     if (Eunits[Eslots[Eslots[w]]].enfeeble > 0) {
+                     var defense = Eunits[Eslots[w]].resistance;
+                     if (Eunits[Eslots[w]].enfeeble > 0) {
                          defense = 0;
                      }
                      var damage = (50 + curattack - defense) * Eunits[Eslots[w]].lightning;
@@ -13168,8 +13172,95 @@
                  difflevel = parseInt(localStorage.getItem("diff"));
              }
              //varibles
+         
+         
              {
                  $('.actions').append("<div class = 'actionbutton' id='Pass'><p>Pass</p></div>");
+                 setTimeout(function(){
+        Fire.src = "../sounds/Fire.mp3";
+         Fire.volume = .3;
+         Lightning.src = "../sounds/Lightning.mp3";
+         Lightning.volume = .2;
+         Heal.src = "../sounds/Heal.mp3";
+         Heal.volume = .3;
+         Sword.src = "../sounds/Sword.mp3";
+         Sword.volume = .3;
+         Arrow.src = "../sounds/Arrow.mp3";
+         Arrow.volume = .3;
+         Paralyzesound.src = "../sounds/Paralyze.mp3";
+         Paralyzesound.volume = .3;
+         Specialsound.src = "../sounds/Special.mp3";
+         Specialsound.volume = .3;
+         Win.src = "../sounds/Win.mp3";
+         Win.volume = .3;
+         Turnsound.src = "../sounds/Turn.mp3";
+         Turnsound.volume = .3;
+         Chargesound.src = "../sounds/Charge.mp3";
+         Chargesound.volume = .1;
+         Absorb.src = "../sounds/absorb.mp3";
+         Absorb.volume = .3;
+         Capture.src = "../sounds/capture.mp3";
+         Capture.volume = .3;
+         Cleanse.src = "../sounds/Cleanse.mp3";
+         Cleanse.volume = .3;
+         Death.src = "../sounds/Death.mp3";
+         Death.volume = .3;
+         Dogbite.src = "../sounds/dogbite.mp3";
+         Dogbite.volume = .3;
+         Disrupt.src = "../sounds/Disrupt.mp3";
+         Disrupt.volume = .3;
+         Flyby.src = "../sounds/flyby.mp3";
+         Flyby.volume = .3;
+         Gust.src = "../sounds/Gust.mp3";
+         Gust.volume = .3;
+         Hook.src = "../sounds/Hook.mp3";
+         Hook.volume = .3;
+         Hurricane.src = "../sounds/Hurricane.mp3";
+         Hurricane.volume = .3;
+         Water.src = "../sounds/Water.mp3";
+         Water.volume = .3;
+         Icescream.src = "../sounds/Icescream.mp3";
+         Icescream.volume = .3;
+         Protect.src = "../sounds/protect.mp3";
+         Protect.volume = .3;
+         Tar.src = "../sounds/Tar.mp3";
+         Tar.volume = .3;
+         Teleport.src = "../sounds/teleport.mp3";
+         Teleport.volume = .3;
+         vigor.src = "../sounds/vigor.mp3";
+         vigor.volume = .3;
+         Zap.src = "../sounds/zap.mp3";
+         Zap.volume = .3;
+         Iceattack.src = "../sounds/Iceattack.mp3";
+         Iceattack.volume = .3;
+         Spit.src = "../sounds/Spit.mp3";
+         Spit.volume = .3;
+         Vampirebite.src = "../sounds/Vampire.mp3";
+         Vampirebite.volume = .3;
+         propeller.src = "../sounds/Helicopter.mp3";
+         propeller.volume = .3;
+         powerup.src = "../sounds/powerup.mp3";
+         powerup.volume = .3;
+         crash.src = "../sounds/crash.mp3";
+         crash.volume = .3;
+         eating.src = "../sounds/eating.mp3";
+         eating.volume = .6;
+         break_window.src = "../sounds/break_window.mp3";
+         break_window.volume = .6;
+         swing.src = "../sounds/swing.mp3";
+         swing.volume = .6;
+         hell.src = "../sounds/Hell.mp3";
+         hell.volume = 1;
+         dramatic.src = "../sounds/Dramatic.mp3";
+         dramatic.volume = 1;
+         fail.src = "../sounds/fail.mp3";
+         fail.volume = 1;
+         success.src = "../sounds/success.mp3";
+         success.volume = 1;
+         missile.src = "../sounds/missile.mp3";
+         missile.volume = 1;
+                 },1000)
+
              } {
                  $("body").append("<div id='hidethis' style='visibility:hidden;display:none'></div>")
                  newday();

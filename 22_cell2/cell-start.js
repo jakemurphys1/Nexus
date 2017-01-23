@@ -482,7 +482,7 @@ return "Angel"
                     Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Hellhound(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'Hellhound');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,400,'hellhound');
                     break;
                 case 9:
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
@@ -773,7 +773,7 @@ function liberate(){
     
 }
 $(window).load(function(){
-    changesong("01/Battle.mp3")
+    changesong("01/NBattle.mp3")
     saving("22")
     
         containaccessories();

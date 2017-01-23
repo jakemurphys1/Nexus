@@ -7,13 +7,12 @@ function queue(){
     switch(qnum){
         case 0:
             opening("Chapter Fifteen:","The Beach")
-            break;
-        case 1:
-            enterChar("Guard-C",200,520);
+            enterChar("Guard-C",200,520,"no","right");
             enterChar("Archer4",340,500);
             addobject("baby",350,550,35)
             addobject("nexus",150,550)
-            movehor("Guard-C",1)
+            break;
+        case 1:
             delay(1000)
             break;
         case 2:
@@ -171,11 +170,11 @@ function queue(){
     }
 }
     var beach = new Audio();
-        beach.src = "../sounds/beach.wav";
+        beach.src = "../sounds/beach.mp3";
         beach.volume=.3;
 
 $(window).load(function(){
-    changesong("01/peaceful.mp3")
+    changesong("01/Peaceful.mp3")
     saving("35")
     setTimeout(function(){
         $(".wave").removeClass("hidden")

@@ -14,7 +14,7 @@ function airship(upOrDown,enemyexists){
         curtop=100
     }
     phase+=1;
-  $("body").append("<div style='background-color:lightblue;margin-top:-" + curtop + "px;margin-left:-0px' id = 'quickscene'><div id='airship' STYLE='position:absolute; TOP:" + height*100 + "px; LEFT:405px;' class='unit' ><img src='../CinePics/airship.gif'/></div>" + enemy +
+  $("body").append("<div style='background-color:lightblue;margin-top:-" + (curtop - 100) + "px;margin-left:-0px' id = 'quickscene'><div id='airship' STYLE='position:absolute; TOP:" + height*100 + "px; LEFT:405px;' class='unit' ><img src='../CinePics/airship.gif'/></div>" + enemy +
                  "<div class='trees' STYLE='position:absolute; TOP:570px; LEFT:-220px;' ><img style='height:80px' src='../CinePics/trees.png'/></div></div>")
           $('.trees').animate({
                         left: "+1080px"
@@ -93,29 +93,29 @@ function queue(){
         case 1:
             break;
         case 2:
-             enterChar("Knight",655,300);
+             enterChar("Knight",655,300,"no","moving_left");
             airship(0,false)
             break
         case 3:
-            movevert("Knight",30,"end")
+            delay(0)
             break
         case 4:
             movehor("Knight",-300,"end")
             break
         case 5:
-     movevert("Knight",95,"end")
+     movevert("Knight",125,"end")
         break
          case 6:
- enterChar("Archer2",655,300, "end");
+ enterChar("Archer2",655,300, "end","no","moving_left");
         break
         case 7:
-            movevert("Archer2",30,'end')
+            delay(0)
         break
         case 8:
         movehor("Archer2",-240,"end")
         break
          case 9:
-        movevert("Archer2",95,"end")
+        movevert("Archer2",125,"end")
         break
          case 10:
         dialog("How far out are we?","Archer2")
@@ -136,10 +136,10 @@ function queue(){
              dialog("...","Knight")
         break
          case 16:
-             enterChar("Sorcerer",655,300, "end");
+             enterChar("Sorcerer",655,300, "end","no","moving_left");
         break
         case 17:
-            movevert("Sorcerer",30,"end")
+            delay(0)
         break
         case 18:
             movehor("Sorcerer",-300,"end")
@@ -261,7 +261,7 @@ function queue(){
 }
 
 $(window).load(function(){
-                    propeller.src="../sounds/Helicopter.wav";
+                    propeller.src="../sounds/Helicopter.mp3";
                     propeller.volume=.05;
                     propeller.loop=true;
                     propeller.play();

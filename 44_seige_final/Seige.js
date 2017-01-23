@@ -368,7 +368,6 @@ function liberate(curloc){}
     function createbadguys(){
         var firstlocation;
         for(var i =1;i<3;i++){
-            
         
         //choose badguy
         var temp = Math.floor((Math.random() * 10) + 1);
@@ -803,7 +802,7 @@ function castle(withairship){
     }
 
 $(window).load(function(){
-    changesong("01/Battle.mp3")
+    changesong("01/NBattle.mp3")
     saving("44")
         containaccessories();
     setTimeout(function(){

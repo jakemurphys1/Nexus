@@ -9,9 +9,9 @@ function queue(){
             enterChar("Guard",420,200)
             enterChar("Rouge1",360,200)
             
-            enterChar("Sandra",420,550)
-            enterChar("Archer1",390,550)
-            enterChar("Edgar",360,550,"end")
+            enterChar("Sandra",420,550,"no","moving_back")
+            enterChar("Archer1",390,550,"no","moving_back")
+            enterChar("Edgar",360,550,"end","moving_back")
             break
         case 2:
             movevert("Sandra",-250,"no")

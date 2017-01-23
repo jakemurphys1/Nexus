@@ -86,7 +86,7 @@ function newunit(){
         switch(temp){
             case 1:
                 tempclass="Mage";
-                  tempname="Sandra";
+                  tempname="Mage2";
                 break;
             case 2:
                 tempclass="Guard";
@@ -102,7 +102,7 @@ function newunit(){
                 break;
             case 5:
                 tempclass="Soldier";
-                  tempname="Edgar";
+                  tempname="Soldier2";
                 break;
             case 6:
                 tempclass="Thief";
@@ -966,10 +966,11 @@ function LightningScene(mode){
             killunit()
         },7000)
   }else{
+      $("#cinemabackground").append("<div id='airship' STYLE='position:absolute; TOP:300px; LEFT:-500px;' class='unit' ><img style = 'height:400px;width:400px;margin-top:-65px;margin-left:-35px' src='pics/airship-bare.png'/><img style='margin-top:-885px;margin-left:-78px;height:200px;width:200px' src='pics/fan.gif'/><img style='margin-top:-700px;margin-left:-78px;height:200px;width:200px' src='pics/fan.gif'/></div>")
       setTimeout(function(){
           crash.currentTime=8;
           crash.play()
-          $("#cinemabackground").append("<div id='airship' STYLE='position:absolute; TOP:300px; LEFT:-500px;' class='unit' ><img style = 'height:400px;width:400px;margin-top:-65px;margin-left:-35px' src='pics/airship-bare.png'/><img style='margin-top:-885px;margin-left:-78px;height:200px;width:200px' src='pics/fan.gif'/><img style='margin-top:-700px;margin-left:-78px;height:200px;width:200px' src='pics/fan.gif'/></div>")
+
           $("#airship").animate({
               left:"+=2000px"
           },2000)
@@ -1013,7 +1014,7 @@ function killunit(){
 $(window).load(function(){
     $("#hidethis").append("<img src = 'pics/airship-bare.png' />")
     
-    changesong("01/Battle.mp3")
+    changesong("01/NBattle.mp3")
         containaccessories();
     saving("26")
     

@@ -962,7 +962,7 @@ function condition71(){
 }
 
 $(window).load(function(){
-    changesong("01/Battle.mp3")
+    changesong("01/NBattle.mp3")
     saving("42")
     
          Eunits[newEindex()]=new Wisp(curEindex, Egroupindex,difflevel);

@@ -68,23 +68,24 @@ function queue(){
     switch(qnum){
         case 1:
             opening("Chapter Seventeen: ", "The Rescue")
+                        enterChar("General2",330,50,"no","back")
         break
         case 2:
         airship(5)
-        changesong("01/peaceful.mp3")
+
         break
         case 3:
-            enterChar("General2",330,50)
+
             movevert("General2",-1)
             delay(1000)
         break
         case 4:
-            enterChar("Knight",380,550)
+            enterChar("Knight",380,550,"no","moving_back")
             movevert("Knight",-200)
             delay(1000)
         break
         case 5:
-            enterChar("Sandra",380,550)
+            enterChar("Sandra",380,550,"no","moving_back")
             movevert("Sandra",-150,"end")
         break
         case 6:
@@ -161,7 +162,6 @@ function queue(){
             movevert("Knight",200)
             movehor("Sandra",200)
             movevert("General2",-100)
-            delay(1000)
         break
          case 29:
             window.location.href = 'rescue.html'
@@ -172,7 +172,7 @@ function queue(){
 //window.location.href = './beforeairship.html'
 
 $(window).load(function(){
-
+        changesong("01/Peaceful.mp3")
         
     
 });

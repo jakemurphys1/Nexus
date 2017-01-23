@@ -773,7 +773,7 @@ function enemyconquer(){
 }
 
 $(window).load(function(){
-    changesong("01/Battle.mp3")
+    changesong("01/NBattle.mp3")
         containaccessories();
 saving("12")
 });

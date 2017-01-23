@@ -220,7 +220,7 @@ function queue(){
 }
 
 $(window).load(function(){
-                    propeller.src="../sounds/Helicopter.wav";
+                    propeller.src="../sounds/Helicopter.mp3";
                     propeller.volume=.05;
                     propeller.loop=true;
                     propeller.play();

@@ -16,8 +16,6 @@ function queue(){
             enterChar("Knight",680,70);
             enterChar("Sandra",370,80);
             movehor("Knight",-100,"end")
-
-
             break;
         case 2:
              movevert("Knight",70,"end")

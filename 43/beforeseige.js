@@ -66,7 +66,7 @@ function castle(withairship){
       $("#quickscene").remove();
       endthis=true;
       queue();
-  },3000)
+  },9000)
 
 }
 
@@ -74,11 +74,10 @@ function queue(){
     qnum+=1;
     switch(qnum){
         case 0:
-                castle("without");
+                
         break;
         case 1:
-            enterChar("Wizard2",360,100);
-            movevert("Wizard2",-1)
+            enterChar("Wizard2",360,100,"no","back");
             delay(3000)
         break
         case 2:
@@ -139,6 +138,7 @@ function queue(){
 
 $(window).load(function(){
     changesong("01/Threat.mp3")
+    castle("without");
     opening("Chapter Eighteen:","The Source")
 
 

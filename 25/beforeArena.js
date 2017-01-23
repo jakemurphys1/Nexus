@@ -5,14 +5,6 @@ function queue(){
     qnum+=1;
     switch(qnum){
         case 1:
-            enterChar("Wizard2",250,200);
-            enterChar("Templar1",300,200);
-            enterChar("Guard",350,200);
-            enterChar("Mage2",400,200);
-            enterChar("Soldier2",450,200);
-            enterChar("Archer4",500,200);
-            enterChar("Enchantress",550,200);
-              enterChar("Thief1",410,500);
              movevert("Thief1",-150,"end")
                  changesong("Drummer.wav")
             break
@@ -58,7 +50,14 @@ function queue(){
 }
 
 $(window).load(function(){
-    doeffect("Dramatic.wav")
-
+    doeffect("Dramatic.mp3")
+            enterChar("Wizard2",250,200);
+            enterChar("Templar1",300,200);
+            enterChar("Guard",350,200);
+            enterChar("Mage2",400,200);
+            enterChar("Soldier2",450,200);
+            enterChar("Archer4",500,200);
+            enterChar("Enchantress",550,200);
+              enterChar("Thief1",410,500);
      opening("Chapter Eleven:","Breaking the Wall")
 });

@@ -57,8 +57,7 @@ function airship(upOrDown,enemyexists){
  
 }
 function sun(){
-    console.log("check")
-      $("body").append("<div style='background-color:#0ecfd2;margin-top:-50px;margin-left:-0px' id = 'quickscene'>" + "<img style= 'margin-left:35%;margin-top:20%; width:200px' src = 'pics/sun.gif' /></div>")
+      $("body").append("<div style='background-color:#0ecfd2;margin-top:-0px;margin-left:-0px' id = 'quickscene'>" + "<img style= 'margin-left:35%;margin-top:20%; width:200px' src = 'pics/sun.gif' /></div>")
       
       setTimeout(function(){
           $("#quickscene").remove()
@@ -70,9 +69,10 @@ function queue(){
     switch(qnum){
         case 1:
             airship(-3,false)
+            enterChar("Knight",655,300);
             break;
         case 2:
-             enterChar("Knight",655,300,"end");
+             delay(0)
             break
         case 3:
             movevert("Knight",30,"end")
@@ -158,7 +158,7 @@ function queue(){
 
 $(window).load(function(){
     saving("43")
-                    propeller.src="../sounds/Helicopter.wav";
+                    propeller.src="../sounds/Helicopter.mp3";
                     propeller.volume=.05;
                     propeller.loop=true;
                     propeller.play();

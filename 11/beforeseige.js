@@ -73,10 +73,8 @@ function castle(withairship){
 function queue(){
     qnum+=1;
     switch(qnum){
-        case 0:
-                castle("without");
-        break;
-        case 1:
+        case -1:
+                opening("Chapter 5:","Seige")
             enterChar("Soldier2",200,300);
             enterChar("Archer3",250,300);
             enterChar("Knight",300,300);
@@ -84,8 +82,13 @@ function queue(){
             enterChar("Templar2",400,300);
             enterChar("Rouge2",450,300);
             enterChar("Mage2",500,300);
-            enterChar("Wizard1",400,400);
+            enterChar("Wizard1",400,400,"no","back");
             movevert("Wizard1",-1)
+            break;
+        case 0:
+                castle("without");
+        break;
+        case 1:
             delay(1000)
         break
         case 2:
@@ -117,7 +120,7 @@ function queue(){
 }
 
 $(window).load(function(){
-    opening("Chapter 5:","Seige")
+
     saving("11");
     
     changesong("Drummer.wav")

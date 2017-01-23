@@ -752,7 +752,7 @@ function liberate(curloc){
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Spider(curEindex, Egroupindex,difflevel);
                     Eunits[newEindex()]=new Wolf(curEindex, Egroupindex,difflevel);
-                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'Spider');
+                    Egroups[Egroupindex]=new Enewgroup(Egroupindex,baddielocation,500,'spider');
                     break;
             }
         }

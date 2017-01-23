@@ -1,5 +1,5 @@
 
-var qnum=-1;
+var qnum=0;
 
 function sun(){
       $("body").append("<div style='background-color:#0ecfd2;margin-top:0px;margin-left:-0px' id = 'quickscene'>" + "<img style= 'margin-left:35%;margin-top:20%; width:200px' src = 'pics/sun.gif' /></div>")
@@ -14,8 +14,6 @@ function queue(){
     qnum+=1;
     switch(qnum){
         case 0:
-            opening("Chapter Sixteen:","Time is Running Out")
-            doeffect("Dramatic.wav")
             break;
         case 1:
             enterChar("Knight",400,500);
@@ -24,7 +22,7 @@ function queue(){
         case 2:       
             enterChar("Sandra",145,500);
             movehor("Sandra",130,"end")
-            changesong("01/Threat.mp3")
+
             break
         case 3:
         dialog("Good Morning...","Sandra")
@@ -76,5 +74,5 @@ function queue(){
 }
 
 $(window).load(function(){
-
+            changesong("01/Threat.mp3")
 });

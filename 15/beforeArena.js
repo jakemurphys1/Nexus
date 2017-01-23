@@ -12,7 +12,7 @@ function queue(){
             enterChar("Soldier2",450,200);
             enterChar("Archer4",500,200);
             enterChar("Enchantress",550,200);
-              enterChar("Thief1",410,500);
+              enterChar("Thief1",410,500,"moving_back");
              movevert("Thief1",-150,"end")
                  changesong("Drummer.wav")
             break

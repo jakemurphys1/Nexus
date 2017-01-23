@@ -65,8 +65,7 @@ function castle(withairship){
   setTimeout(function(){
       $("#quickscene").remove();
       endthis=true;
-      queue();
-  },3000)
+  },9000)
 
 }
 
@@ -74,7 +73,8 @@ function queue(){
     qnum+=1;
     switch(qnum){
         case 0:
-                castle("without");
+                            castle("without");
+                        opening("Chapter Sixteen:","Time is Running Out")
         break;
         case 1:
             enterChar("Templar2",410,80);

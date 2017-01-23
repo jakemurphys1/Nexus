@@ -7,22 +7,21 @@ function queue(){
     switch(qnum){
         case 1:
             enterChar("Thief1",385,20);
-            movevert("Thief1",1)
             
-            enterChar("Sorcerer",330,430);
-             enterChar("Knight",380,350);
-            enterChar("Archer2",430,430);
+            enterChar("Sorcerer",330,430,"no","moving_back");
+             enterChar("Knight",380,350,"no","moving_back");
+            enterChar("Archer2",430,430,"no","moving_back");
             
             
-            enterChar("Wizard1",480,430);
-            enterChar("Templar1",270,430);
-            enterChar("Soldier2",380,430);
-            enterChar("Healer1",530,430);
-            enterChar("Rouge2",480,350);
-            enterChar("Sandra",530,350);
+            enterChar("Wizard1",480,430,"no","moving_back");
+            enterChar("Templar1",270,430,"no","moving_back");
+            enterChar("Soldier2",380,430,"no","moving_back");
+            enterChar("Healer1",530,430,"no","moving_back");
+            enterChar("Rouge2",480,350,"no","moving_back");
+            enterChar("Sandra",530,350,"no","moving_back");
             
-            enterChar("Enchantress",330,350);
-            enterChar("Guard",430,350);
+            enterChar("Enchantress",330,350,"no","moving_back");
+            enterChar("Guard",430,350,"no","moving_back");
             
              movevert("Sorcerer",-100)
              movevert("Knight",-100)
@@ -79,7 +78,7 @@ function queue(){
          dialog("Nothing unusual about me.","Enchantress")
         break
          case 14:
-         dialog("I have a unique ability, I guess.","Guard")
+         dialog("I have an unique ability, I guess.","Guard")
         break
          case 15:
          dialog("It's a special shield that will allow me to survive the next attack no matter how much damage it does to me.","Guard")

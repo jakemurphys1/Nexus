@@ -3,13 +3,13 @@ var qnum=-2;
 var round=0
 function castle(withairship){
     endthis=false;
-    var height = 0
+    var time = 9000
     if(round>0){
-        height=50
+        time=3000
     }
     round+=1
     
-  $("body").append("<div style='background-color:lightblue;margin-top:-" + height + "px;margin-left:-0px' id = 'quickscene'>" +
+  $("body").append("<div style='background-color:lightblue;margin-top:-0px;margin-left:-0px' id = 'quickscene'>" +
                  "<img src = 'pics/castle.png' /><div class='trees' STYLE='position:absolute; TOP:570px; LEFT:-220px;' ><img style='height:80px' src='pics/wall-enemy.gif'/></div></div>")
           $('.trees').animate({
                         left: "+1080px"
@@ -72,7 +72,7 @@ function castle(withairship){
       $("#quickscene").remove();
       endthis=true;
       queue();
-  },3000)
+  },time)
 
 }
 
@@ -80,10 +80,10 @@ function queue(){
     qnum+=1;
     switch(qnum){
         case 0:
-                castle("without");
+               
         break;
         case 1:
-            enterChar("Sorcerer",410,80);
+            enterChar("Sorcerer",410,80,"no","moving_front");
             enterChar("Wizard1",400,400);
             movevert("Sorcerer",200,"end")
         break
@@ -178,6 +178,7 @@ function queue(){
 
 $(window).load(function(){
     changesong("01/Descent.mp3")
+    castle("without");
     opening("Chapter Nine:","The Power")
     saving("19")
 

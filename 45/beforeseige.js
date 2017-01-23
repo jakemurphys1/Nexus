@@ -82,27 +82,18 @@ function queue(){
                         enterChar("Knight",500,200);
                         enterChar("Mimic",550,200);
             
-                        enterChar("Wizard2",500,500);
+                        enterChar("Wizard2",500,500,"no","back");
             
-                        enterChar("Templar2",350,500);
-                        enterChar("Healer2",400,500);
-                        enterChar("Knight2",450,500);
+                        enterChar("Templar2",350,500,"no","back");
+                        enterChar("Healer2",400,500,"no","back");
+                        enterChar("Knight2",450,500,"no","back");
             
-                        enterChar("Archer3",250,500);
-                        enterChar("Sorcerer",300,500);
-                        enterChar("Mage2",200,500);
-                        enterChar("Rouge2",400,600);
-                        enterChar("Soldier2",450,600);
-            
-            movevert("Wizard2",-1)
-            movevert("Templar2",-1)
-            movevert("Healer2",-1)
-            movevert("Knight2",-1)
-            movevert("Archer3",-1)
-            movevert("Sorcerer",-1)
-            movevert("Mage2",-1)
-            movevert("Rouge2",-1)
-            movevert("Soldier2",-1)
+                        enterChar("Archer3",250,500,"no","back");
+                        enterChar("Sorcerer",300,500,"no","back");
+                        enterChar("Mage2",200,500,"no","back");
+                        enterChar("Rouge2",400,600,"no","back","no","back");
+                        enterChar("Soldier2",450,600,"no","back");
+
                          delay(500)           
         break;
         case 1:

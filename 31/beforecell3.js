@@ -7,17 +7,16 @@ function queue(){
     switch(qnum){
         case 0:
             opening("Chapter Thirteen:","Break Through")
+            enterChar("Thief2",-100,150,"no","moving_right");
+            enterChar("Archer4",-150,200,"no","moving_right");
+            enterChar("Knight-C",-250,200,"no","moving_right");
+            enterChar("Soldier-C",-150,150,"no","moving_right");
+            enterChar("Rouge2",-200,150,"no","moving_right");
+            enterChar("Mage-C",-200,200,"no","moving_right");
+            enterChar("Enchantress",-200,250,"no","moving_right");
+            enterChar("Guard-C",-250,150,"no","moving_right");
             break;
         case 1:
-            enterChar("Thief2",-100,150);
-            enterChar("Archer4",-150,200);
-            enterChar("Knight-C",-250,200);
-            enterChar("Soldier-C",-150,150);
-            enterChar("Rouge2",-200,150);
-            enterChar("Mage-C",-200,200);
-              enterChar("Enchantress",-200,250);
-            enterChar("Guard-C",-250,150);
-            
             movehor("Thief2",820,"end","fast")
             movehor("Archer4",700,"no","fast")
             movehor("Knight-C",700,"no","fast")
@@ -26,8 +25,6 @@ function queue(){
             movehor("Mage-C",700,"no","fast")
             movehor("Enchantress",700,"no","fast")
             movehor("Guard-C",700,"no","fast")
-
-
             break;
         case 2:
              movevert("Thief2",-30)

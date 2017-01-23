@@ -7,12 +7,9 @@ function queue(){
     qnum+=1;
     switch(qnum){
         case 1:
-            enterChar("Thief1",200,400);
-            enterChar("Guard",300,400);
-            enterChar("Enchantress",400,400);
-            movevert("Thief1",-1)
-            movevert("Guard",-1)
-            movevert("Enchantress",-1)
+            enterChar("Thief1",200,400,"no","back");
+            enterChar("Guard",300,400,"no","back");
+            enterChar("Enchantress",400,400,"no","back");
             delay(1000)
             break;
         case 2:

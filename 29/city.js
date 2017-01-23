@@ -7,28 +7,24 @@ function queue(){
     switch(qnum){
         case 0:
             opening("Chapter Twelve:","Rest-Stop")
-            break;
-        case 1:
             
+                 enterChar("Knight",380,550,"no","moving_back");
+              enterChar("Rouge2",480,550,"no","moving_back");
+               enterChar("Sandra",525,550,"no","moving_back");
+             enterChar("Sorcerer",430,550,"no","moving_back");
             
-            
-             enterChar("Knight",380,550);
-              enterChar("Rouge2",480,550);
-               enterChar("Sandra",525,550);
-             enterChar("Sorcerer",430,550);
-            
-            enterChar("Wizard1",480,630);
-            enterChar("Templar1",320,630);
-            enterChar("Soldier2",380,630);
-            enterChar("Healer1",530,630);
+            enterChar("Wizard1",480,630,"no","moving_back");
+            enterChar("Templar1",320,630,"no","moving_back");
+            enterChar("Soldier2",380,630,"no","moving_back");
+            enterChar("Healer1",530,630,"no","moving_back");
          
-         enterChar("Archer2",430,630);
+         enterChar("Archer2",430,630,"no","moving_back");
             
             enterChar("Enchantress",380,350);
             enterChar("Guard",500,350);
-            enterChar("Thief1",435,350);
-            movevert("Thief1",1)
-            
+            enterChar("Thief1",435,350)
+            break;
+        case 1:
              movevert("Sorcerer",-100)
              movevert("Knight",-100)
              movevert("Archer2",-100)

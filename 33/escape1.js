@@ -6,17 +6,14 @@ function queue(){
     qnum+=1;
     switch(qnum){
         case 1:
-            addobject("diamond",100,300)
-            addobject("diamond",400,300)
-            addobject("diamond",250,500)
 
             
-            enterChar("Thief2",250,340);
-            enterChar("Archer4",250,290);
-            enterChar("Knight-C",250,240);
-            enterChar("Soldier-C",250,190);
-            enterChar("Rouge2",250,140);
-            enterChar("Mage-C",250,90);
+            enterChar("Thief2",250,340,"no","moving_front");
+            enterChar("Archer4",250,290,"no","moving_front");
+            enterChar("Knight-C",250,240,"no","moving_front");
+            enterChar("Soldier-C",250,190,"no","moving_front");
+            enterChar("Rouge2",250,140,"no","moving_front");
+            enterChar("Mage-C",250,90,"no","moving_front");
   
             movevert("Thief2",100,"end")
             movevert("Archer4",100,"no")
@@ -64,7 +61,7 @@ function queue(){
         break
         case 7:
         addobject("powerup",85,180,400)
-        doeffect("teleport.wav")
+        doeffect("teleport.mp3")
         delay(2000)
         break
         case 8:

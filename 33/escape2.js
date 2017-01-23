@@ -15,7 +15,7 @@ function queue(){
             addobject("diamond",400,300)
             addobject("diamond",250,510)
             addobject("powerup",85,180,400)
-            doeffect("teleport.wav")
+            doeffect("teleport.mp3")
             
             enterChar("Thief2",250,450);
             enterChar("Archer4",300,390);

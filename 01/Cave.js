@@ -1,7 +1,7 @@
 
 var qnum=0;
    var Fire = new Audio();
-        Fire.src = "../sounds/Fire.wav";
+        Fire.src = "../sounds/Fire.mp3";
         Fire.volume=.3;
 
 
@@ -9,10 +9,10 @@ function queue(){
     qnum+=1;
     switch(qnum){
         case 1:
-            enterChar("Sandra",250,600);
-            enterChar("Archer1",300,200);
+            enterChar("Sandra",250,600,"no","moving_back");
+            enterChar("Archer1",300,200,"back");
             movevert("Archer1",-1,"no")
-            enterChar("Edgar",350,600,"end");
+            enterChar("Edgar",350,600,"end","no","moving_back");
             
             break
             case 2:

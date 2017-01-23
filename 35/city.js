@@ -15,13 +15,15 @@ function queue(){
     switch(qnum){
         case 0:
             opening("Chapter Fourteen:","The City")
+                        enterChar("Knight",400,500);
+                        enterChar("Sandra",145,500,"no","moving_right");
             break;
         case 1:
-            enterChar("Knight",400,500);
+
         delay(0000)
             break;
         case 2:       
-            enterChar("Sandra",145,500);
+
             movehor("Sandra",130,"end")
             break
         case 3:

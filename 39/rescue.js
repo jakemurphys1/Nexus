@@ -13,6 +13,13 @@ function queue(){
             addobject("EffectFire",600,50)
             addobject("EffectFire",700,150)
             enterChar("Mimic",-100,300);
+            enterChar("fisherman",-100,200);
+            enterChar("fisherman2",-100,300);
+            enterChar("fisherman3",-100,400);
+            enterChar("fisherman4",-100,450);
+            enterChar("Knight",900,300);
+            enterChar("Archer2",900,400);
+            enterChar("Sorcerer",900,450);
             movehor("Mimic",400,"end")
         break
         case 2:
@@ -20,17 +27,12 @@ function queue(){
             dialog("Follow me, if we make it across the river, we should be able to escape!","Mimic")
         break
         case 3:
-            enterChar("fisherman",-100,200);
-            enterChar("fisherman2",-100,300);
-            enterChar("fisherman3",-100,400);
-            enterChar("fisherman4",-100,450);
+
             movehor("fisherman",300)
             movehor("fisherman2",300)
             movehor("fisherman3",300)
             movehor("fisherman4",300)
-            enterChar("Knight",900,300);
-            enterChar("Archer2",900,400);
-            enterChar("Sorcerer",900,450);
+
             movehor("Knight",-300)
             movehor("Archer2",-300)
             movehor("Sorcerer",-300,"end")

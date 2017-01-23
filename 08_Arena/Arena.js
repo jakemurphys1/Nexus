@@ -442,7 +442,7 @@ function enemyconquer(){
 }
 
 $(window).load(function(){
-        changesong("01/Battle.mp3")
+        changesong("01/NBattle.mp3")
         localStorage.setItem("level", "8");
     if(parseInt( localStorage.getItem("diff"))>0){
         difflevel=parseInt(localStorage.getItem("diff"));

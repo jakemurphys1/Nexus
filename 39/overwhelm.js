@@ -85,7 +85,7 @@ $(window).load(function(){
 
     },50)
     
-doeffect("Dramatic.wav")
+doeffect("Dramatic.mp3")
 
         
     

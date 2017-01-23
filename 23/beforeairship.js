@@ -90,7 +90,7 @@ function queue(){
             delay(3000)
             break;
         case 2:
-             enterChar("Sandra",655,300);
+             enterChar("Sandra",655,300,"no","moving_left");
             movehor("Sandra",-300,"end")
             break
         case 3:
@@ -141,7 +141,7 @@ function queue(){
 }
 
 $(window).load(function(){
-                    propeller.src="../sounds/Helicopter.wav";
+                    propeller.src="../sounds/Helicopter.mp3";
                     propeller.volume=.05;
                     propeller.loop=true;
                     propeller.play();

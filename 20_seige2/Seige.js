@@ -1025,7 +1025,7 @@
 
    function enemyconquer() {}
    $(window).load(function () {
-       changesong("01/Battle.mp3")
+       changesong("01/NBattle.mp3")
        containaccessories();
        saving("20")
        $('#background').append('<img src="pics/diamond.gif" class="crystal" id="C1" style="left:65px; top:220px" />');
